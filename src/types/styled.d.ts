@@ -8,5 +8,6 @@ declare module 'styled-components' {
     colorMidGrey: string;
     colorBlue: string;
     fontPrimary: string;
+    spacingBase: number;
   }
 }

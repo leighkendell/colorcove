@@ -10,6 +10,9 @@ const colorcoveTheme: DefaultTheme = {
 
   // Fonts
   fontPrimary: `Manrope, sans-serif`,
+
+  // Spacing
+  spacingBase: 8,
 };
 
 export { colorcoveTheme };
