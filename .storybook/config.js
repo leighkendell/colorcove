@@ -1,15 +1,17 @@
 import React from 'react';
 import { configure, addParameters, addDecorator } from '@storybook/react';
-import { withInfo } from "@storybook/addon-info";
+import centered from '@storybook/addon-centered/react';
+import Theme from '../src/components/theme';
+import { withInfo } from '@storybook/addon-info';
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../src/stories', true, /\.stories\.[jt]sx?$/);
 function loadStories() {
   addDecorator(withInfo);
-  addDecorator(story => <>{story()}</>);
+  addDecorator(centered);
+  addDecorator(story => <Theme>{story()}</Theme>);
   addParameters({
     info: {
-      inline: true,
       header: false,
     },
   })
