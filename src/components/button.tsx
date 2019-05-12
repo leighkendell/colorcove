@@ -8,10 +8,10 @@ interface Props {
 
 const Button = styled.button<Props>`
   padding: ${spacing(2)} ${spacing(5)};
-  color: ${({ theme }) => theme.colorWhite};
+  color: ${props => props.theme.colorWhite};
   font-weight: bold;
   ${fontSize(15, 3)};
-  background-color: ${({ theme }) => theme.colorBlue};
+  background-color: ${props => props.theme.colorBlue};
   border: 0;
   border-radius: ${spacing(8)};
   cursor: pointer;
@@ -19,17 +19,17 @@ const Button = styled.button<Props>`
   appearance: none;
 
   /* When the icon prop is true */
-  ${({ icon }) => icon && `padding-left: ${spacing(9)}`}
+  ${props => props.icon && `padding-left: ${spacing(9)}`}
 
   ${breakpoint('small')} {
     padding: ${spacing(3)} ${spacing(7)};
 
     /* When the icon prop is true */
-    ${({ icon }) => icon && `padding-left: ${spacing(12)}`}
+    ${props => props.icon && `padding-left: ${spacing(12)}`}
   }
 
   &:hover {
-    background-color: ${({ theme }) => darken(0.2, theme.colorBlue)};
+    background-color: ${props => darken(0.2, props.theme.colorBlue)};
   }
 
   svg {
@@ -47,7 +47,7 @@ const Button = styled.button<Props>`
     }
 
     * {
-      fill: ${({ theme }) => theme.colorWhite};
+      fill: ${props => props.theme.colorWhite};
     }
   }
 `;

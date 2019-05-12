@@ -8,6 +8,7 @@ import ManropeLightWoff from '../fonts/Manrope3-Light.woff';
 import ManropeLightWoff2 from '../fonts/Manrope3-Light.woff2';
 import ManropeBoldWoff from '../fonts/Manrope3-Bold.woff';
 import ManropeBoldWoff2 from '../fonts/Manrope3-Bold.woff2';
+import { spacing } from '../utils/style-helpers';
 
 const GlobalStyle = createGlobalStyle`
   ${normalize()}
@@ -31,21 +32,21 @@ const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 1rem;
-    font-family: ${({ theme }) => theme.fontPrimary};
+    font-family: ${props => props.theme.fontPrimary};
   }
 
   * {
     box-sizing: inherit;
 
-    &:focus {
-      /* outline: 4px solid ${({ theme }) => lighten(0.3, theme.colorBlue)}; */
-      /* outline-offset: 2px; */
-    }
-
     &::before,
     &::after {
       box-sizing: inherit;
     }
+  }
+
+  /* Storybook specific */
+  .sb-show-main {
+    padding: ${spacing(6)};
   }
 `;
 

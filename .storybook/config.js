@@ -8,7 +8,7 @@ import { withInfo } from '@storybook/addon-info';
 const req = require.context('../src/stories', true, /\.stories\.[jt]sx?$/);
 function loadStories() {
   addDecorator(withInfo);
-  addDecorator(centered);
+  // addDecorator(centered);
   addDecorator(story => <Theme>{story()}</Theme>);
   addParameters({
     info: {
