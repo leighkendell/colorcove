@@ -29,14 +29,7 @@ module.exports = {
         icon: `src/images/colorcove-logo.png`,
       },
     },
-    {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-          rule: {
-            include: /\.inline\.svg$/
-          }
-      }
-    }
+    `gatsby-plugin-svgr`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
