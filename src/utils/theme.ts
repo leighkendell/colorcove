@@ -13,6 +13,13 @@ const colorcoveTheme: DefaultTheme = {
 
   // Spacing
   spacingBase: 8,
+
+  // Breakpoints
+  breakpoints: {
+    small: 420,
+    medium: 768,
+    large: 1200,
+  },
 };
 
 export { colorcoveTheme };
