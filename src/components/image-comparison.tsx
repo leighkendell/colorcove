@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { spacing, breakpoint } from '../utils/style-helpers';
+import { useGesture } from 'react-use-gesture';
+import useResizeAware from 'react-resize-aware';
 
 interface Props {
   beforeImage: string;
@@ -55,6 +57,7 @@ const Handle = styled(animated.button)`
   border: 0;
   border-radius: 100%;
   transform: translate(-${spacing(5)}, -50%);
+  cursor: ew-resize;
 `;
 
 const AnimatedImage = animated(Image);
@@ -65,38 +68,58 @@ const ImageComparison: React.FC<Props> = ({
   width,
   height,
 }) => {
-  const [progress, setProgress] = useState(50);
+  const [resizeListener, sizes] = useResizeAware();
 
   // Animations
-  const spring = useSpring({ progress });
+  const [{ progress }, setSpring] = useSpring(() => ({ progress: 50 }));
 
   const wrapperStyle = {
-    transform: spring.progress.interpolate(x => `scaleX(${x / 100})`),
+    transform: progress.interpolate(x => `scaleX(${x / 100})`),
   };
 
   const imageStyle = {
-    transform: spring.progress.interpolate(x => `scaleX(${100 / x})`),
+    transform: progress.interpolate(x => `scaleX(${100 / x})`),
   };
 
   const handleStyle = {
-    left: spring.progress.interpolate(x => `${x}%`),
+    left: progress.interpolate(x => `${x}%`),
   };
+
+  // Drag behaviour
+  // Sets the spring "progress" state based on the drag value
+  const gestureEvents = useGesture(
+    {
+      onDrag: ({ event, active, delta, temp = progress.getValue() }) => {
+        event.preventDefault();
+
+        const [x] = delta;
+        const newProgress = (x / sizes.width) * 100 + temp;
+
+        if (newProgress > 100 || newProgress < 0) {
+          return;
+        }
+
+        setSpring({
+          progress: newProgress,
+          immediate: active,
+        });
+
+        return temp;
+      },
+    },
+    { event: { passive: false } }
+  );
 
   return (
     <>
       <Wrapper ratio={(height / width) * 100}>
+        {resizeListener}
         <ImageWrapper style={wrapperStyle}>
           <AnimatedImage src={beforeImage} style={imageStyle} />
         </ImageWrapper>
         <Image src={afterImage} />
-        <Handle style={handleStyle} />
+        <Handle style={handleStyle} {...gestureEvents()} />
       </Wrapper>
-
-      <input
-        type="range"
-        value={progress}
-        onChange={e => setProgress(parseFloat(e.currentTarget.value, 10))}
-      />
     </>
   );
 };

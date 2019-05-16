@@ -1,13 +1,13 @@
 {
   "name": "colorcove",
   "private": true,
-  "description": "A blazing fast site for filmmakers and creatives built with Gatsby",
+  "description": "A site for filmmakers and creatives built with Gatsby",
   "version": "0.1.0",
   "author": "Leigh Kendell <leigh@leighkendell.com>",
   "dependencies": {
     "@vimeo/player": "^2.9.1",
     "babel-plugin-styled-components": "^1.10.0",
-    "gatsby": "^2.4.6",
+    "gatsby": "^2.5.0",
     "gatsby-image": "^2.0.41",
     "gatsby-plugin-manifest": "^2.1.1",
     "gatsby-plugin-offline": "^2.1.0",
@@ -23,7 +23,9 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
+    "react-resize-aware": "3.0.0-beta.3",
     "react-spring": "^8.0.20",
+    "react-use-gesture": "^5.0.1",
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
@@ -82,7 +84,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/leighkendell/colorcove"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
