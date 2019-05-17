@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { spacing, breakpoint } from '../utils/style-helpers';
@@ -47,17 +47,71 @@ const Image = styled.img`
 `;
 
 const Handle = styled(animated.button)`
+  --spacing: ${spacing(5)};
+  --scale: 1;
+
   position: absolute;
   top: 50%;
   left: 0;
   z-index: 1;
-  width: ${spacing(10)};
-  height: ${spacing(10)};
+  width: var(--spacing);
+  height: var(--spacing);
   background-color: ${props => props.theme.colorBlue};
   border: 0;
   border-radius: 100%;
-  transform: translate(-${spacing(5)}, -50%);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  transform: translate(calc((var(--spacing) * -1) / 2), -50%)
+    scale(var(--scale));
   cursor: ew-resize;
+  transition: transform 0.25s ease-in-out;
+
+  ${breakpoint('small')} {
+    --spacing: ${spacing(7)};
+  }
+
+  ${breakpoint('medium')} {
+    --spacing: ${spacing(8)};
+  }
+
+  ${breakpoint('large')} {
+    --spacing: ${spacing(10)};
+  }
+
+  &:hover,
+  &:active {
+    --scale: 1.25;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    width: ${spacing(1.5)};
+    height: ${spacing(1.5)};
+    border: 2px solid ${props => props.theme.colorWhite};
+    transform: translateY(-50%) rotate(45deg);
+    content: '';
+  }
+
+  &::before {
+    left: ${spacing(1.5)};
+    border-top: 0;
+    border-right: 0;
+
+    ${breakpoint('medium')} {
+      left: ${spacing(2)};
+    }
+  }
+
+  &::after {
+    right: ${spacing(1.5)};
+    border-bottom: 0;
+    border-left: 0;
+
+    ${breakpoint('medium')} {
+      right: ${spacing(2)};
+    }
+  }
 `;
 
 const AnimatedImage = animated(Image);
@@ -110,15 +164,32 @@ const ImageComparison: React.FC<Props> = ({
     { event: { passive: false } }
   );
 
+  const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const x =
+      event.clientX -
+      (event.target as HTMLDivElement).getBoundingClientRect().left;
+    setSpring({
+      progress: (x / sizes.width) * 100,
+    });
+  };
+
+  const handleHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+  };
+
   return (
     <>
-      <Wrapper ratio={(height / width) * 100}>
+      <Wrapper ratio={(height / width) * 100} onClick={handleWrapperClick}>
         {resizeListener}
         <ImageWrapper style={wrapperStyle}>
           <AnimatedImage src={beforeImage} style={imageStyle} />
         </ImageWrapper>
         <Image src={afterImage} />
-        <Handle style={handleStyle} {...gestureEvents()} />
+        <Handle
+          style={handleStyle}
+          {...gestureEvents()}
+          onClick={handleHandleClick}
+        />
       </Wrapper>
     </>
   );
