@@ -1,6 +1,6 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { normalize, lighten } from 'polished';
+import { normalize } from 'polished';
 import { colorcoveTheme } from '../utils/theme';
 
 // Fonts
@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     src: url(${ManropeLightWoff2}) format('woff2'),
         url(${ManropeLightWoff}) format('woff');
+    font-display: swap;
   }
 
   @font-face {
@@ -27,10 +28,12 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     src: url(${ManropeBoldWoff2}) format('woff2'),
         url(${ManropeBoldWoff}) format('woff');
+    font-display: swap;
   }
 
   html {
     box-sizing: border-box;
+    color: ${props => props.theme.colorBlack};
     font-size: 1rem;
     font-family: ${props => props.theme.fontPrimary};
   }

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
 import { useGesture } from 'react-use-gesture';
-import useResizeAware from 'react-resize-aware';
+const useResizeAware = require('react-resize-aware');
 
 interface Props {
   beforeImage: string;
