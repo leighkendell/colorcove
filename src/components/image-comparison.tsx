@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { animated, useSpring } from 'react-spring';
-import { spacing, breakpoint } from '../utils/style-helpers';
+import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
 import { useGesture } from 'react-use-gesture';
 import useResizeAware from 'react-resize-aware';
 
@@ -30,9 +30,10 @@ const Wrapper = styled.div<{ ratio: number }>`
   overflow: hidden;
 `;
 
-const ImageWrapper = styled(animated.div)`
+const ImageWrapper = styled(animated.figure)`
   ${imagePosition}
   z-index: 1;
+  margin: 0;
   overflow: hidden;
   transform-origin: left;
 `;
@@ -46,7 +47,7 @@ const Image = styled.img`
   ${imagePosition}
 `;
 
-const Handle = styled(animated.button)`
+const Handle = styled(animated.div)`
   --spacing: ${spacing(5)};
   --scale: 1;
 
@@ -86,11 +87,17 @@ const Handle = styled(animated.button)`
   &::after {
     position: absolute;
     top: 50%;
-    width: ${spacing(1.5)};
-    height: ${spacing(1.5)};
+    width: ${spacing(1)};
+    height: ${spacing(1)};
     border: 2px solid ${props => props.theme.colorWhite};
+    border-radius: 2px;
     transform: translateY(-50%) rotate(45deg);
     content: '';
+
+    ${breakpoint('medium')} {
+      width: ${spacing(1.5)};
+      height: ${spacing(1.5)};
+    }
   }
 
   &::before {
@@ -114,11 +121,52 @@ const Handle = styled(animated.button)`
   }
 `;
 
+const Content = styled(animated.div)`
+  display: grid;
+  overflow: hidden;
+`;
+
+const ContentItem = styled.div`
+  padding: ${spacing(1)};
+  text-align: center;
+  background-color: ${props => props.theme.colorLightGrey};
+
+  ${breakpoint('medium')} {
+    padding: ${spacing(2)};
+  }
+
+  ${breakpoint('large')} {
+    padding: ${spacing(3)};
+  }
+
+  &:last-child {
+    background-color: ${props => props.theme.colorMidGrey};
+  }
+
+  strong {
+    display: block;
+    overflow: hidden;
+    ${fontSize(13, 3)};
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    ${breakpoint('medium')} {
+      ${fontSize(14, 3)};
+    }
+
+    ${breakpoint('large')} {
+      ${fontSize(15, 3)};
+    }
+  }
+`;
+
 const AnimatedImage = animated(Image);
 
 const ImageComparison: React.FC<Props> = ({
   beforeImage,
   afterImage,
+  beforeLabel,
+  afterLabel,
   width,
   height,
 }) => {
@@ -139,18 +187,26 @@ const ImageComparison: React.FC<Props> = ({
     left: progress.interpolate(x => `${x}%`),
   };
 
+  const contentStyle = {
+    gridTemplateColumns: progress.interpolate(x => `${x}% ${100 - x}%`),
+  };
+
   // Drag behaviour
   // Sets the spring "progress" state based on the drag value
   const gestureEvents = useGesture(
     {
-      onDrag: ({ event, active, delta, temp = progress.getValue() }) => {
+      onDrag: ({ event, active, delta, temp = progress.getValue(), last }) => {
         event.preventDefault();
 
         const [x] = delta;
-        const newProgress = (x / sizes.width) * 100 + temp;
+        let newProgress = (x / sizes.width) * 100 + temp;
 
         if (newProgress > 100 || newProgress < 0) {
           return;
+        }
+
+        if (last) {
+          newProgress = Math.round(newProgress);
         }
 
         setSpring({
@@ -169,28 +225,69 @@ const ImageComparison: React.FC<Props> = ({
       event.clientX -
       (event.target as HTMLDivElement).getBoundingClientRect().left;
     setSpring({
-      progress: (x / sizes.width) * 100,
+      progress: Math.round((x / sizes.width) * 100),
     });
   };
 
-  const handleHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleHandleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const { key } = event;
+    const currentProgress = progress.getValue();
+
+    if (key === 'ArrowUp' || key === 'ArrowRight') {
+      setSpring({
+        progress: Math.round(currentProgress + 1),
+      });
+    }
+
+    if (key === 'ArrowDown' || key === 'ArrowLeft') {
+      setSpring({
+        progress: Math.round(currentProgress - 1),
+      });
+    }
+  };
+
+  const valueNow = progress.interpolate(progress =>
+    parseFloat(progress.toFixed(0))
+  );
 
   return (
     <>
       <Wrapper ratio={(height / width) * 100} onClick={handleWrapperClick}>
         {resizeListener}
         <ImageWrapper style={wrapperStyle}>
-          <AnimatedImage src={beforeImage} style={imageStyle} />
+          <AnimatedImage
+            src={beforeImage}
+            alt="Before"
+            aria-labelledby="beforeLabel"
+            style={imageStyle}
+          />
         </ImageWrapper>
-        <Image src={afterImage} />
+        <Image src={afterImage} alt="After" aria-labelledby="afterLabel" />
         <Handle
           style={handleStyle}
-          {...gestureEvents()}
           onClick={handleHandleClick}
+          onKeyDown={handleKeyDown}
+          aria-label="Compare images"
+          role="slider"
+          aria-valuemin={1}
+          aria-valuemax={100}
+          aria-valuenow={valueNow}
+          tabIndex={0}
+          {...gestureEvents()}
         />
       </Wrapper>
+      <Content style={contentStyle}>
+        <ContentItem>
+          <strong id="beforeLabel">{beforeLabel}</strong>
+        </ContentItem>
+        <ContentItem>
+          <strong id="afterLabel">{afterLabel}</strong>
+        </ContentItem>
+      </Content>
     </>
   );
 };

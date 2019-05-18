@@ -5,12 +5,12 @@ import ImageComparison from '../components/image-comparison';
 storiesOf('Image comparison', module).add('Default', () => (
   <>
     <ImageComparison
-      beforeImage="https://picsum.photos/id/1018/2000/1000?grayscale"
-      afterImage="https://picsum.photos/2000/1000"
-      beforeLabel="fsdfds"
-      afterLabel="fdsfds"
-      width={2000}
-      height={1000}
+      beforeImage="https://www.kojicolor.com/wp-content/uploads/2015/06/koji_matt_before.jpg"
+      afterImage="https://www.kojicolor.com/wp-content/uploads/2015/06/koji_matt_after_2393.jpg"
+      beforeLabel="As shot"
+      afterLabel="Film grain pro"
+      width={1920}
+      height={640}
     />
   </>
 ));
