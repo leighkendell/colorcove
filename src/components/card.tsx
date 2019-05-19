@@ -3,13 +3,16 @@ import styled from 'styled-components';
 import Heading from './heading';
 import Text from './text';
 import Button from './button';
+import Image from './image';
 import { Link } from 'gatsby';
 import { spacing, breakpoint } from '../utils/style-helpers';
+import { FluidObject } from 'gatsby-image';
 
 interface Props {
   title: string;
   description: string;
   link: string;
+  image: FluidObject;
 }
 
 const StyledCard = styled.li`
@@ -26,6 +29,7 @@ const StyledCard = styled.li`
 `;
 
 const Content = styled.div`
+  order: 2;
   padding: ${spacing(3)};
   background-color: ${props => props.theme.colorLightGrey};
 
@@ -42,7 +46,11 @@ const Content = styled.div`
   }
 `;
 
-const Card: React.FC<Props> = ({ title, description, link }) => {
+const StyledImage = styled(Image)`
+  order: 1;
+`;
+
+const Card: React.FC<Props> = ({ title, description, link, image }) => {
   return (
     <StyledCard>
       <Content>
@@ -52,6 +60,7 @@ const Card: React.FC<Props> = ({ title, description, link }) => {
           View product
         </Button>
       </Content>
+      <StyledImage image={image} alt="" />
     </StyledCard>
   );
 };
