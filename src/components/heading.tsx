@@ -37,7 +37,7 @@ const H2 = styled.h2`
 `;
 
 const H3 = styled.h3`
-  ${sharedStyle};
+  margin: 0 0 ${spacing(2)};
   ${fontSize(22, 5)};
 
   ${breakpoint('medium')} {
