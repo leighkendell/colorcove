@@ -1,42 +1,99 @@
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { FluidObject } from 'gatsby-image';
+import styled, { css } from 'styled-components';
+import Heading from './heading';
+import { spacing, breakpoint } from '../utils/style-helpers';
+import Image from './image';
+import Text from './text';
+import Button from './button';
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-);
+interface Props {
+  title: string;
+  description?: string;
+  image?: FluidObject;
+}
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
+const headerGrid = css`
+  display: grid;
+  grid-template-rows: repeat(2, auto);
 
-Header.defaultProps = {
-  siteTitle: ``,
+  ${breakpoint('large')} {
+    grid-template-rows: 1fr var(--padding);
+  }
+`;
+
+const StyledHeader = styled.header<{ hasImage: boolean }>`
+  --padding: ${spacing(4)};
+
+  ${breakpoint('small')} {
+    --padding: ${spacing(6)};
+  }
+
+  ${breakpoint('medium')} {
+    --padding: ${spacing(8)};
+  }
+
+  ${breakpoint('large')} {
+    --padding: ${spacing(12)};
+  }
+
+  ${({ hasImage }) => !hasImage && 'padding: var(--padding)'};
+  ${({ hasImage }) => hasImage && headerGrid};
+  background-color: ${props => props.theme.colorBlack};
+
+  * {
+    color: ${props => props.theme.colorWhite};
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+`;
+
+const StyledImage = styled(Image)`
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+
+  ${breakpoint('large')} {
+    grid-row: 1 / span 2;
+  }
+`;
+
+const Content = styled.div`
+  z-index: 1;
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 1;
+  align-self: end;
+  max-width: 640px;
+  padding: var(--padding);
+  background: ${props => props.theme.colorBlack};
+
+  ${breakpoint('large')} {
+    grid-row: 1 / span 1;
+  }
+
+  ${Button} {
+    margin-top: ${spacing(3)};
+  }
+`;
+
+const Header: React.FC<Props> = ({ title, description, image }) => {
+  return (
+    <StyledHeader role="banner" hasImage={image ? true : false}>
+      {description && image ? (
+        <>
+          <Content>
+            <Heading type="h1">{title}</Heading>
+            <Text>{description}</Text>
+            <Button>Buy for $49.95</Button>
+          </Content>
+          <StyledImage image={image} alt="" />
+        </>
+      ) : (
+        <Heading type="h1">{title}</Heading>
+      )}
+    </StyledHeader>
+  );
 };
 
 export default Header;

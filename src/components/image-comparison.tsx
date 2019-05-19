@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
 import { useGesture } from 'react-use-gesture';

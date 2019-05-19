@@ -21,8 +21,6 @@ storiesOf('Image comparison', module).add('Default', () => (
       }}
       beforeLabel="As shot"
       afterLabel="Film grain pro"
-      width={1920}
-      height={640}
     />
   </>
 ));
