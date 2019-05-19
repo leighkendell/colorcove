@@ -4,13 +4,17 @@ import { spacing, fontSize, breakpoint } from '../utils/style-helpers';
 
 interface Props {
   icon?: boolean;
+  to?: string;
 }
 
 const Button = styled.button<Props>`
-  padding: ${spacing(2)} ${spacing(5)};
+  display: inline-block;
+  padding: ${spacing(2)} ${spacing(4)};
   color: ${props => props.theme.colorWhite};
   font-weight: bold;
-  ${fontSize(15, 3)};
+  ${fontSize(15, 2)};
+  text-align: center;
+  text-decoration: none;
   background-color: ${props => props.theme.colorBlue};
   border: 0;
   border-radius: ${spacing(8)};
