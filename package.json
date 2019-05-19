@@ -80,7 +80,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "check-ts": "tsc -p tsconfig.json --noEmit"
   },
   "repository": {
     "type": "git",
