@@ -32,13 +32,11 @@ const StyledTextBlock = styled.div<{ horizontal?: boolean }>`
   margin: 0 auto;
   text-align: center;
 
-  ${props => props.horizontal && horizontalStyle};
-
-  * {
-    &:last-child {
-      margin-bottom: 0;
-    }
+  *:last-child {
+    margin-bottom: 0;
   }
+
+  ${props => props.horizontal && horizontalStyle};
 
   ${Button} {
     margin-top: ${spacing(1)};
