@@ -3,48 +3,36 @@ import styled, { css } from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
 import { useGesture } from 'react-use-gesture';
+import { FluidObject } from 'gatsby-image';
+import Image from './image';
 const useResizeAware = require('react-resize-aware');
 
 interface Props {
-  beforeImage: string;
-  afterImage: string;
+  beforeImage: FluidObject;
+  afterImage: FluidObject;
   beforeLabel: string;
   afterLabel: string;
-  width: number;
-  height: number;
 }
 
-const imagePosition = css`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`;
-
-const Wrapper = styled.div<{ ratio: number }>`
+const Wrapper = styled.div`
   position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: ${props => props.ratio}%;
   overflow: hidden;
 `;
 
 const ImageWrapper = styled(animated.figure)`
-  ${imagePosition}
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 1;
+  width: 100%;
+  height: 100%;
   margin: 0;
   overflow: hidden;
   transform-origin: left;
 `;
 
-const Image = styled.img`
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+const StyledImage = styled(Image)`
   transform-origin: left;
-  ${imagePosition}
 `;
 
 const Handle = styled(animated.div)`
@@ -160,15 +148,13 @@ const ContentItem = styled.div`
   }
 `;
 
-const AnimatedImage = animated(Image);
+const AnimatedImage = animated(StyledImage);
 
 const ImageComparison: React.FC<Props> = ({
   beforeImage,
   afterImage,
   beforeLabel,
   afterLabel,
-  width,
-  height,
 }) => {
   const [resizeListener, sizes] = useResizeAware();
 
@@ -256,17 +242,12 @@ const ImageComparison: React.FC<Props> = ({
 
   return (
     <>
-      <Wrapper ratio={(height / width) * 100} onClick={handleWrapperClick}>
+      <Wrapper onClick={handleWrapperClick}>
         {resizeListener}
         <ImageWrapper style={wrapperStyle}>
-          <AnimatedImage
-            src={beforeImage}
-            alt="Before"
-            aria-labelledby="beforeLabel"
-            style={imageStyle}
-          />
+          <AnimatedImage image={beforeImage} alt="Before" style={imageStyle} />
         </ImageWrapper>
-        <Image src={afterImage} alt="After" aria-labelledby="afterLabel" />
+        <StyledImage image={afterImage} alt="After" />
         <Handle
           style={handleStyle}
           onClick={handleHandleClick}
@@ -282,10 +263,10 @@ const ImageComparison: React.FC<Props> = ({
       </Wrapper>
       <Content style={contentStyle}>
         <ContentItem>
-          <strong id="beforeLabel">{beforeLabel}</strong>
+          <strong>{beforeLabel}</strong>
         </ContentItem>
         <ContentItem>
-          <strong id="afterLabel">{afterLabel}</strong>
+          <strong>{afterLabel}</strong>
         </ContentItem>
       </Content>
     </>

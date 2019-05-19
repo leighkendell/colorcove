@@ -5,8 +5,20 @@ import ImageComparison from '../components/image-comparison';
 storiesOf('Image comparison', module).add('Default', () => (
   <>
     <ImageComparison
-      beforeImage="https://www.kojicolor.com/wp-content/uploads/2015/06/koji_matt_before.jpg"
-      afterImage="https://www.kojicolor.com/wp-content/uploads/2015/06/koji_matt_after_2393.jpg"
+      beforeImage={{
+        aspectRatio: 3,
+        src:
+          'https://www.kojicolor.com/wp-content/uploads/2015/06/koji_matt_before.jpg',
+        srcSet: '',
+        sizes: '',
+      }}
+      afterImage={{
+        aspectRatio: 3,
+        src:
+          'https://www.kojicolor.com/wp-content/uploads/2015/06/koji_matt_after_2393.jpg',
+        srcSet: '',
+        sizes: '',
+      }}
       beforeLabel="As shot"
       afterLabel="Film grain pro"
       width={1920}
