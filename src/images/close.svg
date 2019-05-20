@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <rect id="close-b" width="400" height="828" x="0" y="0"/>
+    <filter id="close-a" width="111.2%" height="105.4%" x="-5.6%" y="-2.7%" filterUnits="objectBoundingBox">
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="7.5"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.152562281 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="400" height="828" fill="#FFF" transform="translate(-356 -24)"/>
+    <g fill="#000" transform="translate(-4 5)">
+      <rect width="24" height="2"/>
+      <rect width="24" height="2" y="6"/>
+      <rect width="24" height="2" y="12"/>
+    </g>
+    <g transform="translate(-356 -24)">
+      <use fill="#000" filter="url(#close-a)" xlink:href="#close-b"/>
+      <use fill="#000" xlink:href="#close-b"/>
+      <g fill="#FFF" transform="translate(356 24)">
+        <rect width="24" height="2" x="-2" y="9" transform="rotate(45 10 10)"/>
+        <rect width="24" height="2" x="-1.808" y="9.192" transform="rotate(-45 10.192 10.192)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -7,14 +7,14 @@ import { withInfo } from '@storybook/addon-info';
 // automatically import all files ending in *.stories.js
 const req = require.context('../src/stories', true, /\.stories\.[jt]sx?$/);
 function loadStories() {
-  addDecorator(withInfo);
+  // addDecorator(withInfo);
   // addDecorator(centered);
   addDecorator(story => <Theme>{story()}</Theme>);
-  addParameters({
-    info: {
-      header: false,
-    },
-  })
+  // addParameters({
+  //   info: {
+  //     header: false,
+  //   },
+  // })
   req.keys().forEach(filename => req(filename));
 }
 

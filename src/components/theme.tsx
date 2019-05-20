@@ -2,13 +2,13 @@ import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { normalize } from 'polished';
 import { colorcoveTheme } from '../utils/theme';
+import { spacing } from '../utils/style-helpers';
 
 // Fonts
 import ManropeLightWoff from '../fonts/Manrope3-Light.woff';
 import ManropeLightWoff2 from '../fonts/Manrope3-Light.woff2';
 import ManropeBoldWoff from '../fonts/Manrope3-Bold.woff';
 import ManropeBoldWoff2 from '../fonts/Manrope3-Bold.woff2';
-import { spacing } from '../utils/style-helpers';
 
 const GlobalStyle = createGlobalStyle`
   ${normalize()}
@@ -49,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
 
   /* Storybook specific */
   .sb-show-main {
-    padding: ${spacing(6)};
+    /* padding: ${spacing(6)}; */
   }
 `;
 
