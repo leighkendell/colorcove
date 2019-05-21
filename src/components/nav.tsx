@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoint } from '../utils/style-helpers';
 import { ReactComponent as Logo } from '../images/colorcove-logo.svg';
 import { ReactComponent as Hamburger } from '../images/hamburger.svg';
+import { ReactComponent as Close } from '../images/close.svg';
 import { ReactComponent as Cart } from '../images/cart.svg';
 import { Link } from 'gatsby';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, useTransition } from 'react-spring';
+import { colorcoveTheme } from '../utils/theme';
 
 const StyledNav = styled.nav`
   position: sticky;
@@ -41,16 +43,29 @@ const StyledLink = styled(Link)`
 `;
 
 const IconButton = styled.button`
+  position: relative;
   display: inline-block;
   margin: 0;
   padding: 0;
   background-color: transparent;
   border: 0;
+  outline: 0;
+`;
+
+const IconWrapper = styled(animated.span)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${spacing(3)};
+  height: ${spacing(3)};
 
   svg {
-    display: block;
-    width: ${spacing(3)};
-    height: ${spacing(3)};
+    position: absolute;
+    top: inherit;
+    left: inherit;
+    width: inherit;
+    height: inherit;
+    fill: currentColor;
   }
 `;
 
@@ -69,9 +84,26 @@ const NavList = styled(animated.ul)`
 
 const Nav: React.FC = ({ children }) => {
   const [navOpen, setNavOpen] = useState(false);
+  const toggleButtonEl = useRef<HTMLButtonElement>(null);
 
   const navListAnimation = useSpring({
-    opacity: navOpen ? 1 : 0,
+    from: { opacity: 0, visibility: 'hidden' },
+    to: [
+      { visibility: navOpen ? 'visible' : '' },
+      { opacity: navOpen ? 1 : 0 },
+      { visibility: navOpen ? '' : 'hidden' },
+    ],
+  });
+
+  const toggleAnimation = useTransition(navOpen, null, {
+    from: { opacity: 0, transform: 'scale(0)' },
+    enter: {
+      opacity: 1,
+      color: navOpen ? colorcoveTheme.colorWhite : colorcoveTheme.colorBlack,
+      transform: `scale(${navOpen ? 0.8 : 1})`,
+    },
+    leave: { opacity: 0, transform: 'scale(0)' },
+    immediate: !toggleButtonEl.current,
   });
 
   const toggleNavOpen = () => {
@@ -85,14 +117,27 @@ const Nav: React.FC = ({ children }) => {
       </StyledLink>
       <NavList style={navListAnimation}>{children}</NavList>
       <IconButton aria-label="Open cart" aria-expanded="false">
-        <Cart role="img" />
+        <IconWrapper>
+          <Cart role="img" />
+        </IconWrapper>
       </IconButton>
       <IconButton
-        aria-label="Open navigation"
+        aria-label={`${navOpen ? 'Close' : 'Open'} navigation`}
         aria-expanded={navOpen}
         onClick={toggleNavOpen}
+        ref={toggleButtonEl}
       >
-        <Hamburger role="img" />
+        {toggleAnimation.map(({ item, key, props }) =>
+          item ? (
+            <IconWrapper style={props} key={key}>
+              <Close role="img" />
+            </IconWrapper>
+          ) : (
+            <IconWrapper style={props} key={key}>
+              <Hamburger role="img" />
+            </IconWrapper>
+          )
+        )}
       </IconButton>
     </StyledNav>
   );
