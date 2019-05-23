@@ -7,30 +7,30 @@
   "dependencies": {
     "@vimeo/player": "^2.9.1",
     "babel-plugin-styled-components": "^1.10.0",
-    "gatsby": "^2.5.2",
+    "gatsby": "^2.7.0",
     "gatsby-image": "^2.1.0",
     "gatsby-plugin-manifest": "^2.1.1",
-    "gatsby-plugin-offline": "^2.1.0",
+    "gatsby-plugin-offline": "^2.1.1",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.37",
     "gatsby-plugin-styled-components": "^3.0.7",
     "gatsby-plugin-svgr": "^2.0.2",
     "gatsby-plugin-typescript": "^2.0.14",
-    "gatsby-source-filesystem": "^2.0.36",
+    "gatsby-source-filesystem": "^2.0.37",
     "gatsby-source-prismic": "^2.3.0-alpha.3",
     "gatsby-transformer-sharp": "^2.1.19",
-    "polished": "^3.3.0",
+    "polished": "^3.3.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-resize-aware": "3.0.0-beta.3",
     "react-spring": "^8.0.20",
-    "react-use-gesture": "^5.0.1",
+    "react-use-gesture": "^5.0.2",
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
+    "@babel/core": "^7.4.5",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-centered": "^5.0.11",
     "@storybook/addon-info": "^5.0.11",
@@ -57,7 +57,7 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^3.0.0",
     "stylelint-processor-styled-components": "^1.7.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.0-rc"
   },
   "keywords": [
     "gatsby"
