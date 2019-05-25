@@ -8,6 +8,7 @@ interface Props {
 }
 
 const Button = styled.button<Props>`
+  position: relative;
   display: inline-block;
   padding: ${spacing(2)} ${spacing(4)};
   color: ${props => props.theme.colorWhite};

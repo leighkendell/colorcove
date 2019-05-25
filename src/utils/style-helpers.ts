@@ -15,5 +15,9 @@ export const fontSize = (size: number, multiplier: number) => css`
 /** Breakpoint media query based on theme variables */
 export const breakpoint = (
   name: keyof DefaultTheme['breakpoints'],
-  type: 'min' | 'max' = 'min'
-) => `@media (${type}-width: ${colorcoveTheme.breakpoints[name] / 16}em)`;
+  type: 'min' | 'max' = 'min',
+  matchMedia: boolean = false
+) =>
+  `${matchMedia ? '' : '@media '}(${type}-width: ${colorcoveTheme.breakpoints[
+    name
+  ] / 16}em)`;
