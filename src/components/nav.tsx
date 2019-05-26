@@ -80,15 +80,16 @@ const IconWrapper = styled(animated.span)`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${spacing(3)};
+  width: 100%;
   height: 100%;
 
   svg {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: ${spacing(3)};
+    height: ${spacing(3)};
+    transform: translateY(-50%);
     fill: currentColor;
   }
 `;
@@ -133,6 +134,30 @@ const NavLink = styled(Link)`
   ${breakpoint('medium')} {
     padding: 0;
     color: ${props => props.theme.colorBlack};
+
+    &::before {
+      --scale: 0;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background-color: ${props => props.theme.colorMidGrey};
+      border-radius: 4px;
+      transform: scale(var(--scale), 1.5);
+      opacity: 0;
+      transition: 0.25s ease-in-out;
+      content: '';
+    }
+
+    &:hover {
+      &::before {
+        --scale: 1.5;
+        opacity: 1;
+      }
+    }
   }
 `;
 
