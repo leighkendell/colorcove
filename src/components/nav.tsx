@@ -212,9 +212,9 @@ const Nav: React.FC<Props> = ({ items }) => {
   };
 
   return (
-    <StyledNav role="navigation">
+    <StyledNav>
       <StyledLink to="/" aria-label="Home">
-        <Logo />
+        <Logo role="img" />
       </StyledLink>
       <NavList
         style={{

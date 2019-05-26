@@ -13,7 +13,7 @@ const Button = styled.button<Props>`
   padding: ${spacing(2)} ${spacing(4)};
   color: ${props => props.theme.colorWhite};
   font-weight: bold;
-  ${fontSize(15, 2)};
+  ${fontSize(15, 3)};
   text-align: center;
   text-decoration: none;
   background-color: ${props => props.theme.colorBlue};

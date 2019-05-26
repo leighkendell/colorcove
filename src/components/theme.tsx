@@ -49,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
 
   /* Storybook specific */
   .sb-show-main {
-    /* padding: ${spacing(6)}; */
+    padding: ${spacing(4)};
   }
 `;
 
