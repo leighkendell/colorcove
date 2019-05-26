@@ -1,14 +1,28 @@
 import React, { useState, useRef, CSSProperties } from 'react';
 import styled from 'styled-components';
-import { spacing, breakpoint } from '../utils/style-helpers';
+import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
 import { ReactComponent as Logo } from '../images/colorcove-logo.svg';
 import { ReactComponent as Hamburger } from '../images/hamburger.svg';
 import { ReactComponent as Close } from '../images/close.svg';
 import { ReactComponent as Cart } from '../images/cart.svg';
 import { Link } from 'gatsby';
-import { useSpring, animated, useTransition } from 'react-spring';
+import {
+  useSpring,
+  animated,
+  useTransition,
+  useChain,
+  useTrail,
+  ReactSpringHook,
+} from 'react-spring';
 import { colorcoveTheme } from '../utils/theme';
 import { useMatchMedia } from '../hooks/use-match-media';
+
+interface Props {
+  items: {
+    title: string;
+    link: string;
+  }[];
+}
 
 const StyledNav = styled.nav`
   position: sticky;
@@ -20,7 +34,9 @@ const StyledNav = styled.nav`
   background-color: ${props => props.theme.colorWhite};
 
   ${breakpoint('medium')} {
+    grid-gap: ${spacing(4)};
     grid-template-columns: repeat(2, 1fr) 24px;
+    padding: ${spacing(4)};
   }
 
   > * {
@@ -57,7 +73,7 @@ const IconButton = styled.button`
   padding: 0;
   background-color: transparent;
   border: 0;
-  outline: 0;
+  cursor: pointer;
 `;
 
 const IconWrapper = styled(animated.span)`
@@ -82,7 +98,10 @@ const NavList = styled(animated.ul)`
   top: 0;
   left: 0;
   z-index: 1;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -91,18 +110,54 @@ const NavList = styled(animated.ul)`
 
   ${breakpoint('medium')} {
     position: static;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: ${spacing(4)};
+    justify-content: end;
     background-color: transparent;
   }
 `;
 
-const Nav: React.FC = ({ children }) => {
+const NavListItem = styled(animated.li)`
+  list-style: none;
+`;
+
+const NavLink = styled(Link)`
+  display: block;
+  padding: ${spacing(3)};
+  color: ${props => props.theme.colorWhite};
+  font-weight: bold;
+  ${fontSize(14, 3)};
+  text-decoration: none;
+
+  ${breakpoint('medium')} {
+    padding: 0;
+    color: ${props => props.theme.colorBlack};
+  }
+`;
+
+const Nav: React.FC<Props> = ({ items }) => {
   const [navOpen, setNavOpen] = useState(false);
+
   const toggleButtonEl = useRef<HTMLButtonElement>(null);
+  const navListEl = useRef<ReactSpringHook>(null);
+  const navListItemEl = useRef<ReactSpringHook>(null);
+
   const isLargeScreen = useMatchMedia(breakpoint('medium', 'min', true));
 
   const navListAnimation = useSpring({
+    from: { opacity: 0 },
     opacity: navOpen || isLargeScreen ? 1 : 0,
     immediate: isLargeScreen,
+    ref: navListEl,
+  });
+
+  const navListItemAnimation = useTrail(items.length, {
+    from: { opacity: 0, transform: 'scale(0.75)' },
+    opacity: navOpen || isLargeScreen ? 1 : 0,
+    transform: `scale(${navOpen || isLargeScreen ? 1 : 0.75})`,
+    immediate: isLargeScreen,
+    ref: navListItemEl,
   });
 
   const navListVisibility: CSSProperties = {
@@ -122,6 +177,11 @@ const Nav: React.FC = ({ children }) => {
     immediate: !toggleButtonEl.current,
   });
 
+  useChain(navOpen ? [navListEl, navListItemEl] : [navListItemEl, navListEl], [
+    0,
+    navOpen ? 0.1 : 0.6,
+  ]);
+
   const toggleNavOpen = () => {
     setNavOpen(!navOpen);
   };
@@ -137,7 +197,11 @@ const Nav: React.FC = ({ children }) => {
           ...navListVisibility,
         }}
       >
-        {children}
+        {navListItemAnimation.map((props, index) => (
+          <NavListItem style={props} key={items[index].title}>
+            <NavLink to={items[index].link}>{items[index].title}</NavLink>
+          </NavListItem>
+        ))}
       </NavList>
       <IconButton aria-label="Open cart" aria-expanded="false">
         <IconWrapper>
