@@ -3,6 +3,30 @@ module.exports = {
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
+    primaryNav: [
+      {
+        title: 'Products',
+        link: '/products'
+      },
+      {
+        title: 'About',
+        link: '/about'
+      },
+      {
+        title: 'Contact',
+        link: '/contact'
+      }
+    ],
+    secondaryNav: [
+      {
+        title: 'Support',
+        link: '/support'
+      },
+      {
+        title: 'Contact',
+        link: '/contact'
+      }
+    ],
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -29,14 +53,8 @@ module.exports = {
         icon: `src/images/colorcove-logo.png`,
       },
     },
-    {
-      resolve: `gatsby-plugin-svgr`,
-      options: {
-        svgoConfig: {
-          removeViewBox: false,
-        },
-      },
-    },
+    `gatsby-plugin-svgr`,
+    `gatsby-plugin-layout`
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
