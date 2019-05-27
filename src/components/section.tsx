@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 import { spacing, breakpoint } from '../utils/style-helpers';
 
-const Wrapper = styled.div`
-  padding: 0 ${spacing(3)};
+const Section = styled.section`
+  margin: ${spacing(3)} 0;
 
   ${breakpoint('small')} {
-    padding: 0 ${spacing(6)};
+    margin: ${spacing(6)} 0;
   }
 
   ${breakpoint('medium')} {
-    padding: 0 ${spacing(9)};
+    margin: ${spacing(9)} 0;
   }
 
   ${breakpoint('large')} {
-    padding: 0 ${spacing(12)};
+    margin: ${spacing(12)} 0;
   }
 `;
 
-export default Wrapper;
+export default Section;

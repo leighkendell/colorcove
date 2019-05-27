@@ -19,12 +19,16 @@ const StyledFooter = styled.footer`
   color: ${props => props.theme.colorWhite};
   background-color: ${props => props.theme.colorBlack};
 
+  ${breakpoint('small')} {
+    padding: ${spacing(3)} ${spacing(6)};
+  }
+
   ${breakpoint('medium')} {
-    padding: ${spacing(4)};
+    padding: ${spacing(4)} ${spacing(9)};
   }
 
   ${breakpoint('large')} {
-    padding: ${spacing(8)};
+    padding: ${spacing(8)} ${spacing(12)};
   }
 
   svg {

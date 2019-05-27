@@ -27,16 +27,25 @@ interface Props {
 const StyledNav = styled.nav`
   position: sticky;
   top: 0;
+  z-index: 2;
   display: grid;
   grid-gap: ${spacing(3)};
   grid-template-columns: 1fr repeat(2, 24px);
   padding: ${spacing(3)};
   background-color: ${props => props.theme.colorWhite};
 
+  ${breakpoint('small')} {
+    padding: ${spacing(3)} ${spacing(6)};
+  }
+
   ${breakpoint('medium')} {
     grid-gap: ${spacing(4)};
     grid-template-columns: repeat(2, 1fr) 24px;
-    padding: ${spacing(4)};
+    padding: ${spacing(4)} ${spacing(9)};
+  }
+
+  ${breakpoint('large')} {
+    padding: ${spacing(4)} ${spacing(12)};
   }
 
   > * {
