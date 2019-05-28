@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -54,7 +58,15 @@ module.exports = {
       },
     },
     `gatsby-plugin-svgr`,
-    `gatsby-plugin-layout`
+    `gatsby-plugin-layout`,
+    {
+      resolve: `gatsby-source-prismic`,
+      options: {
+        repositoryName: 'colorcove',
+        accessToken: `${process.env.PRISMIC_TOKEN}`,
+        linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
+      }
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
