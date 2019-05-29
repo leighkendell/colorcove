@@ -17,20 +17,20 @@ const headerGrid = css`
   display: grid;
   grid-template-rows: repeat(2, auto);
 
-  ${breakpoint('large')} {
+  ${breakpoint('medium')} {
     grid-template-rows: 1fr var(--padding);
   }
 `;
 
 const StyledHeader = styled.header<{ hasImage: boolean }>`
-  --padding: ${spacing(4)};
+  --padding: ${spacing(3)};
 
   ${breakpoint('small')} {
     --padding: ${spacing(6)};
   }
 
   ${breakpoint('medium')} {
-    --padding: ${spacing(8)};
+    --padding: ${spacing(9)};
   }
 
   ${breakpoint('large')} {
@@ -54,7 +54,7 @@ const StyledImage = styled(Image)`
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
 
-  ${breakpoint('large')} {
+  ${breakpoint('medium')} {
     grid-row: 1 / span 2;
   }
 `;
@@ -68,16 +68,20 @@ const Content = styled.div`
   padding: var(--padding);
   background: ${props => props.theme.colorBlack};
 
-  ${breakpoint('large')} {
+  ${breakpoint('medium')} {
     grid-row: 1 / span 1;
   }
 
   ${Button} {
-    margin-top: ${spacing(3)};
+    margin-top: ${spacing(2)};
+
+    ${breakpoint('medium')} {
+      margin-top: ${spacing(3)};
+    }
   }
 `;
 
-const Header: React.FC<Props> = ({ title, description, image }) => {
+const Header: React.FC<Props> = ({ title, description, image, children }) => {
   return (
     <StyledHeader role="banner" hasImage={image ? true : false}>
       {description && image ? (
@@ -85,7 +89,7 @@ const Header: React.FC<Props> = ({ title, description, image }) => {
           <Content>
             <Heading type="h1">{title}</Heading>
             <Text>{description}</Text>
-            <Button>Buy for $49.95</Button>
+            {children}
           </Content>
           <StyledImage image={image} alt="" />
         </>
