@@ -7,19 +7,19 @@
   "dependencies": {
     "@vimeo/player": "^2.9.1",
     "babel-plugin-styled-components": "^1.10.0",
-    "gatsby": "^2.7.3",
-    "gatsby-image": "^2.1.1",
+    "gatsby": "^2.7.5",
+    "gatsby-image": "^2.1.2",
     "gatsby-plugin-layout": "^1.0.15",
     "gatsby-plugin-manifest": "^2.1.1",
     "gatsby-plugin-offline": "^2.1.1",
     "gatsby-plugin-react-helmet": "^3.0.12",
-    "gatsby-plugin-sharp": "^2.1.1",
+    "gatsby-plugin-sharp": "^2.1.2",
     "gatsby-plugin-styled-components": "^3.0.7",
     "gatsby-plugin-svgr": "^2.0.2",
     "gatsby-plugin-typescript": "^2.0.15",
     "gatsby-source-filesystem": "^2.0.37",
     "gatsby-source-prismic": "^2.3.0-alpha.3",
-    "gatsby-transformer-sharp": "^2.1.19",
+    "gatsby-transformer-sharp": "^2.1.20",
     "polished": "^3.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -39,7 +39,7 @@
     "@storybook/addon-viewport": "^5.0.11",
     "@storybook/addons": "^5.0.11",
     "@storybook/react": "^5.0.11",
-    "@svgr/webpack": "^4.2.0",
+    "@svgr/webpack": "^4.3.0",
     "@types/storybook__react": "^4.0.1",
     "@types/styled-components": "^4.1.15",
     "@types/vimeo__player": "^2.6.2",
@@ -58,7 +58,7 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^3.0.0",
     "stylelint-processor-styled-components": "^1.8.0",
-    "typescript": "^3.5.0-rc"
+    "typescript": "^3.5.1"
   },
   "keywords": [
     "gatsby"

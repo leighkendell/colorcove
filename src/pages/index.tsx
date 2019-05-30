@@ -1,9 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Header from '../components/header';
-import TextBlock from '../components/text-block';
-import Section from '../components/section';
-import Wrapper from '../components/wrapper';
+import Slice from '../components/slice';
 
 const IndexPage = ({ data: { prismicHome } }: any) => {
   return (
@@ -13,28 +11,7 @@ const IndexPage = ({ data: { prismicHome } }: any) => {
         description={prismicHome.data.intro.text}
         image={prismicHome.data.image.localFile.childImageSharp.fluid}
       />
-
-      {prismicHome.data.body.map(({ slice_type, primary }: any) => {
-        console.log(slice_type, primary);
-        let content;
-
-        // Feature text block
-        if (slice_type === 'feature_text') {
-          content = (
-            <TextBlock
-              title={primary.heading.text}
-              description={primary.text.text}
-              horizontal={primary.layout === 'Horizontal'}
-            />
-          );
-        }
-
-        return (
-          <Section>
-            <Wrapper>{content}</Wrapper>
-          </Section>
-        );
-      })}
+      <Slice data={prismicHome.data.body} />
     </>
   );
 };
@@ -61,8 +38,8 @@ export const pageQuery = graphql`
           }
         }
         body {
-          slice_type
           ... on PrismicHomeBodyFeatureText {
+            slice_type
             id
             primary {
               layout
@@ -71,6 +48,26 @@ export const pageQuery = graphql`
               }
               text {
                 text
+              }
+            }
+          }
+          ... on PrismicHomeBodyVideo {
+            id
+            slice_type
+            primary {
+              video {
+                thumbnail_width
+                thumbnail_height
+                embed_url
+              }
+              video_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid_withWebp
+                    }
+                  }
+                }
               }
             }
           }
