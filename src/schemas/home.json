@@ -1,0 +1,97 @@
+{
+  "Main": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Title"
+      }
+    },
+    "intro": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em",
+        "label": "Intro"
+      }
+    },
+    "image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 2880,
+          "height": 1600
+        },
+        "thumbnails": [],
+        "label": "Image"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "choices": {
+          "feature_text": {
+            "type": "Slice",
+            "fieldset": "Feature Text",
+            "description": "A text section with a header and text",
+            "icon": "text_fields",
+            "display": "list",
+            "non-repeat": {
+              "layout": {
+                "type": "Select",
+                "config": {
+                  "options": ["Centered", "Horizontal"],
+                  "default_value": "Centered",
+                  "label": "Layout"
+                }
+              },
+              "heading": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Heading"
+                }
+              },
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph, strong, em",
+                  "label": "Text"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "video": {
+            "type": "Slice",
+            "fieldset": "Video",
+            "description": "An embedded video",
+            "icon": "ondemand_video",
+            "display": "list",
+            "non-repeat": {
+              "video": {
+                "type": "Embed",
+                "config": {
+                  "label": "Video URL",
+                  "placeholder": "The URL of the video"
+                }
+              },
+              "video_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {
+                    "width": 1920,
+                    "height": 1080
+                  },
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
+    }
+  }
+}

@@ -64,7 +64,10 @@ module.exports = {
       options: {
         repositoryName: 'colorcove',
         accessToken: `${process.env.PRISMIC_TOKEN}`,
-        linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
+        schemas: {
+          home: require('./src/schemas/home.json'),
+        }
+        // linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
       }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
