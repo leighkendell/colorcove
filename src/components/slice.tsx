@@ -31,7 +31,7 @@ const Slice: React.FC<Props> = ({ data }) => {
           url={primary.video.embed_url}
           width={primary.video.thumbnail_width}
           height={primary.video.thumbnail_height}
-          image={primary.video_image.localFile.childImageSharp.fluid.src}
+          image={primary.video_image.localFile.childImageSharp.fluid}
         />
       );
     }

@@ -7,6 +7,12 @@ storiesOf('Video', module).add('Default', () => (
     width={640}
     height={268}
     url="https://vimeo.com/287359990"
-    image="https://images.unsplash.com/photo-1557626204-59dd03fd2d31?ixlib=rb-1.2.1&auto=format&fit=crop&w=3450&q=80"
+    image={{
+      aspectRatio: 1.25,
+      src:
+        'https://images.unsplash.com/photo-1557626204-59dd03fd2d31?ixlib=rb-1.2.1&auto=format&fit=crop&w=3450&q=80',
+      srcSet: '',
+      sizes: '',
+    }}
   />
 ));

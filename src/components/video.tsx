@@ -5,20 +5,18 @@ import { colorcoveTheme } from '../utils/theme';
 import { spacing, breakpoint } from '../utils/style-helpers';
 import { animated, useSpring } from 'react-spring';
 import { ReactComponent as PlayIcon } from '../images/play.svg';
+import Image from './image';
+import { FluidObject } from 'gatsby-image';
 
 interface Props {
   url: string;
   width: number;
   height: number;
-  image: string;
+  image: FluidObject;
 }
 
 interface WrapperProps {
   ratio: number;
-}
-
-interface OverlayProps {
-  image: string;
 }
 
 const VideoWrapper = styled.div<WrapperProps>`
@@ -36,15 +34,20 @@ const VideoWrapper = styled.div<WrapperProps>`
   }
 `;
 
-const VideoOverlay = styled(animated.div)<OverlayProps>`
+const VideoOverlay = styled(animated.div)`
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
   width: 100%;
   height: 100%;
-  background-image: url(${props => props.image});
-  background-size: cover;
+  background-color: ${props => props.theme.colorBlack};
+`;
+
+const OverlayImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
 `;
 
 const PlayButton = styled.button`
@@ -140,11 +143,8 @@ const Video: React.FC<Props> = ({ url, width, height, image }) => {
 
   return (
     <VideoWrapper ref={videoEl} ratio={(height / width) * 100}>
-      <VideoOverlay
-        image={image}
-        style={overlaySpring}
-        onClick={handlePlayback}
-      >
+      <VideoOverlay style={overlaySpring} onClick={handlePlayback}>
+        <OverlayImage image={image} alt="" />
         <PlayButton onClick={handlePlayback} aria-label="Play video">
           <PlayIcon role="img" />
         </PlayButton>
