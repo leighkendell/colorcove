@@ -7,7 +7,7 @@
   "dependencies": {
     "@vimeo/player": "^2.9.1",
     "babel-plugin-styled-components": "^1.10.0",
-    "gatsby": "^2.8.0",
+    "gatsby": "^2.8.2",
     "gatsby-image": "^2.1.2",
     "gatsby-plugin-layout": "^1.0.15",
     "gatsby-plugin-manifest": "^2.1.1",
@@ -17,7 +17,7 @@
     "gatsby-plugin-styled-components": "^3.0.7",
     "gatsby-plugin-svgr": "^2.0.2",
     "gatsby-plugin-typescript": "^2.0.15",
-    "gatsby-source-filesystem": "^2.0.37",
+    "gatsby-source-filesystem": "^2.0.38",
     "gatsby-source-prismic": "^3.0.0-alpha.3",
     "gatsby-transformer-sharp": "^2.1.21",
     "polished": "^3.4.0",
@@ -32,6 +32,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@graphql-codegen/cli": "^1.2.0",
+    "@graphql-codegen/typescript": "^1.2.0",
+    "@graphql-codegen/typescript-operations": "^1.2.0",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-centered": "^5.0.11",
     "@storybook/addon-info": "^5.0.11",
@@ -84,7 +87,8 @@
     "serve": "gatsby serve",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "check-ts": "tsc -p tsconfig.json --noEmit"
+    "check-ts": "tsc -p tsconfig.json --noEmit",
+    "generate-graphql-types": "graphql-codegen --config codegen.yml"
   },
   "repository": {
     "type": "git",

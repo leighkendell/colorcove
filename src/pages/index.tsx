@@ -2,16 +2,23 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Header from '../components/header';
 import Slice from '../components/slice';
+import { Query } from '../types/graphql-types';
 
-const IndexPage = ({ data: { prismicHome } }: any) => {
+interface Props {
+  data: Query;
+}
+
+const IndexPage: React.FC<Props> = ({ data: { prismicHome } }) => {
+  const { data } = prismicHome;
+
   return (
     <>
       <Header
-        title={prismicHome.data.title.text}
-        description={prismicHome.data.intro.text}
-        image={prismicHome.data.image.localFile.childImageSharp.fluid}
+        title={data.title.text}
+        description={data.intro.text}
+        image={data.image.localFile.childImageSharp.fluid}
       />
-      <Slice data={prismicHome.data.body} />
+      <Slice data={data.body} />
     </>
   );
 };
