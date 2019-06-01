@@ -18,7 +18,7 @@ const horizontalStyle = css`
     display: grid;
     grid-gap: ${spacing(6)};
     grid-template-columns: 1fr 2fr;
-    max-width: 100%;
+    max-width: 1000px;
     text-align: left;
 
     * {
