@@ -1,17 +1,17 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { Query } from '../types/graphql-types';
 import Header from '../components/header';
 import Slice from '../components/slice';
-import { Query } from '../types/graphql-types';
 import { FluidObject } from 'gatsby-image';
 
 interface Props {
   data: Query;
 }
 
-const IndexPage: React.FC<Props> = ({ data: { prismicHome } }) => {
-  if (prismicHome && prismicHome.data) {
-    const { title, intro, image, body } = prismicHome.data;
+const ProductTemplate: React.FC<Props> = ({ data: { prismicProduct } }) => {
+  if (prismicProduct && prismicProduct.data) {
+    const { title, intro, image, body } = prismicProduct.data;
     const headerImage =
       image &&
       image.localFile &&
@@ -33,11 +33,11 @@ const IndexPage: React.FC<Props> = ({ data: { prismicHome } }) => {
   }
 };
 
-export default IndexPage;
+export default ProductTemplate;
 
 export const pageQuery = graphql`
-  query IndexQuery {
-    prismicHome {
+  query ProductQuery($uid: String!) {
+    prismicProduct(uid: { eq: $uid }) {
       data {
         intro {
           text
@@ -55,32 +55,26 @@ export const pageQuery = graphql`
           }
         }
         body {
-          ... on PrismicHomeBodyFeatureText {
-            slice_type
-            id
-            primary {
-              layout
-              heading {
-                text
-              }
-              text {
-                text
-              }
-            }
-          }
-          ... on PrismicHomeBodyVideo {
+          ... on PrismicProductBodyImageComparison {
             id
             slice_type
             primary {
-              video {
-                thumbnail_width
-                thumbnail_height
-                embed_url
+              name {
+                text
               }
-              video_image {
+              before_image {
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1920) {
+                    fluid(maxWidth: 2000) {
+                      ...GatsbyImageSharpFluid_withWebp
+                    }
+                  }
+                }
+              }
+              after_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 2000) {
                       ...GatsbyImageSharpFluid_withWebp
                     }
                   }

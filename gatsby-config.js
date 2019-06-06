@@ -66,6 +66,7 @@ module.exports = {
         accessToken: `${process.env.PRISMIC_TOKEN}`,
         schemas: {
           home: require('./src/schemas/home.json'),
+          product: require('./src/schemas/product.json'),
         }
         // linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
       }
