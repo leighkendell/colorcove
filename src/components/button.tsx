@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { darken } from 'polished';
 import { spacing, fontSize, breakpoint } from '../utils/style-helpers';
 
@@ -7,7 +7,7 @@ interface Props {
   to?: string;
 }
 
-const Button = styled.button<Props>`
+export const ButtonBaseStyle = css`
   position: relative;
   display: inline-block;
   padding: ${spacing(2)} ${spacing(4)};
@@ -23,18 +23,23 @@ const Button = styled.button<Props>`
   transition: background-color 0.15s ease-in-out;
   appearance: none;
 
-  /* When the icon prop is true */
-  ${props => props.icon && `padding-left: ${spacing(9)}`}
-
   ${breakpoint('small')} {
     padding: ${spacing(3)} ${spacing(7)};
-
-    /* When the icon prop is true */
-    ${props => props.icon && `padding-left: ${spacing(12)}`}
   }
 
   &:hover {
     background-color: ${props => darken(0.2, props.theme.colorBlue)};
+  }
+`;
+
+const Button = styled.button<Props>`
+  ${ButtonBaseStyle};
+
+  /* When the icon prop is true */
+  ${props => props.icon && `padding-left: ${spacing(9)}`}
+
+  ${breakpoint('small')} {
+    ${props => props.icon && `padding-left: ${spacing(12)}`}
   }
 
   svg {
