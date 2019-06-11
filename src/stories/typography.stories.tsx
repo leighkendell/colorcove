@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import Heading from '../components/heading';
 import Text from '../components/text';
 import TextBlock from '../components/text-block';
+import TextBlockGroup from '../components/text-block-group';
 
 storiesOf('Typography', module)
   .add('Heading and Text', () => (
@@ -43,4 +44,18 @@ storiesOf('Typography', module)
       description="We believe a camera is a tool to tell stories. It’s easy to get caught up in tech specs, dynamic range, and resolutions. Stick with the equipment you have, hone your craft, make beautiful pictures, and tell brilliant stories."
       horizontal
     />
+  ))
+  .add('Text block group', () => (
+    <TextBlockGroup>
+      <TextBlock
+        headingType="h3"
+        title="Buy now"
+        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente provident quisquam nulla vero iure, ducimus."
+      />
+      <TextBlock
+        headingType="h3"
+        title="Buy now"
+        description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente provident quisquam nulla vero iure, ducimus."
+      />
+    </TextBlockGroup>
   ));

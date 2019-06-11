@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
 
 export const useMatchMedia = (mediaQuery: string) => {
-  const [isMatch, setIsMatch] = useState(false);
+  const query = window.matchMedia(mediaQuery);
+  const [isMatch, setIsMatch] = useState(query.matches);
 
   useEffect(() => {
-    const query = window.matchMedia(mediaQuery);
-
-    // Set the initial state
-    setIsMatch(query.matches);
-
     // Update state
     const onChange = (e: MediaQueryListEvent) => {
       setIsMatch(e.matches);
@@ -19,7 +15,7 @@ export const useMatchMedia = (mediaQuery: string) => {
     return () => {
       query.removeListener(onChange);
     };
-  }, [mediaQuery]);
+  }, [query]);
 
   return isMatch;
 };

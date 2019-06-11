@@ -180,7 +180,7 @@ const Nav: React.FC<Props> = ({ items }) => {
   const isLargeScreen = useMatchMedia(breakpoint('medium', 'min', true));
 
   const navListAnimation = useSpring({
-    from: { opacity: 0 },
+    from: { opacity: isLargeScreen ? 1 : 0 },
     opacity: navOpen || isLargeScreen ? 1 : 0,
     immediate: isLargeScreen,
     ref: navListEl,

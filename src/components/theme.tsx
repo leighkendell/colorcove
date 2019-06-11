@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     src: url(${ManropeLightWoff2}) format('woff2'),
         url(${ManropeLightWoff}) format('woff');
-    font-display: optional;
+    font-display: swap;
   }
 
   @font-face {
@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     src: url(${ManropeBoldWoff2}) format('woff2'),
         url(${ManropeBoldWoff}) format('woff');
-    font-display: optional;
+    font-display: swap;
   }
 
   html {

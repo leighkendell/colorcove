@@ -10,6 +10,7 @@ interface Props {
   description: string;
   horizontal?: boolean;
   buttonText?: string;
+  headingType?: Heading['type'];
   onButtonClick?: () => void;
 }
 
@@ -48,11 +49,12 @@ const TextBlock: React.FC<Props> = ({
   description,
   horizontal,
   buttonText,
+  headingType,
   onButtonClick,
 }) => {
   return (
     <StyledTextBlock horizontal={horizontal}>
-      <Heading type="h2">{title}</Heading>
+      <Heading type={headingType || 'h2'}>{title}</Heading>
       <Text>{description}</Text>
       {buttonText && <Button onClick={onButtonClick}>{buttonText}</Button>}
     </StyledTextBlock>

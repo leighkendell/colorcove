@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { fontSize, spacing, breakpoint } from '../utils/style-helpers';
 
-interface Props {
+interface Heading {
   type: 'h1' | 'h2' | 'h3';
 }
 
@@ -49,7 +49,7 @@ const H3 = styled.h3`
   }
 `;
 
-const Heading: React.FC<Props> = ({ children, type }) => {
+const Heading: React.FC<Heading> = ({ children, type }) => {
   switch (type) {
     case 'h1':
       return <H1>{children}</H1>;
