@@ -6,7 +6,6 @@ import { ReactComponent as Logo } from '../images/colorcove-logo-solid.svg';
 import { ReactComponent as VimeoLogo } from '../images/vimeo.svg';
 import { ReactComponent as FacebookLogo } from '../images/facebook.svg';
 import { ReactComponent as InstagramLogo } from '../images/instagram.svg';
-import { lighten } from 'polished';
 
 interface Props {
   items: {
@@ -18,7 +17,7 @@ interface Props {
 const StyledFooter = styled.footer`
   padding: ${spacing(3)};
   color: ${props => props.theme.colorWhite};
-  background-color: ${props => lighten(0.025, props.theme.colorBlack)};
+  background-color: ${props => props.theme.colorBlack};
 
   ${breakpoint('small')} {
     padding: ${spacing(3)} ${spacing(6)};
