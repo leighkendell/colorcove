@@ -11,7 +11,7 @@ interface Props {
   id: string;
   name: string;
   price: string;
-  onRemove?: () => void;
+  onRemove?: (id: string) => void;
 }
 
 const StyledCartItem = styled.li`
@@ -66,7 +66,11 @@ const RemoveButton = styled.button`
 `;
 
 const CartItem: React.FC<Props> = ({ id, name, price, image, onRemove }) => {
-  const handleRemove = () => {};
+  const handleRemove = () => {
+    if (onRemove) {
+      onRemove(id);
+    }
+  };
 
   return (
     <StyledCartItem>
@@ -75,7 +79,7 @@ const CartItem: React.FC<Props> = ({ id, name, price, image, onRemove }) => {
         <strong>{name}</strong>
         {price}
       </Text>
-      <RemoveButton>
+      <RemoveButton onClick={handleRemove}>
         <Remove />
       </RemoveButton>
     </StyledCartItem>

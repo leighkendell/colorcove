@@ -11,7 +11,7 @@ const image = {
 };
 
 storiesOf('Cart', module).add('Default', () => (
-  <Cart subtotal="$40">
+  <Cart subtotal="$40" isOpen={true}>
     <CartItem id="asdf" image={image} name="Woop" price="$20"></CartItem>
     <CartItem id="a1df" image={image} name="Woop" price="$20"></CartItem>
   </Cart>

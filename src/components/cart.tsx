@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoint } from '../utils/style-helpers';
-import { animated } from 'react-spring';
+import { animated, useSpring } from 'react-spring';
 import Heading from './heading';
 import { ReactComponent as Close } from '../images/close.svg';
 import Text from './text';
 import Button from './button';
+import { rgba } from 'polished';
 
 interface Props {
   isOpen?: boolean;
   subtotal?: string;
+  onCheckout?: () => void;
+  onClose?: () => void;
 }
 
 const StyledCart = styled(animated.aside)`
   position: fixed;
   top: 0;
   right: 0;
+  z-index: 1;
   width: 100%;
   max-width: 600px;
   height: 100%;
   padding: ${spacing(3)};
+  overflow: auto;
   color: ${props => props.theme.colorWhite};
   background-color: ${props => props.theme.colorBlack};
 
@@ -78,27 +83,54 @@ const CartList = styled.ul`
   }
 `;
 
-const Cart: React.FC<Props> = ({ isOpen, children, subtotal }) => {
-  console.log(isOpen);
+const Overlay = styled(animated.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${props => rgba(props.theme.colorBlack, 0.75)};
+`;
+
+const Cart: React.FC<Props> = ({
+  isOpen,
+  children,
+  subtotal,
+  onClose,
+  onCheckout,
+}) => {
+  const { opacity, transform } = useSpring({
+    opacity: isOpen ? 1 : 0,
+    transform: `translateX(${isOpen ? 0 : 100}%)`,
+  });
+
+  const overlayVisibility: CSSProperties = {
+    visibility: opacity.interpolate(opacity =>
+      opacity === 0 ? 'hidden' : 'visible'
+    ),
+  };
 
   return (
-    <StyledCart>
-      <Header>
-        <CloseButton>
-          <Close role="img" />
-        </CloseButton>
-        <Heading type="h3">Your cart</Heading>
-      </Header>
-      <CartList>{children}</CartList>
-      {children && subtotal && (
-        <>
-          <Text>
-            <strong>Subtotal: </strong> {subtotal}
-          </Text>
-          <Button>Checkout</Button>
-        </>
-      )}
-    </StyledCart>
+    <>
+      <Overlay onClick={onClose} style={{ opacity, ...overlayVisibility }} />
+      <StyledCart style={{ transform }}>
+        <Header>
+          <CloseButton onClick={onClose}>
+            <Close role="img" />
+          </CloseButton>
+          <Heading type="h3">Your cart</Heading>
+        </Header>
+        <CartList>{children}</CartList>
+        {children && subtotal && (
+          <>
+            <Text>
+              <strong>Subtotal: </strong> {subtotal}
+            </Text>
+            <Button onClick={onCheckout}>Checkout</Button>
+          </>
+        )}
+      </StyledCart>
+    </>
   );
 };
 
