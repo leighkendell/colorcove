@@ -70,7 +70,16 @@ module.exports = {
         }
         // linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
       }
-    }
+    },
+    {
+      resolve: `gatsby-source-sanity`,
+      options: {
+        projectId: `${process.env.SANITY_PROJECT}`,
+        dataset: `${process.env.SANITY_DATASET}`,
+        token: `${process.env.SANITY_TOKEN}`,
+        watchMode: true,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

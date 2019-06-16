@@ -11,6 +11,7 @@ interface Props {
   title: string;
   description?: string;
   image?: FluidObject;
+  backgroundColor?: string;
 }
 
 const headerGrid = css`
@@ -83,7 +84,13 @@ const Content = styled.div`
   }
 `;
 
-const Header: React.FC<Props> = ({ title, description, image, children }) => {
+const Header: React.FC<Props> = ({
+  title,
+  description,
+  image,
+  backgroundColor,
+  children,
+}) => {
   return (
     <StyledHeader role="banner" hasImage={image ? true : false}>
       {description && image ? (
@@ -93,7 +100,7 @@ const Header: React.FC<Props> = ({ title, description, image, children }) => {
             <Text>{description}</Text>
             {children}
           </Content>
-          <StyledImage image={image} alt="" />
+          <StyledImage image={image} backgroundColor={backgroundColor} alt="" />
         </>
       ) : (
         <Heading type="h1">{title}</Heading>

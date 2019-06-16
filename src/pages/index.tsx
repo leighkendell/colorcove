@@ -1,31 +1,40 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Header from '../components/header';
-import Slice from '../components/slice';
 import { Query } from '../types/graphql-types';
 import { FluidObject } from 'gatsby-image';
+import { getNestedObject } from '../utils/helpers';
+import Module from '../components/module';
 
 interface Props {
   data: Query;
 }
 
-const IndexPage: React.FC<Props> = ({ data: { prismicHome } }) => {
-  if (prismicHome && prismicHome.data) {
-    const { title, intro, image, body } = prismicHome.data;
-    const headerImage =
-      image &&
-      image.localFile &&
-      image.localFile.childImageSharp &&
-      image.localFile.childImageSharp.fluid;
+const IndexPage: React.FC<Props> = ({ data: { sanityPage } }) => {
+  if (sanityPage) {
+    const { hero, modules } = sanityPage;
+
+    // Image Data
+    const image: FluidObject | undefined = getNestedObject(
+      hero,
+      'image.asset.fluid'
+    );
+    const backgroundColor: string | undefined = getNestedObject(
+      hero,
+      'image.asset.metadata.palette.dominant.background'
+    );
 
     return (
       <>
-        <Header
-          title={title && title.text ? title.text : ''}
-          description={intro && intro.text ? intro.text : ''}
-          image={headerImage as FluidObject}
-        />
-        <Slice data={body} />
+        {hero && (
+          <Header
+            title={hero.title ? hero.title : ''}
+            description={hero.intro ? hero.intro : ''}
+            image={image}
+            backgroundColor={backgroundColor}
+          />
+        )}
+        {modules && <Module modules={modules} />}
       </>
     );
   } else {
@@ -37,54 +46,43 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexQuery {
-    prismicHome {
-      data {
-        intro {
-          text
-        }
-        title {
-          text
-        }
+    sanityPage(slug: { current: { eq: "home" } }) {
+      id
+      title
+      hero {
+        title
+        intro
         image {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 2880) {
-                ...GatsbyImageSharpFluid_withWebp
+          asset {
+            fluid(maxWidth: 2880, maxHeight: 1600) {
+              ...GatsbySanityImageFluid
+            }
+            metadata {
+              palette {
+                dominant {
+                  background
+                }
               }
             }
           }
         }
-        body {
-          ... on PrismicHomeBodyFeatureText {
-            slice_type
-            id
-            primary {
-              layout
-              heading {
-                text
-              }
-              text {
-                text
-              }
-            }
-          }
-          ... on PrismicHomeBodyVideo {
-            id
-            slice_type
-            primary {
-              video {
-                thumbnail_width
-                thumbnail_height
-                embed_url
-              }
-              video_image {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
+      }
+      modules {
+        ... on SanityFeatureText {
+          _key
+          _type
+          layout
+          heading
+          text
+        }
+        ... on SanityVideo {
+          _key
+          _type
+          url
+          image {
+            asset {
+              fluid(maxWidth: 1920, maxHeight: 1080) {
+                ...GatsbySanityImageFluid
               }
             }
           }
