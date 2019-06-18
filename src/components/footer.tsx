@@ -139,7 +139,7 @@ const Footer: React.FC<Props> = ({ items }) => {
         <Copy>&copy; {currentYear} Colorcove</Copy>
         <LinkList>
           {items.map(item => (
-            <LinkListItem>
+            <LinkListItem key={item.title}>
               <StyledLink to={item.link}>{item.title}</StyledLink>
             </LinkListItem>
           ))}

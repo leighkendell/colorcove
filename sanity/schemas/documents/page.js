@@ -30,7 +30,7 @@ export default {
       type: 'array',
       of: [
         { type: 'featureText' },
-        { type: 'video' }
+        { type: 'vimeo' }
       ],
     }
   ],

@@ -1,14 +1,13 @@
 export default {
-  name: 'video',
-  title: 'Video',
+  name: 'vimeo',
+  title: 'Vimeo Embed',
   type: 'object',
-  description: 'An inline video',
+  description: 'An embedded vimeo video',
   fields: [
     {
       name: 'url',
       title: 'Video URL',
       type: 'url',
-      description: 'This must be the link to a Vimeo video',
     },
     {
       name: 'image',
@@ -23,7 +22,7 @@ export default {
     prepare(selection) {
       const { subtitle } = selection
       return {
-        title: 'Video',
+        title: 'Vimeo Embed',
         subtitle
       }
     }

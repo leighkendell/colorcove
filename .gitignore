@@ -62,8 +62,14 @@ public
 # storybook files
 storybook-static
 
+# sanity files
+sanity/dist
+
 # Mac files
 .DS_Store
+
+# netlify files
+/lambda
 
 # Yarn
 yarn-error.log
