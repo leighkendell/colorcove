@@ -95,8 +95,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "check-ts": "tsc -p tsconfig.json --noEmit",
-    "generate-graphql-types": "graphql-codegen --config codegen.yml",
-    "lint": "eslint"
+    "generate-graphql-types": "graphql-codegen --config codegen.yml"
   },
   "repository": {
     "type": "git",
