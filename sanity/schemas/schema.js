@@ -8,9 +8,9 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import page from './documents/page';
 
 // Object types
-import mainImage from './objects/mainImage';
+import mainImage from './objects/main-image';
 import hero from './objects/hero';
-import featureText from './objects/featureText';
+import featureText from './objects/feature-text';
 import vimeo from './objects/vimeo';
 
 // Then we give our schema to the builder and provide the result to Sanity

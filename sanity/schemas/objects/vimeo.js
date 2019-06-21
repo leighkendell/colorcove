@@ -1,3 +1,5 @@
+import VimeoInput from '../../components/vimeo-input';
+
 export default {
   name: 'vimeo',
   title: 'Vimeo Embed',
@@ -5,9 +7,36 @@ export default {
   description: 'An embedded vimeo video',
   fields: [
     {
-      name: 'url',
-      title: 'Video URL',
-      type: 'url',
+      name: 'videoData',
+      type: 'object',
+      inputComponent: VimeoInput,
+      fields: [
+        {
+          name: 'url',
+          title: 'URL',
+          type: 'url',
+        },
+        {
+          name: 'title',
+          type: 'string',
+          readOnly: true,
+        },
+        {
+          name: 'width',
+          type: 'number',
+          readOnly: true
+        },
+        {
+          name: 'height',
+          type: 'number',
+          readOnly: true
+        },
+        {
+          name: 'thumbnail',
+          type: 'url',
+          readOnly: true
+        }
+      ]
     },
     {
       name: 'image',
@@ -17,7 +46,7 @@ export default {
   ],
   preview: {
     select: {
-      subtitle: 'url',
+      subtitle: 'videoData.title',
     },
     prepare(selection) {
       const { subtitle } = selection
