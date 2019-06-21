@@ -6,3 +6,5 @@ export const getNestedObject = (nestedObj: any, path: string) => {
     nestedObj
   );
 };
+
+export const isBrowser = typeof window !== 'undefined';

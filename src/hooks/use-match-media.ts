@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react';
+import { isBrowser } from '../utils/helpers';
 
 export const useMatchMedia = (mediaQuery: string) => {
-  const query = window.matchMedia(mediaQuery);
-  const [isMatch, setIsMatch] = useState(query.matches);
+  const query = isBrowser ? window.matchMedia(mediaQuery) : null;
+  const [isMatch, setIsMatch] = useState(query ? query.matches : false);
 
   useEffect(() => {
-    // Update state
-    const onChange = (e: MediaQueryListEvent) => {
-      setIsMatch(e.matches);
-    };
-    query.addListener(onChange);
+    if (query) {
+      // Update state
+      const onChange = (e: MediaQueryListEvent) => {
+        setIsMatch(e.matches);
+      };
+      query.addListener(onChange);
 
-    // Remove listener
-    return () => {
-      query.removeListener(onChange);
-    };
+      // Remove listener
+      return () => {
+        query.removeListener(onChange);
+      };
+    }
   }, [query]);
 
   return isMatch;
