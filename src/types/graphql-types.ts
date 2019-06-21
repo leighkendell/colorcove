@@ -3526,7 +3526,6 @@ export type QuerySitePageArgs = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   path?: Maybe<StringQueryOperatorInput>;
-  jsonName?: Maybe<StringQueryOperatorInput>;
   internalComponentName?: Maybe<StringQueryOperatorInput>;
   component?: Maybe<StringQueryOperatorInput>;
   componentChunkName?: Maybe<StringQueryOperatorInput>;
@@ -3682,7 +3681,7 @@ export type SanityFeatureText = {
   text?: Maybe<Scalars['String']>;
 };
 
-export type SanityFeatureTextOrVideo = SanityFeatureText | SanityVideo;
+export type SanityFeatureTextOrVimeo = SanityFeatureText | SanityVimeo;
 
 export type SanityFile = {
   __typename?: 'SanityFile';
@@ -4451,7 +4450,7 @@ export type SanityPage = SanityDocument &
     title?: Maybe<Scalars['String']>;
     slug?: Maybe<SanitySlug>;
     hero?: Maybe<SanityHero>;
-    modules?: Maybe<Array<Maybe<SanityFeatureTextOrVideo>>>;
+    modules?: Maybe<Array<Maybe<SanityFeatureTextOrVimeo>>>;
     _rawSlug?: Maybe<Scalars['JSON']>;
     _rawHero?: Maybe<Scalars['JSON']>;
     _rawModules?: Maybe<Scalars['JSON']>;
@@ -4713,11 +4712,22 @@ export type SanitySpan = {
   text?: Maybe<Scalars['String']>;
 };
 
-export type SanityVideo = {
-  __typename?: 'SanityVideo';
+export type SanityVideoData = {
+  __typename?: 'SanityVideoData';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Float']>;
+  height?: Maybe<Scalars['Float']>;
+  thumbnail?: Maybe<Scalars['String']>;
+};
+
+export type SanityVimeo = {
+  __typename?: 'SanityVimeo';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  data?: Maybe<SanityVideoData>;
   image?: Maybe<SanityMainImage>;
 };
 
@@ -4902,7 +4912,6 @@ export type SitePage = Node & {
   children: Array<Node>;
   internal: Internal;
   path?: Maybe<Scalars['String']>;
-  jsonName?: Maybe<Scalars['String']>;
   internalComponentName?: Maybe<Scalars['String']>;
   component?: Maybe<Scalars['String']>;
   componentChunkName?: Maybe<Scalars['String']>;
@@ -5037,7 +5046,6 @@ export enum SitePageFieldsEnum {
   internal___owner = 'internal___owner',
   internal___type = 'internal___type',
   path = 'path',
-  jsonName = 'jsonName',
   internalComponentName = 'internalComponentName',
   component = 'component',
   componentChunkName = 'componentChunkName',
@@ -5128,7 +5136,6 @@ export type SitePageFilterInput = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   path?: Maybe<StringQueryOperatorInput>;
-  jsonName?: Maybe<StringQueryOperatorInput>;
   internalComponentName?: Maybe<StringQueryOperatorInput>;
   component?: Maybe<StringQueryOperatorInput>;
   componentChunkName?: Maybe<StringQueryOperatorInput>;
@@ -6605,9 +6612,9 @@ export type IndexQueryQuery = { __typename?: 'Query' } & {
                   SanityFeatureText,
                   '_key' | '_type' | 'layout' | 'heading' | 'text'
                 >)
-              | ({ __typename?: 'SanityVideo' } & Pick<
-                  SanityVideo,
-                  '_key' | '_type' | 'url'
+              | ({ __typename?: 'SanityVimeo' } & Pick<
+                  SanityVimeo,
+                  '_key' | '_type'
                 > & {
                     image: Maybe<
                       { __typename?: 'SanityMainImage' } & {
@@ -6617,22 +6624,6 @@ export type IndexQueryQuery = { __typename?: 'Query' } & {
                               {
                                 __typename?: 'SanityImageFluid';
                               } & GatsbySanityImageFluidFragment
-                            >;
-                            metadata: Maybe<
-                              { __typename?: 'SanityImageMetadata' } & {
-                                palette: Maybe<
-                                  { __typename?: 'SanityImagePalette' } & {
-                                    dominant: Maybe<
-                                      {
-                                        __typename?: 'SanityImagePaletteSwatch';
-                                      } & Pick<
-                                        SanityImagePaletteSwatch,
-                                        'background'
-                                      >
-                                    >;
-                                  }
-                                >;
-                              }
                             >;
                           }
                         >;

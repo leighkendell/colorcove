@@ -12,6 +12,7 @@ import mainImage from './objects/main-image';
 import hero from './objects/hero';
 import featureText from './objects/feature-text';
 import vimeo from './objects/vimeo';
+import videoData from './objects/video-data';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -25,6 +26,7 @@ export default createSchema({
     hero,
     featureText,
     vimeo,
+    videoData,
     // Documents
     page
   ])

@@ -3,7 +3,7 @@ import Section from './section';
 import Wrapper from './wrapper';
 import TextBlock from './text-block';
 import Video from './video';
-import { SanityFeatureText, SanityVideo } from '../types/graphql-types';
+import { SanityFeatureText, SanityVimeo } from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import { FluidObject } from 'gatsby-image';
 
@@ -29,19 +29,31 @@ const Module: React.FC<Props> = ({ modules }) => {
         );
         break;
 
-      // Video module
-      case 'video':
-        const { url, image } = data as SanityVideo;
+      // Vimeo module
+      case 'vimeo':
+        const { image, data: videoData } = data as SanityVimeo;
         const placeholder: FluidObject = getNestedObject(image, 'asset.fluid');
 
-        module = (
-          <Video
-            url={url ? url : ''}
-            width={16}
-            height={9}
-            image={placeholder}
-          />
-        );
+        if (videoData) {
+          const { url, width, height, thumbnail } = videoData;
+          const fallbackPlaceholder: FluidObject = {
+            aspectRatio: 2,
+            src: thumbnail || '',
+            srcSet: '',
+            sizes: '',
+          };
+
+          module = (
+            <Video
+              url={(url && url) || ''}
+              width={(width && width) || 1920}
+              height={(height && height) || 1080}
+              image={placeholder || fallbackPlaceholder}
+            />
+          );
+        } else {
+          module = null;
+        }
         break;
 
       default:

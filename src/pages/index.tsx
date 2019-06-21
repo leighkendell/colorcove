@@ -75,10 +75,15 @@ export const pageQuery = graphql`
           heading
           text
         }
-        ... on SanityVideo {
+        ... on SanityVimeo {
           _key
           _type
-          url
+          data {
+            url
+            width
+            height
+            thumbnail
+          }
           image {
             asset {
               fluid(maxWidth: 1920, maxHeight: 1080) {
