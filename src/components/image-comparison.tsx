@@ -179,10 +179,13 @@ const ImageComparison: React.FC<Props> = ({
 
   // Drag behaviour
   // Sets the spring "progress" state based on the drag value
-  const gestureEvents = useGesture(
+  // FIXME: Remove "any" when types are fixed
+  const gestureEvents = useGesture<any>(
     {
       onDrag: ({ event, active, delta, temp = progress.getValue(), last }) => {
-        event.preventDefault();
+        if (event) {
+          event.preventDefault();
+        }
 
         const [x] = delta;
         let newProgress = (x / sizes.width) * 100 + temp;
