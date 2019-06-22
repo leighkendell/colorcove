@@ -7,17 +7,17 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'intro',
       title: 'Intro',
-      type: 'text'
+      type: 'text',
     },
     {
       name: 'image',
       type: 'mainImage',
-      title: 'Image'
+      title: 'Image',
     },
   ],
-}
+};

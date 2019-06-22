@@ -11,15 +11,15 @@ export default {
       validation: Rule => Rule.required().error('Please select a layout type'),
       options: {
         list: [
-          {title: 'Centered', value: 'centered'},
-          {title: 'Horizontal', value: 'horizontal'},
+          { title: 'Centered', value: 'centered' },
+          { title: 'Horizontal', value: 'horizontal' },
         ],
-      }
+      },
     },
     {
       name: 'heading',
       title: 'Heading',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'text',
@@ -32,11 +32,11 @@ export default {
       subtitle: 'heading',
     },
     prepare(selection) {
-      const { subtitle } = selection
+      const { subtitle } = selection;
       return {
         title: 'Feature Text',
-        subtitle
-      }
-    }
-  }
-}
+        subtitle,
+      };
+    },
+  },
+};

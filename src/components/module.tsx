@@ -3,9 +3,14 @@ import Section from './section';
 import Wrapper from './wrapper';
 import TextBlock from './text-block';
 import Video from './video';
-import { SanityFeatureText, SanityVimeo } from '../types/graphql-types';
+import {
+  SanityFeatureText,
+  SanityVimeo,
+  SanityImageComparison,
+} from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import { FluidObject } from 'gatsby-image';
+import ImageComparison from './image-comparison';
 
 interface Props {
   modules: any[];
@@ -13,10 +18,10 @@ interface Props {
 
 const Module: React.FC<Props> = ({ modules }) => {
   const content = modules.map(({ _key, _type, ...data }) => {
-    let module;
+    let module = null;
 
     switch (_type) {
-      // Featured text module
+      // Feature text module
       case 'featureText':
         const { heading, text, layout } = data as SanityFeatureText;
 
@@ -51,8 +56,32 @@ const Module: React.FC<Props> = ({ modules }) => {
               image={placeholder || fallbackPlaceholder}
             />
           );
-        } else {
-          module = null;
+        }
+        break;
+
+      // Image comparison module
+      case 'imageComparison':
+        const { name, beforeImage, afterImage } = data as SanityImageComparison;
+
+        const before: FluidObject | undefined = getNestedObject(
+          beforeImage,
+          'asset.fluid'
+        );
+
+        const after: FluidObject | undefined = getNestedObject(
+          afterImage,
+          'asset.fluid'
+        );
+
+        if (before && after) {
+          module = (
+            <ImageComparison
+              beforeImage={before}
+              afterImage={after}
+              beforeLabel="As shot"
+              afterLabel={(name && name) || ''}
+            />
+          );
         }
         break;
 

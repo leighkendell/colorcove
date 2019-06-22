@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
 import { useGesture } from 'react-use-gesture';
 import { FluidObject } from 'gatsby-image';
 import Image from './image';
-const useResizeAware = require('react-resize-aware');
 
 interface Props {
   beforeImage: FluidObject;
@@ -156,7 +155,7 @@ const ImageComparison: React.FC<Props> = ({
   beforeLabel,
   afterLabel,
 }) => {
-  const [resizeListener, sizes] = useResizeAware();
+  const wrapperEl = useRef<HTMLDivElement>(null);
 
   // Animations
   const [{ progress }, setSpring] = useSpring(() => ({ progress: 50 }));
@@ -187,21 +186,25 @@ const ImageComparison: React.FC<Props> = ({
           event.preventDefault();
         }
 
-        const [x] = delta;
-        let newProgress = (x / sizes.width) * 100 + temp;
+        if (wrapperEl.current) {
+          const width = wrapperEl.current.offsetWidth;
 
-        if (newProgress > 100 || newProgress < 0) {
-          return;
+          const [x] = delta;
+          let newProgress = (x / width) * 100 + temp;
+
+          if (newProgress > 100 || newProgress < 0) {
+            return;
+          }
+
+          if (last) {
+            newProgress = Math.round(newProgress);
+          }
+
+          setSpring({
+            progress: newProgress,
+            immediate: active,
+          });
         }
-
-        if (last) {
-          newProgress = Math.round(newProgress);
-        }
-
-        setSpring({
-          progress: newProgress,
-          immediate: active,
-        });
 
         return temp;
       },
@@ -210,12 +213,14 @@ const ImageComparison: React.FC<Props> = ({
   );
 
   const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const x =
-      event.clientX -
-      (event.target as HTMLDivElement).getBoundingClientRect().left;
-    setSpring({
-      progress: Math.round((x / sizes.width) * 100),
-    });
+    if (wrapperEl.current) {
+      const x = event.clientX - wrapperEl.current.getBoundingClientRect().left;
+      const width = wrapperEl.current.offsetWidth;
+
+      setSpring({
+        progress: Math.round((x / width) * 100),
+      });
+    }
   };
 
   const handleHandleClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -245,8 +250,8 @@ const ImageComparison: React.FC<Props> = ({
 
   return (
     <>
-      <Wrapper onClick={handleWrapperClick}>
-        {resizeListener}
+      <Wrapper onClick={handleWrapperClick} ref={wrapperEl}>
+        {/* {resizeListener} */}
         <ImageWrapper style={wrapperStyle}>
           <AnimatedImage image={beforeImage} alt="Before" style={imageStyle} />
         </ImageWrapper>

@@ -50,47 +50,17 @@ export const pageQuery = graphql`
       id
       title
       hero {
-        title
-        intro
-        image {
-          asset {
-            fluid(maxWidth: 2880, maxHeight: 1600) {
-              ...GatsbySanityImageFluid
-            }
-            metadata {
-              palette {
-                dominant {
-                  background
-                }
-              }
-            }
-          }
-        }
+        ...Hero
       }
       modules {
         ... on SanityFeatureText {
-          _key
-          _type
-          layout
-          heading
-          text
+          ...FeatureText
         }
         ... on SanityVimeo {
-          _key
-          _type
-          data {
-            url
-            width
-            height
-            thumbnail
-          }
-          image {
-            asset {
-              fluid(maxWidth: 1920, maxHeight: 1080) {
-                ...GatsbySanityImageFluid
-              }
-            }
-          }
+          ...Vimeo
+        }
+        ... on SanityImageComparison {
+          ...ImageComparison
         }
       }
     }

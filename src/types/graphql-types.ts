@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type MaybePromise<T> = Promise<T> | T;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -711,99 +712,99 @@ export type ImageSharpFixedArgs = {
   width?: Maybe<Scalars['Int']>;
   height?: Maybe<Scalars['Int']>;
   base64Width?: Maybe<Scalars['Int']>;
-  jpegProgressive: Scalars['Boolean'];
-  pngCompressionSpeed: Scalars['Int'];
-  grayscale: Scalars['Boolean'];
+  jpegProgressive?: Maybe<Scalars['Boolean']>;
+  pngCompressionSpeed?: Maybe<Scalars['Int']>;
+  grayscale?: Maybe<Scalars['Boolean']>;
   duotone?: Maybe<DuotoneGradient>;
   traceSVG?: Maybe<Potrace>;
   quality?: Maybe<Scalars['Int']>;
-  toFormat: ImageFormat;
-  toFormatBase64: ImageFormat;
-  cropFocus: ImageCropFocus;
-  fit: ImageFit;
-  background: Scalars['String'];
-  rotate: Scalars['Int'];
-  trim: Scalars['Float'];
+  toFormat?: Maybe<ImageFormat>;
+  toFormatBase64?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars['String']>;
+  rotate?: Maybe<Scalars['Int']>;
+  trim?: Maybe<Scalars['Float']>;
 };
 
 export type ImageSharpResolutionsArgs = {
   width?: Maybe<Scalars['Int']>;
   height?: Maybe<Scalars['Int']>;
   base64Width?: Maybe<Scalars['Int']>;
-  jpegProgressive: Scalars['Boolean'];
-  pngCompressionSpeed: Scalars['Int'];
-  grayscale: Scalars['Boolean'];
+  jpegProgressive?: Maybe<Scalars['Boolean']>;
+  pngCompressionSpeed?: Maybe<Scalars['Int']>;
+  grayscale?: Maybe<Scalars['Boolean']>;
   duotone?: Maybe<DuotoneGradient>;
   traceSVG?: Maybe<Potrace>;
   quality?: Maybe<Scalars['Int']>;
-  toFormat: ImageFormat;
-  toFormatBase64: ImageFormat;
-  cropFocus: ImageCropFocus;
-  fit: ImageFit;
-  background: Scalars['String'];
-  rotate: Scalars['Int'];
-  trim: Scalars['Float'];
+  toFormat?: Maybe<ImageFormat>;
+  toFormatBase64?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars['String']>;
+  rotate?: Maybe<Scalars['Int']>;
+  trim?: Maybe<Scalars['Float']>;
 };
 
 export type ImageSharpFluidArgs = {
   maxWidth?: Maybe<Scalars['Int']>;
   maxHeight?: Maybe<Scalars['Int']>;
   base64Width?: Maybe<Scalars['Int']>;
-  grayscale: Scalars['Boolean'];
-  jpegProgressive: Scalars['Boolean'];
-  pngCompressionSpeed: Scalars['Int'];
+  grayscale?: Maybe<Scalars['Boolean']>;
+  jpegProgressive?: Maybe<Scalars['Boolean']>;
+  pngCompressionSpeed?: Maybe<Scalars['Int']>;
   duotone?: Maybe<DuotoneGradient>;
   traceSVG?: Maybe<Potrace>;
   quality?: Maybe<Scalars['Int']>;
-  toFormat: ImageFormat;
-  toFormatBase64: ImageFormat;
-  cropFocus: ImageCropFocus;
-  fit: ImageFit;
-  background: Scalars['String'];
-  rotate: Scalars['Int'];
-  trim: Scalars['Float'];
-  sizes: Scalars['String'];
-  srcSetBreakpoints: Array<Maybe<Scalars['Int']>>;
+  toFormat?: Maybe<ImageFormat>;
+  toFormatBase64?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars['String']>;
+  rotate?: Maybe<Scalars['Int']>;
+  trim?: Maybe<Scalars['Float']>;
+  sizes?: Maybe<Scalars['String']>;
+  srcSetBreakpoints?: Maybe<Array<Maybe<Scalars['Int']>>>;
 };
 
 export type ImageSharpSizesArgs = {
   maxWidth?: Maybe<Scalars['Int']>;
   maxHeight?: Maybe<Scalars['Int']>;
   base64Width?: Maybe<Scalars['Int']>;
-  grayscale: Scalars['Boolean'];
-  jpegProgressive: Scalars['Boolean'];
-  pngCompressionSpeed: Scalars['Int'];
+  grayscale?: Maybe<Scalars['Boolean']>;
+  jpegProgressive?: Maybe<Scalars['Boolean']>;
+  pngCompressionSpeed?: Maybe<Scalars['Int']>;
   duotone?: Maybe<DuotoneGradient>;
   traceSVG?: Maybe<Potrace>;
   quality?: Maybe<Scalars['Int']>;
-  toFormat: ImageFormat;
-  toFormatBase64: ImageFormat;
-  cropFocus: ImageCropFocus;
-  fit: ImageFit;
-  background: Scalars['String'];
-  rotate: Scalars['Int'];
-  trim: Scalars['Float'];
-  sizes: Scalars['String'];
-  srcSetBreakpoints: Array<Maybe<Scalars['Int']>>;
+  toFormat?: Maybe<ImageFormat>;
+  toFormatBase64?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars['String']>;
+  rotate?: Maybe<Scalars['Int']>;
+  trim?: Maybe<Scalars['Float']>;
+  sizes?: Maybe<Scalars['String']>;
+  srcSetBreakpoints?: Maybe<Array<Maybe<Scalars['Int']>>>;
 };
 
 export type ImageSharpResizeArgs = {
   width?: Maybe<Scalars['Int']>;
   height?: Maybe<Scalars['Int']>;
   quality?: Maybe<Scalars['Int']>;
-  jpegProgressive: Scalars['Boolean'];
-  pngCompressionLevel: Scalars['Int'];
-  pngCompressionSpeed: Scalars['Int'];
-  grayscale: Scalars['Boolean'];
+  jpegProgressive?: Maybe<Scalars['Boolean']>;
+  pngCompressionLevel?: Maybe<Scalars['Int']>;
+  pngCompressionSpeed?: Maybe<Scalars['Int']>;
+  grayscale?: Maybe<Scalars['Boolean']>;
   duotone?: Maybe<DuotoneGradient>;
-  base64: Scalars['Boolean'];
+  base64?: Maybe<Scalars['Boolean']>;
   traceSVG?: Maybe<Potrace>;
-  toFormat: ImageFormat;
-  cropFocus: ImageCropFocus;
-  fit: ImageFit;
-  background: Scalars['String'];
-  rotate: Scalars['Int'];
-  trim: Scalars['Float'];
+  toFormat?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars['String']>;
+  rotate?: Maybe<Scalars['Int']>;
+  trim?: Maybe<Scalars['Float']>;
 };
 
 export type ImageSharpConnection = {
@@ -1196,7 +1197,6 @@ export type JsonQueryOperatorInput = {
 
 /** Node Interface */
 export type Node = {
-  __typename?: 'Node';
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -1248,7 +1248,6 @@ export enum PotraceTurnPolicy {
 export type PrismicAllDocumentTypes = PrismicHome | PrismicProduct;
 
 export type PrismicDocument = {
-  __typename?: 'PrismicDocument';
   dataString?: Maybe<Scalars['String']>;
   first_publication_date?: Maybe<Scalars['Date']>;
   href?: Maybe<Scalars['String']>;
@@ -3664,7 +3663,6 @@ export type SanityBlock = {
 
 /** A Sanity document */
 export type SanityDocument = {
-  __typename?: 'SanityDocument';
   _id?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
   _createdAt?: Maybe<Scalars['Date']>;
@@ -3681,7 +3679,10 @@ export type SanityFeatureText = {
   text?: Maybe<Scalars['String']>;
 };
 
-export type SanityFeatureTextOrVimeo = SanityFeatureText | SanityVimeo;
+export type SanityFeatureTextOrImageComparisonOrVimeo =
+  | SanityFeatureText
+  | SanityImageComparison
+  | SanityVimeo;
 
 export type SanityFile = {
   __typename?: 'SanityFile';
@@ -3983,16 +3984,16 @@ export type SanityImageAsset_UpdatedAtArgs = {
 };
 
 export type SanityImageAssetFixedArgs = {
-  width: Scalars['Int'];
+  width?: Maybe<Scalars['Int']>;
   height?: Maybe<Scalars['Int']>;
-  toFormat: SanityImageFormat;
+  toFormat?: Maybe<SanityImageFormat>;
 };
 
 export type SanityImageAssetFluidArgs = {
-  maxWidth: Scalars['Int'];
+  maxWidth?: Maybe<Scalars['Int']>;
   maxHeight?: Maybe<Scalars['Int']>;
   sizes?: Maybe<Scalars['String']>;
-  toFormat: SanityImageFormat;
+  toFormat?: Maybe<SanityImageFormat>;
 };
 
 export type SanityImageAsset_RawMetadataArgs = {
@@ -4246,6 +4247,15 @@ export type SanityImageAssetSortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
+export type SanityImageComparison = {
+  __typename?: 'SanityImageComparison';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  beforeImage?: Maybe<SanityMainImage>;
+  afterImage?: Maybe<SanityMainImage>;
+};
+
 export type SanityImageCrop = {
   __typename?: 'SanityImageCrop';
   _key?: Maybe<Scalars['String']>;
@@ -4450,7 +4460,7 @@ export type SanityPage = SanityDocument &
     title?: Maybe<Scalars['String']>;
     slug?: Maybe<SanitySlug>;
     hero?: Maybe<SanityHero>;
-    modules?: Maybe<Array<Maybe<SanityFeatureTextOrVimeo>>>;
+    modules?: Maybe<Array<Maybe<SanityFeatureTextOrImageComparisonOrVimeo>>>;
     _rawSlug?: Maybe<Scalars['JSON']>;
     _rawHero?: Maybe<Scalars['JSON']>;
     _rawModules?: Maybe<Scalars['JSON']>;
@@ -6616,6 +6626,12 @@ export type IndexQueryQuery = { __typename?: 'Query' } & {
                   SanityVimeo,
                   '_key' | '_type'
                 > & {
+                    data: Maybe<
+                      { __typename?: 'SanityVideoData' } & Pick<
+                        SanityVideoData,
+                        'url' | 'width' | 'height' | 'thumbnail'
+                      >
+                    >;
                     image: Maybe<
                       { __typename?: 'SanityMainImage' } & {
                         asset: Maybe<

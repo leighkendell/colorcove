@@ -20,11 +20,11 @@ export default {
       subtitle: 'data.title',
     },
     prepare(selection) {
-      const { subtitle } = selection
+      const { subtitle } = selection;
       return {
         title: 'Vimeo Embed',
-        subtitle
-      }
-    }
-  }
-}
+        subtitle,
+      };
+    },
+  },
+};

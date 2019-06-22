@@ -1,8 +1,8 @@
 // First, we must import the schema creator
-import createSchema from 'part:@sanity/base/schema-creator'
+import createSchema from 'part:@sanity/base/schema-creator';
 
 // Then import schema types from any plugins that might expose them
-import schemaTypes from 'all:part:@sanity/base/schema-type'
+import schemaTypes from 'all:part:@sanity/base/schema-type';
 
 // Document types
 import page from './documents/page';
@@ -13,6 +13,7 @@ import hero from './objects/hero';
 import featureText from './objects/feature-text';
 import vimeo from './objects/vimeo';
 import videoData from './objects/video-data';
+import imageComparison from './objects/image-comparison';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -27,7 +28,8 @@ export default createSchema({
     featureText,
     vimeo,
     videoData,
+    imageComparison,
     // Documents
-    page
-  ])
-})
+    page,
+  ]),
+});

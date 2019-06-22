@@ -1,7 +1,10 @@
+import { FaFile } from 'react-icons/fa';
+
 export default {
   name: 'page',
   title: 'Pages',
   type: 'document',
+  icon: FaFile,
   fields: [
     {
       name: 'title',
@@ -17,12 +20,12 @@ export default {
       validation: Rule => Rule.required(),
       options: {
         source: 'title',
-      }
+      },
     },
     {
       name: 'hero',
       title: 'Hero',
-      type: 'hero'
+      type: 'hero',
     },
     {
       name: 'modules',
@@ -30,8 +33,9 @@ export default {
       type: 'array',
       of: [
         { type: 'featureText' },
-        { type: 'vimeo' }
+        { type: 'vimeo' },
+        { type: 'imageComparison' },
       ],
-    }
+    },
   ],
-}
+};
