@@ -23,7 +23,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Loop through products and create pages
   const products = result.data.allSanityProduct.edges || [];
   products.forEach(edge => {
-    const path = `/product/${edge.node.slug.current}`;
+    const path = `/products/${edge.node.slug.current}`;
 
     createPage({
       path,
