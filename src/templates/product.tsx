@@ -1,31 +1,32 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { Query } from '../types/graphql-types';
-import Header from '../components/header';
-import Slice from '../components/slice';
-import { FluidObject } from 'gatsby-image';
+import Hero from '../components/hero';
+import Module from '../components/module';
+import Button from '../components/button';
+import { ReactComponent as Icon } from '../images/cart.svg';
 
 interface Props {
   data: Query;
 }
 
-const ProductTemplate: React.FC<Props> = ({ data: { prismicProduct } }) => {
-  if (prismicProduct && prismicProduct.data) {
-    const { title, intro, image, body } = prismicProduct.data;
-    const headerImage =
-      image &&
-      image.localFile &&
-      image.localFile.childImageSharp &&
-      image.localFile.childImageSharp.fluid;
+const ProductTemplate: React.FC<Props> = ({ data: { sanityProduct } }) => {
+  if (sanityProduct) {
+    const { hero, modules, shopifyDefaultVariant } = sanityProduct;
 
     return (
       <>
-        <Header
-          title={title && title.text ? title.text : ''}
-          description={intro && intro.text ? intro.text : ''}
-          image={headerImage as FluidObject}
-        />
-        <Slice data={body} />
+        {hero && (
+          <Hero hero={hero}>
+            {shopifyDefaultVariant && (
+              <Button icon>
+                <Icon />
+                Buy for {shopifyDefaultVariant.price}
+              </Button>
+            )}
+          </Hero>
+        )}
+        {modules && <Module modules={modules} />}
       </>
     );
   } else {
@@ -35,54 +36,26 @@ const ProductTemplate: React.FC<Props> = ({ data: { prismicProduct } }) => {
 
 export default ProductTemplate;
 
-export const pageQuery = graphql`
-  query ProductQuery($uid: String!) {
-    prismicProduct(uid: { eq: $uid }) {
-      data {
-        intro {
-          text
+export const productQuery = graphql`
+  query ProductTemplateQuery($id: String!) {
+    sanityProduct(id: { eq: $id }) {
+      title
+      hero {
+        ...Hero
+      }
+      modules {
+        ... on SanityFeatureText {
+          ...FeatureText
         }
-        title {
-          text
+        ... on SanityVimeo {
+          ...Vimeo
         }
-        image {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 2880) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
+        ... on SanityImageComparison {
+          ...ImageComparison
         }
-        body {
-          ... on PrismicProductBodyImageComparison {
-            id
-            slice_type
-            primary {
-              name {
-                text
-              }
-              before_image {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 2000) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
-              }
-              after_image {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 2000) {
-                      ...GatsbyImageSharpFluid_withWebp
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+      }
+      shopifyDefaultVariant {
+        price
       }
     }
   }

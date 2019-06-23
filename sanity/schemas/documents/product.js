@@ -23,6 +23,27 @@ export default {
       },
     },
     {
+      name: 'hero',
+      title: 'Hero',
+      type: 'hero',
+    },
+    {
+      name: 'modules',
+      title: 'Modules',
+      type: 'array',
+      of: [
+        {
+          type: 'featureText',
+        },
+        {
+          type: 'vimeo',
+        },
+        {
+          type: 'imageComparison',
+        },
+      ],
+    },
+    {
       name: 'shopifyId',
       title: 'Shopify ID',
       type: 'number',

@@ -36,10 +36,10 @@ const Button = styled.button<Props>`
   ${ButtonBaseStyle};
 
   /* When the icon prop is true */
-  ${props => props.icon && `padding-left: ${spacing(9)}`}
+  ${props => props.icon && `padding-left: ${spacing(9)};`}
 
   ${breakpoint('small')} {
-    ${props => props.icon && `padding-left: ${spacing(12)}`}
+    ${props => props.icon && `padding-left: ${spacing(12)};`}
   }
 
   svg {

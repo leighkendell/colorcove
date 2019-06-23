@@ -10,26 +10,26 @@ module.exports = {
     primaryNav: [
       {
         title: 'Products',
-        link: '/products'
+        link: '/products',
       },
       {
         title: 'About',
-        link: '/about'
+        link: '/about',
       },
       {
         title: 'Contact',
-        link: '/contact'
-      }
+        link: '/contact',
+      },
     ],
     secondaryNav: [
       {
         title: 'Support',
-        link: '/support'
+        link: '/support',
       },
       {
         title: 'Contact',
-        link: '/contact'
-      }
+        link: '/contact',
+      },
     ],
   },
   plugins: [
@@ -60,18 +60,6 @@ module.exports = {
     `gatsby-plugin-svgr`,
     `gatsby-plugin-layout`,
     {
-      resolve: `gatsby-source-prismic`,
-      options: {
-        repositoryName: 'colorcove',
-        accessToken: `${process.env.PRISMIC_TOKEN}`,
-        schemas: {
-          home: require('./src/schemas/home.json'),
-          product: require('./src/schemas/product.json'),
-        }
-        // linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
-      }
-    },
-    {
       resolve: `gatsby-source-sanity`,
       options: {
         projectId: `${process.env.SANITY_PROJECT}`,
@@ -85,4 +73,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

@@ -1,30 +1,34 @@
-const path = require('path');
-
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  // Query Products
-  const products = await graphql(`
+  const result = await graphql(`
     {
-      allPrismicProduct {
+      allSanityProduct(filter: { slug: { current: { ne: "null" } } }) {
         edges {
           node {
             id
-            uid
+            slug {
+              current
+            }
           }
         }
       }
     }
   `);
 
-  // Create Product Pages
-  products.data.allPrismicProduct.edges.forEach(edge => {
+  if (result.errors) {
+    throw result.errors;
+  }
+
+  // Loop through products and create pages
+  const products = result.data.allSanityProduct.edges || [];
+  products.forEach(edge => {
+    const path = `/product/${edge.node.slug.current}`;
+
     createPage({
-      path: `/products/${edge.node.uid}`,
-      component: path.resolve('src/templates/product.tsx'),
-      context: {
-        uid: edge.node.uid,
-      },
+      path,
+      component: require.resolve('./src/templates/product.tsx'),
+      context: { id: edge.node.id },
     });
   });
-}
+};
