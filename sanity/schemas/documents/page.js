@@ -30,7 +30,18 @@ export default {
     {
       name: 'modules',
       title: 'Modules',
-      type: 'moduleContent',
+      type: 'array',
+      of: [
+        {
+          type: 'featureText',
+        },
+        {
+          type: 'vimeo',
+        },
+        {
+          type: 'imageComparison',
+        },
+      ],
     },
   ],
 };
