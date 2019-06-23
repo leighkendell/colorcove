@@ -55,7 +55,6 @@
     "eslint-plugin-react-hooks": "^1.6.0",
     "husky": "^2.4.1",
     "lint-staged": "^8.2.1",
-    "netlify-lambda": "^1.4.13",
     "prettier": "^1.18.2",
     "stylelint": "^10.1.0",
     "stylelint-8-point-grid": "^0.2.2",
@@ -85,9 +84,7 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "build:lambda": "netlify-lambda build src/lambda",
     "develop": "gatsby develop",
-    "develop:lambda": "netlify-lambda serve src/lambda",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "storybook": "start-storybook -p 6006",

@@ -68,9 +68,6 @@ sanity/dist
 # Mac files
 .DS_Store
 
-# netlify files
-/lambda
-
 # Yarn
 yarn-error.log
 .pnp/
