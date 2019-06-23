@@ -1,8 +1,5 @@
 const sanityClient = require('@sanity/client');
 const crypto = require('crypto');
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
 
 // Set up sanity client
 const client = sanityClient({
@@ -12,7 +9,7 @@ const client = sanityClient({
   useCdn: false,
 });
 
-export async function handler(event) {
+exports.handler = async function(event) {
   // Get the hmac from shopify
   const hmac = event.headers['x-shopify-hmac-sha256'];
 
@@ -125,4 +122,4 @@ export async function handler(event) {
       body: '',
     };
   }
-}
+};
