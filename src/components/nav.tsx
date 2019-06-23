@@ -48,6 +48,10 @@ const StyledNav = styled.nav`
     padding: ${spacing(4)} ${spacing(12)};
   }
 
+  ${breakpoint('xLarge')} {
+    padding: ${spacing(4)} ${spacing(15)};
+  }
+
   > * {
     /* Nav toggle button */
     &:nth-child(4) {

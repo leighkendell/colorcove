@@ -13,6 +13,7 @@ declare module 'styled-components' {
       small: number;
       medium: number;
       large: number;
+      xLarge: number;
     };
   }
 }

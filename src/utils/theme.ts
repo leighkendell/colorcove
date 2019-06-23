@@ -19,6 +19,7 @@ const colorcoveTheme: DefaultTheme = {
     small: 420,
     medium: 768,
     large: 1200,
+    xLarge: 1600,
   },
 };
 

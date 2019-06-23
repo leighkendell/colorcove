@@ -39,6 +39,10 @@ const StyledHeader = styled.header<{ hasImage: boolean }>`
     --padding: ${spacing(12)};
   }
 
+  ${breakpoint('xLarge')} {
+    --padding: ${spacing(15)};
+  }
+
   ${({ hasImage }) => !hasImage && 'padding: var(--padding)'};
   ${({ hasImage }) => hasImage && headerGrid};
   background-color: ${props => props.theme.colorBlack};
@@ -67,12 +71,16 @@ const Content = styled.div`
   grid-row: 2 / span 1;
   grid-column: 1 / span 1;
   align-self: end;
-  max-width: 640px;
+  max-width: ${spacing(80)};
   padding: var(--padding);
   background: ${props => props.theme.colorBlack};
 
   ${breakpoint('medium')} {
     grid-row: 1 / span 1;
+  }
+
+  ${breakpoint('xLarge')} {
+    max-width: ${spacing(100)};
   }
 
   ${Button} {

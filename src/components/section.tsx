@@ -15,6 +15,11 @@ const Section = styled.section`
   ${breakpoint('large')} {
     margin: ${spacing(12)} 0;
   }
+
+  ${breakpoint('xLarge')} {
+    max-width: 2000px;
+    margin: ${spacing(15)} auto;
+  }
 `;
 
 export default Section;

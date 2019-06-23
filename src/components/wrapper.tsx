@@ -15,6 +15,10 @@ const Wrapper = styled.div`
   ${breakpoint('large')} {
     padding: 0 ${spacing(12)};
   }
+
+  ${breakpoint('xLarge')} {
+    padding: 0 ${spacing(15)};
+  }
 `;
 
 export default Wrapper;

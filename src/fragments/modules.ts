@@ -24,7 +24,7 @@ export const vimeo = graphql`
     }
     image {
       asset {
-        fluid(maxWidth: 1920, maxHeight: 1080) {
+        fluid(maxWidth: 2000, maxHeight: 1125) {
           ...GatsbySanityImageFluid
         }
       }

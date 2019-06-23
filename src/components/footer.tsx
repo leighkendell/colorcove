@@ -31,6 +31,10 @@ const StyledFooter = styled.footer`
     padding: ${spacing(8)} ${spacing(12)};
   }
 
+  ${breakpoint('xLarge')} {
+    padding: ${spacing(8)} ${spacing(15)};
+  }
+
   svg {
     * {
       fill: ${props => props.theme.colorWhite};
