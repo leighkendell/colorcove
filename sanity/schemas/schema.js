@@ -6,6 +6,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 
 // Document types
 import page from './documents/page';
+import product from './documents/product';
 
 // Object types
 import mainImage from './objects/main-image';
@@ -14,6 +15,8 @@ import featureText from './objects/feature-text';
 import vimeo from './objects/vimeo';
 import videoData from './objects/video-data';
 import imageComparison from './objects/image-comparison';
+import moduleContent from './objects/module-content';
+import shopifyVariant from './objects/shopify-variant';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -29,7 +32,10 @@ export default createSchema({
     vimeo,
     videoData,
     imageComparison,
+    moduleContent,
+    shopifyVariant,
     // Documents
     page,
+    product,
   ]),
 });

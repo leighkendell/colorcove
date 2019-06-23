@@ -1,10 +1,10 @@
-import { FiBookOpen } from 'react-icons/fi';
+import { FiDollarSign } from 'react-icons/fi';
 
 export default {
-  name: 'page',
-  title: 'Pages',
+  name: 'product',
+  title: 'Products',
   type: 'document',
-  icon: FiBookOpen,
+  icon: FiDollarSign,
   fields: [
     {
       name: 'title',
@@ -23,14 +23,16 @@ export default {
       },
     },
     {
-      name: 'hero',
-      title: 'Hero',
-      type: 'hero',
+      name: 'shopifyId',
+      title: 'Shopify ID',
+      type: 'number',
+      description: 'The product ID from Shopify',
+      readOnly: true,
     },
     {
-      name: 'modules',
-      title: 'Modules',
-      type: 'moduleContent',
+      name: 'shopifyDefaultVariant',
+      title: 'Default Product Variant',
+      type: 'shopifyVariant',
     },
   ],
 };
