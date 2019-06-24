@@ -29,6 +29,7 @@ const StyledCard = styled.li`
 `;
 
 const Content = styled.div`
+  flex-grow: 1;
   order: 2;
   padding: ${spacing(3)};
   background-color: ${props => props.theme.colorLightGrey};
