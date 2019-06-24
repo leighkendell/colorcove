@@ -3,7 +3,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     {
-      allSanityProduct(filter: { slug: { current: { ne: "null" } } }) {
+      allSanityProduct(
+        filter: { slug: { current: { ne: "null" } }, shopifyId: { gt: 0 } }
+      ) {
         edges {
           node {
             id

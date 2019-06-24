@@ -1,4 +1,5 @@
 import { FiDollarSign } from 'react-icons/fi';
+import moduleGroup from '../objects/module-group';
 
 export default {
   name: 'product',
@@ -10,7 +11,9 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'The title of the page shown in the browser',
+      description:
+        'The title of the product shown in the browser and search engine listings',
+      validation: Rule => Rule.required(),
     },
     {
       name: 'slug',
@@ -23,6 +26,20 @@ export default {
       },
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      description:
+        'A brief description of the product shown on listing pages and search engine listings',
+    },
+    {
+      name: 'image',
+      title: 'Feature Image',
+      type: 'mainImage',
+      description:
+        'An image shown on listing pages and when sharing the product on social media',
+    },
+    {
       name: 'hero',
       title: 'Hero',
       type: 'hero',
@@ -30,18 +47,7 @@ export default {
     {
       name: 'modules',
       title: 'Modules',
-      type: 'array',
-      of: [
-        {
-          type: 'featureText',
-        },
-        {
-          type: 'vimeo',
-        },
-        {
-          type: 'imageComparison',
-        },
-      ],
+      ...moduleGroup,
     },
     {
       name: 'shopifyId',

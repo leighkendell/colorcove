@@ -5,10 +5,7 @@ import Hero from '../components/hero';
 import Module from '../components/module';
 import Section from '../components/section';
 import Wrapper from '../components/wrapper';
-import CardGroup from '../components/card-group';
-import Card from '../components/card';
-import { FluidObject } from 'gatsby-image';
-import { getNestedObject } from '../utils/helpers';
+import ProductCardGroup from '../components/product-card-group';
 
 interface Props {
   data: Query;
@@ -17,7 +14,7 @@ interface Props {
 const ProductsPage: React.FC<Props> = ({
   data: { sanityPage, allSanityProduct },
 }) => {
-  if (sanityPage) {
+  if (sanityPage && allSanityProduct) {
     const { hero, modules } = sanityPage;
 
     return (
@@ -25,27 +22,7 @@ const ProductsPage: React.FC<Props> = ({
         {hero && <Hero hero={hero} />}
         <Section>
           <Wrapper>
-            <CardGroup>
-              {allSanityProduct &&
-                allSanityProduct.edges.map(product => {
-                  const { id, title, slug, hero } = product.node;
-                  const link = `/products/${slug && slug.current}`;
-                  const image: FluidObject = getNestedObject(
-                    hero,
-                    'image.asset.fluid'
-                  );
-
-                  return (
-                    <Card
-                      title={title || ''}
-                      description="fsdfsd"
-                      link={link}
-                      image={image}
-                      key={id}
-                    />
-                  );
-                })}
-            </CardGroup>
+            <ProductCardGroup products={allSanityProduct.edges} />
           </Wrapper>
         </Section>
         {modules && <Module modules={modules} />}
@@ -66,16 +43,19 @@ export const productsQuery = graphql`
         ...Hero
       }
     }
-    allSanityProduct(filter: { slug: { current: { ne: "null" } } }) {
+    allSanityProduct(
+      filter: { slug: { current: { ne: "null" } }, shopifyId: { gt: 0 } }
+    ) {
       edges {
         node {
           id
           title
-          hero {
-            ...Hero
-          }
           slug {
             current
+          }
+          description
+          image {
+            ...CardImage
           }
         }
       }

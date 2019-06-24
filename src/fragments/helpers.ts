@@ -11,6 +11,17 @@ export const comparisonImage = graphql`
   }
 `;
 
+// Card image
+export const cardImage = graphql`
+  fragment CardImage on SanityMainImage {
+    asset {
+      fluid(maxWidth: 864, maxHeight: 648) {
+        ...GatsbySanityImageFluid
+      }
+    }
+  }
+`;
+
 // Image metadata
 export const imageMeta = graphql`
   fragment ImageMeta on SanityImageAsset {

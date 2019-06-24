@@ -1268,8 +1268,11 @@ export type QuerySanityPageArgs = {
   _key?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   slug?: Maybe<SanitySlugFilterInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  image?: Maybe<SanityMainImageFilterInput>;
   hero?: Maybe<SanityHeroFilterInput>;
   _rawSlug?: Maybe<JsonQueryOperatorInput>;
+  _rawImage?: Maybe<JsonQueryOperatorInput>;
   _rawHero?: Maybe<JsonQueryOperatorInput>;
   _rawModules?: Maybe<JsonQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -1294,10 +1297,13 @@ export type QuerySanityProductArgs = {
   _key?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   slug?: Maybe<SanitySlugFilterInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  image?: Maybe<SanityMainImageFilterInput>;
   hero?: Maybe<SanityHeroFilterInput>;
   shopifyId?: Maybe<FloatQueryOperatorInput>;
   shopifyDefaultVariant?: Maybe<SanityShopifyVariantFilterInput>;
   _rawSlug?: Maybe<JsonQueryOperatorInput>;
+  _rawImage?: Maybe<JsonQueryOperatorInput>;
   _rawHero?: Maybe<JsonQueryOperatorInput>;
   _rawModules?: Maybe<JsonQueryOperatorInput>;
   _rawShopifyDefaultVariant?: Maybe<JsonQueryOperatorInput>;
@@ -2338,7 +2344,6 @@ export type SanityMainImage = {
   __typename?: 'SanityMainImage';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
-  alt?: Maybe<Scalars['String']>;
   asset?: Maybe<SanityImageAsset>;
   hotspot?: Maybe<SanityImageHotspot>;
   crop?: Maybe<SanityImageCrop>;
@@ -2347,7 +2352,6 @@ export type SanityMainImage = {
 export type SanityMainImageFilterInput = {
   _key?: Maybe<StringQueryOperatorInput>;
   _type?: Maybe<StringQueryOperatorInput>;
-  alt?: Maybe<StringQueryOperatorInput>;
   asset?: Maybe<SanityImageAssetFilterInput>;
   hotspot?: Maybe<SanityImageHotspotFilterInput>;
   crop?: Maybe<SanityImageCropFilterInput>;
@@ -2364,9 +2368,12 @@ export type SanityPage = SanityDocument &
     _key?: Maybe<Scalars['String']>;
     title?: Maybe<Scalars['String']>;
     slug?: Maybe<SanitySlug>;
+    description?: Maybe<Scalars['String']>;
+    image?: Maybe<SanityMainImage>;
     hero?: Maybe<SanityHero>;
     modules?: Maybe<Array<Maybe<SanityFeatureTextOrImageComparisonOrVimeo>>>;
     _rawSlug?: Maybe<Scalars['JSON']>;
+    _rawImage?: Maybe<Scalars['JSON']>;
     _rawHero?: Maybe<Scalars['JSON']>;
     _rawModules?: Maybe<Scalars['JSON']>;
     id: Scalars['ID'];
@@ -2390,6 +2397,10 @@ export type SanityPage_UpdatedAtArgs = {
 };
 
 export type SanityPage_RawSlugArgs = {
+  resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+export type SanityPage_RawImageArgs = {
   resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
 };
 
@@ -2439,13 +2450,77 @@ export enum SanityPageFieldsEnum {
   slug____key = 'slug____key',
   slug____type = 'slug____type',
   slug___current = 'slug___current',
+  description = 'description',
+  image____key = 'image____key',
+  image____type = 'image____type',
+  image___asset____id = 'image___asset____id',
+  image___asset____type = 'image___asset____type',
+  image___asset____createdAt = 'image___asset____createdAt',
+  image___asset____updatedAt = 'image___asset____updatedAt',
+  image___asset____rev = 'image___asset____rev',
+  image___asset____key = 'image___asset____key',
+  image___asset___originalFilename = 'image___asset___originalFilename',
+  image___asset___label = 'image___asset___label',
+  image___asset___sha1hash = 'image___asset___sha1hash',
+  image___asset___extension = 'image___asset___extension',
+  image___asset___mimeType = 'image___asset___mimeType',
+  image___asset___size = 'image___asset___size',
+  image___asset___assetId = 'image___asset___assetId',
+  image___asset___path = 'image___asset___path',
+  image___asset___url = 'image___asset___url',
+  image___asset___metadata____key = 'image___asset___metadata____key',
+  image___asset___metadata____type = 'image___asset___metadata____type',
+  image___asset___metadata___lqip = 'image___asset___metadata___lqip',
+  image___asset___metadata___hasAlpha = 'image___asset___metadata___hasAlpha',
+  image___asset___metadata___isOpaque = 'image___asset___metadata___isOpaque',
+  image___asset___fixed___base64 = 'image___asset___fixed___base64',
+  image___asset___fixed___aspectRatio = 'image___asset___fixed___aspectRatio',
+  image___asset___fixed___width = 'image___asset___fixed___width',
+  image___asset___fixed___height = 'image___asset___fixed___height',
+  image___asset___fixed___src = 'image___asset___fixed___src',
+  image___asset___fixed___srcSet = 'image___asset___fixed___srcSet',
+  image___asset___fixed___srcWebp = 'image___asset___fixed___srcWebp',
+  image___asset___fixed___srcSetWebp = 'image___asset___fixed___srcSetWebp',
+  image___asset___fluid___base64 = 'image___asset___fluid___base64',
+  image___asset___fluid___aspectRatio = 'image___asset___fluid___aspectRatio',
+  image___asset___fluid___src = 'image___asset___fluid___src',
+  image___asset___fluid___srcSet = 'image___asset___fluid___srcSet',
+  image___asset___fluid___srcWebp = 'image___asset___fluid___srcWebp',
+  image___asset___fluid___srcSetWebp = 'image___asset___fluid___srcSetWebp',
+  image___asset___fluid___sizes = 'image___asset___fluid___sizes',
+  image___asset____rawMetadata = 'image___asset____rawMetadata',
+  image___asset___id = 'image___asset___id',
+  image___asset___parent___id = 'image___asset___parent___id',
+  image___asset___parent___children = 'image___asset___parent___children',
+  image___asset___children = 'image___asset___children',
+  image___asset___children___id = 'image___asset___children___id',
+  image___asset___children___children = 'image___asset___children___children',
+  image___asset___internal___content = 'image___asset___internal___content',
+  image___asset___internal___contentDigest = 'image___asset___internal___contentDigest',
+  image___asset___internal___description = 'image___asset___internal___description',
+  image___asset___internal___fieldOwners = 'image___asset___internal___fieldOwners',
+  image___asset___internal___ignoreType = 'image___asset___internal___ignoreType',
+  image___asset___internal___mediaType = 'image___asset___internal___mediaType',
+  image___asset___internal___owner = 'image___asset___internal___owner',
+  image___asset___internal___type = 'image___asset___internal___type',
+  image___hotspot____key = 'image___hotspot____key',
+  image___hotspot____type = 'image___hotspot____type',
+  image___hotspot___x = 'image___hotspot___x',
+  image___hotspot___y = 'image___hotspot___y',
+  image___hotspot___height = 'image___hotspot___height',
+  image___hotspot___width = 'image___hotspot___width',
+  image___crop____key = 'image___crop____key',
+  image___crop____type = 'image___crop____type',
+  image___crop___top = 'image___crop___top',
+  image___crop___bottom = 'image___crop___bottom',
+  image___crop___left = 'image___crop___left',
+  image___crop___right = 'image___crop___right',
   hero____key = 'hero____key',
   hero____type = 'hero____type',
   hero___title = 'hero___title',
   hero___intro = 'hero___intro',
   hero___image____key = 'hero___image____key',
   hero___image____type = 'hero___image____type',
-  hero___image___alt = 'hero___image___alt',
   hero___image___asset____id = 'hero___image___asset____id',
   hero___image___asset____type = 'hero___image___asset____type',
   hero___image___asset____createdAt = 'hero___image___asset____createdAt',
@@ -2477,6 +2552,7 @@ export enum SanityPageFieldsEnum {
   hero___image___crop___left = 'hero___image___crop___left',
   hero___image___crop___right = 'hero___image___crop___right',
   _rawSlug = '_rawSlug',
+  _rawImage = '_rawImage',
   _rawHero = '_rawHero',
   _rawModules = '_rawModules',
   id = 'id',
@@ -2576,8 +2652,11 @@ export type SanityPageFilterInput = {
   _key?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   slug?: Maybe<SanitySlugFilterInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  image?: Maybe<SanityMainImageFilterInput>;
   hero?: Maybe<SanityHeroFilterInput>;
   _rawSlug?: Maybe<JsonQueryOperatorInput>;
+  _rawImage?: Maybe<JsonQueryOperatorInput>;
   _rawHero?: Maybe<JsonQueryOperatorInput>;
   _rawModules?: Maybe<JsonQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2612,11 +2691,14 @@ export type SanityProduct = SanityDocument &
     _key?: Maybe<Scalars['String']>;
     title?: Maybe<Scalars['String']>;
     slug?: Maybe<SanitySlug>;
+    description?: Maybe<Scalars['String']>;
+    image?: Maybe<SanityMainImage>;
     hero?: Maybe<SanityHero>;
     modules?: Maybe<Array<Maybe<SanityFeatureTextOrImageComparisonOrVimeo>>>;
     shopifyId?: Maybe<Scalars['Float']>;
     shopifyDefaultVariant?: Maybe<SanityShopifyVariant>;
     _rawSlug?: Maybe<Scalars['JSON']>;
+    _rawImage?: Maybe<Scalars['JSON']>;
     _rawHero?: Maybe<Scalars['JSON']>;
     _rawModules?: Maybe<Scalars['JSON']>;
     _rawShopifyDefaultVariant?: Maybe<Scalars['JSON']>;
@@ -2641,6 +2723,10 @@ export type SanityProduct_UpdatedAtArgs = {
 };
 
 export type SanityProduct_RawSlugArgs = {
+  resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+export type SanityProduct_RawImageArgs = {
   resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
 };
 
@@ -2694,13 +2780,77 @@ export enum SanityProductFieldsEnum {
   slug____key = 'slug____key',
   slug____type = 'slug____type',
   slug___current = 'slug___current',
+  description = 'description',
+  image____key = 'image____key',
+  image____type = 'image____type',
+  image___asset____id = 'image___asset____id',
+  image___asset____type = 'image___asset____type',
+  image___asset____createdAt = 'image___asset____createdAt',
+  image___asset____updatedAt = 'image___asset____updatedAt',
+  image___asset____rev = 'image___asset____rev',
+  image___asset____key = 'image___asset____key',
+  image___asset___originalFilename = 'image___asset___originalFilename',
+  image___asset___label = 'image___asset___label',
+  image___asset___sha1hash = 'image___asset___sha1hash',
+  image___asset___extension = 'image___asset___extension',
+  image___asset___mimeType = 'image___asset___mimeType',
+  image___asset___size = 'image___asset___size',
+  image___asset___assetId = 'image___asset___assetId',
+  image___asset___path = 'image___asset___path',
+  image___asset___url = 'image___asset___url',
+  image___asset___metadata____key = 'image___asset___metadata____key',
+  image___asset___metadata____type = 'image___asset___metadata____type',
+  image___asset___metadata___lqip = 'image___asset___metadata___lqip',
+  image___asset___metadata___hasAlpha = 'image___asset___metadata___hasAlpha',
+  image___asset___metadata___isOpaque = 'image___asset___metadata___isOpaque',
+  image___asset___fixed___base64 = 'image___asset___fixed___base64',
+  image___asset___fixed___aspectRatio = 'image___asset___fixed___aspectRatio',
+  image___asset___fixed___width = 'image___asset___fixed___width',
+  image___asset___fixed___height = 'image___asset___fixed___height',
+  image___asset___fixed___src = 'image___asset___fixed___src',
+  image___asset___fixed___srcSet = 'image___asset___fixed___srcSet',
+  image___asset___fixed___srcWebp = 'image___asset___fixed___srcWebp',
+  image___asset___fixed___srcSetWebp = 'image___asset___fixed___srcSetWebp',
+  image___asset___fluid___base64 = 'image___asset___fluid___base64',
+  image___asset___fluid___aspectRatio = 'image___asset___fluid___aspectRatio',
+  image___asset___fluid___src = 'image___asset___fluid___src',
+  image___asset___fluid___srcSet = 'image___asset___fluid___srcSet',
+  image___asset___fluid___srcWebp = 'image___asset___fluid___srcWebp',
+  image___asset___fluid___srcSetWebp = 'image___asset___fluid___srcSetWebp',
+  image___asset___fluid___sizes = 'image___asset___fluid___sizes',
+  image___asset____rawMetadata = 'image___asset____rawMetadata',
+  image___asset___id = 'image___asset___id',
+  image___asset___parent___id = 'image___asset___parent___id',
+  image___asset___parent___children = 'image___asset___parent___children',
+  image___asset___children = 'image___asset___children',
+  image___asset___children___id = 'image___asset___children___id',
+  image___asset___children___children = 'image___asset___children___children',
+  image___asset___internal___content = 'image___asset___internal___content',
+  image___asset___internal___contentDigest = 'image___asset___internal___contentDigest',
+  image___asset___internal___description = 'image___asset___internal___description',
+  image___asset___internal___fieldOwners = 'image___asset___internal___fieldOwners',
+  image___asset___internal___ignoreType = 'image___asset___internal___ignoreType',
+  image___asset___internal___mediaType = 'image___asset___internal___mediaType',
+  image___asset___internal___owner = 'image___asset___internal___owner',
+  image___asset___internal___type = 'image___asset___internal___type',
+  image___hotspot____key = 'image___hotspot____key',
+  image___hotspot____type = 'image___hotspot____type',
+  image___hotspot___x = 'image___hotspot___x',
+  image___hotspot___y = 'image___hotspot___y',
+  image___hotspot___height = 'image___hotspot___height',
+  image___hotspot___width = 'image___hotspot___width',
+  image___crop____key = 'image___crop____key',
+  image___crop____type = 'image___crop____type',
+  image___crop___top = 'image___crop___top',
+  image___crop___bottom = 'image___crop___bottom',
+  image___crop___left = 'image___crop___left',
+  image___crop___right = 'image___crop___right',
   hero____key = 'hero____key',
   hero____type = 'hero____type',
   hero___title = 'hero___title',
   hero___intro = 'hero___intro',
   hero___image____key = 'hero___image____key',
   hero___image____type = 'hero___image____type',
-  hero___image___alt = 'hero___image___alt',
   hero___image___asset____id = 'hero___image___asset____id',
   hero___image___asset____type = 'hero___image___asset____type',
   hero___image___asset____createdAt = 'hero___image___asset____createdAt',
@@ -2737,6 +2887,7 @@ export enum SanityProductFieldsEnum {
   shopifyDefaultVariant___title = 'shopifyDefaultVariant___title',
   shopifyDefaultVariant___price = 'shopifyDefaultVariant___price',
   _rawSlug = '_rawSlug',
+  _rawImage = '_rawImage',
   _rawHero = '_rawHero',
   _rawModules = '_rawModules',
   _rawShopifyDefaultVariant = '_rawShopifyDefaultVariant',
@@ -2837,10 +2988,13 @@ export type SanityProductFilterInput = {
   _key?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   slug?: Maybe<SanitySlugFilterInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  image?: Maybe<SanityMainImageFilterInput>;
   hero?: Maybe<SanityHeroFilterInput>;
   shopifyId?: Maybe<FloatQueryOperatorInput>;
   shopifyDefaultVariant?: Maybe<SanityShopifyVariantFilterInput>;
   _rawSlug?: Maybe<JsonQueryOperatorInput>;
+  _rawImage?: Maybe<JsonQueryOperatorInput>;
   _rawHero?: Maybe<JsonQueryOperatorInput>;
   _rawModules?: Maybe<JsonQueryOperatorInput>;
   _rawShopifyDefaultVariant?: Maybe<JsonQueryOperatorInput>;
@@ -3850,7 +4004,7 @@ export type IndexQueryQueryVariables = {};
 
 export type IndexQueryQuery = { __typename?: 'Query' } & {
   sanityPage: Maybe<
-    { __typename?: 'SanityPage' } & Pick<SanityPage, 'id' | 'title'> & {
+    { __typename?: 'SanityPage' } & Pick<SanityPage, 'title'> & {
         hero: Maybe<{ __typename?: 'SanityHero' } & HeroFragment>;
         modules: Maybe<
           Array<
@@ -3867,13 +4021,40 @@ export type IndexQueryQuery = { __typename?: 'Query' } & {
   >;
 };
 
+export type ProductsPageQueryQueryVariables = {};
+
+export type ProductsPageQueryQuery = { __typename?: 'Query' } & {
+  sanityPage: Maybe<
+    { __typename?: 'SanityPage' } & Pick<SanityPage, 'title'> & {
+        hero: Maybe<{ __typename?: 'SanityHero' } & HeroFragment>;
+      }
+  >;
+  allSanityProduct: Maybe<
+    { __typename?: 'SanityProductConnection' } & {
+      edges: Array<
+        { __typename?: 'SanityProductEdge' } & {
+          node: { __typename?: 'SanityProduct' } & Pick<
+            SanityProduct,
+            'id' | 'title'
+          > & {
+              hero: Maybe<{ __typename?: 'SanityHero' } & HeroFragment>;
+              slug: Maybe<
+                { __typename?: 'SanitySlug' } & Pick<SanitySlug, 'current'>
+              >;
+            };
+        }
+      >;
+    }
+  >;
+};
+
 export type ProductTemplateQueryQueryVariables = {
   id: Scalars['String'];
 };
 
 export type ProductTemplateQueryQuery = { __typename?: 'Query' } & {
   sanityProduct: Maybe<
-    { __typename?: 'SanityProduct' } & Pick<SanityProduct, 'id' | 'title'> & {
+    { __typename?: 'SanityProduct' } & Pick<SanityProduct, 'title'> & {
         hero: Maybe<{ __typename?: 'SanityHero' } & HeroFragment>;
         modules: Maybe<
           Array<
@@ -3884,6 +4065,12 @@ export type ProductTemplateQueryQuery = { __typename?: 'Query' } & {
                   __typename?: 'SanityImageComparison';
                 } & ImageComparisonFragment)
             >
+          >
+        >;
+        shopifyDefaultVariant: Maybe<
+          { __typename?: 'SanityShopifyVariant' } & Pick<
+            SanityShopifyVariant,
+            'price'
           >
         >;
       }
