@@ -20,10 +20,10 @@ const horizontalStyle = css`
     grid-gap: ${spacing(6)};
     grid-template-columns: 1fr 2fr;
     max-width: 1000px;
-    text-align: left;
 
     * {
       margin: 0;
+      text-align: left;
     }
   }
 `;
@@ -31,7 +31,10 @@ const horizontalStyle = css`
 const StyledTextBlock = styled.div<{ horizontal?: boolean }>`
   max-width: 640px;
   margin: 0 auto;
-  text-align: center;
+
+  * {
+    text-align: center;
+  }
 
   *:last-child {
     margin-bottom: 0;

@@ -7,10 +7,14 @@ import {
   SanityFeatureText,
   SanityVimeo,
   SanityImageComparison,
+  SanityProductGroup,
+  SanityProductReference,
 } from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import { FluidObject } from 'gatsby-image';
 import ImageComparison from './image-comparison';
+import ProductCardGroup from './product-card-group';
+import Heading from './heading';
 
 interface Props {
   modules: any[];
@@ -81,6 +85,25 @@ const Module: React.FC<Props> = ({ modules }) => {
               beforeLabel="As shot"
               afterLabel={(name && name) || ''}
             />
+          );
+        }
+        break;
+
+      case 'productGroup':
+        const { title, products } = data as SanityProductGroup;
+
+        if (products) {
+          module = (
+            <>
+              {title && (
+                <Heading type="h2" align="center">
+                  {title}
+                </Heading>
+              )}
+              <ProductCardGroup
+                products={products as SanityProductReference[]}
+              />
+            </>
           );
         }
         break;

@@ -34,3 +34,18 @@ export const imageMeta = graphql`
     }
   }
 `;
+
+// Product card
+export const productCard = graphql`
+  fragment ProductCard on SanityProduct {
+    id
+    title
+    slug {
+      current
+    }
+    description
+    image {
+      ...CardImage
+    }
+  }
+`;

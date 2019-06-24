@@ -42,6 +42,9 @@ export const pageQuery = graphql`
         ... on SanityImageComparison {
           ...ImageComparison
         }
+        ... on SanityProductGroup {
+          ...ProductGroup
+        }
       }
     }
   }

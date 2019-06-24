@@ -16,6 +16,8 @@ import vimeo from './objects/vimeo';
 import videoData from './objects/video-data';
 import imageComparison from './objects/image-comparison';
 import shopifyVariant from './objects/shopify-variant';
+import productReference from './objects/product-reference';
+import productGroup from './objects/product-group';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -32,6 +34,8 @@ export default createSchema({
     videoData,
     imageComparison,
     shopifyVariant,
+    productReference,
+    productGroup,
     // Documents
     page,
     product,

@@ -48,15 +48,7 @@ export const productsQuery = graphql`
     ) {
       edges {
         node {
-          id
-          title
-          slug {
-            current
-          }
-          description
-          image {
-            ...CardImage
-          }
+          ...ProductCard
         }
       }
     }

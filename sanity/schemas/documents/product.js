@@ -12,7 +12,7 @@ export default {
       title: 'Title',
       type: 'string',
       description:
-        'The title of the product shown in the browser and search engine listings',
+        'The name of the product shown in the browser and search engine listings',
       validation: Rule => Rule.required(),
     },
     {

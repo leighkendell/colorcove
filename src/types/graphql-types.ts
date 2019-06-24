@@ -1590,9 +1590,10 @@ export type SanityFeatureText = {
   text?: Maybe<Scalars['String']>;
 };
 
-export type SanityFeatureTextOrImageComparisonOrVimeo =
+export type SanityFeatureTextOrImageComparisonOrProductGroupOrVimeo =
   | SanityFeatureText
   | SanityImageComparison
+  | SanityProductGroup
   | SanityVimeo;
 
 export type SanityFile = {
@@ -2371,7 +2372,9 @@ export type SanityPage = SanityDocument &
     description?: Maybe<Scalars['String']>;
     image?: Maybe<SanityMainImage>;
     hero?: Maybe<SanityHero>;
-    modules?: Maybe<Array<Maybe<SanityFeatureTextOrImageComparisonOrVimeo>>>;
+    modules?: Maybe<
+      Array<Maybe<SanityFeatureTextOrImageComparisonOrProductGroupOrVimeo>>
+    >;
     _rawSlug?: Maybe<Scalars['JSON']>;
     _rawImage?: Maybe<Scalars['JSON']>;
     _rawHero?: Maybe<Scalars['JSON']>;
@@ -2694,7 +2697,9 @@ export type SanityProduct = SanityDocument &
     description?: Maybe<Scalars['String']>;
     image?: Maybe<SanityMainImage>;
     hero?: Maybe<SanityHero>;
-    modules?: Maybe<Array<Maybe<SanityFeatureTextOrImageComparisonOrVimeo>>>;
+    modules?: Maybe<
+      Array<Maybe<SanityFeatureTextOrImageComparisonOrProductGroupOrVimeo>>
+    >;
     shopifyId?: Maybe<Scalars['Float']>;
     shopifyDefaultVariant?: Maybe<SanityShopifyVariant>;
     _rawSlug?: Maybe<Scalars['JSON']>;
@@ -3004,6 +3009,14 @@ export type SanityProductFilterInput = {
   internal?: Maybe<InternalFilterInput>;
 };
 
+export type SanityProductGroup = {
+  __typename?: 'SanityProductGroup';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  products?: Maybe<Array<Maybe<SanityProductReference>>>;
+};
+
 export type SanityProductGroupConnection = {
   __typename?: 'SanityProductGroupConnection';
   totalCount: Scalars['Int'];
@@ -3012,6 +3025,13 @@ export type SanityProductGroupConnection = {
   pageInfo: PageInfo;
   field: Scalars['String'];
   fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type SanityProductReference = {
+  __typename?: 'SanityProductReference';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  product?: Maybe<SanityProduct>;
 };
 
 export type SanityProductSortInput = {
@@ -3890,6 +3910,16 @@ export type ComparisonImageFragment = { __typename?: 'SanityMainImage' } & {
   >;
 };
 
+export type CardImageFragment = { __typename?: 'SanityMainImage' } & {
+  asset: Maybe<
+    { __typename?: 'SanityImageAsset' } & {
+      fluid: Maybe<
+        { __typename?: 'SanityImageFluid' } & GatsbySanityImageFluidFragment
+      >;
+    }
+  >;
+};
+
 export type ImageMetaFragment = { __typename?: 'SanityImageAsset' } & {
   metadata: Maybe<
     { __typename?: 'SanityImageMetadata' } & {
@@ -3906,6 +3936,14 @@ export type ImageMetaFragment = { __typename?: 'SanityImageAsset' } & {
     }
   >;
 };
+
+export type ProductCardFragment = { __typename?: 'SanityProduct' } & Pick<
+  SanityProduct,
+  'id' | 'title' | 'description'
+> & {
+    slug: Maybe<{ __typename?: 'SanitySlug' } & Pick<SanitySlug, 'current'>>;
+    image: Maybe<{ __typename?: 'SanityMainImage' } & CardImageFragment>;
+  };
 
 export type FeatureTextFragment = { __typename?: 'SanityFeatureText' } & Pick<
   SanityFeatureText,
@@ -3967,6 +4005,23 @@ export type HeroFragment = { __typename?: 'SanityHero' } & Pick<
     >;
   };
 
+export type ProductGroupFragment = { __typename?: 'SanityProductGroup' } & Pick<
+  SanityProductGroup,
+  '_key' | '_type' | 'title'
+> & {
+    products: Maybe<
+      Array<
+        Maybe<
+          { __typename?: 'SanityProductReference' } & {
+            product: Maybe<
+              { __typename?: 'SanityProduct' } & ProductCardFragment
+            >;
+          }
+        >
+      >
+    >;
+  };
+
 export type Unnamed_1_QueryVariables = {};
 
 export type Unnamed_1_Query = { __typename?: 'Query' } & {
@@ -4014,6 +4069,7 @@ export type IndexQueryQuery = { __typename?: 'Query' } & {
               | ({
                   __typename?: 'SanityImageComparison';
                 } & ImageComparisonFragment)
+              | ({ __typename?: 'SanityProductGroup' } & ProductGroupFragment)
             >
           >
         >;
@@ -4033,15 +4089,7 @@ export type ProductsPageQueryQuery = { __typename?: 'Query' } & {
     { __typename?: 'SanityProductConnection' } & {
       edges: Array<
         { __typename?: 'SanityProductEdge' } & {
-          node: { __typename?: 'SanityProduct' } & Pick<
-            SanityProduct,
-            'id' | 'title'
-          > & {
-              hero: Maybe<{ __typename?: 'SanityHero' } & HeroFragment>;
-              slug: Maybe<
-                { __typename?: 'SanitySlug' } & Pick<SanitySlug, 'current'>
-              >;
-            };
+          node: { __typename?: 'SanityProduct' } & ProductCardFragment;
         }
       >;
     }

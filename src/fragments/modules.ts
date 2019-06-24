@@ -62,3 +62,17 @@ export const hero = graphql`
     }
   }
 `;
+
+// Product group module
+export const productGroup = graphql`
+  fragment ProductGroup on SanityProductGroup {
+    _key
+    _type
+    title
+    products {
+      product {
+        ...ProductCard
+      }
+    }
+  }
+`;
