@@ -22,6 +22,7 @@ interface Props {
     title: string;
     link: string;
   }[];
+  onCartOpen?: () => void;
 }
 
 const StyledNav = styled.nav`
@@ -174,7 +175,7 @@ const NavLink = styled(Link)`
   }
 `;
 
-const Nav: React.FC<Props> = ({ items }) => {
+const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
   const [navOpen, setNavOpen] = useState(false);
 
   const toggleButtonEl = useRef<HTMLButtonElement>(null);
@@ -241,7 +242,7 @@ const Nav: React.FC<Props> = ({ items }) => {
           </NavListItem>
         ))}
       </NavList>
-      <IconButton aria-label="Open cart" aria-expanded="false">
+      <IconButton aria-label="Open cart" onClick={onCartOpen}>
         <IconWrapper>
           <Cart role="img" />
         </IconWrapper>

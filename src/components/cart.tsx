@@ -19,7 +19,7 @@ const StyledCart = styled(animated.aside)`
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   max-width: 600px;
   height: 100%;
@@ -87,6 +87,7 @@ const Overlay = styled(animated.div)`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
   width: 100%;
   height: 100%;
   background-color: ${props => rgba(props.theme.colorBlack, 0.75)};

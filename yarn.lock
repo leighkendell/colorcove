@@ -16733,3 +16733,8 @@ zen-observable@^0.8.0:
   version "0.8.14"
   resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.14.tgz#d33058359d335bc0db1f0af66158b32872af3bf7"
   integrity sha512-kQz39uonEjEESwh+qCi83kcC3rZJGh4mrZW7xjkSQYXkq//JZHTtKo+6yuVloTgMtzsIWOJrjIrKvk/dqm0L5g==
+
+zustand@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-0.2.2.tgz#d3c7cea8313a31f16974b1c68e872c12d5affa8d"
+  integrity sha512-CGjP58oq0w14wVGWHqq+ay3/vszUjRSunAy2nkYC5B+Z9IcLsfBBuNG0OWIOlppnf1yg1LK+sbmDCz2gxgp74Q==
