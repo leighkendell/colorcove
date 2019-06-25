@@ -58,7 +58,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-svgr`,
-    `gatsby-plugin-layout`,
     {
       resolve: `gatsby-source-sanity`,
       options: {

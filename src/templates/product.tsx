@@ -5,6 +5,7 @@ import Hero from '../components/hero';
 import Module from '../components/module';
 import Button from '../components/button';
 import { ReactComponent as Icon } from '../images/cart.svg';
+import Layout from '../components/layout';
 
 interface Props {
   data: Query;
@@ -15,7 +16,7 @@ const ProductTemplate: React.FC<Props> = ({ data: { sanityProduct } }) => {
     const { hero, modules, shopifyDefaultVariant } = sanityProduct;
 
     return (
-      <>
+      <Layout>
         {hero && (
           <Hero hero={hero}>
             {shopifyDefaultVariant && (
@@ -27,7 +28,7 @@ const ProductTemplate: React.FC<Props> = ({ data: { sanityProduct } }) => {
           </Hero>
         )}
         {modules && <Module modules={modules} />}
-      </>
+      </Layout>
     );
   } else {
     return null;
