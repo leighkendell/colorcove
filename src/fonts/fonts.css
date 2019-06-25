@@ -1,0 +1,17 @@
+@font-face {
+  font-weight: 300;
+  font-family: 'Manrope';
+  font-style: normal;
+  src: url('./Manrope3-Light.woff2') format('woff2'),
+    url('./Manrope3-Light.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: bold;
+  font-family: 'Manrope';
+  font-style: normal;
+  src: url('./Manrope3-Bold.woff2') format('woff2'),
+    url('./Manrope3-Bold.woff') format('woff');
+  font-display: swap;
+}
