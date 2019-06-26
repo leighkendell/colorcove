@@ -12,10 +12,6 @@
     "postinstall": "lerna bootstrap",
     "generate-graphql-types": "lerna run generate-graphql-types"
   },
-  "workspaces": [
-    "web",
-    "studio"
-  ],
   "devDependencies": {
     "@sanity/cli": "^0.141.1",
     "lerna": "^3.15.0"

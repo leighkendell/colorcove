@@ -2,6 +2,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -64,8 +66,8 @@ module.exports = {
         projectId: `${process.env.SANITY_PROJECT}`,
         dataset: `${process.env.SANITY_DATASET}`,
         token: `${process.env.SANITY_TOKEN}`,
-        overlayDrafts: true,
-        watchMode: true,
+        overlayDrafts: !isProd,
+        watchMode: !isProd,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
