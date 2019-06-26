@@ -1462,7 +1462,6 @@ export type QuerySitePluginArgs = {
   version?: Maybe<StringQueryOperatorInput>;
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
   nodeAPIs?: Maybe<StringQueryOperatorInput>;
-  browserAPIs?: Maybe<StringQueryOperatorInput>;
   ssrAPIs?: Maybe<StringQueryOperatorInput>;
   pluginFilepath?: Maybe<StringQueryOperatorInput>;
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
@@ -3474,7 +3473,6 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___watchMode = 'pluginCreator___pluginOptions___watchMode',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
-  pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator___ssrAPIs',
   pluginCreator___pluginFilepath = 'pluginCreator___pluginFilepath',
   pluginCreator___packageJson___name = 'pluginCreator___packageJson___name',
@@ -3538,7 +3536,6 @@ export type SitePlugin = Node & {
   version?: Maybe<Scalars['String']>;
   pluginOptions?: Maybe<SitePluginPluginOptions>;
   nodeAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
-  browserAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
   ssrAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
   pluginFilepath?: Maybe<Scalars['String']>;
   packageJson?: Maybe<SitePluginPackageJson>;
@@ -3676,7 +3673,6 @@ export enum SitePluginFieldsEnum {
   pluginOptions___watchMode = 'pluginOptions___watchMode',
   pluginOptions___pathCheck = 'pluginOptions___pathCheck',
   nodeAPIs = 'nodeAPIs',
-  browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
   pluginFilepath = 'pluginFilepath',
   packageJson___name = 'packageJson___name',
@@ -3706,7 +3702,6 @@ export type SitePluginFilterInput = {
   version?: Maybe<StringQueryOperatorInput>;
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
   nodeAPIs?: Maybe<StringQueryOperatorInput>;
-  browserAPIs?: Maybe<StringQueryOperatorInput>;
   ssrAPIs?: Maybe<StringQueryOperatorInput>;
   pluginFilepath?: Maybe<StringQueryOperatorInput>;
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
@@ -3899,6 +3894,39 @@ export type StringQueryOperatorInput = {
   regex?: Maybe<Scalars['String']>;
   glob?: Maybe<Scalars['String']>;
 };
+export type Unnamed_1_QueryVariables = {};
+
+export type Unnamed_1_Query = { __typename?: 'Query' } & {
+  site: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & {
+          primaryNav: Maybe<
+            Array<
+              Maybe<
+                { __typename?: 'SiteSiteMetadataPrimaryNav' } & Pick<
+                  SiteSiteMetadataPrimaryNav,
+                  'title' | 'link'
+                >
+              >
+            >
+          >;
+          secondaryNav: Maybe<
+            Array<
+              Maybe<
+                { __typename?: 'SiteSiteMetadataSecondaryNav' } & Pick<
+                  SiteSiteMetadataSecondaryNav,
+                  'title' | 'link'
+                >
+              >
+            >
+          >;
+        }
+      >;
+    }
+  >;
+};
+
 export type ComparisonImageFragment = { __typename?: 'SanityMainImage' } & {
   asset: Maybe<
     { __typename?: 'SanityImageAsset' } & {
@@ -4021,39 +4049,6 @@ export type ProductGroupFragment = { __typename?: 'SanityProductGroup' } & Pick<
     >;
   };
 
-export type Unnamed_1_QueryVariables = {};
-
-export type Unnamed_1_Query = { __typename?: 'Query' } & {
-  site: Maybe<
-    { __typename?: 'Site' } & {
-      siteMetadata: Maybe<
-        { __typename?: 'SiteSiteMetadata' } & {
-          primaryNav: Maybe<
-            Array<
-              Maybe<
-                { __typename?: 'SiteSiteMetadataPrimaryNav' } & Pick<
-                  SiteSiteMetadataPrimaryNav,
-                  'title' | 'link'
-                >
-              >
-            >
-          >;
-          secondaryNav: Maybe<
-            Array<
-              Maybe<
-                { __typename?: 'SiteSiteMetadataSecondaryNav' } & Pick<
-                  SiteSiteMetadataSecondaryNav,
-                  'title' | 'link'
-                >
-              >
-            >
-          >;
-        }
-      >;
-    }
-  >;
-};
-
 export type IndexQueryQueryVariables = {};
 
 export type IndexQueryQuery = { __typename?: 'Query' } & {
@@ -4063,12 +4058,13 @@ export type IndexQueryQuery = { __typename?: 'Query' } & {
         modules: Maybe<
           Array<
             Maybe<
-              | ({ __typename?: 'SanityFeatureText' } & FeatureTextFragment)
-              | ({ __typename?: 'SanityVimeo' } & VimeoFragment)
-              | ({
-                  __typename?: 'SanityImageComparison';
-                } & ImageComparisonFragment)
-              | ({ __typename?: 'SanityProductGroup' } & ProductGroupFragment)
+
+                | ({ __typename?: 'SanityFeatureText' } & FeatureTextFragment)
+                | ({ __typename?: 'SanityVimeo' } & VimeoFragment)
+                | ({
+                    __typename?: 'SanityImageComparison';
+                  } & ImageComparisonFragment)
+                | ({ __typename?: 'SanityProductGroup' } & ProductGroupFragment)
             >
           >
         >;
@@ -4106,11 +4102,12 @@ export type ProductTemplateQueryQuery = { __typename?: 'Query' } & {
         modules: Maybe<
           Array<
             Maybe<
-              | ({ __typename?: 'SanityFeatureText' } & FeatureTextFragment)
-              | ({ __typename?: 'SanityVimeo' } & VimeoFragment)
-              | ({
-                  __typename?: 'SanityImageComparison';
-                } & ImageComparisonFragment)
+
+                | ({ __typename?: 'SanityFeatureText' } & FeatureTextFragment)
+                | ({ __typename?: 'SanityVimeo' } & VimeoFragment)
+                | ({
+                    __typename?: 'SanityImageComparison';
+                  } & ImageComparisonFragment)
             >
           >
         >;

@@ -63,7 +63,7 @@ public
 storybook-static
 
 # sanity files
-sanity/dist
+studio/dist
 
 # Mac files
 .DS_Store
