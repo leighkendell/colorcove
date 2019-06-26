@@ -16,6 +16,7 @@ import {
 } from 'react-spring';
 import { colorcoveTheme } from '../utils/theme';
 import { useMatchMedia } from '../hooks/use-match-media';
+import { isBrowser } from '../utils/helpers';
 
 interface Props {
   items: {
@@ -122,6 +123,7 @@ const NavList = styled(animated.ul)`
   margin: 0;
   padding: 0;
   background-color: ${props => props.theme.colorBlack};
+  visibility: hidden;
 
   ${breakpoint('medium')} {
     position: static;
@@ -130,6 +132,7 @@ const NavList = styled(animated.ul)`
     grid-gap: ${spacing(4)};
     justify-content: end;
     background-color: transparent;
+    visibility: visible;
   }
 `;
 
@@ -138,6 +141,7 @@ const NavListItem = styled(animated.li)`
 `;
 
 const NavLink = styled(Link)`
+  position: relative;
   display: block;
   padding: ${spacing(3)};
   color: ${props => props.theme.colorWhite};
@@ -192,7 +196,6 @@ const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
   });
 
   const navListItemAnimation = useTrail(items.length, {
-    from: { opacity: 0, transform: 'scale(0.75)' },
     opacity: navOpen || isLargeScreen ? 1 : 0,
     transform: `scale(${navOpen || isLargeScreen ? 1 : 0.75})`,
     immediate: isLargeScreen,
@@ -231,10 +234,14 @@ const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
         <Logo role="img" />
       </StyledLink>
       <NavList
-        style={{
-          ...navListAnimation,
-          ...navListVisibility,
-        }}
+        style={
+          isBrowser
+            ? {
+                ...navListAnimation,
+                ...navListVisibility,
+              }
+            : {}
+        }
       >
         {navListItemAnimation.map((props, index) => (
           <NavListItem style={props} key={items[index].title}>
