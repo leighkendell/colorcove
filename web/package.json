@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Leigh Kendell <leigh@leighkendell.com>",
   "dependencies": {
-    "@sanity/client": "^0.140.36",
+    "@sanity/client": "^0.141.1",
     "@vimeo/player": "^2.9.1",
     "babel-plugin-styled-components": "^1.10.2",
     "gatsby": "^2.10.5",
@@ -18,7 +18,7 @@
     "gatsby-plugin-svgr": "^2.0.2",
     "gatsby-plugin-typescript": "^2.1.0",
     "gatsby-source-filesystem": "^2.1.1",
-    "gatsby-source-sanity": "^4.0.4",
+    "gatsby-source-sanity": "^4.0.5",
     "gatsby-transformer-sharp": "^2.2.0",
     "polished": "^3.4.1",
     "prop-types": "^15.7.2",
