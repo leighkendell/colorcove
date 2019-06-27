@@ -60,6 +60,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-svgr`,
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-source-sanity`,
       options: {
