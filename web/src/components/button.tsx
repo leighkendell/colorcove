@@ -23,7 +23,7 @@ export const ButtonBaseStyle = css`
   transition: background-color 0.15s ease-in-out;
   appearance: none;
 
-  ${breakpoint('small')} {
+  ${breakpoint('large')} {
     padding: ${spacing(3)} ${spacing(7)};
   }
 

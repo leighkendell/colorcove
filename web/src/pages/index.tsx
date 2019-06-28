@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 import { Query } from '../types/graphql-types';
 import Module from '../components/module';
 import Hero from '../components/hero';
-import Layout from '../components/layout';
 
 interface Props {
   data: Query;
@@ -14,10 +13,10 @@ const IndexPage: React.FC<Props> = ({ data: { sanityPage } }) => {
     const { hero, modules } = sanityPage;
 
     return (
-      <Layout>
+      <>
         {hero && <Hero hero={hero} />}
         {modules && <Module modules={modules} />}
-      </Layout>
+      </>
     );
   } else {
     return null;

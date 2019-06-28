@@ -24,7 +24,11 @@ const StyledCard = styled.li`
   }
 
   ${Button} {
-    margin-top: ${spacing(4)};
+    margin-top: ${spacing(2)};
+
+    ${breakpoint('medium')} {
+      margin-top: ${spacing(4)};
+    }
   }
 `;
 

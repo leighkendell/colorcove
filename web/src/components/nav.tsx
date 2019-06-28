@@ -13,6 +13,7 @@ import {
   useChain,
   useTrail,
   ReactSpringHook,
+  config,
 } from 'react-spring';
 import { colorcoveTheme } from '../utils/theme';
 import { useMatchMedia } from '../hooks/use-match-media';
@@ -221,11 +222,17 @@ const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
 
   useChain(navOpen ? [navListEl, navListItemEl] : [navListItemEl, navListEl], [
     0,
-    navOpen ? 0.1 : 0.6,
+    navOpen ? 0.1 : 0.4,
   ]);
 
   const toggleNavOpen = () => {
     setNavOpen(!navOpen);
+  };
+
+  const closeNav = () => {
+    setTimeout(() => {
+      setNavOpen(false);
+    }, 50);
   };
 
   return (
@@ -245,7 +252,9 @@ const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
       >
         {navListItemAnimation.map((props, index) => (
           <NavListItem style={props} key={items[index].title}>
-            <NavLink to={items[index].link}>{items[index].title}</NavLink>
+            <NavLink to={items[index].link} onClick={closeNav}>
+              {items[index].title}
+            </NavLink>
           </NavListItem>
         ))}
       </NavList>
