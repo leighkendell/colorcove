@@ -9,7 +9,8 @@ import Fonts from './fonts';
 import { WindowLocation } from '@reach/router';
 import usePrevious from '../hooks/use-previous';
 import sal from 'sal.js';
-import { isBrowser } from '../utils/helpers';
+import { isBrowser, getNestedObject } from '../utils/helpers';
+import { Query, SanitySocial } from '../types/graphql-types';
 
 interface Props {
   location: WindowLocation;
@@ -34,7 +35,7 @@ const Layout: React.FC<Props> = ({ children, location }) => {
   }
 
   // Get primary/secondary nav items
-  const { site } = useStaticQuery(
+  const { site, sanitySiteSettings } = useStaticQuery<Query>(
     graphql`
       query {
         site {
@@ -49,9 +50,21 @@ const Layout: React.FC<Props> = ({ children, location }) => {
             }
           }
         }
+        sanitySiteSettings {
+          social {
+            facebook
+            instagram
+            vimeo
+          }
+        }
       }
     `
   );
+
+  const primaryNav = getNestedObject(site, 'siteMetadata.primaryNav');
+  const secondaryNav = getNestedObject(site, 'siteMetadata.secondaryNav');
+  const social: SanitySocial = getNestedObject(sanitySiteSettings, 'social');
+  const { facebook, instagram, vimeo } = social;
 
   // Sal.js
   const salInst = useRef(
@@ -77,7 +90,7 @@ const Layout: React.FC<Props> = ({ children, location }) => {
       <Fonts />
       <Theme>
         <Nav
-          items={site.siteMetadata.primaryNav}
+          items={primaryNav}
           isOpen={navIsOpen}
           onOpen={openNav}
           onClose={closeNav}
@@ -85,7 +98,12 @@ const Layout: React.FC<Props> = ({ children, location }) => {
         />
         <main>{children}</main>
         <Cart isOpen={cartIsOpen} onClose={closeCart} />
-        <Footer items={site.siteMetadata.secondaryNav} />
+        <Footer
+          items={secondaryNav}
+          facebookLink={facebook || ''}
+          instagramLink={instagram || ''}
+          vimeoLink={vimeo || ''}
+        />
       </Theme>
     </>
   );

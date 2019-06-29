@@ -12,6 +12,9 @@ interface Props {
     title: string;
     link: string;
   }[];
+  vimeoLink?: string;
+  instagramLink?: string;
+  facebookLink?: string;
 }
 
 const StyledFooter = styled.footer`
@@ -133,7 +136,12 @@ const LogoLink = styled.a`
   }
 `;
 
-const Footer: React.FC<Props> = ({ items }) => {
+const Footer: React.FC<Props> = ({
+  items,
+  vimeoLink,
+  instagramLink,
+  facebookLink,
+}) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -149,21 +157,27 @@ const Footer: React.FC<Props> = ({ items }) => {
           ))}
         </LinkList>
         <LinkList>
-          <LinkListItem>
-            <LogoLink href="https://vimeo.com/drewkendell">
-              <VimeoLogo />
-            </LogoLink>
-          </LinkListItem>
-          <LinkListItem>
-            <LogoLink href="https://www.instagram.com/dk_filmmaker">
-              <InstagramLogo />
-            </LogoLink>
-          </LinkListItem>
-          <LinkListItem>
-            <LogoLink href="https://www.facebook.com/dkfilmmaker">
-              <FacebookLogo />
-            </LogoLink>
-          </LinkListItem>
+          {vimeoLink && (
+            <LinkListItem>
+              <LogoLink href={vimeoLink}>
+                <VimeoLogo />
+              </LogoLink>
+            </LinkListItem>
+          )}
+          {instagramLink && (
+            <LinkListItem>
+              <LogoLink href={instagramLink}>
+                <InstagramLogo />
+              </LogoLink>
+            </LinkListItem>
+          )}
+          {facebookLink && (
+            <LinkListItem>
+              <LogoLink href={facebookLink}>
+                <FacebookLogo />
+              </LogoLink>
+            </LinkListItem>
+          )}
         </LinkList>
       </Wrapper>
     </StyledFooter>
