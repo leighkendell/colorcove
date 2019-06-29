@@ -16,21 +16,12 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ children, location }) => {
   // Global state values
-  const {
-    cartIsOpen,
-    openCart,
-    closeCart,
-    navIsOpen,
-    openNav,
-    closeNav,
-  } = useStore(state => ({
-    cartIsOpen: state.cartIsOpen,
-    openCart: state.openCart,
-    closeCart: state.closeCart,
-    navIsOpen: state.navIsOpen,
-    openNav: state.openNav,
-    closeNav: state.closeNav,
-  }));
+  const cartIsOpen = useStore(state => state.cartIsOpen);
+  const openCart = useStore(state => state.openCart);
+  const closeCart = useStore(state => state.closeCart);
+  const navIsOpen = useStore(state => state.navIsOpen);
+  const openNav = useStore(state => state.openNav);
+  const closeNav = useStore(state => state.closeNav);
 
   // Get the current and previous location
   const { pathname } = location;
