@@ -1,6 +1,7 @@
 import create from 'zustand';
 
-const [useStore] = create(set => ({
+// FIXME: Look at why any is required here
+const [useStore] = create<any>(set => ({
   cartIsOpen: false,
   openCart: () => set({ cartIsOpen: true }),
   closeCart: () => set({ cartIsOpen: false }),

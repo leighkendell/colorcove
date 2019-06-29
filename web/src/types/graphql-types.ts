@@ -1244,6 +1244,8 @@ export type Query = {
   allSanityFileAsset?: Maybe<SanityFileAssetConnection>;
   sanityImageAsset?: Maybe<SanityImageAsset>;
   allSanityImageAsset?: Maybe<SanityImageAssetConnection>;
+  sanitySiteSettings?: Maybe<SanitySiteSettings>;
+  allSanitySiteSettings?: Maybe<SanitySiteSettingsConnection>;
   file?: Maybe<File>;
   allFile?: Maybe<FileConnection>;
   sitePage?: Maybe<SitePage>;
@@ -1381,6 +1383,28 @@ export type QueryAllSanityImageAssetArgs = {
   limit?: Maybe<Scalars['Int']>;
 };
 
+export type QuerySanitySiteSettingsArgs = {
+  _id?: Maybe<StringQueryOperatorInput>;
+  _type?: Maybe<StringQueryOperatorInput>;
+  _createdAt?: Maybe<DateQueryOperatorInput>;
+  _updatedAt?: Maybe<DateQueryOperatorInput>;
+  _rev?: Maybe<StringQueryOperatorInput>;
+  _key?: Maybe<StringQueryOperatorInput>;
+  social?: Maybe<SanitySocialFilterInput>;
+  _rawSocial?: Maybe<JsonQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+export type QueryAllSanitySiteSettingsArgs = {
+  filter?: Maybe<SanitySiteSettingsFilterInput>;
+  sort?: Maybe<SanitySiteSettingsSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
 export type QueryFileArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -1462,6 +1486,7 @@ export type QuerySitePluginArgs = {
   version?: Maybe<StringQueryOperatorInput>;
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
   nodeAPIs?: Maybe<StringQueryOperatorInput>;
+  browserAPIs?: Maybe<StringQueryOperatorInput>;
   ssrAPIs?: Maybe<StringQueryOperatorInput>;
   pluginFilepath?: Maybe<StringQueryOperatorInput>;
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
@@ -3057,6 +3082,199 @@ export type SanityShopifyVariantFilterInput = {
   price?: Maybe<StringQueryOperatorInput>;
 };
 
+export type SanitySiteSettings = SanityDocument &
+  Node & {
+    __typename?: 'SanitySiteSettings';
+    _id?: Maybe<Scalars['String']>;
+    _type?: Maybe<Scalars['String']>;
+    _createdAt?: Maybe<Scalars['Date']>;
+    _updatedAt?: Maybe<Scalars['Date']>;
+    _rev?: Maybe<Scalars['String']>;
+    _key?: Maybe<Scalars['String']>;
+    social?: Maybe<SanitySocial>;
+    _rawSocial?: Maybe<Scalars['JSON']>;
+    id: Scalars['ID'];
+    parent?: Maybe<Node>;
+    children: Array<Node>;
+    internal: Internal;
+  };
+
+export type SanitySiteSettings_CreatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type SanitySiteSettings_UpdatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type SanitySiteSettings_RawSocialArgs = {
+  resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+export type SanitySiteSettingsConnection = {
+  __typename?: 'SanitySiteSettingsConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<SanitySiteSettingsEdge>;
+  nodes: Array<SanitySiteSettings>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<SanitySiteSettingsGroupConnection>;
+};
+
+export type SanitySiteSettingsConnectionDistinctArgs = {
+  field: SanitySiteSettingsFieldsEnum;
+};
+
+export type SanitySiteSettingsConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: SanitySiteSettingsFieldsEnum;
+};
+
+export type SanitySiteSettingsEdge = {
+  __typename?: 'SanitySiteSettingsEdge';
+  next?: Maybe<SanitySiteSettings>;
+  node: SanitySiteSettings;
+  previous?: Maybe<SanitySiteSettings>;
+};
+
+export enum SanitySiteSettingsFieldsEnum {
+  _id = '_id',
+  _type = '_type',
+  _createdAt = '_createdAt',
+  _updatedAt = '_updatedAt',
+  _rev = '_rev',
+  _key = '_key',
+  social____key = 'social____key',
+  social____type = 'social____type',
+  social___vimeo = 'social___vimeo',
+  social___instagram = 'social___instagram',
+  social___facebook = 'social___facebook',
+  _rawSocial = '_rawSocial',
+  id = 'id',
+  parent___id = 'parent___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___children = 'parent___children',
+  parent___children___id = 'parent___children___id',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  children = 'children',
+  children___id = 'children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___parent___id = 'children___parent___parent___id',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___children = 'children___children',
+  children___children___id = 'children___children___id',
+  children___children___parent___id = 'children___children___parent___id',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___children = 'children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___children___children = 'children___children___children___children',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type',
+}
+
+export type SanitySiteSettingsFilterInput = {
+  _id?: Maybe<StringQueryOperatorInput>;
+  _type?: Maybe<StringQueryOperatorInput>;
+  _createdAt?: Maybe<DateQueryOperatorInput>;
+  _updatedAt?: Maybe<DateQueryOperatorInput>;
+  _rev?: Maybe<StringQueryOperatorInput>;
+  _key?: Maybe<StringQueryOperatorInput>;
+  social?: Maybe<SanitySocialFilterInput>;
+  _rawSocial?: Maybe<JsonQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+export type SanitySiteSettingsGroupConnection = {
+  __typename?: 'SanitySiteSettingsGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<SanitySiteSettingsEdge>;
+  nodes: Array<SanitySiteSettings>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type SanitySiteSettingsSortInput = {
+  fields?: Maybe<Array<Maybe<SanitySiteSettingsFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
 export type SanitySlug = {
   __typename?: 'SanitySlug';
   _key?: Maybe<Scalars['String']>;
@@ -3068,6 +3286,23 @@ export type SanitySlugFilterInput = {
   _key?: Maybe<StringQueryOperatorInput>;
   _type?: Maybe<StringQueryOperatorInput>;
   current?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SanitySocial = {
+  __typename?: 'SanitySocial';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  vimeo?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
+  facebook?: Maybe<Scalars['String']>;
+};
+
+export type SanitySocialFilterInput = {
+  _key?: Maybe<StringQueryOperatorInput>;
+  _type?: Maybe<StringQueryOperatorInput>;
+  vimeo?: Maybe<StringQueryOperatorInput>;
+  instagram?: Maybe<StringQueryOperatorInput>;
+  facebook?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SanitySpan = {
@@ -3460,6 +3695,7 @@ export enum SitePageFieldsEnum {
   pluginCreator___version = 'pluginCreator___version',
   pluginCreator___pluginOptions___name = 'pluginCreator___pluginOptions___name',
   pluginCreator___pluginOptions___path = 'pluginCreator___pluginOptions___path',
+  pluginCreator___pluginOptions___component = 'pluginCreator___pluginOptions___component',
   pluginCreator___pluginOptions___short_name = 'pluginCreator___pluginOptions___short_name',
   pluginCreator___pluginOptions___start_url = 'pluginCreator___pluginOptions___start_url',
   pluginCreator___pluginOptions___background_color = 'pluginCreator___pluginOptions___background_color',
@@ -3473,6 +3709,7 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___watchMode = 'pluginCreator___pluginOptions___watchMode',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
+  pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator___ssrAPIs',
   pluginCreator___pluginFilepath = 'pluginCreator___pluginFilepath',
   pluginCreator___packageJson___name = 'pluginCreator___packageJson___name',
@@ -3536,6 +3773,7 @@ export type SitePlugin = Node & {
   version?: Maybe<Scalars['String']>;
   pluginOptions?: Maybe<SitePluginPluginOptions>;
   nodeAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  browserAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
   ssrAPIs?: Maybe<Array<Maybe<Scalars['String']>>>;
   pluginFilepath?: Maybe<Scalars['String']>;
   packageJson?: Maybe<SitePluginPackageJson>;
@@ -3660,6 +3898,7 @@ export enum SitePluginFieldsEnum {
   version = 'version',
   pluginOptions___name = 'pluginOptions___name',
   pluginOptions___path = 'pluginOptions___path',
+  pluginOptions___component = 'pluginOptions___component',
   pluginOptions___short_name = 'pluginOptions___short_name',
   pluginOptions___start_url = 'pluginOptions___start_url',
   pluginOptions___background_color = 'pluginOptions___background_color',
@@ -3673,6 +3912,7 @@ export enum SitePluginFieldsEnum {
   pluginOptions___watchMode = 'pluginOptions___watchMode',
   pluginOptions___pathCheck = 'pluginOptions___pathCheck',
   nodeAPIs = 'nodeAPIs',
+  browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
   pluginFilepath = 'pluginFilepath',
   packageJson___name = 'packageJson___name',
@@ -3702,6 +3942,7 @@ export type SitePluginFilterInput = {
   version?: Maybe<StringQueryOperatorInput>;
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
   nodeAPIs?: Maybe<StringQueryOperatorInput>;
+  browserAPIs?: Maybe<StringQueryOperatorInput>;
   ssrAPIs?: Maybe<StringQueryOperatorInput>;
   pluginFilepath?: Maybe<StringQueryOperatorInput>;
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
@@ -3793,6 +4034,7 @@ export type SitePluginPluginOptions = {
   __typename?: 'SitePluginPluginOptions';
   name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
+  component?: Maybe<Scalars['String']>;
   short_name?: Maybe<Scalars['String']>;
   start_url?: Maybe<Scalars['String']>;
   background_color?: Maybe<Scalars['String']>;
@@ -3810,6 +4052,7 @@ export type SitePluginPluginOptions = {
 export type SitePluginPluginOptionsFilterInput = {
   name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
+  component?: Maybe<StringQueryOperatorInput>;
   short_name?: Maybe<StringQueryOperatorInput>;
   start_url?: Maybe<StringQueryOperatorInput>;
   background_color?: Maybe<StringQueryOperatorInput>;
@@ -3894,471 +4137,3 @@ export type StringQueryOperatorInput = {
   regex?: Maybe<Scalars['String']>;
   glob?: Maybe<Scalars['String']>;
 };
-export type Unnamed_1_QueryVariables = {};
-
-export type Unnamed_1_Query = { __typename?: 'Query' } & {
-  site: Maybe<
-    { __typename?: 'Site' } & {
-      siteMetadata: Maybe<
-        { __typename?: 'SiteSiteMetadata' } & {
-          primaryNav: Maybe<
-            Array<
-              Maybe<
-                { __typename?: 'SiteSiteMetadataPrimaryNav' } & Pick<
-                  SiteSiteMetadataPrimaryNav,
-                  'title' | 'link'
-                >
-              >
-            >
-          >;
-          secondaryNav: Maybe<
-            Array<
-              Maybe<
-                { __typename?: 'SiteSiteMetadataSecondaryNav' } & Pick<
-                  SiteSiteMetadataSecondaryNav,
-                  'title' | 'link'
-                >
-              >
-            >
-          >;
-        }
-      >;
-    }
-  >;
-};
-
-export type ComparisonImageFragment = { __typename?: 'SanityMainImage' } & {
-  asset: Maybe<
-    { __typename?: 'SanityImageAsset' } & {
-      fluid: Maybe<
-        { __typename?: 'SanityImageFluid' } & GatsbySanityImageFluidFragment
-      >;
-    }
-  >;
-};
-
-export type CardImageFragment = { __typename?: 'SanityMainImage' } & {
-  asset: Maybe<
-    { __typename?: 'SanityImageAsset' } & {
-      fluid: Maybe<
-        { __typename?: 'SanityImageFluid' } & GatsbySanityImageFluidFragment
-      >;
-    }
-  >;
-};
-
-export type ImageMetaFragment = { __typename?: 'SanityImageAsset' } & {
-  metadata: Maybe<
-    { __typename?: 'SanityImageMetadata' } & {
-      palette: Maybe<
-        { __typename?: 'SanityImagePalette' } & {
-          dominant: Maybe<
-            { __typename?: 'SanityImagePaletteSwatch' } & Pick<
-              SanityImagePaletteSwatch,
-              'background'
-            >
-          >;
-        }
-      >;
-    }
-  >;
-};
-
-export type ProductCardFragment = { __typename?: 'SanityProduct' } & Pick<
-  SanityProduct,
-  'id' | 'title' | 'description'
-> & {
-    slug: Maybe<{ __typename?: 'SanitySlug' } & Pick<SanitySlug, 'current'>>;
-    image: Maybe<{ __typename?: 'SanityMainImage' } & CardImageFragment>;
-  };
-
-export type FeatureTextFragment = { __typename?: 'SanityFeatureText' } & Pick<
-  SanityFeatureText,
-  '_key' | '_type' | 'layout' | 'heading' | 'text'
->;
-
-export type VimeoFragment = { __typename?: 'SanityVimeo' } & Pick<
-  SanityVimeo,
-  '_key' | '_type'
-> & {
-    data: Maybe<
-      { __typename?: 'SanityVideoData' } & Pick<
-        SanityVideoData,
-        'url' | 'width' | 'height' | 'thumbnail'
-      >
-    >;
-    image: Maybe<
-      { __typename?: 'SanityMainImage' } & {
-        asset: Maybe<
-          { __typename?: 'SanityImageAsset' } & {
-            fluid: Maybe<
-              {
-                __typename?: 'SanityImageFluid';
-              } & GatsbySanityImageFluidFragment
-            >;
-          }
-        >;
-      }
-    >;
-  };
-
-export type ImageComparisonFragment = {
-  __typename?: 'SanityImageComparison';
-} & Pick<SanityImageComparison, '_key' | '_type' | 'name'> & {
-    beforeImage: Maybe<
-      { __typename?: 'SanityMainImage' } & ComparisonImageFragment
-    >;
-    afterImage: Maybe<
-      { __typename?: 'SanityMainImage' } & ComparisonImageFragment
-    >;
-  };
-
-export type HeroFragment = { __typename?: 'SanityHero' } & Pick<
-  SanityHero,
-  'title' | 'intro'
-> & {
-    image: Maybe<
-      { __typename?: 'SanityMainImage' } & {
-        asset: Maybe<
-          { __typename?: 'SanityImageAsset' } & {
-            fluid: Maybe<
-              {
-                __typename?: 'SanityImageFluid';
-              } & GatsbySanityImageFluidFragment
-            >;
-          } & ImageMetaFragment
-        >;
-      }
-    >;
-  };
-
-export type ProductGroupFragment = { __typename?: 'SanityProductGroup' } & Pick<
-  SanityProductGroup,
-  '_key' | '_type' | 'title'
-> & {
-    products: Maybe<
-      Array<
-        Maybe<
-          { __typename?: 'SanityProductReference' } & {
-            product: Maybe<
-              { __typename?: 'SanityProduct' } & ProductCardFragment
-            >;
-          }
-        >
-      >
-    >;
-  };
-
-export type IndexQueryQueryVariables = {};
-
-export type IndexQueryQuery = { __typename?: 'Query' } & {
-  sanityPage: Maybe<
-    { __typename?: 'SanityPage' } & Pick<SanityPage, 'title'> & {
-        hero: Maybe<{ __typename?: 'SanityHero' } & HeroFragment>;
-        modules: Maybe<
-          Array<
-            Maybe<
-
-                | ({ __typename?: 'SanityFeatureText' } & FeatureTextFragment)
-                | ({ __typename?: 'SanityVimeo' } & VimeoFragment)
-                | ({
-                    __typename?: 'SanityImageComparison';
-                  } & ImageComparisonFragment)
-                | ({ __typename?: 'SanityProductGroup' } & ProductGroupFragment)
-            >
-          >
-        >;
-      }
-  >;
-};
-
-export type ProductsPageQueryQueryVariables = {};
-
-export type ProductsPageQueryQuery = { __typename?: 'Query' } & {
-  sanityPage: Maybe<
-    { __typename?: 'SanityPage' } & Pick<SanityPage, 'title'> & {
-        hero: Maybe<{ __typename?: 'SanityHero' } & HeroFragment>;
-      }
-  >;
-  allSanityProduct: Maybe<
-    { __typename?: 'SanityProductConnection' } & {
-      edges: Array<
-        { __typename?: 'SanityProductEdge' } & {
-          node: { __typename?: 'SanityProduct' } & ProductCardFragment;
-        }
-      >;
-    }
-  >;
-};
-
-export type ProductTemplateQueryQueryVariables = {
-  id: Scalars['String'];
-};
-
-export type ProductTemplateQueryQuery = { __typename?: 'Query' } & {
-  sanityProduct: Maybe<
-    { __typename?: 'SanityProduct' } & Pick<SanityProduct, 'title'> & {
-        hero: Maybe<{ __typename?: 'SanityHero' } & HeroFragment>;
-        modules: Maybe<
-          Array<
-            Maybe<
-
-                | ({ __typename?: 'SanityFeatureText' } & FeatureTextFragment)
-                | ({ __typename?: 'SanityVimeo' } & VimeoFragment)
-                | ({
-                    __typename?: 'SanityImageComparison';
-                  } & ImageComparisonFragment)
-            >
-          >
-        >;
-        shopifyDefaultVariant: Maybe<
-          { __typename?: 'SanityShopifyVariant' } & Pick<
-            SanityShopifyVariant,
-            'price'
-          >
-        >;
-      }
-  >;
-};
-
-export type GatsbySanityImageFixedFragment = {
-  __typename?: 'SanityImageFixed';
-} & Pick<
-  SanityImageFixed,
-  'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbySanityImageFixed_NoBase64Fragment = {
-  __typename?: 'SanityImageFixed';
-} & Pick<
-  SanityImageFixed,
-  'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbySanityImageFixed_WithWebpFragment = {
-  __typename?: 'SanityImageFixed';
-} & Pick<
-  SanityImageFixed,
-  'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbySanityImageFixed_WithWebp_NoBase64Fragment = {
-  __typename?: 'SanityImageFixed';
-} & Pick<
-  SanityImageFixed,
-  'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbySanityImageFluidFragment = {
-  __typename?: 'SanityImageFluid';
-} & Pick<
-  SanityImageFluid,
-  | 'base64'
-  | 'aspectRatio'
-  | 'src'
-  | 'srcSet'
-  | 'srcWebp'
-  | 'srcSetWebp'
-  | 'sizes'
->;
-
-export type GatsbySanityImageFluid_NoBase64Fragment = {
-  __typename?: 'SanityImageFluid';
-} & Pick<
-  SanityImageFluid,
-  'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
->;
-
-export type GatsbySanityImageFluid_WithWebpFragment = {
-  __typename?: 'SanityImageFluid';
-} & Pick<
-  SanityImageFluid,
-  | 'base64'
-  | 'aspectRatio'
-  | 'src'
-  | 'srcSet'
-  | 'srcWebp'
-  | 'srcSetWebp'
-  | 'sizes'
->;
-
-export type GatsbySanityImageFluid_WithWebp_NoBase64Fragment = {
-  __typename?: 'SanityImageFluid';
-} & Pick<
-  SanityImageFluid,
-  'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
->;
-
-export type GatsbyImageSharpFixedFragment = {
-  __typename?: 'ImageSharpFixed';
-} & Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-export type GatsbyImageSharpFixed_TracedSvgFragment = {
-  __typename?: 'ImageSharpFixed';
-} & Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-export type GatsbyImageSharpFixed_WithWebpFragment = {
-  __typename?: 'ImageSharpFixed';
-} & Pick<
-  ImageSharpFixed,
-  'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbyImageSharpFixed_WithWebp_TracedSvgFragment = {
-  __typename?: 'ImageSharpFixed';
-} & Pick<
-  ImageSharpFixed,
-  'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbyImageSharpFixed_NoBase64Fragment = {
-  __typename?: 'ImageSharpFixed';
-} & Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-export type GatsbyImageSharpFixed_WithWebp_NoBase64Fragment = {
-  __typename?: 'ImageSharpFixed';
-} & Pick<
-  ImageSharpFixed,
-  'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbyImageSharpFluidFragment = {
-  __typename?: 'ImageSharpFluid';
-} & Pick<
-  ImageSharpFluid,
-  'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
->;
-
-export type GatsbyImageSharpFluid_TracedSvgFragment = {
-  __typename?: 'ImageSharpFluid';
-} & Pick<
-  ImageSharpFluid,
-  'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
->;
-
-export type GatsbyImageSharpFluid_WithWebpFragment = {
-  __typename?: 'ImageSharpFluid';
-} & Pick<
-  ImageSharpFluid,
-  | 'base64'
-  | 'aspectRatio'
-  | 'src'
-  | 'srcSet'
-  | 'srcWebp'
-  | 'srcSetWebp'
-  | 'sizes'
->;
-
-export type GatsbyImageSharpFluid_WithWebp_TracedSvgFragment = {
-  __typename?: 'ImageSharpFluid';
-} & Pick<
-  ImageSharpFluid,
-  | 'tracedSVG'
-  | 'aspectRatio'
-  | 'src'
-  | 'srcSet'
-  | 'srcWebp'
-  | 'srcSetWebp'
-  | 'sizes'
->;
-
-export type GatsbyImageSharpFluid_NoBase64Fragment = {
-  __typename?: 'ImageSharpFluid';
-} & Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-export type GatsbyImageSharpFluid_WithWebp_NoBase64Fragment = {
-  __typename?: 'ImageSharpFluid';
-} & Pick<
-  ImageSharpFluid,
-  'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
->;
-
-export type GatsbyImageSharpResolutionsFragment = {
-  __typename?: 'ImageSharpResolutions';
-} & Pick<
-  ImageSharpResolutions,
-  'base64' | 'width' | 'height' | 'src' | 'srcSet'
->;
-
-export type GatsbyImageSharpResolutions_TracedSvgFragment = {
-  __typename?: 'ImageSharpResolutions';
-} & Pick<
-  ImageSharpResolutions,
-  'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'
->;
-
-export type GatsbyImageSharpResolutions_WithWebpFragment = {
-  __typename?: 'ImageSharpResolutions';
-} & Pick<
-  ImageSharpResolutions,
-  'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbyImageSharpResolutions_WithWebp_TracedSvgFragment = {
-  __typename?: 'ImageSharpResolutions';
-} & Pick<
-  ImageSharpResolutions,
-  'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbyImageSharpResolutions_NoBase64Fragment = {
-  __typename?: 'ImageSharpResolutions';
-} & Pick<ImageSharpResolutions, 'width' | 'height' | 'src' | 'srcSet'>;
-
-export type GatsbyImageSharpResolutions_WithWebp_NoBase64Fragment = {
-  __typename?: 'ImageSharpResolutions';
-} & Pick<
-  ImageSharpResolutions,
-  'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'
->;
-
-export type GatsbyImageSharpSizesFragment = {
-  __typename?: 'ImageSharpSizes';
-} & Pick<
-  ImageSharpSizes,
-  'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
->;
-
-export type GatsbyImageSharpSizes_TracedSvgFragment = {
-  __typename?: 'ImageSharpSizes';
-} & Pick<
-  ImageSharpSizes,
-  'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'
->;
-
-export type GatsbyImageSharpSizes_WithWebpFragment = {
-  __typename?: 'ImageSharpSizes';
-} & Pick<
-  ImageSharpSizes,
-  | 'base64'
-  | 'aspectRatio'
-  | 'src'
-  | 'srcSet'
-  | 'srcWebp'
-  | 'srcSetWebp'
-  | 'sizes'
->;
-
-export type GatsbyImageSharpSizes_WithWebp_TracedSvgFragment = {
-  __typename?: 'ImageSharpSizes';
-} & Pick<
-  ImageSharpSizes,
-  | 'tracedSVG'
-  | 'aspectRatio'
-  | 'src'
-  | 'srcSet'
-  | 'srcWebp'
-  | 'srcSetWebp'
-  | 'sizes'
->;
-
-export type GatsbyImageSharpSizes_NoBase64Fragment = {
-  __typename?: 'ImageSharpSizes';
-} & Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-export type GatsbyImageSharpSizes_WithWebp_NoBase64Fragment = {
-  __typename?: 'ImageSharpSizes';
-} & Pick<
-  ImageSharpSizes,
-  'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
->;
