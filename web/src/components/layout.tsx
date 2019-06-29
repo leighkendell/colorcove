@@ -9,6 +9,7 @@ import Fonts from './fonts';
 import { WindowLocation } from '@reach/router';
 import usePrevious from '../hooks/use-previous';
 import sal from 'sal.js';
+import { isBrowser } from '../utils/helpers';
 
 interface Props {
   location: WindowLocation;
@@ -54,16 +55,20 @@ const Layout: React.FC<Props> = ({ children, location }) => {
 
   // Sal.js
   const salInst = useRef(
-    sal({
-      threshold: 0.25,
-    })
+    isBrowser
+      ? sal({
+          threshold: 0.25,
+        })
+      : null
   );
+
+  // Re-enable sal on route change
   useEffect(() => {
     const sal = salInst.current;
-    sal.enable();
+    sal && sal.enable();
 
     return () => {
-      sal.disable();
+      sal && sal.disable();
     };
   }, [pathname]);
 
