@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 // Document types
 import page from './documents/page';
 import product from './documents/product';
+import settings from './documents/settings';
 
 // Object types
 import mainImage from './objects/main-image';
@@ -18,6 +19,7 @@ import imageComparison from './objects/image-comparison';
 import shopifyVariant from './objects/shopify-variant';
 import productReference from './objects/product-reference';
 import productGroup from './objects/product-group';
+import social from './objects/social';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -36,8 +38,10 @@ export default createSchema({
     shopifyVariant,
     productReference,
     productGroup,
+    social,
     // Documents
     page,
     product,
+    settings,
   ]),
 });
