@@ -1,7 +1,7 @@
 schema: http://localhost:8000/___graphql
 documents:
   - ./src/**/*.{ts,tsx}
-  - ./node_modules/gatsby-*/**/*.js
+  - ../node_modules/gatsby-*/**/*.js
 generates:
   ./src/types/graphql-types.ts:
     plugins:
@@ -10,5 +10,3 @@ generates:
 config:
   namingConvention:
     enumValues: keep
-  # avoidOptionals: true
-  # maybeValue: T
