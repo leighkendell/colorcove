@@ -1,4 +1,4 @@
-import React, { useState, useRef, CSSProperties } from 'react';
+import React, { useRef, CSSProperties } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
 import { ReactComponent as Logo } from '../images/colorcove-logo.svg';
@@ -13,10 +13,9 @@ import {
   useChain,
   useTrail,
   ReactSpringHook,
-  config,
 } from 'react-spring';
 import { colorcoveTheme } from '../utils/theme';
-import { useMatchMedia } from '../hooks/use-match-media';
+import useMatchMedia from '../hooks/use-match-media';
 import { isBrowser } from '../utils/helpers';
 
 interface Props {
@@ -24,6 +23,9 @@ interface Props {
     title: string;
     link: string;
   }[];
+  isOpen?: boolean;
+  onOpen?: () => void;
+  onClose?: () => void;
   onCartOpen?: () => void;
 }
 
@@ -180,9 +182,13 @@ const NavLink = styled(Link)`
   }
 `;
 
-const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
-  const [navOpen, setNavOpen] = useState(false);
-
+const Nav: React.FC<Props> = ({
+  items,
+  onCartOpen,
+  isOpen,
+  onOpen,
+  onClose,
+}) => {
   const toggleButtonEl = useRef<HTMLButtonElement>(null);
   const navListEl = useRef<ReactSpringHook>(null);
   const navListItemEl = useRef<ReactSpringHook>(null);
@@ -191,14 +197,14 @@ const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
 
   const navListAnimation = useSpring({
     from: { opacity: isLargeScreen ? 1 : 0 },
-    opacity: navOpen || isLargeScreen ? 1 : 0,
+    opacity: isOpen || isLargeScreen ? 1 : 0,
     immediate: isLargeScreen,
     ref: navListEl,
   });
 
   const navListItemAnimation = useTrail(items.length, {
-    opacity: navOpen || isLargeScreen ? 1 : 0,
-    transform: `scale(${navOpen || isLargeScreen ? 1 : 0.75})`,
+    opacity: isOpen || isLargeScreen ? 1 : 0,
+    transform: `scale(${isOpen || isLargeScreen ? 1 : 0.75})`,
     immediate: isLargeScreen,
     ref: navListItemEl,
   });
@@ -209,30 +215,28 @@ const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
     ),
   };
 
-  const toggleAnimation = useTransition(navOpen, null, {
+  const toggleAnimation = useTransition(isOpen, null, {
     from: { opacity: 0, transform: 'scale(0)' },
     enter: {
       opacity: 1,
-      color: navOpen ? colorcoveTheme.colorWhite : colorcoveTheme.colorBlack,
-      transform: `scale(${navOpen ? 0.8 : 1})`,
+      color: isOpen ? colorcoveTheme.colorWhite : colorcoveTheme.colorBlack,
+      transform: `scale(${isOpen ? 0.8 : 1})`,
     },
     leave: { opacity: 0, transform: 'scale(0)' },
     immediate: !toggleButtonEl.current,
   });
 
-  useChain(navOpen ? [navListEl, navListItemEl] : [navListItemEl, navListEl], [
+  useChain(isOpen ? [navListEl, navListItemEl] : [navListItemEl, navListEl], [
     0,
-    navOpen ? 0.1 : 0.4,
+    isOpen ? 0.1 : 0.4,
   ]);
 
   const toggleNavOpen = () => {
-    setNavOpen(!navOpen);
-  };
-
-  const closeNav = () => {
-    setTimeout(() => {
-      setNavOpen(false);
-    }, 50);
+    if (isOpen) {
+      onClose && onClose();
+    } else {
+      onOpen && onOpen();
+    }
   };
 
   return (
@@ -252,9 +256,7 @@ const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
       >
         {navListItemAnimation.map((props, index) => (
           <NavListItem style={props} key={items[index].title}>
-            <NavLink to={items[index].link} onClick={closeNav}>
-              {items[index].title}
-            </NavLink>
+            <NavLink to={items[index].link}>{items[index].title}</NavLink>
           </NavListItem>
         ))}
       </NavList>
@@ -265,8 +267,8 @@ const Nav: React.FC<Props> = ({ items, onCartOpen }) => {
       </IconButton>
       {!isLargeScreen && (
         <IconButton
-          aria-label={`${navOpen ? 'Close' : 'Open'} navigation`}
-          aria-expanded={navOpen}
+          aria-label={`${isOpen ? 'Close' : 'Open'} navigation`}
+          aria-expanded={isOpen}
           onClick={toggleNavOpen}
           ref={toggleButtonEl}
         >

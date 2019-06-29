@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { isBrowser } from '../utils/helpers';
 
-export const useMatchMedia = (mediaQuery: string) => {
+const useMatchMedia = (mediaQuery: string) => {
   const query = isBrowser ? window.matchMedia(mediaQuery) : null;
   const [isMatch, setIsMatch] = useState(query ? query.matches : false);
 
@@ -22,3 +22,5 @@ export const useMatchMedia = (mediaQuery: string) => {
 
   return isMatch;
 };
+
+export default useMatchMedia;
