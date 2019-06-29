@@ -15,7 +15,7 @@ const Image: React.FC<Props> = React.forwardRef<Img, Props>(
     <Img
       fluid={image}
       backgroundColor={backgroundColor || colorcoveTheme.colorLightGrey}
-      fadeIn={false}
+      fadeIn={true}
       alt={alt}
       className={className}
       style={style}
