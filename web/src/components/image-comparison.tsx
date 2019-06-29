@@ -13,7 +13,11 @@ interface Props {
   afterLabel: string;
 }
 
-const Wrapper = styled.div`
+const StyledImageComparison = styled.div`
+  background-color: ${props => props.theme.colorBlack};
+`;
+
+const Wrapper = styled(animated.div)`
   position: relative;
   overflow: hidden;
 `;
@@ -156,9 +160,13 @@ const ImageComparison: React.FC<Props> = ({
   afterLabel,
 }) => {
   const wrapperEl = useRef<HTMLDivElement>(null);
+  const imageCount = useRef(0);
 
   // Animations
   const [{ progress }, setSpring] = useSpring(() => ({ progress: 50 }));
+  const [wrapperAnimation, setWrapperAnimation] = useSpring(() => ({
+    opacity: 0,
+  }));
 
   const wrapperStyle = {
     transform: progress.interpolate(x => `scaleX(${x / 100})`),
@@ -248,14 +256,37 @@ const ImageComparison: React.FC<Props> = ({
     parseFloat(progress.toFixed(0))
   );
 
+  // Check both images are loaded before showing the comparison
+  const handleImageLoaded = () => {
+    imageCount.current += 1;
+
+    if (imageCount.current === 2) {
+      setWrapperAnimation({
+        opacity: 1,
+      });
+    }
+  };
+
   return (
-    <>
-      <Wrapper onClick={handleWrapperClick} ref={wrapperEl}>
-        {/* {resizeListener} */}
+    <StyledImageComparison>
+      <Wrapper
+        onClick={handleWrapperClick}
+        ref={wrapperEl}
+        style={wrapperAnimation}
+      >
         <ImageWrapper style={wrapperStyle}>
-          <AnimatedImage image={beforeImage} alt="Before" style={imageStyle} />
+          <AnimatedImage
+            image={beforeImage}
+            alt="Before"
+            style={imageStyle}
+            onLoad={handleImageLoaded}
+          />
         </ImageWrapper>
-        <StyledImage image={afterImage} alt="After" />
+        <StyledImage
+          image={afterImage}
+          alt="After"
+          onLoad={handleImageLoaded}
+        />
         <Handle
           style={handleStyle}
           onClick={handleHandleClick}
@@ -277,7 +308,7 @@ const ImageComparison: React.FC<Props> = ({
           <strong>{afterLabel}</strong>
         </ContentItem>
       </Content>
-    </>
+    </StyledImageComparison>
   );
 };
 

@@ -5,17 +5,19 @@ import { colorcoveTheme } from '../utils/theme';
 interface Props {
   image: FluidObject;
   alt: string;
+  onLoad?: () => void;
   backgroundColor?: string;
   className?: string;
   style?: object;
 }
 
 const Image: React.FC<Props> = React.forwardRef<Img, Props>(
-  ({ image, alt, backgroundColor, className, style }, ref) => (
+  ({ image, alt, onLoad, backgroundColor, className, style }, ref) => (
     <Img
       fluid={image}
       backgroundColor={backgroundColor || colorcoveTheme.colorLightGrey}
       fadeIn={true}
+      onLoad={onLoad}
       alt={alt}
       className={className}
       style={style}
