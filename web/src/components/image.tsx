@@ -1,5 +1,6 @@
 import React from 'react';
 import Img, { FluidObject } from 'gatsby-image';
+import { colorcoveTheme } from '../utils/theme';
 
 interface Props {
   image: FluidObject;
@@ -13,8 +14,8 @@ const Image: React.FC<Props> = React.forwardRef<Img, Props>(
   ({ image, alt, backgroundColor, className, style }, ref) => (
     <Img
       fluid={image}
-      backgroundColor={backgroundColor}
-      fadeIn={true}
+      backgroundColor={backgroundColor || colorcoveTheme.colorLightGrey}
+      fadeIn={false}
       alt={alt}
       className={className}
       style={style}

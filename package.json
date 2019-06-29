@@ -10,14 +10,21 @@
     "graphql-deploy": "lerna run graphql-deploy",
     "storybook": "(cd web && npm run storybook)",
     "postinstall": "lerna bootstrap",
-    "generate-graphql-types": "lerna run generate-graphql-types"
+    "generate-graphql-types": "lerna run generate-graphql-types",
+    "lint": "lerna run lint"
   },
   "workspaces": [
     "web",
     "studio"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "devDependencies": {
-    "@sanity/cli": "^0.141.1",
+    "@sanity/cli": "^0.141.5",
+    "husky": "^2.7.0",
     "lerna": "^3.15.0"
   }
 }
