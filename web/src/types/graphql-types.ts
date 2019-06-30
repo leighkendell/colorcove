@@ -1258,6 +1258,16 @@ export type Query = {
   allDirectory?: Maybe<DirectoryConnection>;
   imageSharp?: Maybe<ImageSharp>;
   allImageSharp?: Maybe<ImageSharpConnection>;
+  shopifyProduct?: Maybe<ShopifyProduct>;
+  allShopifyProduct?: Maybe<ShopifyProductConnection>;
+  shopifyProductVariant?: Maybe<ShopifyProductVariant>;
+  allShopifyProductVariant?: Maybe<ShopifyProductVariantConnection>;
+  shopifyProductOption?: Maybe<ShopifyProductOption>;
+  allShopifyProductOption?: Maybe<ShopifyProductOptionConnection>;
+  shopifyCollection?: Maybe<ShopifyCollection>;
+  allShopifyCollection?: Maybe<ShopifyCollectionConnection>;
+  shopifyProductType?: Maybe<ShopifyProductType>;
+  allShopifyProductType?: Maybe<ShopifyProductTypeConnection>;
 };
 
 export type QuerySanityPageArgs = {
@@ -1582,6 +1592,110 @@ export type QueryImageSharpArgs = {
 export type QueryAllImageSharpArgs = {
   filter?: Maybe<ImageSharpFilterInput>;
   sort?: Maybe<ImageSharpSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+export type QueryShopifyProductArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  availableForSale?: Maybe<BooleanQueryOperatorInput>;
+  createdAt?: Maybe<DateQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  descriptionHtml?: Maybe<StringQueryOperatorInput>;
+  handle?: Maybe<StringQueryOperatorInput>;
+  options?: Maybe<ShopifyProductOptionFilterListInput>;
+  priceRange?: Maybe<ShopifyProductPriceRangeFilterInput>;
+  productType?: Maybe<StringQueryOperatorInput>;
+  publishedAt?: Maybe<DateQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
+  variants?: Maybe<ShopifyProductVariantFilterListInput>;
+  vendor?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type QueryAllShopifyProductArgs = {
+  filter?: Maybe<ShopifyProductFilterInput>;
+  sort?: Maybe<ShopifyProductSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+export type QueryShopifyProductVariantArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  availableForSale?: Maybe<BooleanQueryOperatorInput>;
+  price?: Maybe<StringQueryOperatorInput>;
+  selectedOptions?: Maybe<ShopifyProductVariantSelectedOptionsFilterListInput>;
+  sku?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  weight?: Maybe<IntQueryOperatorInput>;
+  weightUnit?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type QueryAllShopifyProductVariantArgs = {
+  filter?: Maybe<ShopifyProductVariantFilterInput>;
+  sort?: Maybe<ShopifyProductVariantSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+export type QueryShopifyProductOptionArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  values?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type QueryAllShopifyProductOptionArgs = {
+  filter?: Maybe<ShopifyProductOptionFilterInput>;
+  sort?: Maybe<ShopifyProductOptionSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+export type QueryShopifyCollectionArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  descriptionHtml?: Maybe<StringQueryOperatorInput>;
+  handle?: Maybe<StringQueryOperatorInput>;
+  products?: Maybe<ShopifyProductFilterListInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type QueryAllShopifyCollectionArgs = {
+  filter?: Maybe<ShopifyCollectionFilterInput>;
+  sort?: Maybe<ShopifyCollectionSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+export type QueryShopifyProductTypeArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type QueryAllShopifyProductTypeArgs = {
+  filter?: Maybe<ShopifyProductTypeFilterInput>;
+  sort?: Maybe<ShopifyProductTypeSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -3332,6 +3446,1116 @@ export type SanityVimeo = {
   image?: Maybe<SanityMainImage>;
 };
 
+export type ShopifyCollection = Node & {
+  __typename?: 'ShopifyCollection';
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  description?: Maybe<Scalars['String']>;
+  descriptionHtml?: Maybe<Scalars['String']>;
+  handle?: Maybe<Scalars['String']>;
+  products?: Maybe<Array<Maybe<ShopifyProduct>>>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  shopifyId?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyCollectionUpdatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyCollectionConnection = {
+  __typename?: 'ShopifyCollectionConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyCollectionEdge>;
+  nodes: Array<ShopifyCollection>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<ShopifyCollectionGroupConnection>;
+};
+
+export type ShopifyCollectionConnectionDistinctArgs = {
+  field: ShopifyCollectionFieldsEnum;
+};
+
+export type ShopifyCollectionConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: ShopifyCollectionFieldsEnum;
+};
+
+export type ShopifyCollectionEdge = {
+  __typename?: 'ShopifyCollectionEdge';
+  next?: Maybe<ShopifyCollection>;
+  node: ShopifyCollection;
+  previous?: Maybe<ShopifyCollection>;
+};
+
+export enum ShopifyCollectionFieldsEnum {
+  id = 'id',
+  parent___id = 'parent___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___children = 'parent___children',
+  parent___children___id = 'parent___children___id',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  children = 'children',
+  children___id = 'children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___parent___id = 'children___parent___parent___id',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___children = 'children___children',
+  children___children___id = 'children___children___id',
+  children___children___parent___id = 'children___children___parent___id',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___children = 'children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___children___children = 'children___children___children___children',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type',
+  description = 'description',
+  descriptionHtml = 'descriptionHtml',
+  handle = 'handle',
+  products = 'products',
+  products___id = 'products___id',
+  products___parent___id = 'products___parent___id',
+  products___parent___parent___id = 'products___parent___parent___id',
+  products___parent___parent___children = 'products___parent___parent___children',
+  products___parent___children = 'products___parent___children',
+  products___parent___children___id = 'products___parent___children___id',
+  products___parent___children___children = 'products___parent___children___children',
+  products___parent___internal___content = 'products___parent___internal___content',
+  products___parent___internal___contentDigest = 'products___parent___internal___contentDigest',
+  products___parent___internal___description = 'products___parent___internal___description',
+  products___parent___internal___fieldOwners = 'products___parent___internal___fieldOwners',
+  products___parent___internal___ignoreType = 'products___parent___internal___ignoreType',
+  products___parent___internal___mediaType = 'products___parent___internal___mediaType',
+  products___parent___internal___owner = 'products___parent___internal___owner',
+  products___parent___internal___type = 'products___parent___internal___type',
+  products___children = 'products___children',
+  products___children___id = 'products___children___id',
+  products___children___parent___id = 'products___children___parent___id',
+  products___children___parent___children = 'products___children___parent___children',
+  products___children___children = 'products___children___children',
+  products___children___children___id = 'products___children___children___id',
+  products___children___children___children = 'products___children___children___children',
+  products___children___internal___content = 'products___children___internal___content',
+  products___children___internal___contentDigest = 'products___children___internal___contentDigest',
+  products___children___internal___description = 'products___children___internal___description',
+  products___children___internal___fieldOwners = 'products___children___internal___fieldOwners',
+  products___children___internal___ignoreType = 'products___children___internal___ignoreType',
+  products___children___internal___mediaType = 'products___children___internal___mediaType',
+  products___children___internal___owner = 'products___children___internal___owner',
+  products___children___internal___type = 'products___children___internal___type',
+  products___internal___content = 'products___internal___content',
+  products___internal___contentDigest = 'products___internal___contentDigest',
+  products___internal___description = 'products___internal___description',
+  products___internal___fieldOwners = 'products___internal___fieldOwners',
+  products___internal___ignoreType = 'products___internal___ignoreType',
+  products___internal___mediaType = 'products___internal___mediaType',
+  products___internal___owner = 'products___internal___owner',
+  products___internal___type = 'products___internal___type',
+  products___availableForSale = 'products___availableForSale',
+  products___createdAt = 'products___createdAt',
+  products___description = 'products___description',
+  products___descriptionHtml = 'products___descriptionHtml',
+  products___handle = 'products___handle',
+  products___options = 'products___options',
+  products___options___id = 'products___options___id',
+  products___options___parent___id = 'products___options___parent___id',
+  products___options___parent___children = 'products___options___parent___children',
+  products___options___children = 'products___options___children',
+  products___options___children___id = 'products___options___children___id',
+  products___options___children___children = 'products___options___children___children',
+  products___options___internal___content = 'products___options___internal___content',
+  products___options___internal___contentDigest = 'products___options___internal___contentDigest',
+  products___options___internal___description = 'products___options___internal___description',
+  products___options___internal___fieldOwners = 'products___options___internal___fieldOwners',
+  products___options___internal___ignoreType = 'products___options___internal___ignoreType',
+  products___options___internal___mediaType = 'products___options___internal___mediaType',
+  products___options___internal___owner = 'products___options___internal___owner',
+  products___options___internal___type = 'products___options___internal___type',
+  products___options___name = 'products___options___name',
+  products___options___values = 'products___options___values',
+  products___options___shopifyId = 'products___options___shopifyId',
+  products___priceRange___minVariantPrice___amount = 'products___priceRange___minVariantPrice___amount',
+  products___priceRange___minVariantPrice___currencyCode = 'products___priceRange___minVariantPrice___currencyCode',
+  products___priceRange___maxVariantPrice___amount = 'products___priceRange___maxVariantPrice___amount',
+  products___priceRange___maxVariantPrice___currencyCode = 'products___priceRange___maxVariantPrice___currencyCode',
+  products___productType = 'products___productType',
+  products___publishedAt = 'products___publishedAt',
+  products___title = 'products___title',
+  products___updatedAt = 'products___updatedAt',
+  products___variants = 'products___variants',
+  products___variants___id = 'products___variants___id',
+  products___variants___parent___id = 'products___variants___parent___id',
+  products___variants___parent___children = 'products___variants___parent___children',
+  products___variants___children = 'products___variants___children',
+  products___variants___children___id = 'products___variants___children___id',
+  products___variants___children___children = 'products___variants___children___children',
+  products___variants___internal___content = 'products___variants___internal___content',
+  products___variants___internal___contentDigest = 'products___variants___internal___contentDigest',
+  products___variants___internal___description = 'products___variants___internal___description',
+  products___variants___internal___fieldOwners = 'products___variants___internal___fieldOwners',
+  products___variants___internal___ignoreType = 'products___variants___internal___ignoreType',
+  products___variants___internal___mediaType = 'products___variants___internal___mediaType',
+  products___variants___internal___owner = 'products___variants___internal___owner',
+  products___variants___internal___type = 'products___variants___internal___type',
+  products___variants___availableForSale = 'products___variants___availableForSale',
+  products___variants___price = 'products___variants___price',
+  products___variants___selectedOptions = 'products___variants___selectedOptions',
+  products___variants___selectedOptions___name = 'products___variants___selectedOptions___name',
+  products___variants___selectedOptions___value = 'products___variants___selectedOptions___value',
+  products___variants___sku = 'products___variants___sku',
+  products___variants___title = 'products___variants___title',
+  products___variants___weight = 'products___variants___weight',
+  products___variants___weightUnit = 'products___variants___weightUnit',
+  products___variants___shopifyId = 'products___variants___shopifyId',
+  products___vendor = 'products___vendor',
+  products___shopifyId = 'products___shopifyId',
+  title = 'title',
+  updatedAt = 'updatedAt',
+  shopifyId = 'shopifyId',
+}
+
+export type ShopifyCollectionFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  descriptionHtml?: Maybe<StringQueryOperatorInput>;
+  handle?: Maybe<StringQueryOperatorInput>;
+  products?: Maybe<ShopifyProductFilterListInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ShopifyCollectionGroupConnection = {
+  __typename?: 'ShopifyCollectionGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyCollectionEdge>;
+  nodes: Array<ShopifyCollection>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyCollectionSortInput = {
+  fields?: Maybe<Array<Maybe<ShopifyCollectionFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type ShopifyProduct = Node & {
+  __typename?: 'ShopifyProduct';
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  availableForSale?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  description?: Maybe<Scalars['String']>;
+  descriptionHtml?: Maybe<Scalars['String']>;
+  handle?: Maybe<Scalars['String']>;
+  options?: Maybe<Array<Maybe<ShopifyProductOption>>>;
+  priceRange?: Maybe<ShopifyProductPriceRange>;
+  productType?: Maybe<Scalars['String']>;
+  publishedAt?: Maybe<Scalars['Date']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  variants?: Maybe<Array<Maybe<ShopifyProductVariant>>>;
+  vendor?: Maybe<Scalars['String']>;
+  shopifyId?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductCreatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductPublishedAtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductUpdatedAtArgs = {
+  formatString?: Maybe<Scalars['String']>;
+  fromNow?: Maybe<Scalars['Boolean']>;
+  difference?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductConnection = {
+  __typename?: 'ShopifyProductConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyProductEdge>;
+  nodes: Array<ShopifyProduct>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<ShopifyProductGroupConnection>;
+};
+
+export type ShopifyProductConnectionDistinctArgs = {
+  field: ShopifyProductFieldsEnum;
+};
+
+export type ShopifyProductConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: ShopifyProductFieldsEnum;
+};
+
+export type ShopifyProductEdge = {
+  __typename?: 'ShopifyProductEdge';
+  next?: Maybe<ShopifyProduct>;
+  node: ShopifyProduct;
+  previous?: Maybe<ShopifyProduct>;
+};
+
+export enum ShopifyProductFieldsEnum {
+  id = 'id',
+  parent___id = 'parent___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___children = 'parent___children',
+  parent___children___id = 'parent___children___id',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  children = 'children',
+  children___id = 'children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___parent___id = 'children___parent___parent___id',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___children = 'children___children',
+  children___children___id = 'children___children___id',
+  children___children___parent___id = 'children___children___parent___id',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___children = 'children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___children___children = 'children___children___children___children',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type',
+  availableForSale = 'availableForSale',
+  createdAt = 'createdAt',
+  description = 'description',
+  descriptionHtml = 'descriptionHtml',
+  handle = 'handle',
+  options = 'options',
+  options___id = 'options___id',
+  options___parent___id = 'options___parent___id',
+  options___parent___parent___id = 'options___parent___parent___id',
+  options___parent___parent___children = 'options___parent___parent___children',
+  options___parent___children = 'options___parent___children',
+  options___parent___children___id = 'options___parent___children___id',
+  options___parent___children___children = 'options___parent___children___children',
+  options___parent___internal___content = 'options___parent___internal___content',
+  options___parent___internal___contentDigest = 'options___parent___internal___contentDigest',
+  options___parent___internal___description = 'options___parent___internal___description',
+  options___parent___internal___fieldOwners = 'options___parent___internal___fieldOwners',
+  options___parent___internal___ignoreType = 'options___parent___internal___ignoreType',
+  options___parent___internal___mediaType = 'options___parent___internal___mediaType',
+  options___parent___internal___owner = 'options___parent___internal___owner',
+  options___parent___internal___type = 'options___parent___internal___type',
+  options___children = 'options___children',
+  options___children___id = 'options___children___id',
+  options___children___parent___id = 'options___children___parent___id',
+  options___children___parent___children = 'options___children___parent___children',
+  options___children___children = 'options___children___children',
+  options___children___children___id = 'options___children___children___id',
+  options___children___children___children = 'options___children___children___children',
+  options___children___internal___content = 'options___children___internal___content',
+  options___children___internal___contentDigest = 'options___children___internal___contentDigest',
+  options___children___internal___description = 'options___children___internal___description',
+  options___children___internal___fieldOwners = 'options___children___internal___fieldOwners',
+  options___children___internal___ignoreType = 'options___children___internal___ignoreType',
+  options___children___internal___mediaType = 'options___children___internal___mediaType',
+  options___children___internal___owner = 'options___children___internal___owner',
+  options___children___internal___type = 'options___children___internal___type',
+  options___internal___content = 'options___internal___content',
+  options___internal___contentDigest = 'options___internal___contentDigest',
+  options___internal___description = 'options___internal___description',
+  options___internal___fieldOwners = 'options___internal___fieldOwners',
+  options___internal___ignoreType = 'options___internal___ignoreType',
+  options___internal___mediaType = 'options___internal___mediaType',
+  options___internal___owner = 'options___internal___owner',
+  options___internal___type = 'options___internal___type',
+  options___name = 'options___name',
+  options___values = 'options___values',
+  options___shopifyId = 'options___shopifyId',
+  priceRange___minVariantPrice___amount = 'priceRange___minVariantPrice___amount',
+  priceRange___minVariantPrice___currencyCode = 'priceRange___minVariantPrice___currencyCode',
+  priceRange___maxVariantPrice___amount = 'priceRange___maxVariantPrice___amount',
+  priceRange___maxVariantPrice___currencyCode = 'priceRange___maxVariantPrice___currencyCode',
+  productType = 'productType',
+  publishedAt = 'publishedAt',
+  title = 'title',
+  updatedAt = 'updatedAt',
+  variants = 'variants',
+  variants___id = 'variants___id',
+  variants___parent___id = 'variants___parent___id',
+  variants___parent___parent___id = 'variants___parent___parent___id',
+  variants___parent___parent___children = 'variants___parent___parent___children',
+  variants___parent___children = 'variants___parent___children',
+  variants___parent___children___id = 'variants___parent___children___id',
+  variants___parent___children___children = 'variants___parent___children___children',
+  variants___parent___internal___content = 'variants___parent___internal___content',
+  variants___parent___internal___contentDigest = 'variants___parent___internal___contentDigest',
+  variants___parent___internal___description = 'variants___parent___internal___description',
+  variants___parent___internal___fieldOwners = 'variants___parent___internal___fieldOwners',
+  variants___parent___internal___ignoreType = 'variants___parent___internal___ignoreType',
+  variants___parent___internal___mediaType = 'variants___parent___internal___mediaType',
+  variants___parent___internal___owner = 'variants___parent___internal___owner',
+  variants___parent___internal___type = 'variants___parent___internal___type',
+  variants___children = 'variants___children',
+  variants___children___id = 'variants___children___id',
+  variants___children___parent___id = 'variants___children___parent___id',
+  variants___children___parent___children = 'variants___children___parent___children',
+  variants___children___children = 'variants___children___children',
+  variants___children___children___id = 'variants___children___children___id',
+  variants___children___children___children = 'variants___children___children___children',
+  variants___children___internal___content = 'variants___children___internal___content',
+  variants___children___internal___contentDigest = 'variants___children___internal___contentDigest',
+  variants___children___internal___description = 'variants___children___internal___description',
+  variants___children___internal___fieldOwners = 'variants___children___internal___fieldOwners',
+  variants___children___internal___ignoreType = 'variants___children___internal___ignoreType',
+  variants___children___internal___mediaType = 'variants___children___internal___mediaType',
+  variants___children___internal___owner = 'variants___children___internal___owner',
+  variants___children___internal___type = 'variants___children___internal___type',
+  variants___internal___content = 'variants___internal___content',
+  variants___internal___contentDigest = 'variants___internal___contentDigest',
+  variants___internal___description = 'variants___internal___description',
+  variants___internal___fieldOwners = 'variants___internal___fieldOwners',
+  variants___internal___ignoreType = 'variants___internal___ignoreType',
+  variants___internal___mediaType = 'variants___internal___mediaType',
+  variants___internal___owner = 'variants___internal___owner',
+  variants___internal___type = 'variants___internal___type',
+  variants___availableForSale = 'variants___availableForSale',
+  variants___price = 'variants___price',
+  variants___selectedOptions = 'variants___selectedOptions',
+  variants___selectedOptions___name = 'variants___selectedOptions___name',
+  variants___selectedOptions___value = 'variants___selectedOptions___value',
+  variants___sku = 'variants___sku',
+  variants___title = 'variants___title',
+  variants___weight = 'variants___weight',
+  variants___weightUnit = 'variants___weightUnit',
+  variants___shopifyId = 'variants___shopifyId',
+  vendor = 'vendor',
+  shopifyId = 'shopifyId',
+}
+
+export type ShopifyProductFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  availableForSale?: Maybe<BooleanQueryOperatorInput>;
+  createdAt?: Maybe<DateQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  descriptionHtml?: Maybe<StringQueryOperatorInput>;
+  handle?: Maybe<StringQueryOperatorInput>;
+  options?: Maybe<ShopifyProductOptionFilterListInput>;
+  priceRange?: Maybe<ShopifyProductPriceRangeFilterInput>;
+  productType?: Maybe<StringQueryOperatorInput>;
+  publishedAt?: Maybe<DateQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
+  variants?: Maybe<ShopifyProductVariantFilterListInput>;
+  vendor?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ShopifyProductFilterListInput = {
+  elemMatch?: Maybe<ShopifyProductFilterInput>;
+};
+
+export type ShopifyProductGroupConnection = {
+  __typename?: 'ShopifyProductGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyProductEdge>;
+  nodes: Array<ShopifyProduct>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductOption = Node & {
+  __typename?: 'ShopifyProductOption';
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  name?: Maybe<Scalars['String']>;
+  values?: Maybe<Array<Maybe<Scalars['String']>>>;
+  shopifyId?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductOptionConnection = {
+  __typename?: 'ShopifyProductOptionConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyProductOptionEdge>;
+  nodes: Array<ShopifyProductOption>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<ShopifyProductOptionGroupConnection>;
+};
+
+export type ShopifyProductOptionConnectionDistinctArgs = {
+  field: ShopifyProductOptionFieldsEnum;
+};
+
+export type ShopifyProductOptionConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: ShopifyProductOptionFieldsEnum;
+};
+
+export type ShopifyProductOptionEdge = {
+  __typename?: 'ShopifyProductOptionEdge';
+  next?: Maybe<ShopifyProductOption>;
+  node: ShopifyProductOption;
+  previous?: Maybe<ShopifyProductOption>;
+};
+
+export enum ShopifyProductOptionFieldsEnum {
+  id = 'id',
+  parent___id = 'parent___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___children = 'parent___children',
+  parent___children___id = 'parent___children___id',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  children = 'children',
+  children___id = 'children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___parent___id = 'children___parent___parent___id',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___children = 'children___children',
+  children___children___id = 'children___children___id',
+  children___children___parent___id = 'children___children___parent___id',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___children = 'children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___children___children = 'children___children___children___children',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type',
+  name = 'name',
+  values = 'values',
+  shopifyId = 'shopifyId',
+}
+
+export type ShopifyProductOptionFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  values?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ShopifyProductOptionFilterListInput = {
+  elemMatch?: Maybe<ShopifyProductOptionFilterInput>;
+};
+
+export type ShopifyProductOptionGroupConnection = {
+  __typename?: 'ShopifyProductOptionGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyProductOptionEdge>;
+  nodes: Array<ShopifyProductOption>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductOptionSortInput = {
+  fields?: Maybe<Array<Maybe<ShopifyProductOptionFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type ShopifyProductPriceRange = {
+  __typename?: 'ShopifyProductPriceRange';
+  minVariantPrice?: Maybe<ShopifyProductPriceRangeMinVariantPrice>;
+  maxVariantPrice?: Maybe<ShopifyProductPriceRangeMaxVariantPrice>;
+};
+
+export type ShopifyProductPriceRangeFilterInput = {
+  minVariantPrice?: Maybe<ShopifyProductPriceRangeMinVariantPriceFilterInput>;
+  maxVariantPrice?: Maybe<ShopifyProductPriceRangeMaxVariantPriceFilterInput>;
+};
+
+export type ShopifyProductPriceRangeMaxVariantPrice = {
+  __typename?: 'ShopifyProductPriceRangeMaxVariantPrice';
+  amount?: Maybe<Scalars['String']>;
+  currencyCode?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductPriceRangeMaxVariantPriceFilterInput = {
+  amount?: Maybe<StringQueryOperatorInput>;
+  currencyCode?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ShopifyProductPriceRangeMinVariantPrice = {
+  __typename?: 'ShopifyProductPriceRangeMinVariantPrice';
+  amount?: Maybe<Scalars['String']>;
+  currencyCode?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductPriceRangeMinVariantPriceFilterInput = {
+  amount?: Maybe<StringQueryOperatorInput>;
+  currencyCode?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ShopifyProductSortInput = {
+  fields?: Maybe<Array<Maybe<ShopifyProductFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type ShopifyProductType = Node & {
+  __typename?: 'ShopifyProductType';
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  name?: Maybe<Scalars['String']>;
+  shopifyId?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductTypeConnection = {
+  __typename?: 'ShopifyProductTypeConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyProductTypeEdge>;
+  nodes: Array<ShopifyProductType>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<ShopifyProductTypeGroupConnection>;
+};
+
+export type ShopifyProductTypeConnectionDistinctArgs = {
+  field: ShopifyProductTypeFieldsEnum;
+};
+
+export type ShopifyProductTypeConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: ShopifyProductTypeFieldsEnum;
+};
+
+export type ShopifyProductTypeEdge = {
+  __typename?: 'ShopifyProductTypeEdge';
+  next?: Maybe<ShopifyProductType>;
+  node: ShopifyProductType;
+  previous?: Maybe<ShopifyProductType>;
+};
+
+export enum ShopifyProductTypeFieldsEnum {
+  id = 'id',
+  parent___id = 'parent___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___children = 'parent___children',
+  parent___children___id = 'parent___children___id',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  children = 'children',
+  children___id = 'children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___parent___id = 'children___parent___parent___id',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___children = 'children___children',
+  children___children___id = 'children___children___id',
+  children___children___parent___id = 'children___children___parent___id',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___children = 'children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___children___children = 'children___children___children___children',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type',
+  name = 'name',
+  shopifyId = 'shopifyId',
+}
+
+export type ShopifyProductTypeFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ShopifyProductTypeGroupConnection = {
+  __typename?: 'ShopifyProductTypeGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyProductTypeEdge>;
+  nodes: Array<ShopifyProductType>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductTypeSortInput = {
+  fields?: Maybe<Array<Maybe<ShopifyProductTypeFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type ShopifyProductVariant = Node & {
+  __typename?: 'ShopifyProductVariant';
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  availableForSale?: Maybe<Scalars['Boolean']>;
+  price?: Maybe<Scalars['String']>;
+  selectedOptions?: Maybe<Array<Maybe<ShopifyProductVariantSelectedOptions>>>;
+  sku?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  weight?: Maybe<Scalars['Int']>;
+  weightUnit?: Maybe<Scalars['String']>;
+  shopifyId?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductVariantConnection = {
+  __typename?: 'ShopifyProductVariantConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyProductVariantEdge>;
+  nodes: Array<ShopifyProductVariant>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<ShopifyProductVariantGroupConnection>;
+};
+
+export type ShopifyProductVariantConnectionDistinctArgs = {
+  field: ShopifyProductVariantFieldsEnum;
+};
+
+export type ShopifyProductVariantConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: ShopifyProductVariantFieldsEnum;
+};
+
+export type ShopifyProductVariantEdge = {
+  __typename?: 'ShopifyProductVariantEdge';
+  next?: Maybe<ShopifyProductVariant>;
+  node: ShopifyProductVariant;
+  previous?: Maybe<ShopifyProductVariant>;
+};
+
+export enum ShopifyProductVariantFieldsEnum {
+  id = 'id',
+  parent___id = 'parent___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___children = 'parent___children',
+  parent___children___id = 'parent___children___id',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  children = 'children',
+  children___id = 'children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___parent___id = 'children___parent___parent___id',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___children = 'children___children',
+  children___children___id = 'children___children___id',
+  children___children___parent___id = 'children___children___parent___id',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___children = 'children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___children___children = 'children___children___children___children',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type',
+  availableForSale = 'availableForSale',
+  price = 'price',
+  selectedOptions = 'selectedOptions',
+  selectedOptions___name = 'selectedOptions___name',
+  selectedOptions___value = 'selectedOptions___value',
+  sku = 'sku',
+  title = 'title',
+  weight = 'weight',
+  weightUnit = 'weightUnit',
+  shopifyId = 'shopifyId',
+}
+
+export type ShopifyProductVariantFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  availableForSale?: Maybe<BooleanQueryOperatorInput>;
+  price?: Maybe<StringQueryOperatorInput>;
+  selectedOptions?: Maybe<ShopifyProductVariantSelectedOptionsFilterListInput>;
+  sku?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  weight?: Maybe<IntQueryOperatorInput>;
+  weightUnit?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ShopifyProductVariantFilterListInput = {
+  elemMatch?: Maybe<ShopifyProductVariantFilterInput>;
+};
+
+export type ShopifyProductVariantGroupConnection = {
+  __typename?: 'ShopifyProductVariantGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ShopifyProductVariantEdge>;
+  nodes: Array<ShopifyProductVariant>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductVariantSelectedOptions = {
+  __typename?: 'ShopifyProductVariantSelectedOptions';
+  name?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductVariantSelectedOptionsFilterInput = {
+  name?: Maybe<StringQueryOperatorInput>;
+  value?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ShopifyProductVariantSelectedOptionsFilterListInput = {
+  elemMatch?: Maybe<ShopifyProductVariantSelectedOptionsFilterInput>;
+};
+
+export type ShopifyProductVariantSortInput = {
+  fields?: Maybe<Array<Maybe<ShopifyProductVariantFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
 export type Site = Node & {
   __typename?: 'Site';
   id: Scalars['ID'];
@@ -3546,10 +4770,12 @@ export type SitePageConnectionGroupArgs = {
 export type SitePageContext = {
   __typename?: 'SitePageContext';
   id?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextFilterInput = {
   id?: Maybe<StringQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -3652,6 +4878,7 @@ export enum SitePageFieldsEnum {
   componentChunkName = 'componentChunkName',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
   context___id = 'context___id',
+  context___slug = 'context___slug',
   pluginCreator___id = 'pluginCreator___id',
   pluginCreator___parent___id = 'pluginCreator___parent___id',
   pluginCreator___parent___parent___id = 'pluginCreator___parent___parent___id',
@@ -3707,6 +4934,8 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___token = 'pluginCreator___pluginOptions___token',
   pluginCreator___pluginOptions___overlayDrafts = 'pluginCreator___pluginOptions___overlayDrafts',
   pluginCreator___pluginOptions___watchMode = 'pluginCreator___pluginOptions___watchMode',
+  pluginCreator___pluginOptions___shopName = 'pluginCreator___pluginOptions___shopName',
+  pluginCreator___pluginOptions___accessToken = 'pluginCreator___pluginOptions___accessToken',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
@@ -3910,6 +5139,8 @@ export enum SitePluginFieldsEnum {
   pluginOptions___token = 'pluginOptions___token',
   pluginOptions___overlayDrafts = 'pluginOptions___overlayDrafts',
   pluginOptions___watchMode = 'pluginOptions___watchMode',
+  pluginOptions___shopName = 'pluginOptions___shopName',
+  pluginOptions___accessToken = 'pluginOptions___accessToken',
   pluginOptions___pathCheck = 'pluginOptions___pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -4046,6 +5277,8 @@ export type SitePluginPluginOptions = {
   token?: Maybe<Scalars['String']>;
   overlayDrafts?: Maybe<Scalars['Boolean']>;
   watchMode?: Maybe<Scalars['Boolean']>;
+  shopName?: Maybe<Scalars['String']>;
+  accessToken?: Maybe<Scalars['String']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
 
@@ -4064,6 +5297,8 @@ export type SitePluginPluginOptionsFilterInput = {
   token?: Maybe<StringQueryOperatorInput>;
   overlayDrafts?: Maybe<BooleanQueryOperatorInput>;
   watchMode?: Maybe<BooleanQueryOperatorInput>;
+  shopName?: Maybe<StringQueryOperatorInput>;
+  accessToken?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
 

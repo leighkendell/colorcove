@@ -38,7 +38,7 @@ const Button = styled.button<Props>`
   /* When the icon prop is true */
   ${props => props.icon && `padding-left: ${spacing(9)};`}
 
-  ${breakpoint('small')} {
+  ${breakpoint('large')} {
     ${props => props.icon && `padding-left: ${spacing(12)};`}
   }
 
@@ -52,7 +52,7 @@ const Button = styled.button<Props>`
     line-height: 0;
     transform: translateY(-50%);
 
-    ${breakpoint('small')} {
+    ${breakpoint('large')} {
       left: ${spacing(7)};
     }
 

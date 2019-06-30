@@ -1,17 +1,15 @@
 import React from 'react';
-import { FluidObject } from 'gatsby-image';
 import styled from 'styled-components';
-import Image from './image';
 import { spacing, breakpoint } from '../utils/style-helpers';
 import Text from './text';
 import { ReactComponent as Remove } from '../images/close.svg';
 
 interface Props {
-  image: FluidObject;
-  id: string;
+  id: string | number;
   name: string;
   price: string;
-  onRemove?: (id: string) => void;
+  image?: string;
+  onRemove?: (id: string | number) => void;
 }
 
 const StyledCartItem = styled.li`
@@ -29,16 +27,19 @@ const StyledCartItem = styled.li`
   }
 `;
 
-const StyledImage = styled(Image)`
+const Image = styled.img`
   width: ${spacing(6)};
-  height: auto;
+  height: ${spacing(6)};
+  object-fit: cover;
 
   ${breakpoint('small')} {
     width: ${spacing(9)};
+    height: ${spacing(9)};
   }
 
   ${breakpoint('medium')} {
     width: ${spacing(12)};
+    height: ${spacing(12)};
   }
 `;
 
@@ -74,7 +75,7 @@ const CartItem: React.FC<Props> = ({ id, name, price, image, onRemove }) => {
 
   return (
     <StyledCartItem>
-      <StyledImage image={image} alt={name} />
+      <Image src={image} alt={name} />
       <Text>
         <strong>{name}</strong>
         {price}

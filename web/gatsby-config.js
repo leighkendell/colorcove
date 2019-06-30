@@ -77,6 +77,13 @@ module.exports = {
         watchMode: !isProd,
       },
     },
+    {
+      resolve: `gatsby-source-shopify`,
+      options: {
+        shopName: `colorcove`,
+        accessToken: `${process.env.SHOPIFY_STOREFRONT_TOKEN}`,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

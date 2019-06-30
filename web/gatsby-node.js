@@ -30,7 +30,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path,
       component: require.resolve('./src/templates/product.tsx'),
-      context: { id: edge.node.id },
+      context: { id: edge.node.id, slug: edge.node.slug.current },
     });
   });
 };

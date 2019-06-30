@@ -21,6 +21,7 @@
     "gatsby-plugin-typescript": "^2.1.0",
     "gatsby-source-filesystem": "^2.1.1",
     "gatsby-source-sanity": "^5.0.0",
+    "gatsby-source-shopify": "^2.1.2",
     "gatsby-transformer-sharp": "^2.2.0",
     "polished": "^3.4.1",
     "prop-types": "^15.7.2",
@@ -30,6 +31,7 @@
     "react-spring": "^8.0.25",
     "react-use-gesture": "^5.1.2",
     "sal.js": "^0.6.1",
+    "shopify-buy": "^2.5.0",
     "styled-components": "^4.3.2",
     "zustand": "^1.0.1"
   },
@@ -47,6 +49,7 @@
     "@storybook/react": "^5.1.9",
     "@svgr/webpack": "^4.3.0",
     "@types/react-helmet": "^5.0.8",
+    "@types/shopify-buy": "^1.4.2",
     "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.16",
     "@types/vimeo__player": "^2.9.0",
