@@ -7,7 +7,7 @@ const useSal = (pathname: string) => {
   const salInst = useRef(
     isBrowser
       ? sal({
-          threshold: 0.15,
+          threshold: 0.1,
         })
       : null
   );

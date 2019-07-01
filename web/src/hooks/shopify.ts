@@ -29,14 +29,12 @@ export const useShopifyCheckout = () => {
         .fetch(checkoutId)
         .then(checkout => {
           if (!didCancel) {
+            // TODO: Handle completed checkout
             setCheckout(checkout);
           }
         })
         .catch(error => {
           console.error(error);
-          if (!didCancel) {
-            setCheckoutId('');
-          }
         });
     } else {
       client.checkout
