@@ -12,7 +12,10 @@ interface Heading {
 
 const sharedStyle = css<{ align: align }>`
   margin: 0 0 ${spacing(3)};
-  text-align: ${props => props.align};
+
+  ${breakpoint('medium')} {
+    text-align: ${props => props.align};
+  }
 
   & + ${CardGroup} {
     ${breakpoint('medium')} {

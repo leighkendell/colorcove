@@ -30,31 +30,34 @@ interface Props {
 }
 
 const StyledNav = styled.nav`
+  --padding-top-bottom: ${spacing(3)};
+  --padding-left-right: ${spacing(3)};
+
   position: sticky;
   top: 0;
   z-index: 2;
   display: grid;
   grid-gap: ${spacing(3)};
   grid-template-columns: 1fr repeat(2, 24px);
-  padding: ${spacing(3)};
+  padding: var(--padding-top-bottom) var(--padding-left-right);
   background-color: ${props => props.theme.colorWhite};
 
   ${breakpoint('small')} {
-    padding: ${spacing(3)} ${spacing(6)};
+    --padding-left-right: ${spacing(6)};
   }
 
   ${breakpoint('medium')} {
+    --padding-left-right: ${spacing(9)};
     grid-gap: ${spacing(4)};
     grid-template-columns: repeat(2, 1fr) 24px;
-    padding: ${spacing(4)} ${spacing(9)};
   }
 
   ${breakpoint('large')} {
-    padding: ${spacing(4)} ${spacing(12)};
+    --padding-left-right: ${spacing(12)};
   }
 
   ${breakpoint('xLarge')} {
-    padding: ${spacing(4)} ${spacing(15)};
+    --padding-left-right: ${spacing(15)};
   }
 
   > * {

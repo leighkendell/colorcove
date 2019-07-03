@@ -4,7 +4,7 @@ import CartItem from './cart-item';
 import Cart from './cart';
 import useStore from '../hooks/use-store';
 
-const Page: React.FC = ({ children }) => {
+const ShopifyCart: React.FC = () => {
   const setCheckout = useStore(state => state.setCheckout);
   const checkoutId = useStore(state => state.checkoutId);
   const checkout = useStore(state => state.checkout);
@@ -67,9 +67,8 @@ const Page: React.FC = ({ children }) => {
             );
           })}
       </Cart>
-      <main>{children}</main>
     </>
   );
 };
 
-export default Page;
+export default ShopifyCart;

@@ -33,7 +33,9 @@ const StyledTextBlock = styled.div<{ horizontal?: boolean }>`
   margin: 0 auto;
 
   * {
-    text-align: center;
+    ${breakpoint('medium')} {
+      text-align: center;
+    }
   }
 
   *:last-child {

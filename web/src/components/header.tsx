@@ -32,7 +32,7 @@ const StyledHeader = styled.header<{ hasImage: boolean }>`
 
   ${breakpoint('medium')} {
     --padding: ${spacing(9)};
-    ${({ hasImage }) => hasImage && `min-height: calc(100vh - ${spacing(12)})`};
+    ${({ hasImage }) => hasImage && `min-height: calc(100vh - ${spacing(10)})`};
   }
 
   ${breakpoint('large')} {
@@ -62,7 +62,7 @@ const StyledImage = styled(Image)`
 
   ${breakpoint('medium')} {
     grid-row: 1 / span 2;
-    max-height: calc(100vh - ${spacing(12)});
+    max-height: calc(100vh - ${spacing(10)});
   }
 `;
 

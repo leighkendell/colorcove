@@ -10,6 +10,7 @@ import usePrevious from '../hooks/use-previous';
 import { getNestedObject } from '../utils/helpers';
 import { Query, SanitySocial } from '../types/graphql-types';
 import useSal from '../hooks/use-sal';
+import ShopifyCart from './shopify-cart';
 
 interface Props {
   location: WindowLocation;
@@ -77,7 +78,8 @@ const Layout: React.FC<Props> = ({ children, location }) => {
           onClose={closeNav}
           onCartOpen={openCart}
         />
-        {children}
+        <main>{children}</main>
+        <ShopifyCart />
         <Footer
           items={secondaryNav}
           facebookLink={facebook || ''}

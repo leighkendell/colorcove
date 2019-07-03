@@ -7,7 +7,6 @@ import Button from '../components/button';
 import { ReactComponent as Icon } from '../images/cart.svg';
 import { useShopifyProduct, useShopifyClient } from '../hooks/shopify';
 import useStore from '../hooks/use-store';
-import Page from '../components/page';
 
 interface Props {
   data: Query;
@@ -45,7 +44,7 @@ const ProductTemplate: React.FC<Props> = ({
       0;
 
     return (
-      <Page>
+      <>
         {hero && (
           <Hero hero={hero}>
             <Button icon onClick={handleBuy}>
@@ -55,7 +54,7 @@ const ProductTemplate: React.FC<Props> = ({
           </Hero>
         )}
         {modules && <Module modules={modules} />}
-      </Page>
+      </>
     );
   } else {
     return null;
