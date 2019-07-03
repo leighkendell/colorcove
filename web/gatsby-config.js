@@ -12,25 +12,25 @@ module.exports = {
     primaryNav: [
       {
         title: 'Products',
-        link: '/products',
+        link: '/products/',
       },
       {
         title: 'About',
-        link: '/about',
+        link: '/about/',
       },
       {
         title: 'Contact',
-        link: '/contact',
+        link: '/contact/',
       },
     ],
     secondaryNav: [
       {
         title: 'Support',
-        link: '/support',
+        link: '/support/',
       },
       {
         title: 'Contact',
-        link: '/contact',
+        link: '/contact/',
       },
     ],
   },
