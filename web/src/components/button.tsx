@@ -7,6 +7,7 @@ interface Props {
   to?: string;
 }
 
+/** Base button styles for optional use outside of the button component */
 export const ButtonBaseStyle = css`
   position: relative;
   display: inline-block;

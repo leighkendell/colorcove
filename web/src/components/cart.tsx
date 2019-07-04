@@ -15,6 +15,7 @@ interface Props {
   onClose?: () => void;
 }
 
+/** The main containing element */
 const StyledCart = styled(animated.aside)`
   position: fixed;
   top: 0;
@@ -83,6 +84,7 @@ const CartList = styled.ul`
   }
 `;
 
+/** The overlay visible when the cart is open */
 const Overlay = styled(animated.div)`
   position: fixed;
   top: 0;

@@ -10,6 +10,7 @@ interface Heading {
   align?: align;
 }
 
+/** Common heading styles */
 const sharedStyle = css<{ align: align }>`
   margin: 0 0 ${spacing(3)};
 

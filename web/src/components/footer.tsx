@@ -17,6 +17,7 @@ interface Props {
   facebookLink?: string;
 }
 
+/** The main containing element */
 const StyledFooter = styled.footer`
   padding: ${spacing(3)};
   color: ${props => props.theme.colorWhite};
