@@ -28,7 +28,7 @@ const ProductTemplate: React.FC<Props> = ({
 
   // TODO: Clean up types once @types/shopify-buy are updated
   const handleBuy = () => {
-    if (client && checkoutId && defaultVariant) {
+    if (checkoutId && defaultVariant) {
       const lineItemsToAdd = [{ variantId: defaultVariant.id, quantity: 1 }];
       (client as any).checkout
         .addLineItems(checkoutId, lineItemsToAdd)

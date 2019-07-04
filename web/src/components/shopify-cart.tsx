@@ -17,7 +17,7 @@ const ShopifyCart: React.FC = () => {
 
   // TODO: Clean up types once @types/shopify-buy are updated
   const handleRemove = (variantId: string | number) => {
-    if (client && checkoutId) {
+    if (checkoutId) {
       (client as any).checkout
         .removeLineItems(checkoutId, [variantId])
         .then((checkout: any) => {
@@ -35,7 +35,7 @@ const ShopifyCart: React.FC = () => {
 
   // TODO: Clean up types once @types/shopify-buy are updated
   const getThumbnail = (image: any) => {
-    if (client && image) {
+    if (image) {
       return (client as any).image.helpers.imageForSize(image, {
         maxWidth: 192,
         maxHeight: 192,

@@ -1,19 +1,14 @@
 import Client, { Product, Cart } from 'shopify-buy';
 import { useState, useEffect } from 'react';
 import useStore from './use-store';
-import { isBrowser } from '../utils/helpers';
 
 const client = Client.buildClient({
-  storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_TOKEN as string,
+  storefrontAccessToken: process.env.GATSBY_SHOPIFY_STOREFRONT_TOKEN as string,
   domain: 'colorcove.myshopify.com',
 });
 
 /** Returns the shopify client */
-export const useShopifyClient = () => {
-  if (client && isBrowser) {
-    return client;
-  }
-};
+export const useShopifyClient = () => client;
 
 /** Sets up the initial shopify checkout */
 export const useShopifyCheckout = () => {

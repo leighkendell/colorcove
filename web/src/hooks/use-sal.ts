@@ -8,6 +8,7 @@ const useSal = (pathname: string) => {
     isBrowser
       ? sal({
           threshold: 0.1,
+          rootMargin: '5% 0%',
         })
       : null
   );

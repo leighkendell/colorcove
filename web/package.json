@@ -8,7 +8,7 @@
     "@sanity/client": "^0.141.5",
     "@vimeo/player": "^2.9.1",
     "babel-plugin-styled-components": "^1.10.6",
-    "gatsby": "^2.13.2",
+    "gatsby": "^2.13.3",
     "gatsby-image": "^2.2.4",
     "gatsby-plugin-layout": "^1.1.0",
     "gatsby-plugin-manifest": "^2.2.1",
@@ -31,7 +31,7 @@
     "react-spring": "^8.0.27",
     "react-use-gesture": "^5.1.2",
     "sal.js": "^0.6.1",
-    "shopify-buy": "^2.5.0",
+    "shopify-buy": "^2.6.0",
     "styled-components": "^4.3.2",
     "zustand": "^1.0.2"
   },
