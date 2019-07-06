@@ -23,7 +23,7 @@
     }
   },
   "devDependencies": {
-    "@sanity/cli": "^0.141.5",
+    "@sanity/cli": "^0.141.6",
     "husky": "^3.0.0",
     "lerna": "^3.15.0"
   }
