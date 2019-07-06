@@ -48,6 +48,7 @@
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
     "@svgr/webpack": "^4.3.1",
+    "@types/css-font-loading-module": "^0.0.2",
     "@types/react-helmet": "^5.0.8",
     "@types/shopify-buy": "^1.4.2",
     "@types/storybook__react": "^4.0.2",

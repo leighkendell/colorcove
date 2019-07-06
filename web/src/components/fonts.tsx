@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 
 // Fonts
@@ -12,6 +12,28 @@ import ManropeBoldWoff2 from '../fonts/manrope-bold-hint-all.woff2';
 import ManropeBoldWoff from '../fonts/manrope-bold-hint-all.woff';
 
 const Fonts: React.FC = () => {
+  // Load full stage 2 version of the font
+  useEffect(() => {
+    if ('fonts' in document) {
+      const light = new FontFace(
+        'Manrope',
+        `url(${ManropeLightWoff2}) format('woff2'), url(${ManropeLightWoff}) format('woff')`,
+        { weight: '300' }
+      );
+      const bold = new FontFace(
+        'Manrope',
+        `url(${ManropeBoldWoff2}) format('woff2'), url(${ManropeBoldWoff}) format('woff')`,
+        { weight: 'bold' }
+      );
+      Promise.all([bold.load(), light.load()]).then(function(fonts) {
+        fonts.forEach(function(font) {
+          document.fonts.add(font);
+        });
+      });
+    }
+  }, []);
+
+  // Preload stage 1 version of the font
   return (
     <Helmet>
       <link
@@ -46,25 +68,6 @@ const Fonts: React.FC = () => {
           font-display: swap;
         }
       `}</style>
-      <script>{`
-        if ('fonts' in document) {
-          const light = new FontFace(
-            'Manrope',
-            "url(${ManropeLightWoff2}) format('woff2'), url(${ManropeLightWoff}) format('woff')",
-            { weight: '300' }
-          );
-          const bold = new FontFace(
-            'Manrope',
-            "url(${ManropeBoldWoff2}) format('woff2'), url(${ManropeBoldWoff}) format('woff')",
-            { weight: 'bold' }
-          );
-          Promise.all([bold.load(), light.load()]).then(function(fonts) {
-            fonts.forEach(function(font) {
-              document.fonts.add(font);
-            });
-          });
-        }
-      `}</script>
     </Helmet>
   );
 };
