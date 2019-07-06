@@ -378,6 +378,7 @@ export type File = Node & {
   mtime?: Maybe<Scalars['Date']>;
   ctime?: Maybe<Scalars['Date']>;
   birthtime?: Maybe<Scalars['Date']>;
+  url?: Maybe<Scalars['String']>;
   /** Copy file to static directory and return public url to it */
   publicURL?: Maybe<Scalars['String']>;
   childImageSharp?: Maybe<ImageSharp>;
@@ -586,6 +587,7 @@ export enum FileFieldsEnum {
   mtime = 'mtime',
   ctime = 'ctime',
   birthtime = 'birthtime',
+  url = 'url',
   publicURL = 'publicURL',
 }
 
@@ -627,6 +629,7 @@ export type FileFilterInput = {
   mtime?: Maybe<DateQueryOperatorInput>;
   ctime?: Maybe<DateQueryOperatorInput>;
   birthtime?: Maybe<DateQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
 };
 
@@ -686,15 +689,15 @@ export enum ImageFormat {
 export type ImageSharp = Node & {
   __typename?: 'ImageSharp';
   id: Scalars['ID'];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
   fixed?: Maybe<ImageSharpFixed>;
   resolutions?: Maybe<ImageSharpResolutions>;
   fluid?: Maybe<ImageSharpFluid>;
   sizes?: Maybe<ImageSharpSizes>;
   original?: Maybe<ImageSharpOriginal>;
   resize?: Maybe<ImageSharpResize>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
 };
 
 export type ImageSharpFixedArgs = {
@@ -825,6 +828,59 @@ export type ImageSharpEdge = {
 
 export enum ImageSharpFieldsEnum {
   id = 'id',
+  fixed___base64 = 'fixed___base64',
+  fixed___tracedSVG = 'fixed___tracedSVG',
+  fixed___aspectRatio = 'fixed___aspectRatio',
+  fixed___width = 'fixed___width',
+  fixed___height = 'fixed___height',
+  fixed___src = 'fixed___src',
+  fixed___srcSet = 'fixed___srcSet',
+  fixed___srcWebp = 'fixed___srcWebp',
+  fixed___srcSetWebp = 'fixed___srcSetWebp',
+  fixed___originalName = 'fixed___originalName',
+  resolutions___base64 = 'resolutions___base64',
+  resolutions___tracedSVG = 'resolutions___tracedSVG',
+  resolutions___aspectRatio = 'resolutions___aspectRatio',
+  resolutions___width = 'resolutions___width',
+  resolutions___height = 'resolutions___height',
+  resolutions___src = 'resolutions___src',
+  resolutions___srcSet = 'resolutions___srcSet',
+  resolutions___srcWebp = 'resolutions___srcWebp',
+  resolutions___srcSetWebp = 'resolutions___srcSetWebp',
+  resolutions___originalName = 'resolutions___originalName',
+  fluid___base64 = 'fluid___base64',
+  fluid___tracedSVG = 'fluid___tracedSVG',
+  fluid___aspectRatio = 'fluid___aspectRatio',
+  fluid___src = 'fluid___src',
+  fluid___srcSet = 'fluid___srcSet',
+  fluid___srcWebp = 'fluid___srcWebp',
+  fluid___srcSetWebp = 'fluid___srcSetWebp',
+  fluid___sizes = 'fluid___sizes',
+  fluid___originalImg = 'fluid___originalImg',
+  fluid___originalName = 'fluid___originalName',
+  fluid___presentationWidth = 'fluid___presentationWidth',
+  fluid___presentationHeight = 'fluid___presentationHeight',
+  sizes___base64 = 'sizes___base64',
+  sizes___tracedSVG = 'sizes___tracedSVG',
+  sizes___aspectRatio = 'sizes___aspectRatio',
+  sizes___src = 'sizes___src',
+  sizes___srcSet = 'sizes___srcSet',
+  sizes___srcWebp = 'sizes___srcWebp',
+  sizes___srcSetWebp = 'sizes___srcSetWebp',
+  sizes___sizes = 'sizes___sizes',
+  sizes___originalImg = 'sizes___originalImg',
+  sizes___originalName = 'sizes___originalName',
+  sizes___presentationWidth = 'sizes___presentationWidth',
+  sizes___presentationHeight = 'sizes___presentationHeight',
+  original___width = 'original___width',
+  original___height = 'original___height',
+  original___src = 'original___src',
+  resize___src = 'resize___src',
+  resize___tracedSVG = 'resize___tracedSVG',
+  resize___width = 'resize___width',
+  resize___height = 'resize___height',
+  resize___aspectRatio = 'resize___aspectRatio',
+  resize___originalName = 'resize___originalName',
   parent___id = 'parent___id',
   parent___parent___id = 'parent___parent___id',
   parent___parent___parent___id = 'parent___parent___parent___id',
@@ -910,72 +966,19 @@ export enum ImageSharpFieldsEnum {
   internal___mediaType = 'internal___mediaType',
   internal___owner = 'internal___owner',
   internal___type = 'internal___type',
-  fixed___base64 = 'fixed___base64',
-  fixed___tracedSVG = 'fixed___tracedSVG',
-  fixed___aspectRatio = 'fixed___aspectRatio',
-  fixed___width = 'fixed___width',
-  fixed___height = 'fixed___height',
-  fixed___src = 'fixed___src',
-  fixed___srcSet = 'fixed___srcSet',
-  fixed___srcWebp = 'fixed___srcWebp',
-  fixed___srcSetWebp = 'fixed___srcSetWebp',
-  fixed___originalName = 'fixed___originalName',
-  resolutions___base64 = 'resolutions___base64',
-  resolutions___tracedSVG = 'resolutions___tracedSVG',
-  resolutions___aspectRatio = 'resolutions___aspectRatio',
-  resolutions___width = 'resolutions___width',
-  resolutions___height = 'resolutions___height',
-  resolutions___src = 'resolutions___src',
-  resolutions___srcSet = 'resolutions___srcSet',
-  resolutions___srcWebp = 'resolutions___srcWebp',
-  resolutions___srcSetWebp = 'resolutions___srcSetWebp',
-  resolutions___originalName = 'resolutions___originalName',
-  fluid___base64 = 'fluid___base64',
-  fluid___tracedSVG = 'fluid___tracedSVG',
-  fluid___aspectRatio = 'fluid___aspectRatio',
-  fluid___src = 'fluid___src',
-  fluid___srcSet = 'fluid___srcSet',
-  fluid___srcWebp = 'fluid___srcWebp',
-  fluid___srcSetWebp = 'fluid___srcSetWebp',
-  fluid___sizes = 'fluid___sizes',
-  fluid___originalImg = 'fluid___originalImg',
-  fluid___originalName = 'fluid___originalName',
-  fluid___presentationWidth = 'fluid___presentationWidth',
-  fluid___presentationHeight = 'fluid___presentationHeight',
-  sizes___base64 = 'sizes___base64',
-  sizes___tracedSVG = 'sizes___tracedSVG',
-  sizes___aspectRatio = 'sizes___aspectRatio',
-  sizes___src = 'sizes___src',
-  sizes___srcSet = 'sizes___srcSet',
-  sizes___srcWebp = 'sizes___srcWebp',
-  sizes___srcSetWebp = 'sizes___srcSetWebp',
-  sizes___sizes = 'sizes___sizes',
-  sizes___originalImg = 'sizes___originalImg',
-  sizes___originalName = 'sizes___originalName',
-  sizes___presentationWidth = 'sizes___presentationWidth',
-  sizes___presentationHeight = 'sizes___presentationHeight',
-  original___width = 'original___width',
-  original___height = 'original___height',
-  original___src = 'original___src',
-  resize___src = 'resize___src',
-  resize___tracedSVG = 'resize___tracedSVG',
-  resize___width = 'resize___width',
-  resize___height = 'resize___height',
-  resize___aspectRatio = 'resize___aspectRatio',
-  resize___originalName = 'resize___originalName',
 }
 
 export type ImageSharpFilterInput = {
   id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
   fixed?: Maybe<ImageSharpFixedFilterInput>;
   resolutions?: Maybe<ImageSharpResolutionsFilterInput>;
   fluid?: Maybe<ImageSharpFluidFilterInput>;
   sizes?: Maybe<ImageSharpSizesFilterInput>;
   original?: Maybe<ImageSharpOriginalFilterInput>;
   resize?: Maybe<ImageSharpResizeFilterInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
 };
 
 export type ImageSharpFixed = {
@@ -1236,6 +1239,8 @@ export enum PotraceTurnPolicy {
 
 export type Query = {
   __typename?: 'Query';
+  imageSharp?: Maybe<ImageSharp>;
+  allImageSharp?: Maybe<ImageSharpConnection>;
   sanityPage?: Maybe<SanityPage>;
   allSanityPage?: Maybe<SanityPageConnection>;
   sanityProduct?: Maybe<SanityProduct>;
@@ -1256,18 +1261,36 @@ export type Query = {
   allSite?: Maybe<SiteConnection>;
   directory?: Maybe<Directory>;
   allDirectory?: Maybe<DirectoryConnection>;
-  imageSharp?: Maybe<ImageSharp>;
-  allImageSharp?: Maybe<ImageSharpConnection>;
+  shopifyCollection?: Maybe<ShopifyCollection>;
+  allShopifyCollection?: Maybe<ShopifyCollectionConnection>;
   shopifyProduct?: Maybe<ShopifyProduct>;
   allShopifyProduct?: Maybe<ShopifyProductConnection>;
   shopifyProductVariant?: Maybe<ShopifyProductVariant>;
   allShopifyProductVariant?: Maybe<ShopifyProductVariantConnection>;
   shopifyProductOption?: Maybe<ShopifyProductOption>;
   allShopifyProductOption?: Maybe<ShopifyProductOptionConnection>;
-  shopifyCollection?: Maybe<ShopifyCollection>;
-  allShopifyCollection?: Maybe<ShopifyCollectionConnection>;
   shopifyProductType?: Maybe<ShopifyProductType>;
   allShopifyProductType?: Maybe<ShopifyProductTypeConnection>;
+};
+
+export type QueryImageSharpArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  fixed?: Maybe<ImageSharpFixedFilterInput>;
+  resolutions?: Maybe<ImageSharpResolutionsFilterInput>;
+  fluid?: Maybe<ImageSharpFluidFilterInput>;
+  sizes?: Maybe<ImageSharpSizesFilterInput>;
+  original?: Maybe<ImageSharpOriginalFilterInput>;
+  resize?: Maybe<ImageSharpResizeFilterInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+export type QueryAllImageSharpArgs = {
+  filter?: Maybe<ImageSharpFilterInput>;
+  sort?: Maybe<ImageSharpSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
 };
 
 export type QuerySanityPageArgs = {
@@ -1453,6 +1476,7 @@ export type QueryFileArgs = {
   mtime?: Maybe<DateQueryOperatorInput>;
   ctime?: Maybe<DateQueryOperatorInput>;
   birthtime?: Maybe<DateQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
 };
 
@@ -1576,22 +1600,23 @@ export type QueryAllDirectoryArgs = {
   limit?: Maybe<Scalars['Int']>;
 };
 
-export type QueryImageSharpArgs = {
+export type QueryShopifyCollectionArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
-  fixed?: Maybe<ImageSharpFixedFilterInput>;
-  resolutions?: Maybe<ImageSharpResolutionsFilterInput>;
-  fluid?: Maybe<ImageSharpFluidFilterInput>;
-  sizes?: Maybe<ImageSharpSizesFilterInput>;
-  original?: Maybe<ImageSharpOriginalFilterInput>;
-  resize?: Maybe<ImageSharpResizeFilterInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  descriptionHtml?: Maybe<StringQueryOperatorInput>;
+  handle?: Maybe<StringQueryOperatorInput>;
+  products?: Maybe<ShopifyProductFilterListInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
 };
 
-export type QueryAllImageSharpArgs = {
-  filter?: Maybe<ImageSharpFilterInput>;
-  sort?: Maybe<ImageSharpSortInput>;
+export type QueryAllShopifyCollectionArgs = {
+  filter?: Maybe<ShopifyCollectionFilterInput>;
+  sort?: Maybe<ShopifyCollectionSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -1606,6 +1631,7 @@ export type QueryShopifyProductArgs = {
   description?: Maybe<StringQueryOperatorInput>;
   descriptionHtml?: Maybe<StringQueryOperatorInput>;
   handle?: Maybe<StringQueryOperatorInput>;
+  images?: Maybe<ShopifyProductImagesFilterListInput>;
   options?: Maybe<ShopifyProductOptionFilterListInput>;
   priceRange?: Maybe<ShopifyProductPriceRangeFilterInput>;
   productType?: Maybe<StringQueryOperatorInput>;
@@ -1630,6 +1656,7 @@ export type QueryShopifyProductVariantArgs = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   availableForSale?: Maybe<BooleanQueryOperatorInput>;
+  image?: Maybe<ShopifyProductVariantImageFilterInput>;
   price?: Maybe<StringQueryOperatorInput>;
   selectedOptions?: Maybe<ShopifyProductVariantSelectedOptionsFilterListInput>;
   sku?: Maybe<StringQueryOperatorInput>;
@@ -1659,27 +1686,6 @@ export type QueryShopifyProductOptionArgs = {
 export type QueryAllShopifyProductOptionArgs = {
   filter?: Maybe<ShopifyProductOptionFilterInput>;
   sort?: Maybe<ShopifyProductOptionSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-export type QueryShopifyCollectionArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  descriptionHtml?: Maybe<StringQueryOperatorInput>;
-  handle?: Maybe<StringQueryOperatorInput>;
-  products?: Maybe<ShopifyProductFilterListInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  updatedAt?: Maybe<DateQueryOperatorInput>;
-  shopifyId?: Maybe<StringQueryOperatorInput>;
-};
-
-export type QueryAllShopifyCollectionArgs = {
-  filter?: Maybe<ShopifyCollectionFilterInput>;
-  sort?: Maybe<ShopifyCollectionSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -3629,6 +3635,46 @@ export enum ShopifyCollectionFieldsEnum {
   products___description = 'products___description',
   products___descriptionHtml = 'products___descriptionHtml',
   products___handle = 'products___handle',
+  products___images = 'products___images',
+  products___images___id = 'products___images___id',
+  products___images___originalSrc = 'products___images___originalSrc',
+  products___images___localFile___id = 'products___images___localFile___id',
+  products___images___localFile___children = 'products___images___localFile___children',
+  products___images___localFile___sourceInstanceName = 'products___images___localFile___sourceInstanceName',
+  products___images___localFile___absolutePath = 'products___images___localFile___absolutePath',
+  products___images___localFile___relativePath = 'products___images___localFile___relativePath',
+  products___images___localFile___extension = 'products___images___localFile___extension',
+  products___images___localFile___size = 'products___images___localFile___size',
+  products___images___localFile___prettySize = 'products___images___localFile___prettySize',
+  products___images___localFile___modifiedTime = 'products___images___localFile___modifiedTime',
+  products___images___localFile___accessTime = 'products___images___localFile___accessTime',
+  products___images___localFile___changeTime = 'products___images___localFile___changeTime',
+  products___images___localFile___birthTime = 'products___images___localFile___birthTime',
+  products___images___localFile___root = 'products___images___localFile___root',
+  products___images___localFile___dir = 'products___images___localFile___dir',
+  products___images___localFile___base = 'products___images___localFile___base',
+  products___images___localFile___ext = 'products___images___localFile___ext',
+  products___images___localFile___name = 'products___images___localFile___name',
+  products___images___localFile___relativeDirectory = 'products___images___localFile___relativeDirectory',
+  products___images___localFile___dev = 'products___images___localFile___dev',
+  products___images___localFile___mode = 'products___images___localFile___mode',
+  products___images___localFile___nlink = 'products___images___localFile___nlink',
+  products___images___localFile___uid = 'products___images___localFile___uid',
+  products___images___localFile___gid = 'products___images___localFile___gid',
+  products___images___localFile___rdev = 'products___images___localFile___rdev',
+  products___images___localFile___blksize = 'products___images___localFile___blksize',
+  products___images___localFile___ino = 'products___images___localFile___ino',
+  products___images___localFile___blocks = 'products___images___localFile___blocks',
+  products___images___localFile___atimeMs = 'products___images___localFile___atimeMs',
+  products___images___localFile___mtimeMs = 'products___images___localFile___mtimeMs',
+  products___images___localFile___ctimeMs = 'products___images___localFile___ctimeMs',
+  products___images___localFile___birthtimeMs = 'products___images___localFile___birthtimeMs',
+  products___images___localFile___atime = 'products___images___localFile___atime',
+  products___images___localFile___mtime = 'products___images___localFile___mtime',
+  products___images___localFile___ctime = 'products___images___localFile___ctime',
+  products___images___localFile___birthtime = 'products___images___localFile___birthtime',
+  products___images___localFile___url = 'products___images___localFile___url',
+  products___images___localFile___publicURL = 'products___images___localFile___publicURL',
   products___options = 'products___options',
   products___options___id = 'products___options___id',
   products___options___parent___id = 'products___options___parent___id',
@@ -3671,6 +3717,8 @@ export enum ShopifyCollectionFieldsEnum {
   products___variants___internal___owner = 'products___variants___internal___owner',
   products___variants___internal___type = 'products___variants___internal___type',
   products___variants___availableForSale = 'products___variants___availableForSale',
+  products___variants___image___id = 'products___variants___image___id',
+  products___variants___image___originalSrc = 'products___variants___image___originalSrc',
   products___variants___price = 'products___variants___price',
   products___variants___selectedOptions = 'products___variants___selectedOptions',
   products___variants___selectedOptions___name = 'products___variants___selectedOptions___name',
@@ -3727,6 +3775,7 @@ export type ShopifyProduct = Node & {
   description?: Maybe<Scalars['String']>;
   descriptionHtml?: Maybe<Scalars['String']>;
   handle?: Maybe<Scalars['String']>;
+  images?: Maybe<Array<Maybe<ShopifyProductImages>>>;
   options?: Maybe<Array<Maybe<ShopifyProductOption>>>;
   priceRange?: Maybe<ShopifyProductPriceRange>;
   productType?: Maybe<Scalars['String']>;
@@ -3878,6 +3927,58 @@ export enum ShopifyProductFieldsEnum {
   description = 'description',
   descriptionHtml = 'descriptionHtml',
   handle = 'handle',
+  images = 'images',
+  images___id = 'images___id',
+  images___originalSrc = 'images___originalSrc',
+  images___localFile___id = 'images___localFile___id',
+  images___localFile___parent___id = 'images___localFile___parent___id',
+  images___localFile___parent___children = 'images___localFile___parent___children',
+  images___localFile___children = 'images___localFile___children',
+  images___localFile___children___id = 'images___localFile___children___id',
+  images___localFile___children___children = 'images___localFile___children___children',
+  images___localFile___internal___content = 'images___localFile___internal___content',
+  images___localFile___internal___contentDigest = 'images___localFile___internal___contentDigest',
+  images___localFile___internal___description = 'images___localFile___internal___description',
+  images___localFile___internal___fieldOwners = 'images___localFile___internal___fieldOwners',
+  images___localFile___internal___ignoreType = 'images___localFile___internal___ignoreType',
+  images___localFile___internal___mediaType = 'images___localFile___internal___mediaType',
+  images___localFile___internal___owner = 'images___localFile___internal___owner',
+  images___localFile___internal___type = 'images___localFile___internal___type',
+  images___localFile___sourceInstanceName = 'images___localFile___sourceInstanceName',
+  images___localFile___absolutePath = 'images___localFile___absolutePath',
+  images___localFile___relativePath = 'images___localFile___relativePath',
+  images___localFile___extension = 'images___localFile___extension',
+  images___localFile___size = 'images___localFile___size',
+  images___localFile___prettySize = 'images___localFile___prettySize',
+  images___localFile___modifiedTime = 'images___localFile___modifiedTime',
+  images___localFile___accessTime = 'images___localFile___accessTime',
+  images___localFile___changeTime = 'images___localFile___changeTime',
+  images___localFile___birthTime = 'images___localFile___birthTime',
+  images___localFile___root = 'images___localFile___root',
+  images___localFile___dir = 'images___localFile___dir',
+  images___localFile___base = 'images___localFile___base',
+  images___localFile___ext = 'images___localFile___ext',
+  images___localFile___name = 'images___localFile___name',
+  images___localFile___relativeDirectory = 'images___localFile___relativeDirectory',
+  images___localFile___dev = 'images___localFile___dev',
+  images___localFile___mode = 'images___localFile___mode',
+  images___localFile___nlink = 'images___localFile___nlink',
+  images___localFile___uid = 'images___localFile___uid',
+  images___localFile___gid = 'images___localFile___gid',
+  images___localFile___rdev = 'images___localFile___rdev',
+  images___localFile___blksize = 'images___localFile___blksize',
+  images___localFile___ino = 'images___localFile___ino',
+  images___localFile___blocks = 'images___localFile___blocks',
+  images___localFile___atimeMs = 'images___localFile___atimeMs',
+  images___localFile___mtimeMs = 'images___localFile___mtimeMs',
+  images___localFile___ctimeMs = 'images___localFile___ctimeMs',
+  images___localFile___birthtimeMs = 'images___localFile___birthtimeMs',
+  images___localFile___atime = 'images___localFile___atime',
+  images___localFile___mtime = 'images___localFile___mtime',
+  images___localFile___ctime = 'images___localFile___ctime',
+  images___localFile___birthtime = 'images___localFile___birthtime',
+  images___localFile___url = 'images___localFile___url',
+  images___localFile___publicURL = 'images___localFile___publicURL',
   options = 'options',
   options___id = 'options___id',
   options___parent___id = 'options___parent___id',
@@ -3968,6 +4069,45 @@ export enum ShopifyProductFieldsEnum {
   variants___internal___owner = 'variants___internal___owner',
   variants___internal___type = 'variants___internal___type',
   variants___availableForSale = 'variants___availableForSale',
+  variants___image___id = 'variants___image___id',
+  variants___image___originalSrc = 'variants___image___originalSrc',
+  variants___image___localFile___id = 'variants___image___localFile___id',
+  variants___image___localFile___children = 'variants___image___localFile___children',
+  variants___image___localFile___sourceInstanceName = 'variants___image___localFile___sourceInstanceName',
+  variants___image___localFile___absolutePath = 'variants___image___localFile___absolutePath',
+  variants___image___localFile___relativePath = 'variants___image___localFile___relativePath',
+  variants___image___localFile___extension = 'variants___image___localFile___extension',
+  variants___image___localFile___size = 'variants___image___localFile___size',
+  variants___image___localFile___prettySize = 'variants___image___localFile___prettySize',
+  variants___image___localFile___modifiedTime = 'variants___image___localFile___modifiedTime',
+  variants___image___localFile___accessTime = 'variants___image___localFile___accessTime',
+  variants___image___localFile___changeTime = 'variants___image___localFile___changeTime',
+  variants___image___localFile___birthTime = 'variants___image___localFile___birthTime',
+  variants___image___localFile___root = 'variants___image___localFile___root',
+  variants___image___localFile___dir = 'variants___image___localFile___dir',
+  variants___image___localFile___base = 'variants___image___localFile___base',
+  variants___image___localFile___ext = 'variants___image___localFile___ext',
+  variants___image___localFile___name = 'variants___image___localFile___name',
+  variants___image___localFile___relativeDirectory = 'variants___image___localFile___relativeDirectory',
+  variants___image___localFile___dev = 'variants___image___localFile___dev',
+  variants___image___localFile___mode = 'variants___image___localFile___mode',
+  variants___image___localFile___nlink = 'variants___image___localFile___nlink',
+  variants___image___localFile___uid = 'variants___image___localFile___uid',
+  variants___image___localFile___gid = 'variants___image___localFile___gid',
+  variants___image___localFile___rdev = 'variants___image___localFile___rdev',
+  variants___image___localFile___blksize = 'variants___image___localFile___blksize',
+  variants___image___localFile___ino = 'variants___image___localFile___ino',
+  variants___image___localFile___blocks = 'variants___image___localFile___blocks',
+  variants___image___localFile___atimeMs = 'variants___image___localFile___atimeMs',
+  variants___image___localFile___mtimeMs = 'variants___image___localFile___mtimeMs',
+  variants___image___localFile___ctimeMs = 'variants___image___localFile___ctimeMs',
+  variants___image___localFile___birthtimeMs = 'variants___image___localFile___birthtimeMs',
+  variants___image___localFile___atime = 'variants___image___localFile___atime',
+  variants___image___localFile___mtime = 'variants___image___localFile___mtime',
+  variants___image___localFile___ctime = 'variants___image___localFile___ctime',
+  variants___image___localFile___birthtime = 'variants___image___localFile___birthtime',
+  variants___image___localFile___url = 'variants___image___localFile___url',
+  variants___image___localFile___publicURL = 'variants___image___localFile___publicURL',
   variants___price = 'variants___price',
   variants___selectedOptions = 'variants___selectedOptions',
   variants___selectedOptions___name = 'variants___selectedOptions___name',
@@ -3991,6 +4131,7 @@ export type ShopifyProductFilterInput = {
   description?: Maybe<StringQueryOperatorInput>;
   descriptionHtml?: Maybe<StringQueryOperatorInput>;
   handle?: Maybe<StringQueryOperatorInput>;
+  images?: Maybe<ShopifyProductImagesFilterListInput>;
   options?: Maybe<ShopifyProductOptionFilterListInput>;
   priceRange?: Maybe<ShopifyProductPriceRangeFilterInput>;
   productType?: Maybe<StringQueryOperatorInput>;
@@ -4014,6 +4155,23 @@ export type ShopifyProductGroupConnection = {
   pageInfo: PageInfo;
   field: Scalars['String'];
   fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductImages = {
+  __typename?: 'ShopifyProductImages';
+  id?: Maybe<Scalars['String']>;
+  originalSrc?: Maybe<Scalars['String']>;
+  localFile?: Maybe<File>;
+};
+
+export type ShopifyProductImagesFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  originalSrc?: Maybe<StringQueryOperatorInput>;
+  localFile?: Maybe<FileFilterInput>;
+};
+
+export type ShopifyProductImagesFilterListInput = {
+  elemMatch?: Maybe<ShopifyProductImagesFilterInput>;
 };
 
 export type ShopifyProductOption = Node & {
@@ -4372,6 +4530,7 @@ export type ShopifyProductVariant = Node & {
   children: Array<Node>;
   internal: Internal;
   availableForSale?: Maybe<Scalars['Boolean']>;
+  image?: Maybe<ShopifyProductVariantImage>;
   price?: Maybe<Scalars['String']>;
   selectedOptions?: Maybe<Array<Maybe<ShopifyProductVariantSelectedOptions>>>;
   sku?: Maybe<Scalars['String']>;
@@ -4496,6 +4655,57 @@ export enum ShopifyProductVariantFieldsEnum {
   internal___owner = 'internal___owner',
   internal___type = 'internal___type',
   availableForSale = 'availableForSale',
+  image___id = 'image___id',
+  image___originalSrc = 'image___originalSrc',
+  image___localFile___id = 'image___localFile___id',
+  image___localFile___parent___id = 'image___localFile___parent___id',
+  image___localFile___parent___children = 'image___localFile___parent___children',
+  image___localFile___children = 'image___localFile___children',
+  image___localFile___children___id = 'image___localFile___children___id',
+  image___localFile___children___children = 'image___localFile___children___children',
+  image___localFile___internal___content = 'image___localFile___internal___content',
+  image___localFile___internal___contentDigest = 'image___localFile___internal___contentDigest',
+  image___localFile___internal___description = 'image___localFile___internal___description',
+  image___localFile___internal___fieldOwners = 'image___localFile___internal___fieldOwners',
+  image___localFile___internal___ignoreType = 'image___localFile___internal___ignoreType',
+  image___localFile___internal___mediaType = 'image___localFile___internal___mediaType',
+  image___localFile___internal___owner = 'image___localFile___internal___owner',
+  image___localFile___internal___type = 'image___localFile___internal___type',
+  image___localFile___sourceInstanceName = 'image___localFile___sourceInstanceName',
+  image___localFile___absolutePath = 'image___localFile___absolutePath',
+  image___localFile___relativePath = 'image___localFile___relativePath',
+  image___localFile___extension = 'image___localFile___extension',
+  image___localFile___size = 'image___localFile___size',
+  image___localFile___prettySize = 'image___localFile___prettySize',
+  image___localFile___modifiedTime = 'image___localFile___modifiedTime',
+  image___localFile___accessTime = 'image___localFile___accessTime',
+  image___localFile___changeTime = 'image___localFile___changeTime',
+  image___localFile___birthTime = 'image___localFile___birthTime',
+  image___localFile___root = 'image___localFile___root',
+  image___localFile___dir = 'image___localFile___dir',
+  image___localFile___base = 'image___localFile___base',
+  image___localFile___ext = 'image___localFile___ext',
+  image___localFile___name = 'image___localFile___name',
+  image___localFile___relativeDirectory = 'image___localFile___relativeDirectory',
+  image___localFile___dev = 'image___localFile___dev',
+  image___localFile___mode = 'image___localFile___mode',
+  image___localFile___nlink = 'image___localFile___nlink',
+  image___localFile___uid = 'image___localFile___uid',
+  image___localFile___gid = 'image___localFile___gid',
+  image___localFile___rdev = 'image___localFile___rdev',
+  image___localFile___blksize = 'image___localFile___blksize',
+  image___localFile___ino = 'image___localFile___ino',
+  image___localFile___blocks = 'image___localFile___blocks',
+  image___localFile___atimeMs = 'image___localFile___atimeMs',
+  image___localFile___mtimeMs = 'image___localFile___mtimeMs',
+  image___localFile___ctimeMs = 'image___localFile___ctimeMs',
+  image___localFile___birthtimeMs = 'image___localFile___birthtimeMs',
+  image___localFile___atime = 'image___localFile___atime',
+  image___localFile___mtime = 'image___localFile___mtime',
+  image___localFile___ctime = 'image___localFile___ctime',
+  image___localFile___birthtime = 'image___localFile___birthtime',
+  image___localFile___url = 'image___localFile___url',
+  image___localFile___publicURL = 'image___localFile___publicURL',
   price = 'price',
   selectedOptions = 'selectedOptions',
   selectedOptions___name = 'selectedOptions___name',
@@ -4513,6 +4723,7 @@ export type ShopifyProductVariantFilterInput = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   availableForSale?: Maybe<BooleanQueryOperatorInput>;
+  image?: Maybe<ShopifyProductVariantImageFilterInput>;
   price?: Maybe<StringQueryOperatorInput>;
   selectedOptions?: Maybe<ShopifyProductVariantSelectedOptionsFilterListInput>;
   sku?: Maybe<StringQueryOperatorInput>;
@@ -4534,6 +4745,19 @@ export type ShopifyProductVariantGroupConnection = {
   pageInfo: PageInfo;
   field: Scalars['String'];
   fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type ShopifyProductVariantImage = {
+  __typename?: 'ShopifyProductVariantImage';
+  id?: Maybe<Scalars['String']>;
+  originalSrc?: Maybe<Scalars['String']>;
+  localFile?: Maybe<File>;
+};
+
+export type ShopifyProductVariantImageFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  originalSrc?: Maybe<StringQueryOperatorInput>;
+  localFile?: Maybe<FileFilterInput>;
 };
 
 export type ShopifyProductVariantSelectedOptions = {

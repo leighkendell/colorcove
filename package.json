@@ -8,10 +8,11 @@
     "build-studio": "lerna bootstrap && (cd studio && npm run build)",
     "build-web": "lerna bootstrap && (cd web && npm run build)",
     "graphql-deploy": "lerna run graphql-deploy",
-    "storybook": "(cd web && npm run storybook)",
     "postinstall": "lerna bootstrap",
     "generate-graphql-types": "lerna run generate-graphql-types",
-    "lint": "lerna run lint"
+    "lint": "lerna run lint",
+    "storybook": "NODE_ENV=production start-storybook -s static",
+    "build-storybook": "NODE_ENV=production build-storybook -s static"
   },
   "workspaces": [
     "web",
@@ -25,6 +26,17 @@
   "devDependencies": {
     "@sanity/cli": "^0.141.6",
     "husky": "^3.0.0",
-    "lerna": "^3.15.0"
+    "lerna": "^3.15.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-typescript-to-proptypes": "^0.17.1",
+    "@babel/core": "^7.5.0",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-centered": "^5.1.9",
+    "@storybook/addon-info": "^5.1.9",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addon-viewport": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/react": "^5.1.9",
+    "@types/storybook__react": "^4.0.2"
   }
 }
