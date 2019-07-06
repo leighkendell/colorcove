@@ -7,8 +7,8 @@ const useSal = (pathname: string) => {
   const salInst = useRef(
     isBrowser
       ? sal({
-          threshold: 0.1,
-          rootMargin: '5% 0%',
+          threshold: 0.15,
+          rootMargin: '10% 0%',
         })
       : null
   );
