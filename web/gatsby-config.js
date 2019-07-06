@@ -84,8 +84,6 @@ module.exports = {
         accessToken: `${process.env.GATSBY_SHOPIFY_STOREFRONT_TOKEN}`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 };

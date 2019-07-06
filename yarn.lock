@@ -18175,10 +18175,10 @@ shelljs@^0.8.3:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shopify-buy@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-2.6.1.tgz#c6b7996dff98899c6f7e28151a5be701d4978884"
-  integrity sha512-eYC9nMxTdgN0qJ3VQOzec3i3NuOZwujkqv4wb75XVDtwiV5OzXUgdyxra/f9T1G7il/LWAIY4GvNkfS2PJQlLg==
+shopify-buy@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-2.6.0.tgz#d882d9d00c0a9cafc83404e33953b2d25d1d6065"
+  integrity sha512-11K3SZymv4PxCHdcFJb4KekqKUtLX3tdm91EHY94Z/uffkpSmOyb6l0OtlgyuDf4PqKCmghsAF349qpiol8yVg==
 
 sift@^5.1.0:
   version "5.1.0"
