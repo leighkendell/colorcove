@@ -8,7 +8,7 @@ interface Props {
   data: Query;
 }
 
-const IndexPage: React.FC<Props> = ({ data: { sanityPage } }) => {
+const PageTemplate: React.FC<Props> = ({ data: { sanityPage } }) => {
   if (sanityPage) {
     const { hero, modules } = sanityPage;
 
@@ -23,11 +23,11 @@ const IndexPage: React.FC<Props> = ({ data: { sanityPage } }) => {
   }
 };
 
-export default IndexPage;
+export default PageTemplate;
 
 export const pageQuery = graphql`
-  query IndexQuery {
-    sanityPage(slug: { current: { eq: "home" } }) {
+  query PageTemplateQuery($id: String!) {
+    sanityPage(id: { eq: $id }) {
       title
       hero {
         ...Hero

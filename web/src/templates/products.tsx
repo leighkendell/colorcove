@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { Query } from '../types/graphql-types';
 import Hero from '../components/hero';
-import Module from '../components/module';
 import Section from '../components/section';
 import Wrapper from '../components/wrapper';
 import ProductCardGroup from '../components/product-card-group';
@@ -11,11 +10,11 @@ interface Props {
   data: Query;
 }
 
-const ProductsPage: React.FC<Props> = ({
+const ProductsTemplate: React.FC<Props> = ({
   data: { sanityPage, allSanityProduct },
 }) => {
   if (sanityPage && allSanityProduct) {
-    const { hero, modules } = sanityPage;
+    const { hero } = sanityPage;
 
     return (
       <>
@@ -25,7 +24,6 @@ const ProductsPage: React.FC<Props> = ({
             <ProductCardGroup products={allSanityProduct.edges} />
           </Wrapper>
         </Section>
-        {modules && <Module modules={modules} />}
       </>
     );
   } else {
@@ -33,11 +31,11 @@ const ProductsPage: React.FC<Props> = ({
   }
 };
 
-export default ProductsPage;
+export default ProductsTemplate;
 
 export const productsQuery = graphql`
-  query ProductsPageQuery {
-    sanityPage(slug: { current: { eq: "products" } }) {
+  query ProductsTemplateQuery($id: String!) {
+    sanityPage(id: { eq: $id }) {
       title
       hero {
         ...Hero
