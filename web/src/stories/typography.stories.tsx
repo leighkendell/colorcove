@@ -5,6 +5,8 @@ import Text from '../components/text';
 import TextBlock from '../components/text-block';
 import TextBlockGroup from '../components/text-block-group';
 import RichText from '../components/rich-text';
+import List from '../components/list';
+import ListItem from '../components/list-item';
 
 storiesOf('Typography', module)
   .add('Rich text', () => (
@@ -29,6 +31,12 @@ storiesOf('Typography', module)
         corporis in tenetur laborum eos temporibus aperiam voluptates corrupti,
         error ex?
       </Text>
+      <List>
+        <ListItem>fugit accusamus fugiat</ListItem>
+        <ListItem>Lorem ipsum dolor sit amet consectetur</ListItem>
+        <ListItem>tenetur laborum eos temporibus</ListItem>
+        <ListItem>Ullam nesciunt, natus, nemo</ListItem>
+      </List>
       <Heading type="h3">Lorem ipsum</Heading>
       <Text>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis

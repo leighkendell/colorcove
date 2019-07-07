@@ -12,10 +12,6 @@ const Wrapper = styled.div`
     --space: ${spacing(6)};
   }
 
-  ${breakpoint('large')} {
-    --space: ${spacing(8)};
-  }
-
   > * {
     margin-top: 0;
     margin-bottom: 0;
