@@ -74,6 +74,9 @@ export const productQuery = graphql`
         ... on SanityFeatureText {
           ...FeatureText
         }
+        ... on SanityFeatureTextGroup {
+          ...FeatureTextGroup
+        }
         ... on SanityVimeo {
           ...Vimeo
         }

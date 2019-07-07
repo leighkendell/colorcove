@@ -5,6 +5,9 @@ export default {
       type: 'featureText',
     },
     {
+      type: 'featureTextGroup',
+    },
+    {
       type: 'vimeo',
     },
     {

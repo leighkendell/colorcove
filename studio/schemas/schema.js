@@ -23,6 +23,8 @@ import social from './objects/social';
 import navGroup from './objects/nav-group';
 import pageReference from './objects/page-reference';
 import inlineImage from './objects/inline-image';
+import featureTextGroup from './objects/feature-text-group';
+import featureTextGroupText from './objects/feature-text-group-text';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -35,6 +37,8 @@ export default createSchema({
     mainImage,
     hero,
     featureText,
+    featureTextGroup,
+    featureTextGroupText,
     vimeo,
     videoData,
     imageComparison,

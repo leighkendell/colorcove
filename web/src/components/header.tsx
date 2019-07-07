@@ -101,11 +101,11 @@ const Header: React.FC<Props> = ({
 }) => {
   return (
     <StyledHeader role="banner" hasImage={image ? true : false}>
-      {description && image ? (
+      {image ? (
         <>
           <Content>
             <Heading type="h1">{title}</Heading>
-            <Text>{description}</Text>
+            {description && <Text>{description}</Text>}
             {children}
           </Content>
           <StyledImage image={image} backgroundColor={backgroundColor} alt="" />

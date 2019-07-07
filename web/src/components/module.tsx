@@ -10,6 +10,7 @@ import {
   SanityProductGroup,
   SanityProductReference,
   SanityInlineImage,
+  SanityFeatureTextGroup,
 } from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import { FluidObject } from 'gatsby-image';
@@ -17,6 +18,7 @@ import ImageComparison from './image-comparison';
 import ProductCardGroup from './product-card-group';
 import Heading from './heading';
 import InlineImage from './inline-image';
+import TextBlockGroup from './text-block-group';
 
 interface Props {
   modules: any[];
@@ -38,6 +40,24 @@ const Module: React.FC<Props> = ({ modules }) => {
             horizontal={layout === 'horizontal'}
           />
         );
+        break;
+
+      // Feature text group module
+      case 'featureTextGroup':
+        const { items } = data as SanityFeatureTextGroup;
+
+        if (items) {
+          module = (
+            <TextBlockGroup>
+              {items.map(item => (
+                <TextBlock
+                  title={(item && item.heading) || ''}
+                  description={(item && item.text) || ''}
+                />
+              ))}
+            </TextBlockGroup>
+          );
+        }
         break;
 
       // Vimeo module

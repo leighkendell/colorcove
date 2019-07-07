@@ -11,6 +11,18 @@ export const featureText = graphql`
   }
 `;
 
+// Feature text group module
+export const featureTextGroup = graphql`
+  fragment FeatureTextGroup on SanityFeatureTextGroup {
+    _key
+    _type
+    items {
+      heading
+      text
+    }
+  }
+`;
+
 // Vimeo module
 export const vimeo = graphql`
   fragment Vimeo on SanityVimeo {

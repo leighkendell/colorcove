@@ -3,7 +3,7 @@ import { spacing, breakpoint } from '../utils/style-helpers';
 
 const TextBlockGroup = styled.div`
   display: grid;
-  gap: ${spacing(3)};
+  gap: ${spacing(6)};
   justify-content: center;
 
   ${breakpoint('medium')} {
@@ -16,6 +16,8 @@ const TextBlockGroup = styled.div`
   }
 
   > * {
+    margin: 0;
+
     ${breakpoint('medium')} {
       text-align: left;
     }

@@ -36,6 +36,9 @@ export const pageQuery = graphql`
         ... on SanityFeatureText {
           ...FeatureText
         }
+        ... on SanityFeatureTextGroup {
+          ...FeatureTextGroup
+        }
         ... on SanityVimeo {
           ...Vimeo
         }

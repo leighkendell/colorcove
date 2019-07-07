@@ -1737,8 +1737,24 @@ export type SanityFeatureText = {
   text?: Maybe<Scalars['String']>;
 };
 
-export type SanityFeatureTextOrImageComparisonOrInlineImageOrProductGroupOrVimeo =
+export type SanityFeatureTextGroup = {
+  __typename?: 'SanityFeatureTextGroup';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Maybe<SanityFeatureTextGroupText>>>;
+};
+
+export type SanityFeatureTextGroupText = {
+  __typename?: 'SanityFeatureTextGroupText';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  heading?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+export type SanityFeatureTextOrFeatureTextGroupOrImageComparisonOrInlineImageOrProductGroupOrVimeo =
   | SanityFeatureText
+  | SanityFeatureTextGroup
   | SanityImageComparison
   | SanityInlineImage
   | SanityProductGroup
@@ -2544,7 +2560,7 @@ export type SanityPage = SanityDocument &
     modules?: Maybe<
       Array<
         Maybe<
-          SanityFeatureTextOrImageComparisonOrInlineImageOrProductGroupOrVimeo
+          SanityFeatureTextOrFeatureTextGroupOrImageComparisonOrInlineImageOrProductGroupOrVimeo
         >
       >
     >;
@@ -2890,7 +2906,7 @@ export type SanityProduct = SanityDocument &
     modules?: Maybe<
       Array<
         Maybe<
-          SanityFeatureTextOrImageComparisonOrInlineImageOrProductGroupOrVimeo
+          SanityFeatureTextOrFeatureTextGroupOrImageComparisonOrInlineImageOrProductGroupOrVimeo
         >
       >
     >;
