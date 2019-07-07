@@ -7,6 +7,7 @@ import TextBlockGroup from '../components/text-block-group';
 import RichText from '../components/rich-text';
 import List from '../components/list';
 import ListItem from '../components/list-item';
+import TextLink from '../components/text-link';
 
 storiesOf('Typography', module)
   .add('Rich text', () => (
@@ -27,9 +28,10 @@ storiesOf('Typography', module)
       <Heading type="h2">sit amet consectetur</Heading>
       <Text>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet dolorem,
-        aliquam fugit accusamus fugiat nisi. Ullam nesciunt, natus, nemo
-        corporis in tenetur laborum eos temporibus aperiam voluptates corrupti,
-        error ex?
+        aliquam fugit accusamus <TextLink to="/woop">fugiat nisi</TextLink>.
+        Ullam nesciunt, natus, nemo corporis in{' '}
+        <TextLink to="http://unsplash.com">tenetur</TextLink> laborum eos
+        temporibus aperiam voluptates corrupti, error ex?
       </Text>
       <List>
         <ListItem>fugit accusamus fugiat</ListItem>
