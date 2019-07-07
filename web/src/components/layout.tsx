@@ -13,7 +13,6 @@ import {
   SanitySocial,
   SanityPageReference,
 } from '../types/graphql-types';
-import useSal from '../hooks/use-sal';
 import ShopifyCart from './shopify-cart';
 
 interface Props {
@@ -47,9 +46,6 @@ const Layout: React.FC<Props> = ({ children, location }) => {
   if (previousPathname && previousPathname !== pathname) {
     closeNav();
   }
-
-  // Enable sal.js to handle scroll based animations
-  useSal(pathname);
 
   // Get primary/secondary nav items
   const { sanitySiteSettings } = useStaticQuery<Query>(

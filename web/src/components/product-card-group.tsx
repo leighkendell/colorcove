@@ -35,7 +35,7 @@ const ProductCardGroup: React.FC<Props> = ({ products }) => {
         // Check the product exists
         if (product) {
           const { id, title, description, image, slug } = product;
-          const link = `/products/${slug && slug.current}`;
+          const link = `/products/${slug && slug.current}/`;
           const cardImage: FluidObject = getNestedObject(image, 'asset.fluid');
 
           // Render the card

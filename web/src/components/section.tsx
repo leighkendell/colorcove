@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoint } from '../utils/style-helpers';
 import { useSpring, animated } from 'react-spring';
-import useEventListener from '../hooks/use-event-listener';
+import { useInView } from 'react-intersection-observer';
 import { isBrowser } from '../utils/helpers';
 
 const StyledSection = styled(animated.section)`
@@ -27,25 +27,27 @@ const StyledSection = styled(animated.section)`
 `;
 
 const Section: React.FC = React.memo(({ children }) => {
-  const sectionEl = useRef<HTMLDivElement>(null);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+  });
 
   const [fadeAnimation, set] = useSpring(() => ({
     opacity: isBrowser ? 0 : 1,
     transform: `translateY(${isBrowser ? '32px' : '0px'}) scale(0.95)`,
   }));
 
-  const setFadeAnimation = () => {
-    set({
-      opacity: 1,
-      transform: 'translateY(0px) scale(1)',
-    });
-  };
-
-  // Set the visibility state based on sal:in event
-  useEventListener('sal:in', setFadeAnimation, sectionEl);
+  // Set the visibility based on inView state
+  useEffect(() => {
+    if (inView) {
+      set({
+        opacity: 1,
+        transform: 'translateY(0px) scale(1)',
+      });
+    }
+  }, [inView, set]);
 
   return (
-    <StyledSection ref={sectionEl} style={fadeAnimation} data-sal>
+    <StyledSection ref={ref} style={fadeAnimation} data-sal>
       {children}
     </StyledSection>
   );
