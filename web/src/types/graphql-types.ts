@@ -1423,12 +1423,12 @@ export type QuerySanitySiteSettingsArgs = {
   _updatedAt?: Maybe<DateQueryOperatorInput>;
   _rev?: Maybe<StringQueryOperatorInput>;
   _key?: Maybe<StringQueryOperatorInput>;
-  social?: Maybe<SanitySocialFilterInput>;
   primaryNav?: Maybe<SanityNavGroupFilterInput>;
   secondaryNav?: Maybe<SanityNavGroupFilterInput>;
-  _rawSocial?: Maybe<JsonQueryOperatorInput>;
+  social?: Maybe<SanitySocialFilterInput>;
   _rawPrimaryNav?: Maybe<JsonQueryOperatorInput>;
   _rawSecondaryNav?: Maybe<JsonQueryOperatorInput>;
+  _rawSocial?: Maybe<JsonQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1737,9 +1737,10 @@ export type SanityFeatureText = {
   text?: Maybe<Scalars['String']>;
 };
 
-export type SanityFeatureTextOrImageComparisonOrProductGroupOrVimeo =
+export type SanityFeatureTextOrImageComparisonOrInlineImageOrProductGroupOrVimeo =
   | SanityFeatureText
   | SanityImageComparison
+  | SanityInlineImage
   | SanityProductGroup
   | SanityVimeo;
 
@@ -2488,6 +2489,14 @@ export type SanityImagePaletteSwatchFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
 };
 
+export type SanityInlineImage = {
+  __typename?: 'SanityInlineImage';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  alt?: Maybe<Scalars['String']>;
+  image?: Maybe<SanityMainImage>;
+};
+
 export type SanityMainImage = {
   __typename?: 'SanityMainImage';
   _key?: Maybe<Scalars['String']>;
@@ -2533,7 +2542,11 @@ export type SanityPage = SanityDocument &
     image?: Maybe<SanityMainImage>;
     hero?: Maybe<SanityHero>;
     modules?: Maybe<
-      Array<Maybe<SanityFeatureTextOrImageComparisonOrProductGroupOrVimeo>>
+      Array<
+        Maybe<
+          SanityFeatureTextOrImageComparisonOrInlineImageOrProductGroupOrVimeo
+        >
+      >
     >;
     _rawSlug?: Maybe<Scalars['JSON']>;
     _rawImage?: Maybe<Scalars['JSON']>;
@@ -2875,7 +2888,11 @@ export type SanityProduct = SanityDocument &
     image?: Maybe<SanityMainImage>;
     hero?: Maybe<SanityHero>;
     modules?: Maybe<
-      Array<Maybe<SanityFeatureTextOrImageComparisonOrProductGroupOrVimeo>>
+      Array<
+        Maybe<
+          SanityFeatureTextOrImageComparisonOrInlineImageOrProductGroupOrVimeo
+        >
+      >
     >;
     shopifyId?: Maybe<Scalars['Float']>;
     shopifyDefaultVariant?: Maybe<SanityShopifyVariant>;
@@ -3245,12 +3262,12 @@ export type SanitySiteSettings = SanityDocument &
     _updatedAt?: Maybe<Scalars['Date']>;
     _rev?: Maybe<Scalars['String']>;
     _key?: Maybe<Scalars['String']>;
-    social?: Maybe<SanitySocial>;
     primaryNav?: Maybe<SanityNavGroup>;
     secondaryNav?: Maybe<SanityNavGroup>;
-    _rawSocial?: Maybe<Scalars['JSON']>;
+    social?: Maybe<SanitySocial>;
     _rawPrimaryNav?: Maybe<Scalars['JSON']>;
     _rawSecondaryNav?: Maybe<Scalars['JSON']>;
+    _rawSocial?: Maybe<Scalars['JSON']>;
     id: Scalars['ID'];
     parent?: Maybe<Node>;
     children: Array<Node>;
@@ -3271,15 +3288,15 @@ export type SanitySiteSettings_UpdatedAtArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
-export type SanitySiteSettings_RawSocialArgs = {
-  resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
-};
-
 export type SanitySiteSettings_RawPrimaryNavArgs = {
   resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
 };
 
 export type SanitySiteSettings_RawSecondaryNavArgs = {
+  resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+export type SanitySiteSettings_RawSocialArgs = {
   resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
 };
 
@@ -3317,11 +3334,6 @@ export enum SanitySiteSettingsFieldsEnum {
   _updatedAt = '_updatedAt',
   _rev = '_rev',
   _key = '_key',
-  social____key = 'social____key',
-  social____type = 'social____type',
-  social___vimeo = 'social___vimeo',
-  social___instagram = 'social___instagram',
-  social___facebook = 'social___facebook',
   primaryNav____key = 'primaryNav____key',
   primaryNav____type = 'primaryNav____type',
   primaryNav___pages = 'primaryNav___pages',
@@ -3360,9 +3372,14 @@ export enum SanitySiteSettingsFieldsEnum {
   secondaryNav___pages___page____rawModules = 'secondaryNav___pages___page____rawModules',
   secondaryNav___pages___page___id = 'secondaryNav___pages___page___id',
   secondaryNav___pages___page___children = 'secondaryNav___pages___page___children',
-  _rawSocial = '_rawSocial',
+  social____key = 'social____key',
+  social____type = 'social____type',
+  social___vimeo = 'social___vimeo',
+  social___instagram = 'social___instagram',
+  social___facebook = 'social___facebook',
   _rawPrimaryNav = '_rawPrimaryNav',
   _rawSecondaryNav = '_rawSecondaryNav',
+  _rawSocial = '_rawSocial',
   id = 'id',
   parent___id = 'parent___id',
   parent___parent___id = 'parent___parent___id',
@@ -3458,12 +3475,12 @@ export type SanitySiteSettingsFilterInput = {
   _updatedAt?: Maybe<DateQueryOperatorInput>;
   _rev?: Maybe<StringQueryOperatorInput>;
   _key?: Maybe<StringQueryOperatorInput>;
-  social?: Maybe<SanitySocialFilterInput>;
   primaryNav?: Maybe<SanityNavGroupFilterInput>;
   secondaryNav?: Maybe<SanityNavGroupFilterInput>;
-  _rawSocial?: Maybe<JsonQueryOperatorInput>;
+  social?: Maybe<SanitySocialFilterInput>;
   _rawPrimaryNav?: Maybe<JsonQueryOperatorInput>;
   _rawSecondaryNav?: Maybe<JsonQueryOperatorInput>;
+  _rawSocial?: Maybe<JsonQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;

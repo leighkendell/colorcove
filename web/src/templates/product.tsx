@@ -80,6 +80,12 @@ export const productQuery = graphql`
         ... on SanityImageComparison {
           ...ImageComparison
         }
+        ... on SanityProductGroup {
+          ...ProductGroup
+        }
+        ... on SanityInlineImage {
+          ...InlineImage
+        }
       }
       shopifyDefaultVariant {
         price

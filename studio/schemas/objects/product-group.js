@@ -13,6 +13,7 @@ export default {
       type: 'array',
       of: [
         {
+          title: 'Product',
           type: 'productReference',
         },
       ],

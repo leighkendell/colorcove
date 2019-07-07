@@ -47,6 +47,27 @@ export const imageComparison = graphql`
   }
 `;
 
+// Image module
+export const image = graphql`
+  fragment InlineImage on SanityInlineImage {
+    _key
+    _type
+    alt
+    image {
+      asset {
+        fluid(maxWidth: 2000) {
+          ...GatsbySanityImageFluid
+        }
+        metadata {
+          dimensions {
+            width
+          }
+        }
+      }
+    }
+  }
+`;
+
 // Hero module
 export const hero = graphql`
   fragment Hero on SanityHero {

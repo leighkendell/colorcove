@@ -13,5 +13,8 @@ export default {
     {
       type: 'productGroup',
     },
+    {
+      type: 'inlineImage',
+    },
   ],
 };

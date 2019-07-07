@@ -9,12 +9,14 @@ import {
   SanityImageComparison,
   SanityProductGroup,
   SanityProductReference,
+  SanityInlineImage,
 } from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import { FluidObject } from 'gatsby-image';
 import ImageComparison from './image-comparison';
 import ProductCardGroup from './product-card-group';
 import Heading from './heading';
+import InlineImage from './inline-image';
 
 interface Props {
   modules: any[];
@@ -40,8 +42,11 @@ const Module: React.FC<Props> = ({ modules }) => {
 
       // Vimeo module
       case 'vimeo':
-        const { image, data: videoData } = data as SanityVimeo;
-        const placeholder: FluidObject = getNestedObject(image, 'asset.fluid');
+        const { image: thumbnail, data: videoData } = data as SanityVimeo;
+        const placeholder: FluidObject = getNestedObject(
+          thumbnail,
+          'asset.fluid'
+        );
 
         if (videoData) {
           const { url, width, height, thumbnail } = videoData;
@@ -89,6 +94,7 @@ const Module: React.FC<Props> = ({ modules }) => {
         }
         break;
 
+      // Product group module
       case 'productGroup':
         const { title, products } = data as SanityProductGroup;
 
@@ -104,6 +110,31 @@ const Module: React.FC<Props> = ({ modules }) => {
                 products={products as SanityProductReference[]}
               />
             </>
+          );
+        }
+        break;
+
+      // Image module
+      case 'inlineImage':
+        const { image, alt } = data as SanityInlineImage;
+
+        const inlineImage: FluidObject | undefined = getNestedObject(
+          image,
+          'asset.fluid'
+        );
+
+        const inlineImageWidth = getNestedObject(
+          image,
+          'asset.metadata.dimensions.width'
+        );
+
+        if (inlineImage && alt && inlineImageWidth) {
+          module = (
+            <InlineImage
+              image={inlineImage}
+              alt={alt}
+              width={inlineImageWidth}
+            />
           );
         }
         break;
