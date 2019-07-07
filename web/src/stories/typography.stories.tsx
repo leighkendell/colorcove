@@ -4,13 +4,12 @@ import Heading from '../components/heading';
 import Text from '../components/text';
 import TextBlock from '../components/text-block';
 import TextBlockGroup from '../components/text-block-group';
+import RichText from '../components/rich-text';
 
 storiesOf('Typography', module)
-  .add('Heading and Text', () => (
-    <>
-      <Heading type="h1">Heading 1</Heading>
-      <Heading type="h2">Heading 2</Heading>
-      <Heading type="h3">Heading 3</Heading>
+  .add('Rich text', () => (
+    <RichText>
+      <Heading type="h1">Lorem ipsum dolor</Heading>
       <Text>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet dolorem,
         aliquam fugit accusamus fugiat nisi. Ullam nesciunt, natus, nemo
@@ -18,12 +17,32 @@ storiesOf('Typography', module)
         error ex?
       </Text>
       <Text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet dolorem,
+        aliquam fugit accusamus fugiat nisi. Ullam nesciunt, natus, nemo
+        corporis in tenetur laborum eos temporibus aperiam voluptates corrupti,
+        error ex?
+      </Text>
+      <Heading type="h2">sit amet consectetur</Heading>
+      <Text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet dolorem,
+        aliquam fugit accusamus fugiat nisi. Ullam nesciunt, natus, nemo
+        corporis in tenetur laborum eos temporibus aperiam voluptates corrupti,
+        error ex?
+      </Text>
+      <Heading type="h3">Lorem ipsum</Heading>
+      <Text>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis
         recusandae, tenetur earum, error accusantium doloribus nisi praesentium
         optio aliquid nostrum consectetur dolorum velit omnis iste inventore,
         temporibus voluptatibus quaerat sapiente.
       </Text>
-    </>
+      <Text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet dolorem,
+        aliquam fugit accusamus fugiat nisi. Ullam nesciunt, natus, nemo
+        corporis in tenetur laborum eos temporibus aperiam voluptates corrupti,
+        error ex?
+      </Text>
+    </RichText>
   ))
   .add('Text block', () => (
     <TextBlock

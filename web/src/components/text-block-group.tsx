@@ -16,7 +16,9 @@ const TextBlockGroup = styled.div`
   }
 
   > * {
-    text-align: left;
+    ${breakpoint('medium')} {
+      text-align: left;
+    }
   }
 `;
 

@@ -12,7 +12,11 @@ interface Heading {
 
 /** Common heading styles */
 const sharedStyle = css<{ align: align }>`
-  margin: 0 0 ${spacing(3)};
+  margin: 0 0 ${spacing(2)};
+
+  ${breakpoint('small')} {
+    margin-bottom: ${spacing(3)};
+  }
 
   ${breakpoint('medium')} {
     text-align: ${props => props.align};
@@ -31,41 +35,40 @@ const sharedStyle = css<{ align: align }>`
 
 const H1 = styled.h1`
   ${sharedStyle};
-  ${fontSize(44, 6)};
+  ${fontSize(38, 6)};
 
   ${breakpoint('medium')} {
-    ${fontSize(54, 10)}
+    ${fontSize(45, 7)}
   }
 
   ${breakpoint('large')} {
-    ${fontSize(64, 10)}
+    ${fontSize(54, 9)}
   }
 `;
 
 const H2 = styled.h2`
   ${sharedStyle};
-  ${fontSize(34, 5)};
+  ${fontSize(28, 4.5)};
 
   ${breakpoint('medium')} {
-    ${fontSize(38, 6)}
+    ${fontSize(32, 5)}
   }
 
   ${breakpoint('large')} {
-    ${fontSize(42, 6)};
+    ${fontSize(36, 6)};
   }
 `;
 
 const H3 = styled.h3`
   ${sharedStyle};
-  margin: 0 0 ${spacing(2)};
-  ${fontSize(22, 5)};
+  ${fontSize(21, 3.5)};
 
   ${breakpoint('medium')} {
-    ${fontSize(24, 5)};
+    ${fontSize(22, 3.5)};
   }
 
   ${breakpoint('large')} {
-    ${fontSize(26, 5)};
+    ${fontSize(24, 4)};
   }
 `;
 

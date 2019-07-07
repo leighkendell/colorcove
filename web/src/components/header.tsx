@@ -80,7 +80,7 @@ const Content = styled.div`
   }
 
   ${breakpoint('xLarge')} {
-    max-width: ${spacing(100)};
+    max-width: ${spacing(90)};
   }
 
   ${Button} {
@@ -111,7 +111,9 @@ const Header: React.FC<Props> = ({
           <StyledImage image={image} backgroundColor={backgroundColor} alt="" />
         </>
       ) : (
-        <Heading type="h1">{title}</Heading>
+        <Heading type="h1" align="center">
+          {title}
+        </Heading>
       )}
     </StyledHeader>
   );
