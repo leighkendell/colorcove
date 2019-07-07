@@ -45,7 +45,7 @@ const Section: React.FC = React.memo(({ children }) => {
   useEventListener('sal:in', setFadeAnimation, sectionEl);
 
   return (
-    <StyledSection ref={sectionEl} style={fadeAnimation} data-sal="fade">
+    <StyledSection ref={sectionEl} style={fadeAnimation} data-sal>
       {children}
     </StyledSection>
   );

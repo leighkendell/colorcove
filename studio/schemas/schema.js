@@ -20,6 +20,8 @@ import shopifyVariant from './objects/shopify-variant';
 import productReference from './objects/product-reference';
 import productGroup from './objects/product-group';
 import social from './objects/social';
+import navGroup from './objects/nav-group';
+import pageReference from './objects/page-reference';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -39,6 +41,8 @@ export default createSchema({
     productReference,
     productGroup,
     social,
+    navGroup,
+    pageReference,
     // Documents
     page,
     product,

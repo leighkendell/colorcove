@@ -1261,16 +1261,16 @@ export type Query = {
   allSite?: Maybe<SiteConnection>;
   directory?: Maybe<Directory>;
   allDirectory?: Maybe<DirectoryConnection>;
-  shopifyCollection?: Maybe<ShopifyCollection>;
-  allShopifyCollection?: Maybe<ShopifyCollectionConnection>;
+  shopifyProductType?: Maybe<ShopifyProductType>;
+  allShopifyProductType?: Maybe<ShopifyProductTypeConnection>;
   shopifyProduct?: Maybe<ShopifyProduct>;
   allShopifyProduct?: Maybe<ShopifyProductConnection>;
   shopifyProductVariant?: Maybe<ShopifyProductVariant>;
   allShopifyProductVariant?: Maybe<ShopifyProductVariantConnection>;
   shopifyProductOption?: Maybe<ShopifyProductOption>;
   allShopifyProductOption?: Maybe<ShopifyProductOptionConnection>;
-  shopifyProductType?: Maybe<ShopifyProductType>;
-  allShopifyProductType?: Maybe<ShopifyProductTypeConnection>;
+  shopifyCollection?: Maybe<ShopifyCollection>;
+  allShopifyCollection?: Maybe<ShopifyCollectionConnection>;
 };
 
 export type QueryImageSharpArgs = {
@@ -1424,7 +1424,11 @@ export type QuerySanitySiteSettingsArgs = {
   _rev?: Maybe<StringQueryOperatorInput>;
   _key?: Maybe<StringQueryOperatorInput>;
   social?: Maybe<SanitySocialFilterInput>;
+  primaryNav?: Maybe<SanityNavGroupFilterInput>;
+  secondaryNav?: Maybe<SanityNavGroupFilterInput>;
   _rawSocial?: Maybe<JsonQueryOperatorInput>;
+  _rawPrimaryNav?: Maybe<JsonQueryOperatorInput>;
+  _rawSecondaryNav?: Maybe<JsonQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -1600,23 +1604,18 @@ export type QueryAllDirectoryArgs = {
   limit?: Maybe<Scalars['Int']>;
 };
 
-export type QueryShopifyCollectionArgs = {
+export type QueryShopifyProductTypeArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  descriptionHtml?: Maybe<StringQueryOperatorInput>;
-  handle?: Maybe<StringQueryOperatorInput>;
-  products?: Maybe<ShopifyProductFilterListInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-  updatedAt?: Maybe<DateQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
   shopifyId?: Maybe<StringQueryOperatorInput>;
 };
 
-export type QueryAllShopifyCollectionArgs = {
-  filter?: Maybe<ShopifyCollectionFilterInput>;
-  sort?: Maybe<ShopifyCollectionSortInput>;
+export type QueryAllShopifyProductTypeArgs = {
+  filter?: Maybe<ShopifyProductTypeFilterInput>;
+  sort?: Maybe<ShopifyProductTypeSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -1690,18 +1689,23 @@ export type QueryAllShopifyProductOptionArgs = {
   limit?: Maybe<Scalars['Int']>;
 };
 
-export type QueryShopifyProductTypeArgs = {
+export type QueryShopifyCollectionArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
-  name?: Maybe<StringQueryOperatorInput>;
+  description?: Maybe<StringQueryOperatorInput>;
+  descriptionHtml?: Maybe<StringQueryOperatorInput>;
+  handle?: Maybe<StringQueryOperatorInput>;
+  products?: Maybe<ShopifyProductFilterListInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
   shopifyId?: Maybe<StringQueryOperatorInput>;
 };
 
-export type QueryAllShopifyProductTypeArgs = {
-  filter?: Maybe<ShopifyProductTypeFilterInput>;
-  sort?: Maybe<ShopifyProductTypeSortInput>;
+export type QueryAllShopifyCollectionArgs = {
+  filter?: Maybe<ShopifyCollectionFilterInput>;
+  sort?: Maybe<ShopifyCollectionSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -2501,6 +2505,19 @@ export type SanityMainImageFilterInput = {
   crop?: Maybe<SanityImageCropFilterInput>;
 };
 
+export type SanityNavGroup = {
+  __typename?: 'SanityNavGroup';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  pages?: Maybe<Array<Maybe<SanityPageReference>>>;
+};
+
+export type SanityNavGroupFilterInput = {
+  _key?: Maybe<StringQueryOperatorInput>;
+  _type?: Maybe<StringQueryOperatorInput>;
+  pages?: Maybe<SanityPageReferenceFilterListInput>;
+};
+
 export type SanityPage = SanityDocument &
   Node & {
     __typename?: 'SanityPage';
@@ -2819,6 +2836,23 @@ export type SanityPageGroupConnection = {
   pageInfo: PageInfo;
   field: Scalars['String'];
   fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type SanityPageReference = {
+  __typename?: 'SanityPageReference';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  page?: Maybe<SanityPage>;
+};
+
+export type SanityPageReferenceFilterInput = {
+  _key?: Maybe<StringQueryOperatorInput>;
+  _type?: Maybe<StringQueryOperatorInput>;
+  page?: Maybe<SanityPageFilterInput>;
+};
+
+export type SanityPageReferenceFilterListInput = {
+  elemMatch?: Maybe<SanityPageReferenceFilterInput>;
 };
 
 export type SanityPageSortInput = {
@@ -3212,7 +3246,11 @@ export type SanitySiteSettings = SanityDocument &
     _rev?: Maybe<Scalars['String']>;
     _key?: Maybe<Scalars['String']>;
     social?: Maybe<SanitySocial>;
+    primaryNav?: Maybe<SanityNavGroup>;
+    secondaryNav?: Maybe<SanityNavGroup>;
     _rawSocial?: Maybe<Scalars['JSON']>;
+    _rawPrimaryNav?: Maybe<Scalars['JSON']>;
+    _rawSecondaryNav?: Maybe<Scalars['JSON']>;
     id: Scalars['ID'];
     parent?: Maybe<Node>;
     children: Array<Node>;
@@ -3234,6 +3272,14 @@ export type SanitySiteSettings_UpdatedAtArgs = {
 };
 
 export type SanitySiteSettings_RawSocialArgs = {
+  resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+export type SanitySiteSettings_RawPrimaryNavArgs = {
+  resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
+};
+
+export type SanitySiteSettings_RawSecondaryNavArgs = {
   resolveReferences?: Maybe<SanityResolveReferencesConfiguration>;
 };
 
@@ -3276,7 +3322,47 @@ export enum SanitySiteSettingsFieldsEnum {
   social___vimeo = 'social___vimeo',
   social___instagram = 'social___instagram',
   social___facebook = 'social___facebook',
+  primaryNav____key = 'primaryNav____key',
+  primaryNav____type = 'primaryNav____type',
+  primaryNav___pages = 'primaryNav___pages',
+  primaryNav___pages____key = 'primaryNav___pages____key',
+  primaryNav___pages____type = 'primaryNav___pages____type',
+  primaryNav___pages___page____id = 'primaryNav___pages___page____id',
+  primaryNav___pages___page____type = 'primaryNav___pages___page____type',
+  primaryNav___pages___page____createdAt = 'primaryNav___pages___page____createdAt',
+  primaryNav___pages___page____updatedAt = 'primaryNav___pages___page____updatedAt',
+  primaryNav___pages___page____rev = 'primaryNav___pages___page____rev',
+  primaryNav___pages___page____key = 'primaryNav___pages___page____key',
+  primaryNav___pages___page___title = 'primaryNav___pages___page___title',
+  primaryNav___pages___page___description = 'primaryNav___pages___page___description',
+  primaryNav___pages___page____rawSlug = 'primaryNav___pages___page____rawSlug',
+  primaryNav___pages___page____rawImage = 'primaryNav___pages___page____rawImage',
+  primaryNav___pages___page____rawHero = 'primaryNav___pages___page____rawHero',
+  primaryNav___pages___page____rawModules = 'primaryNav___pages___page____rawModules',
+  primaryNav___pages___page___id = 'primaryNav___pages___page___id',
+  primaryNav___pages___page___children = 'primaryNav___pages___page___children',
+  secondaryNav____key = 'secondaryNav____key',
+  secondaryNav____type = 'secondaryNav____type',
+  secondaryNav___pages = 'secondaryNav___pages',
+  secondaryNav___pages____key = 'secondaryNav___pages____key',
+  secondaryNav___pages____type = 'secondaryNav___pages____type',
+  secondaryNav___pages___page____id = 'secondaryNav___pages___page____id',
+  secondaryNav___pages___page____type = 'secondaryNav___pages___page____type',
+  secondaryNav___pages___page____createdAt = 'secondaryNav___pages___page____createdAt',
+  secondaryNav___pages___page____updatedAt = 'secondaryNav___pages___page____updatedAt',
+  secondaryNav___pages___page____rev = 'secondaryNav___pages___page____rev',
+  secondaryNav___pages___page____key = 'secondaryNav___pages___page____key',
+  secondaryNav___pages___page___title = 'secondaryNav___pages___page___title',
+  secondaryNav___pages___page___description = 'secondaryNav___pages___page___description',
+  secondaryNav___pages___page____rawSlug = 'secondaryNav___pages___page____rawSlug',
+  secondaryNav___pages___page____rawImage = 'secondaryNav___pages___page____rawImage',
+  secondaryNav___pages___page____rawHero = 'secondaryNav___pages___page____rawHero',
+  secondaryNav___pages___page____rawModules = 'secondaryNav___pages___page____rawModules',
+  secondaryNav___pages___page___id = 'secondaryNav___pages___page___id',
+  secondaryNav___pages___page___children = 'secondaryNav___pages___page___children',
   _rawSocial = '_rawSocial',
+  _rawPrimaryNav = '_rawPrimaryNav',
+  _rawSecondaryNav = '_rawSecondaryNav',
   id = 'id',
   parent___id = 'parent___id',
   parent___parent___id = 'parent___parent___id',
@@ -3373,7 +3459,11 @@ export type SanitySiteSettingsFilterInput = {
   _rev?: Maybe<StringQueryOperatorInput>;
   _key?: Maybe<StringQueryOperatorInput>;
   social?: Maybe<SanitySocialFilterInput>;
+  primaryNav?: Maybe<SanityNavGroupFilterInput>;
+  secondaryNav?: Maybe<SanityNavGroupFilterInput>;
   _rawSocial?: Maybe<JsonQueryOperatorInput>;
+  _rawPrimaryNav?: Maybe<JsonQueryOperatorInput>;
+  _rawSecondaryNav?: Maybe<JsonQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
