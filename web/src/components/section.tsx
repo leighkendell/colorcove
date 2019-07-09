@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoint } from '../utils/style-helpers';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated, config } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import { isBrowser } from '../utils/helpers';
 
@@ -33,7 +33,8 @@ const Section: React.FC = React.memo(({ children }) => {
 
   const [fadeAnimation, set] = useSpring(() => ({
     opacity: isBrowser ? 0 : 1,
-    transform: `translateY(${isBrowser ? '32px' : '0px'}) scale(0.95)`,
+    transform: `translateY(${isBrowser ? '32px' : '0px'})`,
+    config: config.slow,
   }));
 
   // Set the visibility based on inView state
@@ -41,13 +42,13 @@ const Section: React.FC = React.memo(({ children }) => {
     if (inView) {
       set({
         opacity: 1,
-        transform: 'translateY(0px) scale(1)',
+        transform: 'translateY(0px)',
       });
     }
   }, [inView, set]);
 
   return (
-    <StyledSection ref={ref} style={fadeAnimation} data-sal>
+    <StyledSection ref={ref} style={fadeAnimation}>
       {children}
     </StyledSection>
   );

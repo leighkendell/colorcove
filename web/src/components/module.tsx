@@ -53,6 +53,7 @@ const Module: React.FC<Props> = ({ modules }) => {
                 <TextBlock
                   title={(item && item.heading) || ''}
                   description={(item && item.text) || ''}
+                  key={(item && item._key) || ''}
                 />
               ))}
             </TextBlockGroup>

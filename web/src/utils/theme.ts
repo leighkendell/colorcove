@@ -3,7 +3,7 @@ import { DefaultTheme } from 'styled-components';
 const colorcoveTheme: DefaultTheme = {
   // Colors
   colorWhite: '#fff',
-  colorBlack: '#090909',
+  colorBlack: '#101010',
   colorLightGrey: '#f7f7f8',
   colorMidGrey: '#e9e9ea',
   colorBlue: '#335bfa',

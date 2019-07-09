@@ -17,6 +17,7 @@ export const featureTextGroup = graphql`
     _key
     _type
     items {
+      _key
       heading
       text
     }

@@ -1,7 +1,7 @@
 import React, { useRef, CSSProperties } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
-import { ReactComponent as Logo } from '../images/colorcove-logo.svg';
+import { ReactComponent as Logo } from '../images/colorcove-logo-solid.svg';
 import { ReactComponent as Hamburger } from '../images/hamburger.svg';
 import { ReactComponent as Close } from '../images/close.svg';
 import { ReactComponent as Cart } from '../images/cart.svg';
@@ -80,6 +80,10 @@ const StyledLink = styled(Link)`
     display: block;
     width: auto;
     height: ${spacing(3)};
+
+    * {
+      fill: ${props => props.theme.colorBlack};
+    }
 
     ${breakpoint('medium')} {
       height: ${spacing(4)};
