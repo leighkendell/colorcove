@@ -6,6 +6,7 @@
   "author": "Leigh Kendell <leigh@leighkendell.com>",
   "dependencies": {
     "@sanity/client": "^0.141.6",
+    "@types/react-dom": "^16.8.4",
     "@vimeo/player": "^2.9.1",
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby": "^2.13.9",
