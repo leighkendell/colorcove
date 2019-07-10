@@ -28,6 +28,11 @@ export const ButtonBaseStyle = css`
     padding: ${spacing(3)} ${spacing(7)};
   }
 
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
   &:hover {
     background-color: ${props => darken(0.2, props.theme.colorBlue)};
   }

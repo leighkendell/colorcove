@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import { Query } from '../types/graphql-types';
 import Hero from '../components/hero';
@@ -7,6 +7,7 @@ import Button from '../components/button';
 import { ReactComponent as Icon } from '../images/cart.svg';
 import { useShopifyProduct, useShopifyClient } from '../hooks/shopify';
 import useStore from '../hooks/use-store';
+import Message from '../components/message';
 
 interface Props {
   data: Query;
@@ -19,6 +20,10 @@ const ProductTemplate: React.FC<Props> = ({
   const checkoutId = useStore(state => state.checkoutId);
   const setCheckout = useStore(state => state.setCheckout);
 
+  // Local state
+  const [message, setMessage] = useState('');
+  const [updating, setUpdating] = useState(false);
+
   const product = useShopifyProduct(
     (shopifyProduct && shopifyProduct.shopifyId) || ''
   );
@@ -29,10 +34,17 @@ const ProductTemplate: React.FC<Props> = ({
   // TODO: Clean up types once @types/shopify-buy are updated
   const handleBuy = () => {
     if (checkoutId && defaultVariant) {
+      setMessage('Updating cart...');
+      setUpdating(true);
+
       const lineItemsToAdd = [{ variantId: defaultVariant.id, quantity: 1 }];
       (client as any).checkout
         .addLineItems(checkoutId, lineItemsToAdd)
-        .then((checkout: any) => setCheckout(checkout));
+        .then((checkout: any) => {
+          setMessage('Product successfully added to your cart');
+          setUpdating(false);
+          setCheckout(checkout);
+        });
     }
   };
 
@@ -47,13 +59,14 @@ const ProductTemplate: React.FC<Props> = ({
       <>
         {hero && (
           <Hero hero={hero}>
-            <Button icon onClick={handleBuy}>
+            <Button icon onClick={handleBuy} disabled={updating}>
               <Icon />
               Buy for {price}
             </Button>
           </Hero>
         )}
         {modules && <Module modules={modules} />}
+        <Message isVisible={updating}>{message}</Message>
       </>
     );
   } else {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
@@ -10,11 +10,17 @@ const notificationEl = isBrowser ? document.body : null;
 
 interface Props {
   isVisible?: boolean;
+  timeout?: number;
 }
 
 const StyledMessage = styled(animated.div)`
+  position: fixed;
+  right: ${spacing(4)};
+  bottom: ${spacing(4)};
+  z-index: 1;
   display: inline-block;
-  width: 100%;
+  width: calc(100% - ${spacing(8)});
+  max-width: 400px;
   padding: ${spacing(3)};
   ${fontSize(16, 3)};
   background-color: ${props => props.theme.colorWhite};
@@ -27,20 +33,38 @@ const StyledMessage = styled(animated.div)`
   }
 `;
 
-const Message: React.FC<Props> = ({ children, isVisible }) => {
-  const transition = useTransition(isVisible, null, {
+const Message: React.FC<Props> = ({ children, isVisible, timeout = 4000 }) => {
+  const [timerActive, setTimerActive] = useState(false);
+
+  useEffect(() => {
+    if (timeout && isVisible) {
+      setTimerActive(true);
+
+      const timer = setTimeout(() => {
+        setTimerActive(false);
+      }, timeout);
+
+      return () => {
+        console.log('clearing');
+        clearTimeout(timer);
+      };
+    }
+  }, [isVisible, timeout]);
+
+  const transition = useTransition(isVisible && timerActive, null, {
     from: {
       opacity: 0,
-      transform: 'scale(0.95) translateY(100%)',
+      transform: 'translateY(16px) scale(0.95)',
     },
     enter: {
       opacity: 1,
-      transform: 'scale(1) translateY(0)',
+      transform: 'translateY(0) scale(1)',
     },
     leave: {
       opacity: 0,
-      transform: 'scale(0) translateY(100%)',
+      transform: 'translateY(16px) scale(0.95)',
     },
+    trail: timeout,
   });
 
   return (

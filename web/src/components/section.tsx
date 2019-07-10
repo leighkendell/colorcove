@@ -33,7 +33,7 @@ const Section: React.FC = React.memo(({ children }) => {
 
   const [fadeAnimation, set] = useSpring(() => ({
     opacity: isBrowser ? 0 : 1,
-    transform: `translateY(${isBrowser ? '32px' : '0px'})`,
+    transform: `translateY(${isBrowser ? '24px' : '0px'})`,
     config: config.slow,
   }));
 
