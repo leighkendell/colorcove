@@ -25,6 +25,7 @@ import pageReference from './objects/page-reference';
 import inlineImage from './objects/inline-image';
 import featureTextGroup from './objects/feature-text-group';
 import featureTextGroupText from './objects/feature-text-group-text';
+import richText from './objects/rich-text';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -39,6 +40,7 @@ export default createSchema({
     featureText,
     featureTextGroup,
     featureTextGroupText,
+    richText,
     vimeo,
     videoData,
     imageComparison,

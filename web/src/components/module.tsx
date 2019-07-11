@@ -11,6 +11,7 @@ import {
   SanityProductReference,
   SanityInlineImage,
   SanityFeatureTextGroup,
+  SanityBlock,
 } from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import { FluidObject } from 'gatsby-image';
@@ -19,13 +20,15 @@ import ProductCardGroup from './product-card-group';
 import Heading from './heading';
 import InlineImage from './inline-image';
 import TextBlockGroup from './text-block-group';
+import PortableText from './portable-text';
 
 interface Props {
   modules: any[];
+  rawModules: any[];
 }
 
-const Module: React.FC<Props> = ({ modules }) => {
-  const content = modules.map(({ _key, _type, ...data }) => {
+const Module: React.FC<Props> = ({ modules, rawModules }) => {
+  const content = modules.map(({ _key, _type, ...data }, index) => {
     let module = null;
 
     switch (_type) {
@@ -59,6 +62,12 @@ const Module: React.FC<Props> = ({ modules }) => {
             </TextBlockGroup>
           );
         }
+        break;
+
+      // Rich text module
+      case 'richText':
+        const blocks = rawModules[index].blocks as SanityBlock[];
+        module = <PortableText blocks={blocks} />;
         break;
 
       // Vimeo module

@@ -24,6 +24,14 @@ export const featureTextGroup = graphql`
   }
 `;
 
+// Rich text module
+export const richText = graphql`
+  fragment RichText on SanityRichText {
+    _key
+    _type
+  }
+`;
+
 // Vimeo module
 export const vimeo = graphql`
   fragment Vimeo on SanityVimeo {

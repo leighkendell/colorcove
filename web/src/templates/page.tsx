@@ -10,12 +10,12 @@ interface Props {
 
 const PageTemplate: React.FC<Props> = ({ data: { sanityPage } }) => {
   if (sanityPage) {
-    const { hero, modules } = sanityPage;
+    const { hero, modules, _rawModules } = sanityPage;
 
     return (
       <>
         {hero && <Hero hero={hero} />}
-        {modules && <Module modules={modules} />}
+        {modules && <Module modules={modules} rawModules={_rawModules} />}
       </>
     );
   } else {
@@ -32,12 +32,16 @@ export const pageQuery = graphql`
       hero {
         ...Hero
       }
+      _rawModules
       modules {
         ... on SanityFeatureText {
           ...FeatureText
         }
         ... on SanityFeatureTextGroup {
           ...FeatureTextGroup
+        }
+        ... on SanityRichText {
+          ...RichText
         }
         ... on SanityVimeo {
           ...Vimeo

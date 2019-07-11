@@ -50,7 +50,7 @@ const ProductTemplate: React.FC<Props> = ({
   };
 
   if (sanityProduct) {
-    const { hero, modules, shopifyDefaultVariant } = sanityProduct;
+    const { hero, modules, _rawModules, shopifyDefaultVariant } = sanityProduct;
     const price =
       (defaultVariant && defaultVariant.price) ||
       (shopifyDefaultVariant && shopifyDefaultVariant.price) ||
@@ -66,7 +66,7 @@ const ProductTemplate: React.FC<Props> = ({
             </Button>
           </Hero>
         )}
-        {modules && <Module modules={modules} />}
+        {modules && <Module modules={modules} rawModules={_rawModules} />}
         <Message isVisible={updating}>{message}</Message>
       </>
     );
@@ -84,12 +84,16 @@ export const productQuery = graphql`
       hero {
         ...Hero
       }
+      _rawModules
       modules {
         ... on SanityFeatureText {
           ...FeatureText
         }
         ... on SanityFeatureTextGroup {
           ...FeatureTextGroup
+        }
+        ... on SanityRichText {
+          ...RichText
         }
         ... on SanityVimeo {
           ...Vimeo

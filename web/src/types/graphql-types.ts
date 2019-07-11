@@ -341,10 +341,8 @@ export type DuotoneGradient = {
 
 export type File = Node & {
   __typename?: 'File';
-  id: Scalars['ID'];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
+  birthtime?: Maybe<Scalars['Date']>;
+  birthtimeMs?: Maybe<Scalars['Float']>;
   sourceInstanceName?: Maybe<Scalars['String']>;
   absolutePath?: Maybe<Scalars['String']>;
   relativePath?: Maybe<Scalars['String']>;
@@ -373,14 +371,16 @@ export type File = Node & {
   atimeMs?: Maybe<Scalars['Float']>;
   mtimeMs?: Maybe<Scalars['Float']>;
   ctimeMs?: Maybe<Scalars['Float']>;
-  birthtimeMs?: Maybe<Scalars['Float']>;
   atime?: Maybe<Scalars['Date']>;
   mtime?: Maybe<Scalars['Date']>;
   ctime?: Maybe<Scalars['Date']>;
-  birthtime?: Maybe<Scalars['Date']>;
   url?: Maybe<Scalars['String']>;
   /** Copy file to static directory and return public url to it */
   publicURL?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
   childImageSharp?: Maybe<ImageSharp>;
 };
 
@@ -433,13 +433,6 @@ export type FileCtimeArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
-export type FileBirthtimeArgs = {
-  formatString?: Maybe<Scalars['String']>;
-  fromNow?: Maybe<Scalars['Boolean']>;
-  difference?: Maybe<Scalars['String']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
 export type FileConnection = {
   __typename?: 'FileConnection';
   totalCount: Scalars['Int'];
@@ -468,6 +461,41 @@ export type FileEdge = {
 };
 
 export enum FileFieldsEnum {
+  birthtime = 'birthtime',
+  birthtimeMs = 'birthtimeMs',
+  sourceInstanceName = 'sourceInstanceName',
+  absolutePath = 'absolutePath',
+  relativePath = 'relativePath',
+  extension = 'extension',
+  size = 'size',
+  prettySize = 'prettySize',
+  modifiedTime = 'modifiedTime',
+  accessTime = 'accessTime',
+  changeTime = 'changeTime',
+  birthTime = 'birthTime',
+  root = 'root',
+  dir = 'dir',
+  base = 'base',
+  ext = 'ext',
+  name = 'name',
+  relativeDirectory = 'relativeDirectory',
+  dev = 'dev',
+  mode = 'mode',
+  nlink = 'nlink',
+  uid = 'uid',
+  gid = 'gid',
+  rdev = 'rdev',
+  blksize = 'blksize',
+  ino = 'ino',
+  blocks = 'blocks',
+  atimeMs = 'atimeMs',
+  mtimeMs = 'mtimeMs',
+  ctimeMs = 'ctimeMs',
+  atime = 'atime',
+  mtime = 'mtime',
+  ctime = 'ctime',
+  url = 'url',
+  publicURL = 'publicURL',
   id = 'id',
   parent___id = 'parent___id',
   parent___parent___id = 'parent___parent___id',
@@ -554,48 +582,11 @@ export enum FileFieldsEnum {
   internal___mediaType = 'internal___mediaType',
   internal___owner = 'internal___owner',
   internal___type = 'internal___type',
-  sourceInstanceName = 'sourceInstanceName',
-  absolutePath = 'absolutePath',
-  relativePath = 'relativePath',
-  extension = 'extension',
-  size = 'size',
-  prettySize = 'prettySize',
-  modifiedTime = 'modifiedTime',
-  accessTime = 'accessTime',
-  changeTime = 'changeTime',
-  birthTime = 'birthTime',
-  root = 'root',
-  dir = 'dir',
-  base = 'base',
-  ext = 'ext',
-  name = 'name',
-  relativeDirectory = 'relativeDirectory',
-  dev = 'dev',
-  mode = 'mode',
-  nlink = 'nlink',
-  uid = 'uid',
-  gid = 'gid',
-  rdev = 'rdev',
-  blksize = 'blksize',
-  ino = 'ino',
-  blocks = 'blocks',
-  atimeMs = 'atimeMs',
-  mtimeMs = 'mtimeMs',
-  ctimeMs = 'ctimeMs',
-  birthtimeMs = 'birthtimeMs',
-  atime = 'atime',
-  mtime = 'mtime',
-  ctime = 'ctime',
-  birthtime = 'birthtime',
-  url = 'url',
-  publicURL = 'publicURL',
 }
 
 export type FileFilterInput = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
+  birthtime?: Maybe<DateQueryOperatorInput>;
+  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   sourceInstanceName?: Maybe<StringQueryOperatorInput>;
   absolutePath?: Maybe<StringQueryOperatorInput>;
   relativePath?: Maybe<StringQueryOperatorInput>;
@@ -624,13 +615,15 @@ export type FileFilterInput = {
   atimeMs?: Maybe<FloatQueryOperatorInput>;
   mtimeMs?: Maybe<FloatQueryOperatorInput>;
   ctimeMs?: Maybe<FloatQueryOperatorInput>;
-  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   atime?: Maybe<DateQueryOperatorInput>;
   mtime?: Maybe<DateQueryOperatorInput>;
   ctime?: Maybe<DateQueryOperatorInput>;
-  birthtime?: Maybe<DateQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
 };
 
 export type FileGroupConnection = {
@@ -1261,8 +1254,6 @@ export type Query = {
   allSite?: Maybe<SiteConnection>;
   directory?: Maybe<Directory>;
   allDirectory?: Maybe<DirectoryConnection>;
-  shopifyProductType?: Maybe<ShopifyProductType>;
-  allShopifyProductType?: Maybe<ShopifyProductTypeConnection>;
   shopifyProduct?: Maybe<ShopifyProduct>;
   allShopifyProduct?: Maybe<ShopifyProductConnection>;
   shopifyProductVariant?: Maybe<ShopifyProductVariant>;
@@ -1271,6 +1262,8 @@ export type Query = {
   allShopifyProductOption?: Maybe<ShopifyProductOptionConnection>;
   shopifyCollection?: Maybe<ShopifyCollection>;
   allShopifyCollection?: Maybe<ShopifyCollectionConnection>;
+  shopifyProductType?: Maybe<ShopifyProductType>;
+  allShopifyProductType?: Maybe<ShopifyProductTypeConnection>;
 };
 
 export type QueryImageSharpArgs = {
@@ -1443,10 +1436,8 @@ export type QueryAllSanitySiteSettingsArgs = {
 };
 
 export type QueryFileArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
+  birthtime?: Maybe<DateQueryOperatorInput>;
+  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   sourceInstanceName?: Maybe<StringQueryOperatorInput>;
   absolutePath?: Maybe<StringQueryOperatorInput>;
   relativePath?: Maybe<StringQueryOperatorInput>;
@@ -1475,13 +1466,15 @@ export type QueryFileArgs = {
   atimeMs?: Maybe<FloatQueryOperatorInput>;
   mtimeMs?: Maybe<FloatQueryOperatorInput>;
   ctimeMs?: Maybe<FloatQueryOperatorInput>;
-  birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   atime?: Maybe<DateQueryOperatorInput>;
   mtime?: Maybe<DateQueryOperatorInput>;
   ctime?: Maybe<DateQueryOperatorInput>;
-  birthtime?: Maybe<DateQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
 };
 
 export type QueryAllFileArgs = {
@@ -1604,22 +1597,6 @@ export type QueryAllDirectoryArgs = {
   limit?: Maybe<Scalars['Int']>;
 };
 
-export type QueryShopifyProductTypeArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  shopifyId?: Maybe<StringQueryOperatorInput>;
-};
-
-export type QueryAllShopifyProductTypeArgs = {
-  filter?: Maybe<ShopifyProductTypeFilterInput>;
-  sort?: Maybe<ShopifyProductTypeSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
 export type QueryShopifyProductArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -1710,6 +1687,22 @@ export type QueryAllShopifyCollectionArgs = {
   limit?: Maybe<Scalars['Int']>;
 };
 
+export type QueryShopifyProductTypeArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type QueryAllShopifyProductTypeArgs = {
+  filter?: Maybe<ShopifyProductTypeFilterInput>;
+  sort?: Maybe<ShopifyProductTypeSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
 export type SanityBlock = {
   __typename?: 'SanityBlock';
   _key?: Maybe<Scalars['String']>;
@@ -1752,12 +1745,13 @@ export type SanityFeatureTextGroupText = {
   text?: Maybe<Scalars['String']>;
 };
 
-export type SanityFeatureTextOrFeatureTextGroupOrImageComparisonOrInlineImageOrProductGroupOrVimeo =
+export type SanityFeatureTextOrFeatureTextGroupOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo =
   | SanityFeatureText
   | SanityFeatureTextGroup
   | SanityImageComparison
   | SanityInlineImage
   | SanityProductGroup
+  | SanityRichText
   | SanityVimeo;
 
 export type SanityFile = {
@@ -2560,7 +2554,7 @@ export type SanityPage = SanityDocument &
     modules?: Maybe<
       Array<
         Maybe<
-          SanityFeatureTextOrFeatureTextGroupOrImageComparisonOrInlineImageOrProductGroupOrVimeo
+          SanityFeatureTextOrFeatureTextGroupOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo
         >
       >
     >;
@@ -2906,7 +2900,7 @@ export type SanityProduct = SanityDocument &
     modules?: Maybe<
       Array<
         Maybe<
-          SanityFeatureTextOrFeatureTextGroupOrImageComparisonOrInlineImageOrProductGroupOrVimeo
+          SanityFeatureTextOrFeatureTextGroupOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo
         >
       >
     >;
@@ -3252,6 +3246,13 @@ export type SanityProductSortInput = {
 export type SanityResolveReferencesConfiguration = {
   /** Max depth to resolve references to */
   maxDepth: Scalars['Int'];
+};
+
+export type SanityRichText = {
+  __typename?: 'SanityRichText';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Maybe<SanityBlock>>>;
 };
 
 export type SanityShopifyVariant = {
@@ -3761,8 +3762,8 @@ export enum ShopifyCollectionFieldsEnum {
   products___images = 'products___images',
   products___images___id = 'products___images___id',
   products___images___originalSrc = 'products___images___originalSrc',
-  products___images___localFile___id = 'products___images___localFile___id',
-  products___images___localFile___children = 'products___images___localFile___children',
+  products___images___localFile___birthtime = 'products___images___localFile___birthtime',
+  products___images___localFile___birthtimeMs = 'products___images___localFile___birthtimeMs',
   products___images___localFile___sourceInstanceName = 'products___images___localFile___sourceInstanceName',
   products___images___localFile___absolutePath = 'products___images___localFile___absolutePath',
   products___images___localFile___relativePath = 'products___images___localFile___relativePath',
@@ -3791,13 +3792,13 @@ export enum ShopifyCollectionFieldsEnum {
   products___images___localFile___atimeMs = 'products___images___localFile___atimeMs',
   products___images___localFile___mtimeMs = 'products___images___localFile___mtimeMs',
   products___images___localFile___ctimeMs = 'products___images___localFile___ctimeMs',
-  products___images___localFile___birthtimeMs = 'products___images___localFile___birthtimeMs',
   products___images___localFile___atime = 'products___images___localFile___atime',
   products___images___localFile___mtime = 'products___images___localFile___mtime',
   products___images___localFile___ctime = 'products___images___localFile___ctime',
-  products___images___localFile___birthtime = 'products___images___localFile___birthtime',
   products___images___localFile___url = 'products___images___localFile___url',
   products___images___localFile___publicURL = 'products___images___localFile___publicURL',
+  products___images___localFile___id = 'products___images___localFile___id',
+  products___images___localFile___children = 'products___images___localFile___children',
   products___options = 'products___options',
   products___options___id = 'products___options___id',
   products___options___parent___id = 'products___options___parent___id',
@@ -4053,20 +4054,8 @@ export enum ShopifyProductFieldsEnum {
   images = 'images',
   images___id = 'images___id',
   images___originalSrc = 'images___originalSrc',
-  images___localFile___id = 'images___localFile___id',
-  images___localFile___parent___id = 'images___localFile___parent___id',
-  images___localFile___parent___children = 'images___localFile___parent___children',
-  images___localFile___children = 'images___localFile___children',
-  images___localFile___children___id = 'images___localFile___children___id',
-  images___localFile___children___children = 'images___localFile___children___children',
-  images___localFile___internal___content = 'images___localFile___internal___content',
-  images___localFile___internal___contentDigest = 'images___localFile___internal___contentDigest',
-  images___localFile___internal___description = 'images___localFile___internal___description',
-  images___localFile___internal___fieldOwners = 'images___localFile___internal___fieldOwners',
-  images___localFile___internal___ignoreType = 'images___localFile___internal___ignoreType',
-  images___localFile___internal___mediaType = 'images___localFile___internal___mediaType',
-  images___localFile___internal___owner = 'images___localFile___internal___owner',
-  images___localFile___internal___type = 'images___localFile___internal___type',
+  images___localFile___birthtime = 'images___localFile___birthtime',
+  images___localFile___birthtimeMs = 'images___localFile___birthtimeMs',
   images___localFile___sourceInstanceName = 'images___localFile___sourceInstanceName',
   images___localFile___absolutePath = 'images___localFile___absolutePath',
   images___localFile___relativePath = 'images___localFile___relativePath',
@@ -4095,13 +4084,25 @@ export enum ShopifyProductFieldsEnum {
   images___localFile___atimeMs = 'images___localFile___atimeMs',
   images___localFile___mtimeMs = 'images___localFile___mtimeMs',
   images___localFile___ctimeMs = 'images___localFile___ctimeMs',
-  images___localFile___birthtimeMs = 'images___localFile___birthtimeMs',
   images___localFile___atime = 'images___localFile___atime',
   images___localFile___mtime = 'images___localFile___mtime',
   images___localFile___ctime = 'images___localFile___ctime',
-  images___localFile___birthtime = 'images___localFile___birthtime',
   images___localFile___url = 'images___localFile___url',
   images___localFile___publicURL = 'images___localFile___publicURL',
+  images___localFile___id = 'images___localFile___id',
+  images___localFile___parent___id = 'images___localFile___parent___id',
+  images___localFile___parent___children = 'images___localFile___parent___children',
+  images___localFile___children = 'images___localFile___children',
+  images___localFile___children___id = 'images___localFile___children___id',
+  images___localFile___children___children = 'images___localFile___children___children',
+  images___localFile___internal___content = 'images___localFile___internal___content',
+  images___localFile___internal___contentDigest = 'images___localFile___internal___contentDigest',
+  images___localFile___internal___description = 'images___localFile___internal___description',
+  images___localFile___internal___fieldOwners = 'images___localFile___internal___fieldOwners',
+  images___localFile___internal___ignoreType = 'images___localFile___internal___ignoreType',
+  images___localFile___internal___mediaType = 'images___localFile___internal___mediaType',
+  images___localFile___internal___owner = 'images___localFile___internal___owner',
+  images___localFile___internal___type = 'images___localFile___internal___type',
   options = 'options',
   options___id = 'options___id',
   options___parent___id = 'options___parent___id',
@@ -4194,8 +4195,8 @@ export enum ShopifyProductFieldsEnum {
   variants___availableForSale = 'variants___availableForSale',
   variants___image___id = 'variants___image___id',
   variants___image___originalSrc = 'variants___image___originalSrc',
-  variants___image___localFile___id = 'variants___image___localFile___id',
-  variants___image___localFile___children = 'variants___image___localFile___children',
+  variants___image___localFile___birthtime = 'variants___image___localFile___birthtime',
+  variants___image___localFile___birthtimeMs = 'variants___image___localFile___birthtimeMs',
   variants___image___localFile___sourceInstanceName = 'variants___image___localFile___sourceInstanceName',
   variants___image___localFile___absolutePath = 'variants___image___localFile___absolutePath',
   variants___image___localFile___relativePath = 'variants___image___localFile___relativePath',
@@ -4224,13 +4225,13 @@ export enum ShopifyProductFieldsEnum {
   variants___image___localFile___atimeMs = 'variants___image___localFile___atimeMs',
   variants___image___localFile___mtimeMs = 'variants___image___localFile___mtimeMs',
   variants___image___localFile___ctimeMs = 'variants___image___localFile___ctimeMs',
-  variants___image___localFile___birthtimeMs = 'variants___image___localFile___birthtimeMs',
   variants___image___localFile___atime = 'variants___image___localFile___atime',
   variants___image___localFile___mtime = 'variants___image___localFile___mtime',
   variants___image___localFile___ctime = 'variants___image___localFile___ctime',
-  variants___image___localFile___birthtime = 'variants___image___localFile___birthtime',
   variants___image___localFile___url = 'variants___image___localFile___url',
   variants___image___localFile___publicURL = 'variants___image___localFile___publicURL',
+  variants___image___localFile___id = 'variants___image___localFile___id',
+  variants___image___localFile___children = 'variants___image___localFile___children',
   variants___price = 'variants___price',
   variants___selectedOptions = 'variants___selectedOptions',
   variants___selectedOptions___name = 'variants___selectedOptions___name',
@@ -4780,20 +4781,8 @@ export enum ShopifyProductVariantFieldsEnum {
   availableForSale = 'availableForSale',
   image___id = 'image___id',
   image___originalSrc = 'image___originalSrc',
-  image___localFile___id = 'image___localFile___id',
-  image___localFile___parent___id = 'image___localFile___parent___id',
-  image___localFile___parent___children = 'image___localFile___parent___children',
-  image___localFile___children = 'image___localFile___children',
-  image___localFile___children___id = 'image___localFile___children___id',
-  image___localFile___children___children = 'image___localFile___children___children',
-  image___localFile___internal___content = 'image___localFile___internal___content',
-  image___localFile___internal___contentDigest = 'image___localFile___internal___contentDigest',
-  image___localFile___internal___description = 'image___localFile___internal___description',
-  image___localFile___internal___fieldOwners = 'image___localFile___internal___fieldOwners',
-  image___localFile___internal___ignoreType = 'image___localFile___internal___ignoreType',
-  image___localFile___internal___mediaType = 'image___localFile___internal___mediaType',
-  image___localFile___internal___owner = 'image___localFile___internal___owner',
-  image___localFile___internal___type = 'image___localFile___internal___type',
+  image___localFile___birthtime = 'image___localFile___birthtime',
+  image___localFile___birthtimeMs = 'image___localFile___birthtimeMs',
   image___localFile___sourceInstanceName = 'image___localFile___sourceInstanceName',
   image___localFile___absolutePath = 'image___localFile___absolutePath',
   image___localFile___relativePath = 'image___localFile___relativePath',
@@ -4822,13 +4811,25 @@ export enum ShopifyProductVariantFieldsEnum {
   image___localFile___atimeMs = 'image___localFile___atimeMs',
   image___localFile___mtimeMs = 'image___localFile___mtimeMs',
   image___localFile___ctimeMs = 'image___localFile___ctimeMs',
-  image___localFile___birthtimeMs = 'image___localFile___birthtimeMs',
   image___localFile___atime = 'image___localFile___atime',
   image___localFile___mtime = 'image___localFile___mtime',
   image___localFile___ctime = 'image___localFile___ctime',
-  image___localFile___birthtime = 'image___localFile___birthtime',
   image___localFile___url = 'image___localFile___url',
   image___localFile___publicURL = 'image___localFile___publicURL',
+  image___localFile___id = 'image___localFile___id',
+  image___localFile___parent___id = 'image___localFile___parent___id',
+  image___localFile___parent___children = 'image___localFile___parent___children',
+  image___localFile___children = 'image___localFile___children',
+  image___localFile___children___id = 'image___localFile___children___id',
+  image___localFile___children___children = 'image___localFile___children___children',
+  image___localFile___internal___content = 'image___localFile___internal___content',
+  image___localFile___internal___contentDigest = 'image___localFile___internal___contentDigest',
+  image___localFile___internal___description = 'image___localFile___internal___description',
+  image___localFile___internal___fieldOwners = 'image___localFile___internal___fieldOwners',
+  image___localFile___internal___ignoreType = 'image___localFile___internal___ignoreType',
+  image___localFile___internal___mediaType = 'image___localFile___internal___mediaType',
+  image___localFile___internal___owner = 'image___localFile___internal___owner',
+  image___localFile___internal___type = 'image___localFile___internal___type',
   price = 'price',
   selectedOptions = 'selectedOptions',
   selectedOptions___name = 'selectedOptions___name',
