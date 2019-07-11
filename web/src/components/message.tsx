@@ -23,10 +23,10 @@ const StyledMessage = styled(animated.div)`
   max-width: 400px;
   padding: ${spacing(3)};
   ${fontSize(16, 3)};
-  background-color: ${props => props.theme.colorWhite};
-  border-left: 8px solid ${props => props.theme.colorBlue};
-  box-shadow: 0 2px 4px ${props => rgba(props.theme.colorBlack, 0.05)},
-    0 10px 15px ${props => rgba(props.theme.colorBlack, 0.05)};
+  color: ${props => props.theme.colorWhite};
+  background-color: ${props => props.theme.colorBlack};
+  border: 1px solid ${props => rgba(props.theme.colorWhite, 0.25)};
+  border-radius: 4px;
 
   ${breakpoint('medium')} {
     padding: ${spacing(4)};
@@ -45,7 +45,6 @@ const Message: React.FC<Props> = ({ children, isVisible, timeout = 4000 }) => {
       }, timeout);
 
       return () => {
-        console.log('clearing');
         clearTimeout(timer);
       };
     }
