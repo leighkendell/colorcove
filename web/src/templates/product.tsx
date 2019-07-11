@@ -8,6 +8,7 @@ import { ReactComponent as Icon } from '../images/cart.svg';
 import { useShopifyProduct, useShopifyClient } from '../hooks/shopify';
 import useStore from '../hooks/use-store';
 import Message from '../components/message';
+import { formatCurrency } from '../utils/helpers';
 
 interface Props {
   data: Query;
@@ -61,7 +62,7 @@ const ProductTemplate: React.FC<Props> = ({
           <Hero hero={hero}>
             <Button icon onClick={handleBuy} disabled={updating}>
               <Icon />
-              Buy for {price}
+              Buy for {formatCurrency(price)}
             </Button>
           </Hero>
         )}
