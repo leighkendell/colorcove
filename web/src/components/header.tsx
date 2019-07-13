@@ -13,6 +13,7 @@ import {
   ReactSpringHook,
   config,
 } from 'react-spring';
+import { isBrowser } from '../utils/helpers';
 
 interface Props {
   title: string;
@@ -63,7 +64,7 @@ const StyledHeader = styled.header<{ hasImage: boolean }>`
   }
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled(animated(Image))`
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
 
@@ -113,13 +114,20 @@ const Header: React.FC<Props> = ({
 
   const animationProps = {
     from: {
-      opacity: 0,
-      transform: 'translateY(16px)',
+      opacity: isBrowser ? 0 : 1,
+      transform: `translateY(${isBrowser ? '16px' : '0'})`,
     },
     opacity: 1,
     transform: 'translateY(0)',
     config: config.slow,
   };
+
+  const imageAnimation = useSpring({
+    from: {
+      opacity: isBrowser ? 0 : 1,
+    },
+    opacity: 1,
+  });
 
   const headingAnimation = useSpring({
     ...animationProps,
@@ -146,7 +154,12 @@ const Header: React.FC<Props> = ({
               {children}
             </animated.div>
           </Content>
-          <StyledImage image={image} backgroundColor={backgroundColor} alt="" />
+          <StyledImage
+            image={image}
+            backgroundColor={backgroundColor}
+            alt=""
+            style={imageAnimation}
+          />
         </>
       ) : (
         <AnimatedHeading type="h1" align="center" style={headingAnimation}>
