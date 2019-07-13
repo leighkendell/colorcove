@@ -5,7 +5,7 @@ import CardGroup from './card-group';
 
 type align = 'left' | 'center' | 'right';
 
-interface Heading {
+interface Heading extends React.HTMLAttributes<HTMLHeadElement> {
   type: 'h1' | 'h2' | 'h3';
   align?: align;
 }
@@ -72,16 +72,37 @@ const H3 = styled.h3`
   }
 `;
 
-const Heading: React.FC<Heading> = ({ children, type, align = 'left' }) => {
+const Heading: React.FC<Heading> = ({
+  children,
+  type,
+  align = 'left',
+  ...props
+}) => {
   switch (type) {
     case 'h1':
-      return <H1 align={align}>{children}</H1>;
+      return (
+        <H1 align={align} {...props}>
+          {children}
+        </H1>
+      );
     case 'h2':
-      return <H2 align={align}>{children}</H2>;
+      return (
+        <H2 align={align} {...props}>
+          {children}
+        </H2>
+      );
     case 'h3':
-      return <H3 align={align}>{children}</H3>;
+      return (
+        <H3 align={align} {...props}>
+          {children}
+        </H3>
+      );
     default:
-      return <H1 align={align}>{children}</H1>;
+      return (
+        <H1 align={align} {...props}>
+          {children}
+        </H1>
+      );
   }
 };
 

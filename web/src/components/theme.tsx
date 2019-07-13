@@ -1,6 +1,6 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { normalize, rgba } from 'polished';
+import { normalize } from 'polished';
 import { colorcoveTheme } from '../utils/theme';
 import { spacing } from '../utils/style-helpers';
 

@@ -43,6 +43,7 @@ const Section: React.FC = React.memo(({ children }) => {
       set({
         opacity: 1,
         transform: 'translateY(0px)',
+        delay: 250,
       });
     }
   }, [inView, set]);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FluidObject } from 'gatsby-image';
 import styled, { css } from 'styled-components';
 import Heading from './heading';
@@ -6,6 +6,13 @@ import { spacing, breakpoint } from '../utils/style-helpers';
 import Image from './image';
 import Text from './text';
 import Button from './button';
+import {
+  animated,
+  useChain,
+  useSpring,
+  ReactSpringHook,
+  config,
+} from 'react-spring';
 
 interface Props {
   title: string;
@@ -92,6 +99,8 @@ const Content = styled.div`
   }
 `;
 
+const AnimatedHeading = animated(Heading);
+
 const Header: React.FC<Props> = ({
   title,
   description,
@@ -99,21 +108,50 @@ const Header: React.FC<Props> = ({
   backgroundColor,
   children,
 }) => {
+  const headingEl = useRef<ReactSpringHook>(null);
+  const textEl = useRef<ReactSpringHook>(null);
+
+  const animationProps = {
+    from: {
+      opacity: 0,
+      transform: 'translateY(16px)',
+    },
+    opacity: 1,
+    transform: 'translateY(0)',
+    config: config.slow,
+  };
+
+  const headingAnimation = useSpring({
+    ...animationProps,
+    ref: headingEl,
+  });
+
+  const textAnimation = useSpring({
+    ...animationProps,
+    ref: textEl,
+  });
+
+  useChain([headingEl, textEl], [0, 0.3]);
+
   return (
     <StyledHeader role="banner" hasImage={image ? true : false}>
       {image ? (
         <>
           <Content>
-            <Heading type="h1">{title}</Heading>
-            {description && <Text>{description}</Text>}
-            {children}
+            <AnimatedHeading type="h1" style={headingAnimation}>
+              {title}
+            </AnimatedHeading>
+            <animated.div style={textAnimation}>
+              {description && <Text>{description}</Text>}
+              {children}
+            </animated.div>
           </Content>
           <StyledImage image={image} backgroundColor={backgroundColor} alt="" />
         </>
       ) : (
-        <Heading type="h1" align="center">
+        <AnimatedHeading type="h1" align="center" style={headingAnimation}>
           {title}
-        </Heading>
+        </AnimatedHeading>
       )}
     </StyledHeader>
   );
