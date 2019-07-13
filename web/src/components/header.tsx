@@ -127,6 +127,7 @@ const Header: React.FC<Props> = ({
       opacity: isBrowser ? 0 : 1,
     },
     opacity: 1,
+    config: config.slow,
   });
 
   const headingAnimation = useSpring({
