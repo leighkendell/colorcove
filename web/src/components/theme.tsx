@@ -1,6 +1,6 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { normalize } from 'polished';
+import { normalize, rgba } from 'polished';
 import { colorcoveTheme } from '../utils/theme';
 import { spacing } from '../utils/style-helpers';
 
@@ -16,11 +16,18 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: inherit;
+    outline-color: transparent;
 
     &::before,
     &::after {
       box-sizing: inherit;
     }
+  }
+
+  :focus {
+    outline: 4px solid ${props => props.theme.colorDarkGrey};
+    outline-offset: 4px;
+    transition: outline-color 0.25s ease-in-out;
   }
 
   /* Storybook specific */

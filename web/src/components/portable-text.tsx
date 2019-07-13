@@ -33,6 +33,18 @@ const LinkRenderer = ({ children, mark }: any) => {
   return <TextLink to={mark.href}>{children}</TextLink>;
 };
 
+const InternalLinkRenderer = ({ children, mark }: any) => {
+  if (mark.reference.slug) {
+    const slug = mark.reference.slug.current;
+    const link =
+      mark.reference._type === 'product' ? `/products/${slug}/` : `/${slug}/`;
+
+    return <TextLink to={link}>{children}</TextLink>;
+  }
+
+  return children;
+};
+
 const serializers = {
   types: {
     block: BlockRenderer,
@@ -41,6 +53,7 @@ const serializers = {
   listItem: ListItemRenderer,
   marks: {
     link: LinkRenderer,
+    internalLink: InternalLinkRenderer,
   },
   container: RichText,
 };

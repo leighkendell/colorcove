@@ -7,7 +7,7 @@ interface Props {
 }
 
 const commonStyles = css`
-  color: ${props => props.theme.colorBlue};
+  color: ${props => props.theme.colorBlack};
   font-weight: bold;
 
   &:hover {

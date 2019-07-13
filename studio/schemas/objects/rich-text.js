@@ -1,3 +1,5 @@
+import { FiExternalLink, FiLink } from 'react-icons/fi';
+
 export default {
   name: 'richText',
   type: 'object',
@@ -16,6 +18,39 @@ export default {
           ],
           lists: [{ title: 'Bullet', value: 'bullet' }],
           marks: {
+            annotations: [
+              {
+                name: 'internalLink',
+                type: 'object',
+                title: 'Internal link',
+                blockEditor: {
+                  icon: FiLink,
+                },
+                fields: [
+                  {
+                    name: 'reference',
+                    type: 'reference',
+                    title: 'Reference',
+                    to: [{ type: 'page' }, { type: 'product' }],
+                  },
+                ],
+              },
+              {
+                name: 'link',
+                type: 'object',
+                title: 'External link',
+                blockEditor: {
+                  icon: FiExternalLink,
+                },
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL',
+                  },
+                ],
+              },
+            ],
             decorators: [
               { title: 'Strong', value: 'strong' },
               { title: 'Emphasis', value: 'em' },

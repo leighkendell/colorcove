@@ -1254,6 +1254,8 @@ export type Query = {
   allSite?: Maybe<SiteConnection>;
   directory?: Maybe<Directory>;
   allDirectory?: Maybe<DirectoryConnection>;
+  shopifyProductType?: Maybe<ShopifyProductType>;
+  allShopifyProductType?: Maybe<ShopifyProductTypeConnection>;
   shopifyProduct?: Maybe<ShopifyProduct>;
   allShopifyProduct?: Maybe<ShopifyProductConnection>;
   shopifyProductVariant?: Maybe<ShopifyProductVariant>;
@@ -1262,8 +1264,6 @@ export type Query = {
   allShopifyProductOption?: Maybe<ShopifyProductOptionConnection>;
   shopifyCollection?: Maybe<ShopifyCollection>;
   allShopifyCollection?: Maybe<ShopifyCollectionConnection>;
-  shopifyProductType?: Maybe<ShopifyProductType>;
-  allShopifyProductType?: Maybe<ShopifyProductTypeConnection>;
 };
 
 export type QueryImageSharpArgs = {
@@ -1597,6 +1597,22 @@ export type QueryAllDirectoryArgs = {
   limit?: Maybe<Scalars['Int']>;
 };
 
+export type QueryShopifyProductTypeArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  shopifyId?: Maybe<StringQueryOperatorInput>;
+};
+
+export type QueryAllShopifyProductTypeArgs = {
+  filter?: Maybe<ShopifyProductTypeFilterInput>;
+  sort?: Maybe<ShopifyProductTypeSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
 export type QueryShopifyProductArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -1683,22 +1699,6 @@ export type QueryShopifyCollectionArgs = {
 export type QueryAllShopifyCollectionArgs = {
   filter?: Maybe<ShopifyCollectionFilterInput>;
   sort?: Maybe<ShopifyCollectionSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
-export type QueryShopifyProductTypeArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  shopifyId?: Maybe<StringQueryOperatorInput>;
-};
-
-export type QueryAllShopifyProductTypeArgs = {
-  filter?: Maybe<ShopifyProductTypeFilterInput>;
-  sort?: Maybe<ShopifyProductTypeSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };

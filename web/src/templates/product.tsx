@@ -84,7 +84,7 @@ export const productQuery = graphql`
       hero {
         ...Hero
       }
-      _rawModules
+      _rawModules(resolveReferences: { maxDepth: 10 })
       modules {
         ... on SanityFeatureText {
           ...FeatureText

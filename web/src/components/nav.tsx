@@ -165,15 +165,15 @@ const NavLink = styled(Link)`
 
     &::before {
       --scale: 0;
+      --size: 2px;
 
       position: absolute;
-      top: 0;
+      bottom: calc(var(--size) * -2);
       left: 0;
       z-index: -1;
       width: 100%;
-      height: 100%;
-      background-color: ${props => props.theme.colorMidGrey};
-      border-radius: 4px;
+      height: var(--size);
+      background-color: ${props => props.theme.colorBlack};
       transform: scale(var(--scale), 1.5);
       opacity: 0;
       transition: 0.25s ease-in-out;
@@ -182,7 +182,7 @@ const NavLink = styled(Link)`
 
     &:hover {
       &::before {
-        --scale: 1.5;
+        --scale: 1;
         opacity: 1;
       }
     }

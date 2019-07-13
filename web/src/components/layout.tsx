@@ -45,6 +45,12 @@ const Layout: React.FC<Props> = ({ children, location }) => {
   // Close the nav after navigation
   if (previousPathname && previousPathname !== pathname) {
     closeNav();
+
+    const { activeElement } = document;
+
+    if (activeElement) {
+      (activeElement as HTMLElement).blur();
+    }
   }
 
   // Get primary/secondary nav items
