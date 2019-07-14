@@ -4,7 +4,6 @@ import Nav from '../components/nav';
 import Footer from '../components/footer';
 import { useStaticQuery, graphql } from 'gatsby';
 import useStore from '../hooks/use-store';
-import Fonts from './fonts';
 import { WindowLocation } from '@reach/router';
 import usePrevious from '../hooks/use-previous';
 import { getNestedObject } from '../utils/helpers';
@@ -14,6 +13,7 @@ import {
   SanityPageReference,
 } from '../types/graphql-types';
 import ShopifyCart from './shopify-cart';
+import useFonts from '../hooks/use-fonts';
 
 interface Props {
   location: WindowLocation;
@@ -32,6 +32,9 @@ const getNavLinks = (pages: SanityPageReference[]) =>
   });
 
 const Layout: React.FC<Props> = ({ children, location }) => {
+  // Load the full fonts
+  useFonts();
+
   // Global state values
   const openCart = useStore(state => state.openCart);
   const navIsOpen = useStore(state => state.navIsOpen);
@@ -94,26 +97,23 @@ const Layout: React.FC<Props> = ({ children, location }) => {
   const { facebook, instagram, vimeo } = social;
 
   return (
-    <>
-      <Fonts />
-      <Theme>
-        <Nav
-          items={primaryNav}
-          isOpen={navIsOpen}
-          onOpen={openNav}
-          onClose={closeNav}
-          onCartOpen={openCart}
-        />
-        <main>{children}</main>
-        <ShopifyCart />
-        <Footer
-          items={secondaryNav}
-          facebookLink={facebook || ''}
-          instagramLink={instagram || ''}
-          vimeoLink={vimeo || ''}
-        />
-      </Theme>
-    </>
+    <Theme>
+      <Nav
+        items={primaryNav}
+        isOpen={navIsOpen}
+        onOpen={openNav}
+        onClose={closeNav}
+        onCartOpen={openCart}
+      />
+      <main>{children}</main>
+      <ShopifyCart />
+      <Footer
+        items={secondaryNav}
+        facebookLink={facebook || ''}
+        instagramLink={instagram || ''}
+        vimeoLink={vimeo || ''}
+      />
+    </Theme>
   );
 };
 

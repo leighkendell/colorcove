@@ -2,7 +2,6 @@ import React from "react";
 import { configure, addParameters, addDecorator } from "@storybook/react";
 import centered from "@storybook/addon-centered/react";
 import Theme from "../web/src/components/theme";
-import Fonts from "../web/src/components/fonts";
 import { withInfo } from "@storybook/addon-info";
 
 // automatically import all files ending in *.stories.js
@@ -12,7 +11,6 @@ function loadStories() {
   // addDecorator(centered);
   addDecorator(story => (
     <>
-      <Fonts />
       <Theme>{story()}</Theme>
     </>
   ));
