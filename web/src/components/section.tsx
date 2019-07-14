@@ -4,6 +4,7 @@ import { spacing, breakpoint } from '../utils/style-helpers';
 import { useSpring, animated, config } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import { isBrowser } from '../utils/helpers';
+import useStore from '../hooks/use-store';
 
 const StyledSection = styled(animated.section)`
   margin: ${spacing(6)} 0;
@@ -27,6 +28,10 @@ const StyledSection = styled(animated.section)`
 `;
 
 const Section: React.FC = React.memo(({ children }) => {
+  const headerAnimationComplete = useStore(
+    state => state.headerAnimationComplete
+  );
+
   const [ref, inView] = useInView({
     triggerOnce: true,
   });
@@ -39,14 +44,13 @@ const Section: React.FC = React.memo(({ children }) => {
 
   // Set the visibility based on inView state
   useEffect(() => {
-    if (inView) {
+    if (inView && headerAnimationComplete) {
       set({
         opacity: 1,
         transform: 'translateY(0px)',
-        delay: 250,
       });
     }
-  }, [inView, set]);
+  }, [headerAnimationComplete, inView, set]);
 
   return (
     <StyledSection ref={ref} style={fadeAnimation}>

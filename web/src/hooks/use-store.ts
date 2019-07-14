@@ -24,6 +24,11 @@ const [useStore] = create<any>(set => ({
   },
   checkout: null as Cart | null,
   setCheckout: (cart: Cart) => set({ checkout: cart }),
+
+  // Header animation
+  headerAnimationComplete: false,
+  setHeaderAnimationComplete: (value: boolean) =>
+    set({ headerAnimationComplete: value }),
 }));
 
 export default useStore;

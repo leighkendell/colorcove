@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { FluidObject } from 'gatsby-image';
 import styled, { css } from 'styled-components';
 import Heading from './heading';
@@ -14,6 +14,7 @@ import {
   config,
 } from 'react-spring';
 import { isBrowser } from '../utils/helpers';
+import useStore from '../hooks/use-store';
 
 interface Props {
   title: string;
@@ -109,8 +110,18 @@ const Header: React.FC<Props> = ({
   backgroundColor,
   children,
 }) => {
+  const setHeaderAnimationComplete = useStore(
+    state => state.setHeaderAnimationComplete
+  );
+
   const headingEl = useRef<ReactSpringHook>(null);
   const textEl = useRef<ReactSpringHook>(null);
+
+  // Set the initial state of the header animation
+  // Used in other components to determine if their animations should start yet
+  useEffect(() => {
+    setHeaderAnimationComplete(false);
+  }, [setHeaderAnimationComplete]);
 
   const animationProps = {
     from: {
@@ -138,6 +149,11 @@ const Header: React.FC<Props> = ({
   const textAnimation = useSpring({
     ...animationProps,
     ref: textEl,
+    onStart: () => {
+      setTimeout(() => {
+        setHeaderAnimationComplete(true);
+      }, 250);
+    },
   });
 
   useChain([headingEl, textEl], [0, 0.3]);
