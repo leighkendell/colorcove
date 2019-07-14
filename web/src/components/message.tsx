@@ -15,20 +15,20 @@ interface Props {
 
 const StyledMessage = styled(animated.div)`
   position: fixed;
-  right: ${spacing(4)};
-  bottom: ${spacing(4)};
+  top: ${spacing(9)};
+  left: 0;
   z-index: 1;
   display: inline-block;
-  width: calc(100% - ${spacing(8)});
-  max-width: 400px;
+  width: 100%;
   padding: ${spacing(3)};
-  ${fontSize(16, 3)};
   color: ${props => props.theme.colorWhite};
+  ${fontSize(14, 3)};
+  font-weight: bold;
+  text-align: center;
   background-color: ${props => props.theme.colorBlack};
-  border: 1px solid ${props => rgba(props.theme.colorWhite, 0.25)};
-  border-radius: 4px;
 
   ${breakpoint('medium')} {
+    top: ${spacing(10)};
     padding: ${spacing(4)};
   }
 `;
@@ -53,15 +53,15 @@ const Message: React.FC<Props> = ({ children, isVisible, timeout = 4000 }) => {
   const transition = useTransition(isVisible && timerActive, null, {
     from: {
       opacity: 0,
-      transform: 'translateY(16px) scale(0.95)',
+      transform: 'translateY(-100%)',
     },
     enter: {
       opacity: 1,
-      transform: 'translateY(0) scale(1)',
+      transform: 'translateY(0)',
     },
     leave: {
       opacity: 0,
-      transform: 'translateY(16px) scale(0.95)',
+      transform: 'translateY(-100%)',
     },
     trail: timeout,
   });

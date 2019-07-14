@@ -168,7 +168,7 @@ const NavLink = styled(Link)`
       --size: 2px;
 
       position: absolute;
-      bottom: calc(var(--size) * -2);
+      bottom: calc(var(--size) * -4);
       left: 0;
       z-index: -1;
       width: 100%;
