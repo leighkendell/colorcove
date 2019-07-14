@@ -152,7 +152,7 @@ const Header: React.FC<Props> = ({
     onStart: () => {
       setTimeout(() => {
         setHeaderAnimationComplete(true);
-      }, 250);
+      }, 150);
     },
   });
 

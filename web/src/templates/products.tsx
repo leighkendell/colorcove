@@ -5,6 +5,7 @@ import Hero from '../components/hero';
 import Section from '../components/section';
 import Wrapper from '../components/wrapper';
 import ProductCardGroup from '../components/product-card-group';
+import SEO from '../components/seo';
 
 interface Props {
   data: Query;
@@ -14,10 +15,11 @@ const ProductsTemplate: React.FC<Props> = ({
   data: { sanityPage, allSanityProduct },
 }) => {
   if (sanityPage && allSanityProduct) {
-    const { hero } = sanityPage;
+    const { hero, title } = sanityPage;
 
     return (
       <>
+        <SEO title={title} />
         {hero && <Hero hero={hero} />}
         <Section>
           <Wrapper>

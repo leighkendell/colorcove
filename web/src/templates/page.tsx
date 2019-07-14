@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { Query } from '../types/graphql-types';
 import Module from '../components/module';
 import Hero from '../components/hero';
+import SEO from '../components/seo';
 
 interface Props {
   data: Query;
@@ -10,10 +11,11 @@ interface Props {
 
 const PageTemplate: React.FC<Props> = ({ data: { sanityPage } }) => {
   if (sanityPage) {
-    const { hero, modules, _rawModules } = sanityPage;
+    const { hero, title, modules, _rawModules } = sanityPage;
 
     return (
       <>
+        <SEO title={title} />
         {hero && <Hero hero={hero} />}
         {modules && <Module modules={modules} rawModules={_rawModules} />}
       </>

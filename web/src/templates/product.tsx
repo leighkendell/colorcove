@@ -9,6 +9,7 @@ import { useShopifyProduct, useShopifyClient } from '../hooks/shopify';
 import useStore from '../hooks/use-store';
 import Message from '../components/message';
 import { formatCurrency } from '../utils/helpers';
+import SEO from '../components/seo';
 
 interface Props {
   data: Query;
@@ -50,7 +51,13 @@ const ProductTemplate: React.FC<Props> = ({
   };
 
   if (sanityProduct) {
-    const { hero, modules, _rawModules, shopifyDefaultVariant } = sanityProduct;
+    const {
+      hero,
+      modules,
+      title,
+      _rawModules,
+      shopifyDefaultVariant,
+    } = sanityProduct;
     const price =
       (defaultVariant && defaultVariant.price) ||
       (shopifyDefaultVariant && shopifyDefaultVariant.price) ||
@@ -58,6 +65,7 @@ const ProductTemplate: React.FC<Props> = ({
 
     return (
       <>
+        <SEO title={title} />
         {hero && (
           <Hero hero={hero}>
             <Button icon onClick={handleBuy} disabled={updating}>

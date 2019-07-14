@@ -6,33 +6,9 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    primaryNav: [
-      {
-        title: 'Products',
-        link: '/products/',
-      },
-      {
-        title: 'About',
-        link: '/about/',
-      },
-      {
-        title: 'Contact',
-        link: '/contact/',
-      },
-    ],
-    secondaryNav: [
-      {
-        title: 'Support',
-        link: '/support/',
-      },
-      {
-        title: 'Contact',
-        link: '/contact/',
-      },
-    ],
+    title: `Colorcove`,
+    description: ``,
+    author: `@colorcove`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
