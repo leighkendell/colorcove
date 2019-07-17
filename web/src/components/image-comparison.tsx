@@ -186,8 +186,7 @@ const ImageComparison: React.FC<Props> = ({
 
   // Drag behaviour
   // Sets the spring "progress" state based on the drag value
-  // FIXME: Remove "any" when types are fixed
-  const gestureEvents = useGesture<any>(
+  const gestureEvents = useGesture(
     {
       onDrag: ({ event, active, delta, temp = progress.getValue(), last }) => {
         if (event) {
@@ -217,7 +216,7 @@ const ImageComparison: React.FC<Props> = ({
         return temp;
       },
     },
-    { event: { passive: false } }
+    { event: { capture: false, passive: false } }
   );
 
   const handleWrapperClick = (event: React.MouseEvent<HTMLDivElement>) => {
