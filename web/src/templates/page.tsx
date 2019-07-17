@@ -4,6 +4,7 @@ import { Query } from '../types/graphql-types';
 import Module from '../components/module';
 import Hero from '../components/hero';
 import SEO from '../components/seo';
+import { getNestedObject } from '../utils/helpers';
 
 interface Props {
   data: Query;
@@ -11,11 +12,19 @@ interface Props {
 
 const PageTemplate: React.FC<Props> = ({ data: { sanityPage } }) => {
   if (sanityPage) {
-    const { hero, title, modules, _rawModules } = sanityPage;
+    const {
+      hero,
+      title,
+      description,
+      image,
+      modules,
+      _rawModules,
+    } = sanityPage;
+    const ogImage = getNestedObject(image, 'asset.fixed.src');
 
     return (
       <>
-        <SEO title={title} />
+        <SEO title={title} description={description} image={ogImage} />
         {hero && <Hero hero={hero} />}
         {modules && <Module modules={modules} rawModules={_rawModules} />}
       </>
@@ -31,6 +40,10 @@ export const pageQuery = graphql`
   query PageTemplateQuery($id: String!) {
     sanityPage(id: { eq: $id }) {
       title
+      description
+      image {
+        ...OgImage
+      }
       hero {
         ...Hero
       }

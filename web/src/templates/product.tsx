@@ -8,7 +8,7 @@ import { ReactComponent as Icon } from '../images/cart.svg';
 import { useShopifyProduct, useShopifyClient } from '../hooks/shopify';
 import useStore from '../hooks/use-store';
 import Message from '../components/message';
-import { formatCurrency } from '../utils/helpers';
+import { formatCurrency, getNestedObject } from '../utils/helpers';
 import SEO from '../components/seo';
 
 interface Props {
@@ -55,6 +55,8 @@ const ProductTemplate: React.FC<Props> = ({
       hero,
       modules,
       title,
+      description,
+      image,
       _rawModules,
       shopifyDefaultVariant,
     } = sanityProduct;
@@ -62,10 +64,11 @@ const ProductTemplate: React.FC<Props> = ({
       (defaultVariant && defaultVariant.price) ||
       (shopifyDefaultVariant && shopifyDefaultVariant.price) ||
       0;
+    const ogImage = getNestedObject(image, 'asset.fixed.src');
 
     return (
       <>
-        <SEO title={title} />
+        <SEO title={title} description={description} image={ogImage} />
         {hero && (
           <Hero hero={hero}>
             <Button icon onClick={handleBuy} disabled={updating}>
@@ -89,6 +92,10 @@ export const productQuery = graphql`
   query ProductTemplateQuery($id: String!, $slug: String!) {
     sanityProduct(id: { eq: $id }) {
       title
+      description
+      image {
+        ...OgImage
+      }
       hero {
         ...Hero
       }

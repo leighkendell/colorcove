@@ -22,6 +22,16 @@ export const cardImage = graphql`
   }
 `;
 
+export const ogImage = graphql`
+  fragment OgImage on SanityMainImage {
+    asset {
+      fixed(width: 2000, height: 1044) {
+        src
+      }
+    }
+  }
+`;
+
 // Image metadata
 export const imageMeta = graphql`
   fragment ImageMeta on SanityImageAsset {
