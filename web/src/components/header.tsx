@@ -6,14 +6,8 @@ import { spacing, breakpoint } from '../utils/style-helpers';
 import Image from './image';
 import Text from './text';
 import Button from './button';
-import {
-  animated,
-  useChain,
-  useSpring,
-  ReactSpringHook,
-  config,
-} from 'react-spring';
-import { isBrowser } from '../utils/helpers';
+import { animated, useChain, useSpring, ReactSpringHook } from 'react-spring';
+import { isBrowser, springSlowConfig } from '../utils/helpers';
 import useStore from '../hooks/use-store';
 
 interface Props {
@@ -121,7 +115,14 @@ const Header: React.FC<Props> = ({
   // Used in other components to determine if their animations should start yet
   useEffect(() => {
     setHeaderAnimationComplete(false);
-  }, [setHeaderAnimationComplete]);
+
+    // Set before the animation finishes when there's only a title
+    if (!description || children) {
+      setTimeout(() => {
+        setHeaderAnimationComplete(true);
+      }, 250);
+    }
+  }, [children, description, setHeaderAnimationComplete]);
 
   const animationProps = {
     from: {
@@ -130,7 +131,7 @@ const Header: React.FC<Props> = ({
     },
     opacity: 1,
     transform: 'translateY(0)',
-    config: config.slow,
+    config: springSlowConfig,
   };
 
   const imageAnimation = useSpring({
@@ -138,22 +139,20 @@ const Header: React.FC<Props> = ({
       opacity: isBrowser ? 0 : 1,
     },
     opacity: 1,
-    config: config.slow,
+    config: springSlowConfig,
   });
 
   const headingAnimation = useSpring({
     ...animationProps,
     ref: headingEl,
+    onRest: () => {
+      setHeaderAnimationComplete(true);
+    },
   });
 
   const textAnimation = useSpring({
     ...animationProps,
     ref: textEl,
-    onStart: () => {
-      setTimeout(() => {
-        setHeaderAnimationComplete(true);
-      }, 150);
-    },
   });
 
   useChain([headingEl, textEl], [0, 0.3]);

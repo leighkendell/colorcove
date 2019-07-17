@@ -18,3 +18,9 @@ export const formatCurrency = (amount: string | number) =>
     style: 'currency',
     currency: 'AUD',
   }).format(typeof amount === 'string' ? parseFloat(amount) : amount);
+
+export const springSlowConfig = {
+  tension: 280,
+  friction: 50,
+  clamp: true,
+};
