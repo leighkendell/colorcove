@@ -22,10 +22,10 @@ const ContactForm: React.FC = () => {
   return (
     <Form formName="Contact" onError={handleError} onSuccess={handleSuccess}>
       <TextField label="Your name">
-        <Input id="name" type="text" required />
+        <Input id="name" name="name" type="text" required />
       </TextField>
       <TextField label="Your email">
-        <Input id="email" type="email" required />
+        <Input id="email" name="email" type="email" required />
       </TextField>
       <Button>Submit</Button>
       <Message isVisible={messageVisible}>
