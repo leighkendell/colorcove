@@ -44,7 +44,7 @@ const Form: React.FC<Props> = ({ children, formName, onSuccess, onError }) => {
 
       fetch(formEl.current.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: { 'Content-Type': 'multipart/form-data' },
         body: formData,
       })
         .then(() => {
