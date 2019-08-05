@@ -118,3 +118,12 @@ export const productGroup = graphql`
     }
   }
 `;
+
+// Form module
+export const form = graphql`
+  fragment Form on SanityForm {
+    _key
+    _type
+    type
+  }
+`;

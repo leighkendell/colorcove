@@ -70,6 +70,9 @@ export const pageQuery = graphql`
         ... on SanityInlineImage {
           ...InlineImage
         }
+        ... on SanityForm {
+          ...Form
+        }
       }
     }
   }

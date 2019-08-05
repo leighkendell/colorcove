@@ -12,6 +12,7 @@ import {
   SanityInlineImage,
   SanityFeatureTextGroup,
   SanityBlock,
+  SanityForm,
 } from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import { FluidObject } from 'gatsby-image';
@@ -21,6 +22,7 @@ import Heading from './heading';
 import InlineImage from './inline-image';
 import TextBlockGroup from './text-block-group';
 import PortableText from './portable-text';
+import ContactForm from './contact-form';
 
 interface Props {
   modules: any[];
@@ -167,6 +169,16 @@ const Module: React.FC<Props> = ({ modules, rawModules }) => {
             />
           );
         }
+        break;
+
+      // Form module
+      case 'form':
+        const { type } = data as SanityForm;
+
+        if (type === 'contact') {
+          module = <ContactForm />;
+        }
+
         break;
 
       default:

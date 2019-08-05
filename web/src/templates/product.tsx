@@ -122,6 +122,9 @@ export const productQuery = graphql`
         ... on SanityInlineImage {
           ...InlineImage
         }
+        ... on SanityForm {
+          ...Form
+        }
       }
       shopifyDefaultVariant {
         price

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
-import { rgba } from 'polished';
 import { useTransition, animated } from 'react-spring';
 import { isBrowser } from '../utils/helpers';
 
