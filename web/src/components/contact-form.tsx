@@ -20,7 +20,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <Form formName="contact" onError={handleError} onSuccess={handleSuccess}>
+    <Form formName="Contact" onError={handleError} onSuccess={handleSuccess}>
       <TextField label="Your name">
         <Input id="name" type="text" required />
       </TextField>

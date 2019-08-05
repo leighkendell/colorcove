@@ -68,6 +68,7 @@ const Form: React.FC<Props> = ({ children, formName, onSuccess, onError }) => {
       data-netlify="true"
       ref={formEl}
     >
+      <input type="hidden" name="form-name" value={formName} />
       <Fieldset disabled={disabled}>{children}</Fieldset>
     </StyledForm>
   );
