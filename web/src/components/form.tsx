@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { spacing } from '../utils/style-helpers';
 import Button from './button';
@@ -31,27 +31,25 @@ const Fieldset = styled.fieldset`
 `;
 
 const Form: React.FC<Props> = ({ children, formName, onSuccess, onError }) => {
-  const formEl = useRef<HTMLFormElement>(null);
   const [disabled, setDisabled] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formEl = event.currentTarget;
 
-    if (formEl.current) {
-      const formData = new FormData(formEl.current);
+    if (formEl) {
+      const formData = new FormData(formEl);
       formData.append('form-name', formName);
       setDisabled(true);
 
-      fetch(formEl.current.action, {
+      fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'multipart/form-data' },
         body: formData,
       })
         .then(() => {
           setDisabled(false);
-          if (formEl.current) {
-            formEl.current.reset();
-          }
+          formEl.reset();
           onSuccess();
         })
         .catch(error => {
@@ -64,9 +62,10 @@ const Form: React.FC<Props> = ({ children, formName, onSuccess, onError }) => {
   return (
     <StyledForm
       name={formName}
-      onSubmit={handleSubmit}
+      method="post"
+      action="/thanks/"
       data-netlify="true"
-      ref={formEl}
+      onSubmit={handleSubmit}
     >
       <input type="hidden" name="form-name" value={formName} />
       <Fieldset disabled={disabled}>{children}</Fieldset>
