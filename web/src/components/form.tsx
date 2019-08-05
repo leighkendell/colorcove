@@ -42,7 +42,7 @@ const Form: React.FC<Props> = ({ children, formName, onSuccess, onError }) => {
       formData.append('form-name', formName);
       setDisabled(true);
 
-      fetch('/', {
+      fetch(formEl.current.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData,
@@ -62,7 +62,12 @@ const Form: React.FC<Props> = ({ children, formName, onSuccess, onError }) => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit} ref={formEl}>
+    <StyledForm
+      name={formName}
+      onSubmit={handleSubmit}
+      data-netlify="true"
+      ref={formEl}
+    >
       <Fieldset disabled={disabled}>{children}</Fieldset>
     </StyledForm>
   );
