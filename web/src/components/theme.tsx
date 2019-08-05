@@ -16,18 +16,11 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: inherit;
-    outline-color: transparent;
 
     &::before,
     &::after {
       box-sizing: inherit;
     }
-  }
-
-  :focus {
-    outline: 4px solid ${props => props.theme.colorDarkGrey};
-    outline-offset: 4px;
-    transition: outline-color 0.25s ease-in-out;
   }
 
   /* Storybook specific */

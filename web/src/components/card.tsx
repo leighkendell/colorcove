@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Heading from './heading';
 import Text from './text';
 import Button from './button';
@@ -32,9 +32,7 @@ const StyledCard = styled.li`
   }
 `;
 
-const Content = styled.div`
-  flex-grow: 1;
-  order: 2;
+export const cardContent = css`
   padding: ${spacing(3)};
   background-color: ${props => props.theme.colorLightGrey};
 
@@ -49,6 +47,12 @@ const Content = styled.div`
   ${breakpoint('large')} {
     padding: ${spacing(8)};
   }
+`;
+
+const Content = styled.div`
+  flex-grow: 1;
+  order: 2;
+  ${cardContent};
 `;
 
 const StyledImage = styled(Image)`

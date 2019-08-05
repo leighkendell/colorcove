@@ -1,12 +1,8 @@
 import styled from 'styled-components';
-import { fontSize, breakpoint } from '../utils/style-helpers';
+import { TextBase } from './text';
 
 const ListItem = styled.li`
-  ${fontSize(16, 3)};
-
-  ${breakpoint('medium')} {
-    ${fontSize(18, 4)};
-  }
+  ${TextBase};
 `;
 
 export default ListItem;

@@ -2,8 +2,7 @@ import create from 'zustand';
 import { isBrowser } from '../utils/helpers';
 import { Cart } from 'shopify-buy';
 
-// FIXME: Look at why any is required here
-const [useStore] = create<any>(set => ({
+const [useStore] = create(set => ({
   // Cart
   cartIsOpen: false,
   openCart: () => set({ cartIsOpen: true }),

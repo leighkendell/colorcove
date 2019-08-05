@@ -93,6 +93,7 @@ const Overlay = styled(animated.div)`
   width: 100%;
   height: 100%;
   background-color: ${props => rgba(props.theme.colorBlack, 0.75)};
+  backdrop-filter: blur(8px);
 `;
 
 const Cart: React.FC<Props> = ({
