@@ -3732,10 +3732,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-helmet@^5.0.8":
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.8.tgz#f080eea6652e44f60b4574463d238f268d81d9af"
-  integrity sha512-ZTr12eDAYI0yUiMx1K82EHqRYa8J1BOOLus+0gL+AkksUiIPwLE0wLiXa9FNqD8r9GXAi+yRPZImkRh1JNlTkQ==
+"@types/react-helmet@^5.0.9":
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.9.tgz#60ab5accce74b168ca1d274671522f6b2cf2c98f"
+  integrity sha512-0UVaMQk/Xvq6rFaGyepSBnRApy5RE+YH0XAXlbOBhtez5D9y1/jxKaKODofPzNnJLoLQ+sATTsWQIvrw1Dtiag==
   dependencies:
     "@types/react" "*"
 
@@ -17255,10 +17255,10 @@ react-tippy@^1.2.3:
   dependencies:
     popper.js "^1.11.1"
 
-react-use-gesture@^5.2.3:
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/react-use-gesture/-/react-use-gesture-5.2.3.tgz#3505b45f1076963040ed6204a81ee5f252d55b36"
-  integrity sha512-aXpit9o3EhmlM/erBu9wzWNrx7Wbms/ha38I/XSF+ybUdZ9idhWjy4LODGfj+wqMNNdmphLfYLPO+WfApYXAiA==
+react-use-gesture@^5.2.4:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/react-use-gesture/-/react-use-gesture-5.2.4.tgz#c84ebe0d79703fd90cb26a220812c2f430d3e40d"
+  integrity sha512-oay95IPKBTAIqsZWwPAXJVVlDCpXdg4y2kEKz8oGLSqewpmXsXC4vKlAZq/ZDwZa4djzWlK1pnSIJY2iylx4QQ==
 
 react@^16.8.3, react@^16.8.4, react@^16.8.6:
   version "16.8.6"

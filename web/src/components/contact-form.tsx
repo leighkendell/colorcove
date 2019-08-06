@@ -4,6 +4,7 @@ import TextField from './text-field';
 import Input from './input';
 import Button from './button';
 import Message from './message';
+import Textarea from './textarea';
 
 const ContactForm: React.FC = () => {
   const [messageVisible, setMessageVisible] = useState(false);
@@ -24,10 +25,13 @@ const ContactForm: React.FC = () => {
       <TextField label="Your name">
         <Input id="name" name="name" type="text" required />
       </TextField>
-      <TextField label="Your email">
+      <TextField label="Your email address">
         <Input id="email" name="email" type="email" required />
       </TextField>
-      <Button>Submit</Button>
+      <TextField label="Your message">
+        <Textarea id="message" name="message" required />
+      </TextField>
+      <Button>Send enquiry</Button>
       <Message isVisible={messageVisible}>
         We have received your message and we will be in touch soon.
       </Message>

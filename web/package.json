@@ -32,7 +32,7 @@
     "react-helmet": "^5.2.1",
     "react-intersection-observer": "^8.24.1",
     "react-spring": "^8.0.27",
-    "react-use-gesture": "^5.2.3",
+    "react-use-gesture": "^5.2.4",
     "shopify-buy": "^2.6.1",
     "styled-components": "^4.3.2",
     "zustand": "^1.0.3"
@@ -43,7 +43,7 @@
     "@graphql-codegen/typescript-operations": "^1.4.0",
     "@svgr/webpack": "^4.3.2",
     "@types/css-font-loading-module": "^0.0.2",
-    "@types/react-helmet": "^5.0.8",
+    "@types/react-helmet": "^5.0.9",
     "@types/shopify-buy": "^1.4.3",
     "@types/styled-components": "^4.1.18",
     "@types/vimeo__player": "^2.9.0",

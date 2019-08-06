@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { spacing } from '../utils/style-helpers';
 import { TextBase } from './text';
 
-const Input = styled.input`
+export const inputStyles = css`
   --border-color: ${props => props.theme.colorDarkGrey};
 
   ${TextBase};
@@ -21,9 +21,10 @@ const Input = styled.input`
     --border-color: ${props => props.theme.colorBlue};
     box-shadow: inset 0 0 0 1px var(--border-color);
   }
+`;
 
-  &:invalid {
-  }
+const Input = styled.input`
+  ${inputStyles};
 `;
 
 export default Input;

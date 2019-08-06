@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { spacing } from '../utils/style-helpers';
+import { spacing, breakpoint } from '../utils/style-helpers';
 import Button from './button';
 import { cardContent } from './card';
 import { encode } from '../utils/helpers';
@@ -13,6 +13,7 @@ interface Props {
 
 const StyledForm = styled.form`
   max-width: 560px;
+  margin: 0 auto;
   background-color: ${props => props.theme.colorLightGrey};
   ${cardContent};
 `;
@@ -24,6 +25,10 @@ const Fieldset = styled.fieldset`
 
   > * + * {
     margin-top: ${spacing(3)};
+
+    ${breakpoint('medium')} {
+      margin-top: ${spacing(6)};
+    }
   }
 
   ${Button} {
