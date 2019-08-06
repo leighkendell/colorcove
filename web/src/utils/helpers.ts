@@ -24,3 +24,9 @@ export const springSlowConfig = {
   friction: 50,
   clamp: true,
 };
+
+export const encode = (data: any) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+};

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { spacing } from '../utils/style-helpers';
 import Button from './button';
 import { cardContent } from './card';
+import { encode } from '../utils/helpers';
 
 interface Props {
   formName: string;
@@ -39,13 +40,12 @@ const Form: React.FC<Props> = ({ children, formName, onSuccess, onError }) => {
 
     if (formEl) {
       const formData = new FormData(formEl);
-      formData.append('form-name', formName);
       setDisabled(true);
 
       fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'multipart/form-data' },
-        body: formData,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode(Object.fromEntries(formData)),
       })
         .then(() => {
           setDisabled(false);
