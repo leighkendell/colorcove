@@ -37,6 +37,7 @@ const Layout: React.FC<Props> = ({ children, location }) => {
   const navIsOpen = useStore(state => state.navIsOpen);
   const openNav = useStore(state => state.openNav);
   const closeNav = useStore(state => state.closeNav);
+  const checkout = useStore(state => state.checkout);
 
   // Get the current and previous location
   const { pathname } = location;
@@ -93,6 +94,14 @@ const Layout: React.FC<Props> = ({ children, location }) => {
   const social: SanitySocial = getNestedObject(sanitySiteSettings, 'social');
   const { facebook, instagram, vimeo } = social;
 
+  // Count the items in the cart
+  const cartQuantity =
+    checkout &&
+    checkout.lineItems.reduce(
+      (total: number, item: any) => total + item.quantity,
+      0
+    );
+
   return (
     <>
       <Fonts />
@@ -103,6 +112,7 @@ const Layout: React.FC<Props> = ({ children, location }) => {
           onOpen={openNav}
           onClose={closeNav}
           onCartOpen={openCart}
+          cartQuantity={cartQuantity}
         />
         <main>{children}</main>
         <ShopifyCart />

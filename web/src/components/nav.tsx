@@ -23,6 +23,7 @@ interface Props {
     title: string;
     link: string;
   }[];
+  cartQuantity?: number;
   isOpen?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
@@ -189,12 +190,30 @@ const NavLink = styled(Link)`
   }
 `;
 
+const Quantity = styled(animated.span)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${spacing(2.5)};
+  height: ${spacing(2.5)};
+  ${fontSize(12, 2)};
+  font-weight: bold;
+  background-color: ${props => props.theme.colorOrange};
+  border-radius: 100%;
+  transform: translate(50%, -50%);
+`;
+
 const Nav: React.FC<Props> = ({
   items,
   onCartOpen,
   isOpen,
   onOpen,
   onClose,
+  cartQuantity,
 }) => {
   const toggleButtonEl = useRef<HTMLButtonElement>(null);
   const navListEl = useRef<ReactSpringHook>(null);
@@ -233,6 +252,13 @@ const Nav: React.FC<Props> = ({
     immediate: !toggleButtonEl.current,
   });
 
+  const quantityAnimation = useSpring({
+    opacity: cartQuantity && cartQuantity > 0 ? 1 : 0,
+    transform: `translate(50%, -50%) scale(${
+      cartQuantity && cartQuantity > 0 ? 1 : 0
+    })`,
+  });
+
   useChain(isOpen ? [navListEl, navListItemEl] : [navListItemEl, navListEl], [
     0,
     isOpen ? 0.1 : 0.4,
@@ -268,6 +294,7 @@ const Nav: React.FC<Props> = ({
         ))}
       </NavList>
       <IconButton aria-label="Open cart" onClick={onCartOpen}>
+        <Quantity style={quantityAnimation}>{cartQuantity}</Quantity>
         <IconWrapper>
           <Cart role="img" />
         </IconWrapper>

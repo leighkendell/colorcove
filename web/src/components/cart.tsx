@@ -45,6 +45,7 @@ const Header = styled.div`
   grid-template-columns: ${spacing(3)} 1fr ${spacing(3)};
   align-items: center;
   justify-items: center;
+  margin-bottom: ${spacing(4)};
 
   * {
     margin: 0;
@@ -114,6 +115,8 @@ const Cart: React.FC<Props> = ({
     ),
   };
 
+  const hasChildren = React.Children.count(children) > 0;
+
   return (
     <>
       <Overlay onClick={onClose} style={{ opacity, ...overlayVisibility }} />
@@ -124,14 +127,16 @@ const Cart: React.FC<Props> = ({
           </CloseButton>
           <Heading type="h3">Your cart</Heading>
         </Header>
-        <CartList>{children}</CartList>
-        {children && subtotal && (
+        {hasChildren && subtotal ? (
           <>
+            <CartList>{children}</CartList>
             <Text>
               <strong>Subtotal: </strong> {subtotal}
             </Text>
             <Button onClick={onCheckout}>Checkout</Button>
           </>
+        ) : (
+          <Text>Your cart is empty.</Text>
         )}
       </StyledCart>
     </>

@@ -8,6 +8,7 @@ const colorcoveTheme: DefaultTheme = {
   colorMidGrey: '#e9e9ea',
   colorDarkGrey: '#c3c3c3',
   colorBlue: '#335bfa',
+  colorOrange: '#f6a623',
 
   // Fonts
   fontPrimary: `Manrope, sans-serif`,
