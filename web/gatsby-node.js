@@ -12,6 +12,7 @@ exports.createPages = async ({ graphql, actions }) => {
             slug {
               current
             }
+            shopifyHandle
           }
         }
       }
@@ -36,12 +37,13 @@ exports.createPages = async ({ graphql, actions }) => {
   const products = result.data.allSanityProduct.edges || [];
   products.forEach(edge => {
     const slug = edge.node.slug.current;
+    const { shopifyHandle } = edge.node;
     const path = `/products/${slug}`;
 
     createPage({
       path,
       component: require.resolve('./src/templates/product.tsx'),
-      context: { id: edge.node.id, slug },
+      context: { id: edge.node.id, slug, shopifyHandle },
     });
   });
 

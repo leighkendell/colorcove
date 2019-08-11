@@ -89,7 +89,7 @@ const ProductTemplate: React.FC<Props> = ({
 export default ProductTemplate;
 
 export const productQuery = graphql`
-  query ProductTemplateQuery($id: String!, $slug: String!) {
+  query ProductTemplateQuery($id: String!, $shopifyHandle: String!) {
     sanityProduct(id: { eq: $id }) {
       title
       description
@@ -130,7 +130,7 @@ export const productQuery = graphql`
         price
       }
     }
-    shopifyProduct(handle: { eq: $slug }) {
+    shopifyProduct(handle: { eq: $shopifyHandle }) {
       shopifyId
     }
   }
