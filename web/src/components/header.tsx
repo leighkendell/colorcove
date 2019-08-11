@@ -22,12 +22,13 @@ const headerGrid = css`
   grid-template-rows: repeat(2, auto);
 
   ${breakpoint('medium')} {
-    grid-template-rows: 1fr var(--padding);
+    grid-template-rows: var(--padding) 1fr var(--padding);
   }
 `;
 
 const StyledHeader = styled.header<{ hasImage: boolean }>`
   --padding: ${spacing(3)};
+  position: relative;
 
   ${breakpoint('small')} {
     --padding: ${spacing(6)};
@@ -64,8 +65,10 @@ const StyledImage = styled(animated(Image))`
   grid-column: 1 / span 1;
 
   ${breakpoint('medium')} {
-    grid-row: 1 / span 2;
-    max-height: calc(100vh - ${spacing(10)});
+    position: absolute !important;
+    grid-row: 1 / span 3;
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -77,10 +80,6 @@ const Content = styled.div`
   max-width: ${spacing(80)};
   padding: var(--padding);
   background: ${props => props.theme.colorBlack};
-
-  ${breakpoint('medium')} {
-    grid-row: 1 / span 1;
-  }
 
   ${breakpoint('xLarge')} {
     max-width: ${spacing(90)};

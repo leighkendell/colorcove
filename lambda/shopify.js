@@ -40,6 +40,7 @@ exports.handler = async function(event) {
         current: handle,
       },
       shopifyId: id,
+      shopifyHandle: handle,
       shopifyDefaultVariant: {
         title: defaultVariant && defaultVariant.title,
         price: defaultVariant && defaultVariant.price,

@@ -15,7 +15,7 @@ export const comparisonImage = graphql`
 export const cardImage = graphql`
   fragment CardImage on SanityMainImage {
     asset {
-      fluid(maxWidth: 864, maxHeight: 648) {
+      fluid(maxWidth: 864, maxHeight: 864) {
         ...GatsbySanityImageFluid
       }
     }

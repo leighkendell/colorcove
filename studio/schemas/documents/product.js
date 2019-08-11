@@ -57,6 +57,13 @@ export default {
       readOnly: true,
     },
     {
+      name: 'shopifyHandle',
+      title: 'Shopify Handle',
+      type: 'string',
+      description: 'The product Handle from Shopify',
+      readOnly: true,
+    },
+    {
       name: 'shopifyDefaultVariant',
       title: 'Default Product Variant',
       type: 'shopifyVariant',

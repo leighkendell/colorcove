@@ -78,29 +78,34 @@ const Heading: React.FC<Heading> = ({
   align = 'left',
   ...props
 }) => {
+  // Prevent "widows" by replacing the last space in a heading with a unicode space character
+  const text =
+    typeof children === 'string' &&
+    children.replace(/\s(?=[^\s]*$)/g, '\u00a0');
+
   switch (type) {
     case 'h1':
       return (
         <H1 align={align} {...props}>
-          {children}
+          {text}
         </H1>
       );
     case 'h2':
       return (
         <H2 align={align} {...props}>
-          {children}
+          {text}
         </H2>
       );
     case 'h3':
       return (
         <H3 align={align} {...props}>
-          {children}
+          {text}
         </H3>
       );
     default:
       return (
         <H1 align={align} {...props}>
-          {children}
+          {text}
         </H1>
       );
   }
