@@ -12,6 +12,7 @@ declare module 'styled-components' {
     fontPrimary: string;
     spacingBase: number;
     breakpoints: {
+      xSmall: number;
       small: number;
       medium: number;
       large: number;

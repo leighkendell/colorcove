@@ -18,6 +18,7 @@ const colorcoveTheme: DefaultTheme = {
 
   // Breakpoints
   breakpoints: {
+    xSmall: 375,
     small: 420,
     medium: 768,
     large: 1200,

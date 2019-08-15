@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   justify-content: center;
   text-align: center;
 
-  ${breakpoint('small')} {
+  ${breakpoint('xSmall')} {
     grid-template-areas:
       'top-left top-right'
       'bottom-left bottom-right';
