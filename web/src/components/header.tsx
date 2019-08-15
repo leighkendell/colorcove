@@ -161,7 +161,7 @@ const Header: React.FC<Props> = ({
       {image ? (
         <>
           <Content>
-            <AnimatedHeading type="h1" style={headingAnimation}>
+            <AnimatedHeading type="h1" style={headingAnimation} preventWidows>
               {title}
             </AnimatedHeading>
             <animated.div style={textAnimation}>

@@ -5,9 +5,10 @@ import CardGroup from './card-group';
 
 type align = 'left' | 'center' | 'right';
 
-interface Heading extends React.HTMLAttributes<HTMLHeadElement> {
+interface Heading extends React.HTMLAttributes<HTMLHeadingElement> {
   type: 'h1' | 'h2' | 'h3';
   align?: align;
+  preventWidows?: boolean;
 }
 
 /** Common heading styles */
@@ -76,12 +77,17 @@ const Heading: React.FC<Heading> = ({
   children,
   type,
   align = 'left',
+  preventWidows,
   ...props
 }) => {
+  let text = children;
+
   // Prevent "widows" by replacing the last space in a heading with a unicode space character
-  const text =
-    typeof children === 'string' &&
-    children.replace(/\s(?=[^\s]*$)/g, '\u00a0');
+  if (preventWidows) {
+    text =
+      typeof children === 'string' &&
+      children.replace(/\s(?=[^\s]*$)/g, '\u00a0');
+  }
 
   switch (type) {
     case 'h1':
