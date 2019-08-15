@@ -36,7 +36,7 @@ const StyledHeader = styled.header<{ hasImage: boolean }>`
 
   ${breakpoint('medium')} {
     --padding: ${spacing(9)};
-    ${({ hasImage }) => hasImage && `min-height: calc(100vh - ${spacing(10)})`};
+    ${({ hasImage }) => hasImage && `min-height: calc(80vh - ${spacing(10)})`};
   }
 
   ${breakpoint('large')} {

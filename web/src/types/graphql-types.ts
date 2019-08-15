@@ -1347,8 +1347,6 @@ export type Query = {
   allSite: SiteConnection;
   directory?: Maybe<Directory>;
   allDirectory: DirectoryConnection;
-  shopifyProductType?: Maybe<ShopifyProductType>;
-  allShopifyProductType: ShopifyProductTypeConnection;
   shopifyCollection?: Maybe<ShopifyCollection>;
   allShopifyCollection: ShopifyCollectionConnection;
   shopifyProduct?: Maybe<ShopifyProduct>;
@@ -1693,22 +1691,6 @@ export type QueryAllDirectoryArgs = {
   limit?: Maybe<Scalars['Int']>;
 };
 
-export type QueryShopifyProductTypeArgs = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  shopifyId?: Maybe<StringQueryOperatorInput>;
-};
-
-export type QueryAllShopifyProductTypeArgs = {
-  filter?: Maybe<ShopifyProductTypeFilterInput>;
-  sort?: Maybe<ShopifyProductTypeSortInput>;
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-};
-
 export type QueryShopifyCollectionArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -1717,10 +1699,10 @@ export type QueryShopifyCollectionArgs = {
   description?: Maybe<StringQueryOperatorInput>;
   descriptionHtml?: Maybe<StringQueryOperatorInput>;
   handle?: Maybe<StringQueryOperatorInput>;
-  products?: Maybe<ShopifyProductFilterListInput>;
   title?: Maybe<StringQueryOperatorInput>;
   updatedAt?: Maybe<DateQueryOperatorInput>;
   shopifyId?: Maybe<StringQueryOperatorInput>;
+  products?: Maybe<ShopifyProductFilterListInput>;
 };
 
 export type QueryAllShopifyCollectionArgs = {
@@ -1741,15 +1723,15 @@ export type QueryShopifyProductArgs = {
   descriptionHtml?: Maybe<StringQueryOperatorInput>;
   handle?: Maybe<StringQueryOperatorInput>;
   images?: Maybe<ShopifyProductImagesFilterListInput>;
-  options?: Maybe<ShopifyProductOptionFilterListInput>;
   priceRange?: Maybe<ShopifyProductPriceRangeFilterInput>;
   productType?: Maybe<StringQueryOperatorInput>;
   publishedAt?: Maybe<DateQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   updatedAt?: Maybe<DateQueryOperatorInput>;
-  variants?: Maybe<ShopifyProductVariantFilterListInput>;
   vendor?: Maybe<StringQueryOperatorInput>;
   shopifyId?: Maybe<StringQueryOperatorInput>;
+  variants?: Maybe<ShopifyProductVariantFilterListInput>;
+  options?: Maybe<ShopifyProductOptionFilterListInput>;
 };
 
 export type QueryAllShopifyProductArgs = {
@@ -2095,6 +2077,22 @@ export type SanityHero = {
   title?: Maybe<Scalars['String']>;
   intro?: Maybe<Scalars['String']>;
   image?: Maybe<SanityMainImage>;
+  button?: Maybe<SanityHeroButton>;
+};
+
+export type SanityHeroButton = {
+  __typename?: 'SanityHeroButton';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+  link?: Maybe<SanityPageReference>;
+};
+
+export type SanityHeroButtonFilterInput = {
+  _key?: Maybe<StringQueryOperatorInput>;
+  _type?: Maybe<StringQueryOperatorInput>;
+  text?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<SanityPageReferenceFilterInput>;
 };
 
 export type SanityHeroFilterInput = {
@@ -2103,6 +2101,7 @@ export type SanityHeroFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
   intro?: Maybe<StringQueryOperatorInput>;
   image?: Maybe<SanityMainImageFilterInput>;
+  button?: Maybe<SanityHeroButtonFilterInput>;
 };
 
 export type SanityImage = {
@@ -2935,6 +2934,11 @@ export enum SanityPageFieldsEnum {
   hero___image___crop___bottom = 'hero___image___crop___bottom',
   hero___image___crop___left = 'hero___image___crop___left',
   hero___image___crop___right = 'hero___image___crop___right',
+  hero___button____key = 'hero___button____key',
+  hero___button____type = 'hero___button____type',
+  hero___button___text = 'hero___button___text',
+  hero___button___link____key = 'hero___button___link____key',
+  hero___button___link____type = 'hero___button___link____type',
   _rawSlug = '_rawSlug',
   _rawImage = '_rawImage',
   _rawHero = '_rawHero',
@@ -3291,6 +3295,11 @@ export enum SanityProductFieldsEnum {
   hero___image___crop___bottom = 'hero___image___crop___bottom',
   hero___image___crop___left = 'hero___image___crop___left',
   hero___image___crop___right = 'hero___image___crop___right',
+  hero___button____key = 'hero___button____key',
+  hero___button____type = 'hero___button____type',
+  hero___button___text = 'hero___button___text',
+  hero___button___link____key = 'hero___button___link____key',
+  hero___button___link____type = 'hero___button___link____type',
   shopifyId = 'shopifyId',
   shopifyHandle = 'shopifyHandle',
   shopifyDefaultVariant____key = 'shopifyDefaultVariant____key',
@@ -3788,10 +3797,10 @@ export type ShopifyCollection = Node & {
   description?: Maybe<Scalars['String']>;
   descriptionHtml?: Maybe<Scalars['String']>;
   handle?: Maybe<Scalars['String']>;
-  products?: Maybe<Array<Maybe<ShopifyProduct>>>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['Date']>;
   shopifyId?: Maybe<Scalars['String']>;
+  products?: Maybe<Array<Maybe<ShopifyProduct>>>;
 };
 
 export type ShopifyCollectionUpdatedAtArgs = {
@@ -3918,6 +3927,9 @@ export enum ShopifyCollectionFieldsEnum {
   description = 'description',
   descriptionHtml = 'descriptionHtml',
   handle = 'handle',
+  title = 'title',
+  updatedAt = 'updatedAt',
+  shopifyId = 'shopifyId',
   products = 'products',
   products___id = 'products___id',
   products___parent___id = 'products___parent___id',
@@ -4002,24 +4014,6 @@ export enum ShopifyCollectionFieldsEnum {
   products___images___localFile___publicURL = 'products___images___localFile___publicURL',
   products___images___localFile___id = 'products___images___localFile___id',
   products___images___localFile___children = 'products___images___localFile___children',
-  products___options = 'products___options',
-  products___options___id = 'products___options___id',
-  products___options___parent___id = 'products___options___parent___id',
-  products___options___parent___children = 'products___options___parent___children',
-  products___options___children = 'products___options___children',
-  products___options___children___id = 'products___options___children___id',
-  products___options___children___children = 'products___options___children___children',
-  products___options___internal___content = 'products___options___internal___content',
-  products___options___internal___contentDigest = 'products___options___internal___contentDigest',
-  products___options___internal___description = 'products___options___internal___description',
-  products___options___internal___fieldOwners = 'products___options___internal___fieldOwners',
-  products___options___internal___ignoreType = 'products___options___internal___ignoreType',
-  products___options___internal___mediaType = 'products___options___internal___mediaType',
-  products___options___internal___owner = 'products___options___internal___owner',
-  products___options___internal___type = 'products___options___internal___type',
-  products___options___name = 'products___options___name',
-  products___options___values = 'products___options___values',
-  products___options___shopifyId = 'products___options___shopifyId',
   products___priceRange___minVariantPrice___amount = 'products___priceRange___minVariantPrice___amount',
   products___priceRange___minVariantPrice___currencyCode = 'products___priceRange___minVariantPrice___currencyCode',
   products___priceRange___maxVariantPrice___amount = 'products___priceRange___maxVariantPrice___amount',
@@ -4028,6 +4022,8 @@ export enum ShopifyCollectionFieldsEnum {
   products___publishedAt = 'products___publishedAt',
   products___title = 'products___title',
   products___updatedAt = 'products___updatedAt',
+  products___vendor = 'products___vendor',
+  products___shopifyId = 'products___shopifyId',
   products___variants = 'products___variants',
   products___variants___id = 'products___variants___id',
   products___variants___parent___id = 'products___variants___parent___id',
@@ -4055,11 +4051,24 @@ export enum ShopifyCollectionFieldsEnum {
   products___variants___weight = 'products___variants___weight',
   products___variants___weightUnit = 'products___variants___weightUnit',
   products___variants___shopifyId = 'products___variants___shopifyId',
-  products___vendor = 'products___vendor',
-  products___shopifyId = 'products___shopifyId',
-  title = 'title',
-  updatedAt = 'updatedAt',
-  shopifyId = 'shopifyId',
+  products___options = 'products___options',
+  products___options___id = 'products___options___id',
+  products___options___parent___id = 'products___options___parent___id',
+  products___options___parent___children = 'products___options___parent___children',
+  products___options___children = 'products___options___children',
+  products___options___children___id = 'products___options___children___id',
+  products___options___children___children = 'products___options___children___children',
+  products___options___internal___content = 'products___options___internal___content',
+  products___options___internal___contentDigest = 'products___options___internal___contentDigest',
+  products___options___internal___description = 'products___options___internal___description',
+  products___options___internal___fieldOwners = 'products___options___internal___fieldOwners',
+  products___options___internal___ignoreType = 'products___options___internal___ignoreType',
+  products___options___internal___mediaType = 'products___options___internal___mediaType',
+  products___options___internal___owner = 'products___options___internal___owner',
+  products___options___internal___type = 'products___options___internal___type',
+  products___options___name = 'products___options___name',
+  products___options___values = 'products___options___values',
+  products___options___shopifyId = 'products___options___shopifyId',
 }
 
 export type ShopifyCollectionFilterInput = {
@@ -4070,10 +4079,10 @@ export type ShopifyCollectionFilterInput = {
   description?: Maybe<StringQueryOperatorInput>;
   descriptionHtml?: Maybe<StringQueryOperatorInput>;
   handle?: Maybe<StringQueryOperatorInput>;
-  products?: Maybe<ShopifyProductFilterListInput>;
   title?: Maybe<StringQueryOperatorInput>;
   updatedAt?: Maybe<DateQueryOperatorInput>;
   shopifyId?: Maybe<StringQueryOperatorInput>;
+  products?: Maybe<ShopifyProductFilterListInput>;
 };
 
 export type ShopifyCollectionGroupConnection = {
@@ -4103,15 +4112,15 @@ export type ShopifyProduct = Node & {
   descriptionHtml?: Maybe<Scalars['String']>;
   handle?: Maybe<Scalars['String']>;
   images?: Maybe<Array<Maybe<ShopifyProductImages>>>;
-  options?: Maybe<Array<Maybe<ShopifyProductOption>>>;
   priceRange?: Maybe<ShopifyProductPriceRange>;
   productType?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['Date']>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['Date']>;
-  variants?: Maybe<Array<Maybe<ShopifyProductVariant>>>;
   vendor?: Maybe<Scalars['String']>;
   shopifyId?: Maybe<Scalars['String']>;
+  variants?: Maybe<Array<Maybe<ShopifyProductVariant>>>;
+  options?: Maybe<Array<Maybe<ShopifyProductOption>>>;
 };
 
 export type ShopifyProductCreatedAtArgs = {
@@ -4308,48 +4317,6 @@ export enum ShopifyProductFieldsEnum {
   images___localFile___internal___type = 'images___localFile___internal___type',
   images___localFile___childImageSharp___id = 'images___localFile___childImageSharp___id',
   images___localFile___childImageSharp___children = 'images___localFile___childImageSharp___children',
-  options = 'options',
-  options___id = 'options___id',
-  options___parent___id = 'options___parent___id',
-  options___parent___parent___id = 'options___parent___parent___id',
-  options___parent___parent___children = 'options___parent___parent___children',
-  options___parent___children = 'options___parent___children',
-  options___parent___children___id = 'options___parent___children___id',
-  options___parent___children___children = 'options___parent___children___children',
-  options___parent___internal___content = 'options___parent___internal___content',
-  options___parent___internal___contentDigest = 'options___parent___internal___contentDigest',
-  options___parent___internal___description = 'options___parent___internal___description',
-  options___parent___internal___fieldOwners = 'options___parent___internal___fieldOwners',
-  options___parent___internal___ignoreType = 'options___parent___internal___ignoreType',
-  options___parent___internal___mediaType = 'options___parent___internal___mediaType',
-  options___parent___internal___owner = 'options___parent___internal___owner',
-  options___parent___internal___type = 'options___parent___internal___type',
-  options___children = 'options___children',
-  options___children___id = 'options___children___id',
-  options___children___parent___id = 'options___children___parent___id',
-  options___children___parent___children = 'options___children___parent___children',
-  options___children___children = 'options___children___children',
-  options___children___children___id = 'options___children___children___id',
-  options___children___children___children = 'options___children___children___children',
-  options___children___internal___content = 'options___children___internal___content',
-  options___children___internal___contentDigest = 'options___children___internal___contentDigest',
-  options___children___internal___description = 'options___children___internal___description',
-  options___children___internal___fieldOwners = 'options___children___internal___fieldOwners',
-  options___children___internal___ignoreType = 'options___children___internal___ignoreType',
-  options___children___internal___mediaType = 'options___children___internal___mediaType',
-  options___children___internal___owner = 'options___children___internal___owner',
-  options___children___internal___type = 'options___children___internal___type',
-  options___internal___content = 'options___internal___content',
-  options___internal___contentDigest = 'options___internal___contentDigest',
-  options___internal___description = 'options___internal___description',
-  options___internal___fieldOwners = 'options___internal___fieldOwners',
-  options___internal___ignoreType = 'options___internal___ignoreType',
-  options___internal___mediaType = 'options___internal___mediaType',
-  options___internal___owner = 'options___internal___owner',
-  options___internal___type = 'options___internal___type',
-  options___name = 'options___name',
-  options___values = 'options___values',
-  options___shopifyId = 'options___shopifyId',
   priceRange___minVariantPrice___amount = 'priceRange___minVariantPrice___amount',
   priceRange___minVariantPrice___currencyCode = 'priceRange___minVariantPrice___currencyCode',
   priceRange___maxVariantPrice___amount = 'priceRange___maxVariantPrice___amount',
@@ -4358,6 +4325,8 @@ export enum ShopifyProductFieldsEnum {
   publishedAt = 'publishedAt',
   title = 'title',
   updatedAt = 'updatedAt',
+  vendor = 'vendor',
+  shopifyId = 'shopifyId',
   variants = 'variants',
   variants___id = 'variants___id',
   variants___parent___id = 'variants___parent___id',
@@ -4446,8 +4415,48 @@ export enum ShopifyProductFieldsEnum {
   variants___weight = 'variants___weight',
   variants___weightUnit = 'variants___weightUnit',
   variants___shopifyId = 'variants___shopifyId',
-  vendor = 'vendor',
-  shopifyId = 'shopifyId',
+  options = 'options',
+  options___id = 'options___id',
+  options___parent___id = 'options___parent___id',
+  options___parent___parent___id = 'options___parent___parent___id',
+  options___parent___parent___children = 'options___parent___parent___children',
+  options___parent___children = 'options___parent___children',
+  options___parent___children___id = 'options___parent___children___id',
+  options___parent___children___children = 'options___parent___children___children',
+  options___parent___internal___content = 'options___parent___internal___content',
+  options___parent___internal___contentDigest = 'options___parent___internal___contentDigest',
+  options___parent___internal___description = 'options___parent___internal___description',
+  options___parent___internal___fieldOwners = 'options___parent___internal___fieldOwners',
+  options___parent___internal___ignoreType = 'options___parent___internal___ignoreType',
+  options___parent___internal___mediaType = 'options___parent___internal___mediaType',
+  options___parent___internal___owner = 'options___parent___internal___owner',
+  options___parent___internal___type = 'options___parent___internal___type',
+  options___children = 'options___children',
+  options___children___id = 'options___children___id',
+  options___children___parent___id = 'options___children___parent___id',
+  options___children___parent___children = 'options___children___parent___children',
+  options___children___children = 'options___children___children',
+  options___children___children___id = 'options___children___children___id',
+  options___children___children___children = 'options___children___children___children',
+  options___children___internal___content = 'options___children___internal___content',
+  options___children___internal___contentDigest = 'options___children___internal___contentDigest',
+  options___children___internal___description = 'options___children___internal___description',
+  options___children___internal___fieldOwners = 'options___children___internal___fieldOwners',
+  options___children___internal___ignoreType = 'options___children___internal___ignoreType',
+  options___children___internal___mediaType = 'options___children___internal___mediaType',
+  options___children___internal___owner = 'options___children___internal___owner',
+  options___children___internal___type = 'options___children___internal___type',
+  options___internal___content = 'options___internal___content',
+  options___internal___contentDigest = 'options___internal___contentDigest',
+  options___internal___description = 'options___internal___description',
+  options___internal___fieldOwners = 'options___internal___fieldOwners',
+  options___internal___ignoreType = 'options___internal___ignoreType',
+  options___internal___mediaType = 'options___internal___mediaType',
+  options___internal___owner = 'options___internal___owner',
+  options___internal___type = 'options___internal___type',
+  options___name = 'options___name',
+  options___values = 'options___values',
+  options___shopifyId = 'options___shopifyId',
 }
 
 export type ShopifyProductFilterInput = {
@@ -4461,15 +4470,15 @@ export type ShopifyProductFilterInput = {
   descriptionHtml?: Maybe<StringQueryOperatorInput>;
   handle?: Maybe<StringQueryOperatorInput>;
   images?: Maybe<ShopifyProductImagesFilterListInput>;
-  options?: Maybe<ShopifyProductOptionFilterListInput>;
   priceRange?: Maybe<ShopifyProductPriceRangeFilterInput>;
   productType?: Maybe<StringQueryOperatorInput>;
   publishedAt?: Maybe<DateQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   updatedAt?: Maybe<DateQueryOperatorInput>;
-  variants?: Maybe<ShopifyProductVariantFilterListInput>;
   vendor?: Maybe<StringQueryOperatorInput>;
   shopifyId?: Maybe<StringQueryOperatorInput>;
+  variants?: Maybe<ShopifyProductVariantFilterListInput>;
+  options?: Maybe<ShopifyProductOptionFilterListInput>;
 };
 
 export type ShopifyProductFilterListInput = {
@@ -4697,158 +4706,6 @@ export type ShopifyProductPriceRangeMinVariantPriceFilterInput = {
 
 export type ShopifyProductSortInput = {
   fields?: Maybe<Array<Maybe<ShopifyProductFieldsEnum>>>;
-  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
-};
-
-export type ShopifyProductType = Node & {
-  __typename?: 'ShopifyProductType';
-  id: Scalars['ID'];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
-  name?: Maybe<Scalars['String']>;
-  shopifyId?: Maybe<Scalars['String']>;
-};
-
-export type ShopifyProductTypeConnection = {
-  __typename?: 'ShopifyProductTypeConnection';
-  totalCount: Scalars['Int'];
-  edges: Array<ShopifyProductTypeEdge>;
-  nodes: Array<ShopifyProductType>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  group: Array<ShopifyProductTypeGroupConnection>;
-};
-
-export type ShopifyProductTypeConnectionDistinctArgs = {
-  field: ShopifyProductTypeFieldsEnum;
-};
-
-export type ShopifyProductTypeConnectionGroupArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  field: ShopifyProductTypeFieldsEnum;
-};
-
-export type ShopifyProductTypeEdge = {
-  __typename?: 'ShopifyProductTypeEdge';
-  next?: Maybe<ShopifyProductType>;
-  node: ShopifyProductType;
-  previous?: Maybe<ShopifyProductType>;
-};
-
-export enum ShopifyProductTypeFieldsEnum {
-  id = 'id',
-  parent___id = 'parent___id',
-  parent___parent___id = 'parent___parent___id',
-  parent___parent___parent___id = 'parent___parent___parent___id',
-  parent___parent___parent___children = 'parent___parent___parent___children',
-  parent___parent___children = 'parent___parent___children',
-  parent___parent___children___id = 'parent___parent___children___id',
-  parent___parent___children___children = 'parent___parent___children___children',
-  parent___parent___internal___content = 'parent___parent___internal___content',
-  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
-  parent___parent___internal___description = 'parent___parent___internal___description',
-  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
-  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
-  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
-  parent___parent___internal___owner = 'parent___parent___internal___owner',
-  parent___parent___internal___type = 'parent___parent___internal___type',
-  parent___children = 'parent___children',
-  parent___children___id = 'parent___children___id',
-  parent___children___parent___id = 'parent___children___parent___id',
-  parent___children___parent___children = 'parent___children___parent___children',
-  parent___children___children = 'parent___children___children',
-  parent___children___children___id = 'parent___children___children___id',
-  parent___children___children___children = 'parent___children___children___children',
-  parent___children___internal___content = 'parent___children___internal___content',
-  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
-  parent___children___internal___description = 'parent___children___internal___description',
-  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
-  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
-  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
-  parent___children___internal___owner = 'parent___children___internal___owner',
-  parent___children___internal___type = 'parent___children___internal___type',
-  parent___internal___content = 'parent___internal___content',
-  parent___internal___contentDigest = 'parent___internal___contentDigest',
-  parent___internal___description = 'parent___internal___description',
-  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
-  parent___internal___ignoreType = 'parent___internal___ignoreType',
-  parent___internal___mediaType = 'parent___internal___mediaType',
-  parent___internal___owner = 'parent___internal___owner',
-  parent___internal___type = 'parent___internal___type',
-  children = 'children',
-  children___id = 'children___id',
-  children___parent___id = 'children___parent___id',
-  children___parent___parent___id = 'children___parent___parent___id',
-  children___parent___parent___children = 'children___parent___parent___children',
-  children___parent___children = 'children___parent___children',
-  children___parent___children___id = 'children___parent___children___id',
-  children___parent___children___children = 'children___parent___children___children',
-  children___parent___internal___content = 'children___parent___internal___content',
-  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
-  children___parent___internal___description = 'children___parent___internal___description',
-  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
-  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
-  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
-  children___parent___internal___owner = 'children___parent___internal___owner',
-  children___parent___internal___type = 'children___parent___internal___type',
-  children___children = 'children___children',
-  children___children___id = 'children___children___id',
-  children___children___parent___id = 'children___children___parent___id',
-  children___children___parent___children = 'children___children___parent___children',
-  children___children___children = 'children___children___children',
-  children___children___children___id = 'children___children___children___id',
-  children___children___children___children = 'children___children___children___children',
-  children___children___internal___content = 'children___children___internal___content',
-  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
-  children___children___internal___description = 'children___children___internal___description',
-  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
-  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
-  children___children___internal___mediaType = 'children___children___internal___mediaType',
-  children___children___internal___owner = 'children___children___internal___owner',
-  children___children___internal___type = 'children___children___internal___type',
-  children___internal___content = 'children___internal___content',
-  children___internal___contentDigest = 'children___internal___contentDigest',
-  children___internal___description = 'children___internal___description',
-  children___internal___fieldOwners = 'children___internal___fieldOwners',
-  children___internal___ignoreType = 'children___internal___ignoreType',
-  children___internal___mediaType = 'children___internal___mediaType',
-  children___internal___owner = 'children___internal___owner',
-  children___internal___type = 'children___internal___type',
-  internal___content = 'internal___content',
-  internal___contentDigest = 'internal___contentDigest',
-  internal___description = 'internal___description',
-  internal___fieldOwners = 'internal___fieldOwners',
-  internal___ignoreType = 'internal___ignoreType',
-  internal___mediaType = 'internal___mediaType',
-  internal___owner = 'internal___owner',
-  internal___type = 'internal___type',
-  name = 'name',
-  shopifyId = 'shopifyId',
-}
-
-export type ShopifyProductTypeFilterInput = {
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  shopifyId?: Maybe<StringQueryOperatorInput>;
-};
-
-export type ShopifyProductTypeGroupConnection = {
-  __typename?: 'ShopifyProductTypeGroupConnection';
-  totalCount: Scalars['Int'];
-  edges: Array<ShopifyProductTypeEdge>;
-  nodes: Array<ShopifyProductType>;
-  pageInfo: PageInfo;
-  field: Scalars['String'];
-  fieldValue?: Maybe<Scalars['String']>;
-};
-
-export type ShopifyProductTypeSortInput = {
-  fields?: Maybe<Array<Maybe<ShopifyProductTypeFieldsEnum>>>;
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
@@ -5890,6 +5747,56 @@ export type StringQueryOperatorInput = {
   regex?: Maybe<Scalars['String']>;
   glob?: Maybe<Scalars['String']>;
 };
+export type NavPagesFragment = { __typename?: 'SanityNavGroup' } & {
+  pages: Maybe<
+    Array<
+      Maybe<
+        { __typename?: 'SanityPageReference' } & {
+          page: Maybe<
+            { __typename?: 'SanityPage' } & Pick<SanityPage, 'title'> & {
+                slug: Maybe<
+                  { __typename?: 'SanitySlug' } & Pick<SanitySlug, 'current'>
+                >;
+              }
+          >;
+        }
+      >
+    >
+  >;
+};
+
+export type Unnamed_1_QueryVariables = {};
+
+export type Unnamed_1_Query = { __typename?: 'Query' } & {
+  sanitySiteSettings: Maybe<
+    { __typename?: 'SanitySiteSettings' } & {
+      primaryNav: Maybe<{ __typename?: 'SanityNavGroup' } & NavPagesFragment>;
+      secondaryNav: Maybe<{ __typename?: 'SanityNavGroup' } & NavPagesFragment>;
+      social: Maybe<
+        { __typename?: 'SanitySocial' } & Pick<
+          SanitySocial,
+          'facebook' | 'instagram' | 'vimeo'
+        >
+      >;
+    }
+  >;
+};
+
+export type Unnamed_2_QueryVariables = {};
+
+export type Unnamed_2_Query = { __typename?: 'Query' } & {
+  site: Maybe<
+    { __typename?: 'Site' } & {
+      siteMetadata: Maybe<
+        { __typename?: 'SiteSiteMetadata' } & Pick<
+          SiteSiteMetadata,
+          'title' | 'description' | 'author'
+        >
+      >;
+    }
+  >;
+};
+
 export type ComparisonImageFragment = { __typename?: 'SanityMainImage' } & {
   asset: Maybe<
     { __typename?: 'SanityImageAsset' } & {
@@ -6075,56 +5982,6 @@ export type FormFragment = { __typename?: 'SanityForm' } & Pick<
   SanityForm,
   '_key' | '_type' | 'type'
 >;
-
-export type NavPagesFragment = { __typename?: 'SanityNavGroup' } & {
-  pages: Maybe<
-    Array<
-      Maybe<
-        { __typename?: 'SanityPageReference' } & {
-          page: Maybe<
-            { __typename?: 'SanityPage' } & Pick<SanityPage, 'title'> & {
-                slug: Maybe<
-                  { __typename?: 'SanitySlug' } & Pick<SanitySlug, 'current'>
-                >;
-              }
-          >;
-        }
-      >
-    >
-  >;
-};
-
-export type Unnamed_1_QueryVariables = {};
-
-export type Unnamed_1_Query = { __typename?: 'Query' } & {
-  sanitySiteSettings: Maybe<
-    { __typename?: 'SanitySiteSettings' } & {
-      primaryNav: Maybe<{ __typename?: 'SanityNavGroup' } & NavPagesFragment>;
-      secondaryNav: Maybe<{ __typename?: 'SanityNavGroup' } & NavPagesFragment>;
-      social: Maybe<
-        { __typename?: 'SanitySocial' } & Pick<
-          SanitySocial,
-          'facebook' | 'instagram' | 'vimeo'
-        >
-      >;
-    }
-  >;
-};
-
-export type Unnamed_2_QueryVariables = {};
-
-export type Unnamed_2_Query = { __typename?: 'Query' } & {
-  site: Maybe<
-    { __typename?: 'Site' } & {
-      siteMetadata: Maybe<
-        { __typename?: 'SiteSiteMetadata' } & Pick<
-          SiteSiteMetadata,
-          'title' | 'description' | 'author'
-        >
-      >;
-    }
-  >;
-};
 
 export type PageTemplateQueryQueryVariables = {
   id: Scalars['String'];

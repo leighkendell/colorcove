@@ -19,5 +19,10 @@ export default {
       type: 'mainImage',
       title: 'Image',
     },
+    {
+      name: 'button',
+      type: 'heroButton',
+      title: 'Button',
+    },
   ],
 };

@@ -102,6 +102,16 @@ export const hero = graphql`
         ...ImageMeta
       }
     }
+    button {
+      text
+      link {
+        page {
+          slug {
+            current
+          }
+        }
+      }
+    }
   }
 `;
 

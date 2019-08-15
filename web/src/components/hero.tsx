@@ -3,6 +3,8 @@ import { SanityHero } from '../types/graphql-types';
 import Header from './header';
 import { FluidObject } from 'gatsby-image';
 import { getNestedObject } from '../utils/helpers';
+import Button from './button';
+import { Link } from 'gatsby';
 
 interface Props {
   hero: SanityHero;
@@ -19,6 +21,11 @@ const Hero: React.FC<Props> = ({ hero, children }) => {
     'image.asset.metadata.palette.dominant.background'
   );
 
+  // Button
+  const { button } = hero;
+  const buttonText = button && button.text;
+  const buttonLink = getNestedObject(button, 'link.page.slug.current');
+
   return (
     <Header
       title={hero.title ? hero.title : ''}
@@ -26,7 +33,13 @@ const Hero: React.FC<Props> = ({ hero, children }) => {
       image={image}
       backgroundColor={backgroundColor}
     >
-      {children}
+      {button && buttonText && buttonLink ? (
+        <Button to={`${buttonLink}/`} as={Link}>
+          {buttonText}
+        </Button>
+      ) : (
+        <>{children}</>
+      )}
     </Header>
   );
 };
