@@ -10,8 +10,9 @@ export default {
     },
     {
       name: 'link',
-      type: 'pageReference',
+      type: 'reference',
       title: 'Link',
+      to: [{ type: 'page' }],
     },
   ],
 };

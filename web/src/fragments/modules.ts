@@ -105,10 +105,8 @@ export const hero = graphql`
     button {
       text
       link {
-        page {
-          slug {
-            current
-          }
+        slug {
+          current
         }
       }
     }

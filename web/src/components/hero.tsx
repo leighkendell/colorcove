@@ -24,7 +24,7 @@ const Hero: React.FC<Props> = ({ hero, children }) => {
   // Button
   const { button } = hero;
   const buttonText = button && button.text;
-  const buttonLink = getNestedObject(button, 'link.page.slug.current');
+  const buttonLink = getNestedObject(button, 'link.slug.current');
 
   return (
     <Header
@@ -34,7 +34,8 @@ const Hero: React.FC<Props> = ({ hero, children }) => {
       backgroundColor={backgroundColor}
     >
       {button && buttonText && buttonLink ? (
-        <Button to={`${buttonLink}/`} as={Link}>
+        // TODO: Make a specific component to handle links to pages i.e. home
+        <Button to={`/${buttonLink}/`} as={Link}>
           {buttonText}
         </Button>
       ) : (
