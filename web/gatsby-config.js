@@ -59,6 +59,7 @@ module.exports = {
       options: {
         shopName: `colorcove`,
         accessToken: `${process.env.GATSBY_SHOPIFY_STOREFRONT_TOKEN}`,
+        includeCollections: [`shop`],
       },
     },
     `gatsby-plugin-offline`,
