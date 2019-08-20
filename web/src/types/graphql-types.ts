@@ -1385,14 +1385,14 @@ export type Query = {
   allSite: SiteConnection,
   directory?: Maybe<Directory>,
   allDirectory: DirectoryConnection,
+  shopifyCollection?: Maybe<ShopifyCollection>,
+  allShopifyCollection: ShopifyCollectionConnection,
   shopifyProduct?: Maybe<ShopifyProduct>,
   allShopifyProduct: ShopifyProductConnection,
   shopifyProductVariant?: Maybe<ShopifyProductVariant>,
   allShopifyProductVariant: ShopifyProductVariantConnection,
   shopifyProductOption?: Maybe<ShopifyProductOption>,
   allShopifyProductOption: ShopifyProductOptionConnection,
-  shopifyCollection?: Maybe<ShopifyCollection>,
-  allShopifyCollection: ShopifyCollectionConnection,
 };
 
 
@@ -1752,6 +1752,29 @@ export type QueryAllDirectoryArgs = {
 };
 
 
+export type QueryShopifyCollectionArgs = {
+  id?: Maybe<StringQueryOperatorInput>,
+  parent?: Maybe<NodeFilterInput>,
+  children?: Maybe<NodeFilterListInput>,
+  internal?: Maybe<InternalFilterInput>,
+  description?: Maybe<StringQueryOperatorInput>,
+  descriptionHtml?: Maybe<StringQueryOperatorInput>,
+  handle?: Maybe<StringQueryOperatorInput>,
+  title?: Maybe<StringQueryOperatorInput>,
+  updatedAt?: Maybe<DateQueryOperatorInput>,
+  shopifyId?: Maybe<StringQueryOperatorInput>,
+  products?: Maybe<ShopifyProductFilterListInput>
+};
+
+
+export type QueryAllShopifyCollectionArgs = {
+  filter?: Maybe<ShopifyCollectionFilterInput>,
+  sort?: Maybe<ShopifyCollectionSortInput>,
+  skip?: Maybe<Scalars['Int']>,
+  limit?: Maybe<Scalars['Int']>
+};
+
+
 export type QueryShopifyProductArgs = {
   id?: Maybe<StringQueryOperatorInput>,
   parent?: Maybe<NodeFilterInput>,
@@ -1822,29 +1845,6 @@ export type QueryShopifyProductOptionArgs = {
 export type QueryAllShopifyProductOptionArgs = {
   filter?: Maybe<ShopifyProductOptionFilterInput>,
   sort?: Maybe<ShopifyProductOptionSortInput>,
-  skip?: Maybe<Scalars['Int']>,
-  limit?: Maybe<Scalars['Int']>
-};
-
-
-export type QueryShopifyCollectionArgs = {
-  id?: Maybe<StringQueryOperatorInput>,
-  parent?: Maybe<NodeFilterInput>,
-  children?: Maybe<NodeFilterListInput>,
-  internal?: Maybe<InternalFilterInput>,
-  description?: Maybe<StringQueryOperatorInput>,
-  descriptionHtml?: Maybe<StringQueryOperatorInput>,
-  handle?: Maybe<StringQueryOperatorInput>,
-  title?: Maybe<StringQueryOperatorInput>,
-  updatedAt?: Maybe<DateQueryOperatorInput>,
-  shopifyId?: Maybe<StringQueryOperatorInput>,
-  products?: Maybe<ShopifyProductFilterListInput>
-};
-
-
-export type QueryAllShopifyCollectionArgs = {
-  filter?: Maybe<ShopifyCollectionFilterInput>,
-  sort?: Maybe<ShopifyCollectionSortInput>,
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>
 };
@@ -5464,6 +5464,7 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___watchMode = 'pluginCreator___pluginOptions___watchMode',
   pluginCreator___pluginOptions___shopName = 'pluginCreator___pluginOptions___shopName',
   pluginCreator___pluginOptions___accessToken = 'pluginCreator___pluginOptions___accessToken',
+  pluginCreator___pluginOptions___includeCollections = 'pluginCreator___pluginOptions___includeCollections',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
@@ -5671,6 +5672,7 @@ export enum SitePluginFieldsEnum {
   pluginOptions___watchMode = 'pluginOptions___watchMode',
   pluginOptions___shopName = 'pluginOptions___shopName',
   pluginOptions___accessToken = 'pluginOptions___accessToken',
+  pluginOptions___includeCollections = 'pluginOptions___includeCollections',
   pluginOptions___pathCheck = 'pluginOptions___pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -5807,6 +5809,7 @@ export type SitePluginPluginOptions = {
   watchMode?: Maybe<Scalars['Boolean']>,
   shopName?: Maybe<Scalars['String']>,
   accessToken?: Maybe<Scalars['String']>,
+  includeCollections?: Maybe<Array<Maybe<Scalars['String']>>>,
   pathCheck?: Maybe<Scalars['Boolean']>,
 };
 
@@ -5827,6 +5830,7 @@ export type SitePluginPluginOptionsFilterInput = {
   watchMode?: Maybe<BooleanQueryOperatorInput>,
   shopName?: Maybe<StringQueryOperatorInput>,
   accessToken?: Maybe<StringQueryOperatorInput>,
+  includeCollections?: Maybe<StringQueryOperatorInput>,
   pathCheck?: Maybe<BooleanQueryOperatorInput>,
 };
 
