@@ -8,6 +8,8 @@ import RichText from '../components/rich-text';
 import List from '../components/list';
 import ListItem from '../components/list-item';
 import TextLink from '../components/text-link';
+import GridList from '../components/grid-list';
+import GridListItem from '../components/grid-list-item';
 
 storiesOf('Typography', module)
   .add('Rich text', () => (
@@ -53,6 +55,23 @@ storiesOf('Typography', module)
         error ex?
       </Text>
     </RichText>
+  ))
+  .add('Grid list', () => (
+    <>
+      <Heading type="h2" align="center">
+        Featured film stocks
+      </Heading>
+      <GridList>
+        <GridListItem>Fuji SuperiaXTRA400</GridListItem>
+        <GridListItem>Kodak Pro Image 100</GridListItem>
+        <GridListItem>Kodak Ektachrome E100</GridListItem>
+        <GridListItem>JCH StreetPan</GridListItem>
+        <GridListItem>Fuji SuperiaXTRA400</GridListItem>
+        <GridListItem>Kodak Pro Image 100</GridListItem>
+        <GridListItem>Kodak Ektachrome E100</GridListItem>
+        <GridListItem>JCH StreetPan</GridListItem>
+      </GridList>
+    </>
   ))
   .add('Text block', () => (
     <TextBlock
