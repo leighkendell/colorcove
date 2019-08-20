@@ -8,6 +8,9 @@ export default {
       type: 'featureTextGroup',
     },
     {
+      type: 'gridList',
+    },
+    {
       type: 'richText',
     },
     {

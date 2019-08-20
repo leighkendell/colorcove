@@ -28,6 +28,7 @@ import featureTextGroupText from './objects/feature-text-group-text';
 import richText from './objects/rich-text';
 import form from './objects/form';
 import heroButton from './objects/hero-button';
+import gridList from './objects/grid-list';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -55,6 +56,7 @@ export default createSchema({
     inlineImage,
     form,
     heroButton,
+    gridList,
     // Documents
     page,
     product,

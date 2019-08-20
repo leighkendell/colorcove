@@ -1891,7 +1891,7 @@ export type SanityFeatureTextGroupText = {
   text?: Maybe<Scalars['String']>,
 };
 
-export type SanityFeatureTextOrFeatureTextGroupOrFormOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo = SanityFeatureText | SanityFeatureTextGroup | SanityForm | SanityImageComparison | SanityInlineImage | SanityProductGroup | SanityRichText | SanityVimeo;
+export type SanityFeatureTextOrFeatureTextGroupOrFormOrGridListOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo = SanityFeatureText | SanityFeatureTextGroup | SanityForm | SanityGridList | SanityImageComparison | SanityInlineImage | SanityProductGroup | SanityRichText | SanityVimeo;
 
 export type SanityFile = {
   __typename?: 'SanityFile',
@@ -2131,6 +2131,14 @@ export type SanityGeopointFilterInput = {
   lat?: Maybe<FloatQueryOperatorInput>,
   lng?: Maybe<FloatQueryOperatorInput>,
   alt?: Maybe<FloatQueryOperatorInput>,
+};
+
+export type SanityGridList = {
+  __typename?: 'SanityGridList',
+  _key?: Maybe<Scalars['String']>,
+  _type?: Maybe<Scalars['String']>,
+  heading?: Maybe<Scalars['String']>,
+  listItems?: Maybe<Array<Maybe<Scalars['String']>>>,
 };
 
 export type SanityHero = {
@@ -2814,7 +2822,7 @@ export type SanityPage = SanityDocument & Node & {
   description?: Maybe<Scalars['String']>,
   image?: Maybe<SanityMainImage>,
   hero?: Maybe<SanityHero>,
-  modules?: Maybe<Array<Maybe<SanityFeatureTextOrFeatureTextGroupOrFormOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo>>>,
+  modules?: Maybe<Array<Maybe<SanityFeatureTextOrFeatureTextGroupOrFormOrGridListOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo>>>,
   _rawSlug?: Maybe<Scalars['JSON']>,
   _rawImage?: Maybe<Scalars['JSON']>,
   _rawHero?: Maybe<Scalars['JSON']>,
@@ -3180,7 +3188,7 @@ export type SanityProduct = SanityDocument & Node & {
   description?: Maybe<Scalars['String']>,
   image?: Maybe<SanityMainImage>,
   hero?: Maybe<SanityHero>,
-  modules?: Maybe<Array<Maybe<SanityFeatureTextOrFeatureTextGroupOrFormOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo>>>,
+  modules?: Maybe<Array<Maybe<SanityFeatureTextOrFeatureTextGroupOrFormOrGridListOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo>>>,
   shopifyId?: Maybe<Scalars['Float']>,
   shopifyHandle?: Maybe<Scalars['String']>,
   shopifyDefaultVariant?: Maybe<SanityShopifyVariant>,

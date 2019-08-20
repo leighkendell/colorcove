@@ -107,6 +107,9 @@ export const productQuery = graphql`
         ... on SanityFeatureTextGroup {
           ...FeatureTextGroup
         }
+        ... on SanityGridList {
+          ...GridList
+        }
         ... on SanityRichText {
           ...RichText
         }

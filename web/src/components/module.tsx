@@ -13,6 +13,7 @@ import {
   SanityFeatureTextGroup,
   SanityBlock,
   SanityForm,
+  SanityGridList,
 } from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import { FluidObject } from 'gatsby-image';
@@ -23,6 +24,8 @@ import InlineImage from './inline-image';
 import TextBlockGroup from './text-block-group';
 import PortableText from './portable-text';
 import ContactForm from './contact-form';
+import GridList from './grid-list';
+import GridListItem from './grid-list-item';
 
 interface Props {
   modules: any[];
@@ -64,6 +67,34 @@ const Module: React.FC<Props> = ({ modules, rawModules }) => {
             </TextBlockGroup>
           );
         }
+        break;
+
+      // Grid list module
+      case 'gridList':
+        const {
+          heading: gridHeading,
+          listItems: gridItems,
+        } = data as SanityGridList;
+
+        module = (
+          <>
+            {gridHeading && (
+              <Heading type="h2" align="center">
+                {gridHeading}
+              </Heading>
+            )}
+            {gridItems && (
+              <GridList>
+                {gridItems.map(
+                  (item, index) =>
+                    item && (
+                      <GridListItem key={item + index}>{item}</GridListItem>
+                    )
+                )}
+              </GridList>
+            )}
+          </>
+        );
         break;
 
       // Rich text module

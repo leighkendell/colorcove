@@ -9,7 +9,7 @@ const GridList = styled.ul`
 
   ${breakpoint('medium')} {
     justify-content: center;
-    max-width: 640px;
+    max-width: 1000px;
   }
 `;
 

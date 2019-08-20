@@ -24,6 +24,16 @@ export const featureTextGroup = graphql`
   }
 `;
 
+// Grid list module
+export const gridList = graphql`
+  fragment GridList on SanityGridList {
+    _key
+    _type
+    heading
+    listItems
+  }
+`;
+
 // Rich text module
 export const richText = graphql`
   fragment RichText on SanityRichText {
