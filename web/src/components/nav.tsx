@@ -1,7 +1,7 @@
 import React, { useRef, CSSProperties } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
-import { ReactComponent as Logo } from '../images/colorcove-logo-solid.svg';
+import { ReactComponent as Logo } from '../images/colorcove-logo.svg';
 import { ReactComponent as Hamburger } from '../images/hamburger.svg';
 import { ReactComponent as Close } from '../images/close.svg';
 import { ReactComponent as Cart } from '../images/cart.svg';
@@ -74,16 +74,48 @@ const StyledNav = styled.nav`
 `;
 
 const StyledLink = styled(Link)`
+  position: relative;
   display: inline-block;
   justify-self: left;
+  overflow: hidden;
+
+  &:hover {
+    &::before {
+      --scale: 1;
+    }
+
+    svg {
+      stop {
+        stop-color: ${props => props.theme.colorBlack};
+      }
+    }
+  }
+
+  &::before {
+    --scale: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background-color: ${props => props.theme.colorWhite};
+    border-radius: 100%;
+    transform: scale(var(--scale)) translate(-50%, -50%);
+    transform-origin: top left;
+    mix-blend-mode: color;
+    transition: transform 0.5s ease-in-out;
+    content: '';
+    pointer-events: none;
+  }
 
   svg {
     display: block;
     width: auto;
     height: ${spacing(3)};
 
-    * {
-      fill: ${props => props.theme.colorBlack};
+    stop {
+      transition: 0.25s ease-in-out;
+      transition-delay: 0.25s;
     }
 
     ${breakpoint('medium')} {
