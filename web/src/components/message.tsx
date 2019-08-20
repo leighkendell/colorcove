@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
 import { useTransition, animated } from 'react-spring';
 import { isBrowser } from '../utils/helpers';
+import { lighten } from 'polished';
 
 const notificationEl = isBrowser ? document.body : null;
 
@@ -14,20 +15,21 @@ interface Props {
 
 const StyledMessage = styled(animated.div)`
   position: fixed;
-  top: ${spacing(9)};
-  left: 0;
+  right: ${spacing(2)};
+  bottom: ${spacing(2)};
   z-index: 1;
   display: inline-block;
-  width: 100%;
+  width: calc(100% - ${spacing(4)});
   padding: ${spacing(3)};
   color: ${props => props.theme.colorWhite};
   ${fontSize(14, 3)};
   font-weight: bold;
   text-align: center;
-  background-color: ${props => props.theme.colorBlack};
+  background-color: ${props => lighten(0.1, props.theme.colorBlack)};
+  border-radius: ${spacing(0.5)};
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 
   ${breakpoint('medium')} {
-    top: ${spacing(10)};
     padding: ${spacing(4)};
   }
 `;
@@ -52,7 +54,7 @@ const Message: React.FC<Props> = ({ children, isVisible, timeout = 4000 }) => {
   const transition = useTransition(isVisible && timerActive, null, {
     from: {
       opacity: 0,
-      transform: 'translateY(-100%)',
+      transform: 'translateY(50%)',
     },
     enter: {
       opacity: 1,
@@ -60,7 +62,7 @@ const Message: React.FC<Props> = ({ children, isVisible, timeout = 4000 }) => {
     },
     leave: {
       opacity: 0,
-      transform: 'translateY(-100%)',
+      transform: 'translateY(50%)',
     },
     trail: timeout,
   });
