@@ -86,6 +86,7 @@ const StyledLink = styled(Link)`
 
     svg {
       stop {
+        transition-delay: 0.25s;
         stop-color: ${props => props.theme.colorBlack};
       }
     }
@@ -115,7 +116,6 @@ const StyledLink = styled(Link)`
 
     stop {
       transition: 0.25s ease-in-out;
-      transition-delay: 0.25s;
     }
 
     ${breakpoint('medium')} {
