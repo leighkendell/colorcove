@@ -1,5 +1,6 @@
 export default {
   name: 'pageReference',
+  title: 'Page reference',
   type: 'object',
   fields: [
     {

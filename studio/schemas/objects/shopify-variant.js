@@ -1,5 +1,6 @@
 export default {
   name: 'shopifyVariant',
+  title: 'Shopify Variant',
   type: 'object',
   description: 'Default product variant details from Shopify',
   fields: [

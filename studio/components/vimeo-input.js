@@ -7,17 +7,9 @@ import {
   unset,
 } from 'part:@sanity/form-builder/patch-event';
 
-const VimeoInput = ({
-  type,
-  level,
-  value,
-  focusPath,
-  onFocus,
-  onChange,
-  onBlur,
-}) => {
+class VimeoInput extends React.Component {
   // Fetch vimeo data
-  const getData = async url => {
+  getData = async url => {
     const res = await fetch(
       `https://vimeo.com/api/oembed.json?url=${url}&width=1920`
     ).catch(e => console.error(e));
@@ -27,7 +19,9 @@ const VimeoInput = ({
     }
   };
 
-  const handleFieldChange = async (field, fieldPatchEvent) => {
+  handleFieldChange = async (field, fieldPatchEvent) => {
+    const { type } = this.props;
+
     // Set initial value
     onChange(
       fieldPatchEvent
@@ -64,26 +58,42 @@ const VimeoInput = ({
     }
   };
 
-  return (
-    <Fieldset level={level} legend={type.title} description={type.description}>
-      {type.fields.map(field => {
-        return (
-          <div style={{ marginBottom: '1.5rem' }} key={field.name}>
-            <FormBuilderInput
-              level={level + 1}
-              type={field.type}
-              value={value && value[field.name]}
-              onChange={patchEvent => handleFieldChange(field, patchEvent)}
-              path={[field.name]}
-              focusPath={focusPath}
-              onFocus={onFocus}
-              onBlur={onBlur}
-            />
-          </div>
-        );
-      })}
-    </Fieldset>
-  );
-};
+  focus() {
+    console.log(this._inputElement);
+    this._inputElement.focus();
+  }
+
+  render() {
+    const { type, level, value, focusPath, onFocus, onBlur } = this.props;
+
+    return (
+      <Fieldset
+        level={level}
+        legend={type.title}
+        description={type.description}
+      >
+        {type.fields.map((field, index) => {
+          return (
+            <div style={{ marginBottom: '1.5rem' }} key={field.name}>
+              <FormBuilderInput
+                level={level + 1}
+                type={field.type}
+                value={value && value[field.name]}
+                onChange={patchEvent => handleFieldChange(field, patchEvent)}
+                path={[field.name]}
+                focusPath={focusPath}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                ref={
+                  index === 0 ? element => (this._inputElement = element) : null
+                }
+              />
+            </div>
+          );
+        })}
+      </Fieldset>
+    );
+  }
+}
 
 export default VimeoInput;

@@ -1,5 +1,6 @@
 export default {
   name: 'social',
+  title: 'Social',
   type: 'object',
   description: 'Social network links',
   fields: [

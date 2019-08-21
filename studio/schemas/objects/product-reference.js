@@ -1,5 +1,6 @@
 export default {
   name: 'productReference',
+  title: 'Product Reference',
   type: 'object',
   fields: [
     {
