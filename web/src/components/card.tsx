@@ -16,18 +16,36 @@ interface Props {
 }
 
 const StyledCard = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
 
   ${Text} {
     max-width: 800px;
+    margin-bottom: ${spacing(2)};
+
+    ${breakpoint('small')} {
+      margin-bottom: ${spacing(4)};
+    }
+
+    ${breakpoint('large')} {
+      margin-bottom: ${spacing(6)};
+    }
   }
 
   ${Button} {
-    margin-top: ${spacing(2)};
+    position: static;
+    align-self: flex-start;
+    margin-top: auto;
 
-    ${breakpoint('medium')} {
-      margin-top: ${spacing(4)};
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      content: '';
     }
   }
 `;
@@ -50,6 +68,8 @@ export const cardContent = css`
 `;
 
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   order: 2;
   ${cardContent};
