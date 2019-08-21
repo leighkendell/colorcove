@@ -14,12 +14,12 @@ export const ButtonBaseStyle = css`
   padding: ${spacing(2)} ${spacing(4)};
   color: ${props => props.theme.colorWhite};
   font-weight: bold;
-  ${fontSize(15, 3)};
+  ${fontSize(15, 2)};
   text-align: center;
   text-decoration: none;
   background-color: ${props => props.theme.colorBlue};
   border: 0;
-  border-radius: ${spacing(8)};
+  border-radius: ${spacing(1)};
   cursor: pointer;
   transition: background-color 0.15s ease-in-out;
   appearance: none;
