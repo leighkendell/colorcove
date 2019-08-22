@@ -4,7 +4,7 @@ import { spacing, breakpoint } from '../utils/style-helpers';
 const CardGroup = styled.ul`
   display: grid;
   grid-gap: ${spacing(4)};
-  max-width: 1000px;
+  max-width: 1360px;
   margin: 0 auto;
   padding: 0;
 
