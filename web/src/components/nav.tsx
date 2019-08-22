@@ -81,7 +81,9 @@ const StyledLink = styled(Link)`
 
   &:hover {
     &::before {
-      --scale: 1;
+      @supports (mix-blend-mode: color) {
+        --scale: 1;
+      }
     }
 
     svg {
