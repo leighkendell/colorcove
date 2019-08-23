@@ -47,6 +47,7 @@ export const vimeo = graphql`
   fragment Vimeo on SanityVimeo {
     _key
     _type
+    title
     data {
       url
       width

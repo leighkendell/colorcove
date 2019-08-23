@@ -3894,6 +3894,7 @@ export type SanityVimeo = {
   __typename?: 'SanityVimeo',
   _key?: Maybe<Scalars['String']>,
   _type?: Maybe<Scalars['String']>,
+  title?: Maybe<Scalars['String']>,
   data?: Maybe<SanityVideoData>,
   image?: Maybe<SanityMainImage>,
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { fontSize, spacing, breakpoint } from '../utils/style-helpers';
-import CardGroup from './card-group';
 
 type align = 'left' | 'center' | 'right';
 
@@ -9,10 +8,11 @@ interface Heading extends React.HTMLAttributes<HTMLHeadingElement> {
   type: 'h1' | 'h2' | 'h3';
   align?: align;
   preventWidows?: boolean;
+  moduleHeading?: boolean;
 }
 
 /** Common heading styles */
-const sharedStyle = css<{ align: align }>`
+const sharedStyle = css<{ align?: align; moduleHeading?: boolean }>`
   margin: 0 0 ${spacing(2)};
 
   ${breakpoint('small')} {
@@ -23,15 +23,18 @@ const sharedStyle = css<{ align: align }>`
     text-align: ${props => props.align};
   }
 
-  & + ${CardGroup} {
+  /** Extra margin when used as a module heading */
+  ${props =>
+    props.moduleHeading &&
+    `
     ${breakpoint('medium')} {
-      margin-top: ${spacing(4)};
+      margin-bottom: ${spacing(4)};
     }
 
     ${breakpoint('large')} {
-      margin-top: ${spacing(5)};
+      margin-bottom: ${spacing(5)};
     }
-  }
+  `}
 `;
 
 const H1 = styled.h1`

@@ -5,6 +5,10 @@ export default {
   description: 'An embedded vimeo video',
   fields: [
     {
+      name: 'title',
+      type: 'string',
+    },
+    {
       name: 'data',
       title: 'Video Data',
       type: 'videoData',

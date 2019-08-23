@@ -26,6 +26,7 @@ import PortableText from './portable-text';
 import ContactForm from './contact-form';
 import GridList from './grid-list';
 import GridListItem from './grid-list-item';
+import Text from './text';
 
 interface Props {
   modules: any[];
@@ -105,7 +106,11 @@ const Module: React.FC<Props> = ({ modules, rawModules }) => {
 
       // Vimeo module
       case 'vimeo':
-        const { image: thumbnail, data: videoData } = data as SanityVimeo;
+        const {
+          title: videoTitle,
+          image: thumbnail,
+          data: videoData,
+        } = data as SanityVimeo;
         const placeholder: FluidObject = getNestedObject(
           thumbnail,
           'asset.fluid'
@@ -121,12 +126,19 @@ const Module: React.FC<Props> = ({ modules, rawModules }) => {
           };
 
           module = (
-            <Video
-              url={(url && url) || ''}
-              width={(width && width) || 1920}
-              height={(height && height) || 1080}
-              image={placeholder || fallbackPlaceholder}
-            />
+            <>
+              {videoTitle && (
+                <Heading type="h2" align="center" moduleHeading>
+                  {videoTitle}
+                </Heading>
+              )}
+              <Video
+                url={(url && url) || ''}
+                width={(width && width) || 1920}
+                height={(height && height) || 1080}
+                image={placeholder || fallbackPlaceholder}
+              />
+            </>
           );
         }
         break;
@@ -165,7 +177,7 @@ const Module: React.FC<Props> = ({ modules, rawModules }) => {
           module = (
             <>
               {title && (
-                <Heading type="h2" align="center">
+                <Heading type="h2" align="center" moduleHeading>
                   {title}
                 </Heading>
               )}
