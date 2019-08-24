@@ -6,6 +6,14 @@ export default {
   title: 'Pages',
   type: 'document',
   icon: FiBookOpen,
+  fieldsets: [
+    {
+      title: 'Metadata',
+      name: 'meta',
+      description: 'Additional content for SEO purposes',
+      options: { collapsible: true },
+    },
+  ],
   fields: [
     {
       name: 'title',
@@ -31,12 +39,14 @@ export default {
       type: 'text',
       description:
         'A brief description of the page, shown on search engine listings',
+      fieldset: 'meta',
     },
     {
       name: 'image',
       title: 'Feature Image',
       type: 'mainImage',
       description: 'An image used when sharing the page on social media',
+      fieldset: 'meta',
     },
     {
       name: 'hero',

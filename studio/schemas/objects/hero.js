@@ -3,6 +3,7 @@ export default {
   title: 'Hero',
   type: 'object',
   description: 'The hero section at the top of the page',
+  options: { collapsible: true },
   fields: [
     {
       name: 'title',

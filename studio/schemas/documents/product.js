@@ -1,11 +1,25 @@
-import { FiDollarSign } from 'react-icons/fi';
+import { FiShoppingBag } from 'react-icons/fi';
 import moduleGroup from '../objects/module-group';
 
 export default {
   name: 'product',
   title: 'Products',
   type: 'document',
-  icon: FiDollarSign,
+  icon: FiShoppingBag,
+  fieldsets: [
+    {
+      title: 'Metadata',
+      name: 'meta',
+      description: 'Additional content for SEO purposes',
+      options: { collapsible: true },
+    },
+    {
+      title: 'Shopify Data',
+      name: 'shopify',
+      description: 'Content pulled in dynamically from Shopify',
+      options: { collapsible: true },
+    },
+  ],
   fields: [
     {
       name: 'title',
@@ -31,6 +45,7 @@ export default {
       type: 'text',
       description:
         'A brief description of the product shown on listing pages and search engine listings',
+      fieldset: 'meta',
     },
     {
       name: 'image',
@@ -38,6 +53,7 @@ export default {
       type: 'mainImage',
       description:
         'An image shown on listing pages and when sharing the product on social media',
+      fieldset: 'meta',
     },
     {
       name: 'hero',
@@ -55,6 +71,7 @@ export default {
       type: 'number',
       description: 'The product ID from Shopify',
       readOnly: true,
+      fieldset: 'shopify',
     },
     {
       name: 'shopifyHandle',
@@ -62,11 +79,13 @@ export default {
       type: 'string',
       description: 'The product Handle from Shopify',
       readOnly: true,
+      fieldset: 'shopify',
     },
     {
       name: 'shopifyDefaultVariant',
       title: 'Default Product Variant',
       type: 'shopifyVariant',
+      fieldset: 'shopify',
     },
   ],
 };

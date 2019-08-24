@@ -2,7 +2,6 @@ import React from 'react';
 import SEO from '../components/seo';
 import Section from '../components/section';
 import Wrapper from '../components/wrapper';
-import Heading from '../components/heading';
 import Text from '../components/text';
 import Button from '../components/button';
 import RichText from '../components/rich-text';
