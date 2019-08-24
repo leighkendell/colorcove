@@ -19,28 +19,47 @@ export const useShopifyCheckout = () => {
   useEffect(() => {
     let didCancel = false;
 
+    // Create a new checkout
+    const createCheckout = async () => {
+      try {
+        const checkout = await client.checkout.create();
+        if (!didCancel) {
+          setCheckoutId(checkout.id);
+          setCheckout(checkout);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    // Fetch an existing checkout
+    const getCheckout = async (checkoutId: string) => {
+      try {
+        const checkout = await client.checkout.fetch(checkoutId);
+
+        // Prevent any state updates if the component was unmounted
+        if (didCancel) {
+          return;
+        }
+
+        // TODO: Clean up types once @types/shopify-buy are updated
+        if ((checkout as any).completedAt) {
+          // Create a new checkout if this one has already been completed
+          createCheckout();
+        } else {
+          // Set the checkout
+          setCheckout(checkout);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    // Fetch or create a new checkout
     if (checkoutId && typeof checkoutId === 'string') {
-      client.checkout
-        .fetch(checkoutId)
-        .then(checkout => {
-          if (!didCancel) {
-            // TODO: Handle completed checkout
-            setCheckout(checkout);
-          }
-        })
-        .catch(error => {
-          console.error(error);
-        });
+      getCheckout(checkoutId);
     } else {
-      client.checkout
-        .create()
-        .then(checkout => {
-          if (!didCancel) {
-            setCheckoutId(checkout.id);
-            setCheckout(checkout);
-          }
-        })
-        .catch(error => console.error(error));
+      createCheckout();
     }
 
     return () => {
@@ -57,16 +76,18 @@ export const useShopifyProduct = (id: string) => {
   useEffect(() => {
     let didCancel = false;
 
-    client.product
-      .fetch(id)
-      .then(productData => {
+    const getProduct = async () => {
+      try {
+        const product = await client.product.fetch(id);
+
         if (!didCancel) {
-          setProduct(productData);
+          setProduct(product);
         }
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getProduct();
 
     return () => {
       didCancel = true;
