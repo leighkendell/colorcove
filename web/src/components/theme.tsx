@@ -3,6 +3,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { normalize } from 'polished';
 import { colorcoveTheme } from '../utils/theme';
 import { spacing } from '../utils/style-helpers';
+import { messageBase } from './message';
 
 const GlobalStyle = createGlobalStyle`
   ${normalize()}
@@ -21,6 +22,10 @@ const GlobalStyle = createGlobalStyle`
     &::after {
       box-sizing: inherit;
     }
+  }
+
+  #gatsby-noscript {
+    ${messageBase};
   }
 
   /* Storybook specific */

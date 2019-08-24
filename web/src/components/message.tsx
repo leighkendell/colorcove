@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
 import { useTransition, animated } from 'react-spring';
 import { isBrowser } from '../utils/helpers';
@@ -13,7 +13,7 @@ interface Props {
   timeout?: number;
 }
 
-const StyledMessage = styled(animated.div)`
+export const messageBase = css`
   position: fixed;
   right: ${spacing(2)};
   bottom: ${spacing(2)};
@@ -32,6 +32,10 @@ const StyledMessage = styled(animated.div)`
   ${breakpoint('medium')} {
     padding: ${spacing(4)};
   }
+`;
+
+const StyledMessage = styled(animated.div)`
+  ${messageBase};
 `;
 
 const Message: React.FC<Props> = ({ children, isVisible, timeout = 4000 }) => {
