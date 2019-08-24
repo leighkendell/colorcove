@@ -2,7 +2,22 @@ import create from 'zustand';
 import { isBrowser } from '../utils/helpers';
 import { Cart } from 'shopify-buy';
 
-const [useStore] = create(set => ({
+interface Store {
+  cartIsOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
+  navIsOpen: boolean;
+  openNav: () => void;
+  closeNav: () => void;
+  checkoutId: string | number | null;
+  setCheckoutId: (id: Cart['id']) => void;
+  checkout: Cart | null;
+  setCheckout: (cart: Cart) => void;
+  headerAnimationComplete: boolean;
+  setHeaderAnimationComplete: (value: boolean) => void;
+}
+
+const [useStore] = create<Store>(set => ({
   // Cart
   cartIsOpen: false,
   openCart: () => set({ cartIsOpen: true }),
@@ -15,19 +30,18 @@ const [useStore] = create(set => ({
 
   // Shopify
   checkoutId: isBrowser ? window.localStorage.getItem('checkoutId') : '',
-  setCheckoutId: (id: Cart['id']) => {
+  setCheckoutId: id => {
     if (isBrowser) {
       window.localStorage.setItem('checkoutId', id.toString());
     }
     set({ checkoutId: id });
   },
-  checkout: null as Cart | null,
-  setCheckout: (cart: Cart) => set({ checkout: cart }),
+  checkout: null,
+  setCheckout: cart => set({ checkout: cart }),
 
   // Header animation
   headerAnimationComplete: false,
-  setHeaderAnimationComplete: (value: boolean) =>
-    set({ headerAnimationComplete: value }),
+  setHeaderAnimationComplete: value => set({ headerAnimationComplete: value }),
 }));
 
 export default useStore;

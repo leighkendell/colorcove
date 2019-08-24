@@ -1,4 +1,4 @@
-import Client, { Product, Cart } from 'shopify-buy';
+import Client, { Product } from 'shopify-buy';
 import { useState, useEffect } from 'react';
 import useStore from './use-store';
 
@@ -19,7 +19,7 @@ export const useShopifyCheckout = () => {
   useEffect(() => {
     let didCancel = false;
 
-    if (checkoutId) {
+    if (checkoutId && typeof checkoutId === 'string') {
       client.checkout
         .fetch(checkoutId)
         .then(checkout => {

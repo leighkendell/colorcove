@@ -23,7 +23,7 @@ interface Props {
     title: string;
     link: string;
   }[];
-  cartQuantity?: number;
+  cartQuantity?: number | null;
   isOpen?: boolean;
   onOpen?: () => void;
   onClose?: () => void;

@@ -5,11 +5,11 @@ import Text from './text';
 import { ReactComponent as Remove } from '../images/close.svg';
 
 interface Props {
-  id: string | number;
+  id: string;
   name: string;
   price: string;
   image?: string;
-  onRemove?: (id: string | number) => void;
+  onRemove?: (id: string) => void;
 }
 
 const StyledCartItem = styled.li`

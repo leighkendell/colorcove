@@ -19,6 +19,7 @@
     "@sanity/base": "^0.142.1",
     "@sanity/components": "^0.142.1",
     "@sanity/core": "^0.142.1",
+    "@sanity/dashboard": "^0.142.1",
     "@sanity/default-layout": "^0.142.1",
     "@sanity/default-login": "^0.142.1",
     "@sanity/desk-tool": "^0.142.1",
@@ -26,6 +27,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-icons": "^3.7.0"
+    "react-icons": "^3.7.0",
+    "sanity-plugin-dashboard-widget-netlify": "^1.0.1"
   }
 }

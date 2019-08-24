@@ -15,10 +15,9 @@ const ShopifyCart: React.FC = () => {
   useShopifyCheckout();
   const client = useShopifyClient();
 
-  // TODO: Clean up types once @types/shopify-buy are updated
-  const handleRemove = (variantId: string | number) => {
+  const handleRemove = (variantId: string) => {
     if (checkoutId) {
-      (client as any).checkout
+      client.checkout
         .removeLineItems(checkoutId, [variantId])
         .then((checkout: any) => {
           setCheckout(checkout);
