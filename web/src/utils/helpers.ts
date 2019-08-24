@@ -21,7 +21,7 @@ export const formatCurrency = (amount: string | number) =>
 
 export const springSlowConfig = {
   tension: 280,
-  friction: 50,
+  friction: 40,
   clamp: true,
 };
 

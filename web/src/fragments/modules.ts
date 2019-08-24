@@ -107,7 +107,7 @@ export const hero = graphql`
     intro
     image {
       asset {
-        fluid(maxWidth: 2880, maxHeight: 1600) {
+        fluid(maxWidth: 2000, maxHeight: 1000) {
           ...GatsbySanityImageFluid
         }
         ...ImageMeta

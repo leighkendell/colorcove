@@ -123,7 +123,7 @@ const Header: React.FC<Props> = ({
     setHeaderAnimationComplete(false);
 
     // Set before the animation finishes when there's only a title
-    if (!description || children) {
+    if (!description || !children) {
       setTimeout(() => {
         setHeaderAnimationComplete(true);
       }, 250);
