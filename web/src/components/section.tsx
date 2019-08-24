@@ -6,6 +6,10 @@ import { useInView } from 'react-intersection-observer';
 import { isBrowser, springSlowConfig } from '../utils/helpers';
 import useStore from '../hooks/use-store';
 
+interface Props {
+  disableFadeIn?: boolean;
+}
+
 const StyledSection = styled(animated.section)`
   margin: ${spacing(6)} 0;
 
@@ -27,7 +31,7 @@ const StyledSection = styled(animated.section)`
   }
 `;
 
-const Section: React.FC = React.memo(({ children }) => {
+const Section: React.FC<Props> = React.memo(({ children, disableFadeIn }) => {
   const headerAnimationComplete = useStore(
     state => state.headerAnimationComplete
   );
@@ -53,7 +57,7 @@ const Section: React.FC = React.memo(({ children }) => {
   }, [headerAnimationComplete, inView, set]);
 
   return (
-    <StyledSection ref={ref} style={fadeAnimation}>
+    <StyledSection ref={ref} style={disableFadeIn ? {} : fadeAnimation}>
       {children}
     </StyledSection>
   );
