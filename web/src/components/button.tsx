@@ -33,7 +33,7 @@ export const ButtonBaseStyle = css`
     opacity: 0.5;
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: ${props => darken(0.2, props.theme.colorBlue)};
   }
 `;

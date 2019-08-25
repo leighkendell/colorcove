@@ -21,6 +21,7 @@ const ProductTemplate: React.FC<Props> = ({
   // Global state
   const checkoutId = useStore(state => state.checkoutId);
   const setCheckout = useStore(state => state.setCheckout);
+  const checkout = useStore(state => state.checkout);
 
   // Local state
   const [message, setMessage] = useState('');
@@ -33,9 +34,16 @@ const ProductTemplate: React.FC<Props> = ({
 
   const defaultVariant = product && product.variants[0];
 
+  let alreadyInCart = false;
+  if (defaultVariant && checkout) {
+    alreadyInCart = checkout.lineItems.some(
+      item => (item as any).variant.id === defaultVariant.id
+    );
+  }
+
   // TODO: Clean up types once @types/shopify-buy are updated
   const handleBuy = () => {
-    if (checkoutId && defaultVariant) {
+    if (checkoutId && defaultVariant && !alreadyInCart && checkout) {
       setMessage('Updating cart...');
       setUpdating(true);
 
@@ -66,14 +74,22 @@ const ProductTemplate: React.FC<Props> = ({
       0;
     const ogImage = getNestedObject(image, 'asset.fixed.src');
 
+    const buttonText = alreadyInCart
+      ? 'Already in cart'
+      : `Buy for ${formatCurrency(price)}`;
+
     return (
       <>
         <SEO title={title} description={description} image={ogImage} />
         {hero && (
           <Hero hero={hero}>
-            <Button icon onClick={handleBuy} disabled={updating}>
+            <Button
+              icon
+              onClick={handleBuy}
+              disabled={updating || alreadyInCart}
+            >
               <Icon />
-              Buy for {formatCurrency(price)}
+              {buttonText}
             </Button>
           </Hero>
         )}
