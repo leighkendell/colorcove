@@ -3,6 +3,7 @@ import { useShopifyCheckout, useShopifyClient } from '../hooks/shopify';
 import CartItem from './cart-item';
 import Cart from './cart';
 import useStore from '../hooks/use-store';
+import { formatCurrency } from '../utils/helpers';
 
 const ShopifyCart: React.FC = () => {
   const setCheckout = useStore(state => state.setCheckout);
@@ -43,12 +44,14 @@ const ShopifyCart: React.FC = () => {
     return image;
   };
 
+  const subtotal = formatCurrency((checkout && checkout.subtotalPrice) || 0);
+
   return (
     <>
       <Cart
         isOpen={cartIsOpen}
         onClose={closeCart}
-        subtotal={(checkout && checkout.subtotalPrice) || ''}
+        subtotal={subtotal}
         onCheckout={handleCheckout}
       >
         {checkout &&
@@ -58,7 +61,7 @@ const ShopifyCart: React.FC = () => {
               <CartItem
                 id={item.id}
                 name={item.title}
-                price={item.variant.price}
+                price={formatCurrency(item.variant.price)}
                 image={image}
                 key={item.id}
                 onRemove={handleRemove}
