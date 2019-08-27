@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Leigh Kendell <leigh@leighkendell.com>",
   "dependencies": {
+    "@reach/tabs": "^0.1.6",
     "@sanity/block-content-to-react": "^2.0.6",
     "@sanity/client": "^0.142.0",
     "@types/react-dom": "^16.9.0",
@@ -43,6 +44,7 @@
     "@graphql-codegen/typescript-operations": "^1.6.1",
     "@svgr/webpack": "^4.3.2",
     "@types/css-font-loading-module": "^0.0.2",
+    "@types/reach__tabs": "^0.1.0",
     "@types/react-helmet": "^5.0.9",
     "@types/shopify-buy": "^1.4.3",
     "@types/styled-components": "^4.1.18",
