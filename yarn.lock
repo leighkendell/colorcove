@@ -2037,9 +2037,10 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@sanity/base@^0.142.1":
-  version "0.142.1"
-  resolved "https://registry.yarnpkg.com/@sanity/base/-/base-0.142.1.tgz#5a17a0a45e84b1f80b095e8717727c7bd93fdb4f"
+"@sanity/base@^0.142.2":
+  version "0.142.2"
+  resolved "https://registry.yarnpkg.com/@sanity/base/-/base-0.142.2.tgz#953b8ba61a53678d6ec9aa26d3d2ae550e9c4336"
+  integrity sha512-aEw0ylMD8HsYDY2aI24slE0C6SgHk8E4CuW0wX4BxCI939OgrvhSe/4AJDvXgk/js4+mul0rqmla9hhNal0Dzg==
   dependencies:
     "@sanity/client" "0.142.0"
     "@sanity/document-store" "0.142.0"
@@ -2097,9 +2098,10 @@
     in-publish "^2.0.0"
     promise-props-recursive "^1.0.0"
 
-"@sanity/cli@^0.142.0":
-  version "0.142.0"
-  resolved "https://registry.yarnpkg.com/@sanity/cli/-/cli-0.142.0.tgz#7a502a22a3f03fecd70c293e1b0c6dfff47f396f"
+"@sanity/cli@^0.142.2":
+  version "0.142.2"
+  resolved "https://registry.yarnpkg.com/@sanity/cli/-/cli-0.142.2.tgz#186c592b7906cb1e6064ebe94d5dd3521e2a7ffa"
+  integrity sha512-kHxYtdySeUeV2Ag9KfDr3esbcJsFuC3c5T3mK2udeAE2BHnu4v9h7Iqi30X2eOHUSrnycDGrevaoT3lUWQscvw==
 
 "@sanity/client@0.142.0", "@sanity/client@^0.142.0":
   version "0.142.0"
@@ -2125,15 +2127,17 @@
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
-"@sanity/components@^0.142.1":
-  version "0.142.1"
-  resolved "https://registry.yarnpkg.com/@sanity/components/-/components-0.142.1.tgz#371764d4730d2545d6c780ae447dbb1eaffd286e"
+"@sanity/components@^0.142.2":
+  version "0.142.2"
+  resolved "https://registry.yarnpkg.com/@sanity/components/-/components-0.142.2.tgz#b1770a459ac9b08357869cb4d0a74bfbf6469134"
+  integrity sha512-qKvFg8ivxPj6w10Vv7Md7N9Vv/wlnpL0o4ks0U38+xuO3jwKHfNyo8pLrNLBFuAWdi4DA7EtF0OAw0dlszhflg==
   dependencies:
     "@sanity/date-input" "0.142.0"
     "@sanity/imagetool" "0.142.0"
     attr-accept "^1.1.0"
     boundless-arrow-key-navigation "^1.1.0"
     chance "^1.0.4"
+    chroma-js "^2.0.4"
     circular-at "^1.0.3"
     classnames "^2.2.5"
     date-fns "^1.29.0"
@@ -2157,9 +2161,10 @@
     scroll "^2.0.0"
     string-hash "^1.1.3"
 
-"@sanity/core@^0.142.1":
-  version "0.142.1"
-  resolved "https://registry.yarnpkg.com/@sanity/core/-/core-0.142.1.tgz#3c6974df83abcdab0fcb7abcecfbcef687a84830"
+"@sanity/core@^0.142.2":
+  version "0.142.2"
+  resolved "https://registry.yarnpkg.com/@sanity/core/-/core-0.142.2.tgz#eece5d1eb62f853fc603b165448c1b51b400578e"
+  integrity sha512-j58j/AmcfAaiLXcuNvQqw5xLvLb+GxVQizx2N6kT/f3o/3n3OLua7nRVArLZdEgS6+j15Lp7ESUGPAZYqbRyrQ==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.4.4"
     "@babel/preset-env" "^7.4.5"
@@ -2173,7 +2178,7 @@
     "@sanity/plugin-loader" "0.142.0"
     "@sanity/resolver" "0.142.0"
     "@sanity/schema" "0.142.0"
-    "@sanity/server" "0.142.0"
+    "@sanity/server" "0.142.2"
     "@sanity/util" "0.142.0"
     "@sanity/uuid" "0.142.0"
     batch-stream-operation "^1.0.2"
@@ -2223,9 +2228,10 @@
     postcss-value-parser "^3.3.0"
     source-list-map "^2.0.0"
 
-"@sanity/dashboard@^0.142.1":
-  version "0.142.1"
-  resolved "https://registry.yarnpkg.com/@sanity/dashboard/-/dashboard-0.142.1.tgz#34a9f49c2b4b1e780e5d6627beb5a6e8fe812b7e"
+"@sanity/dashboard@^0.142.2":
+  version "0.142.2"
+  resolved "https://registry.yarnpkg.com/@sanity/dashboard/-/dashboard-0.142.2.tgz#c62179949a130e6058276d42971d3c9e13679893"
+  integrity sha512-rBg6pGTzwdaXe6FLpt9OdXt50nUD1bbq1l5dvPDMGVxsX5iY/8qc48ETy8OVc7ixCY52Vvqybk8f9C8Y4vE9Hw==
   dependencies:
     lodash "^4.17.4"
     react-icons "^2.2.7"
@@ -2245,9 +2251,10 @@
     "@sanity/generate-help-url" "0.142.0"
     "@sanity/rich-date-input" "0.142.0"
 
-"@sanity/default-layout@^0.142.1":
-  version "0.142.1"
-  resolved "https://registry.yarnpkg.com/@sanity/default-layout/-/default-layout-0.142.1.tgz#69db97b0abb9e61ee28ea31e6b5e97c735eff89e"
+"@sanity/default-layout@^0.142.2":
+  version "0.142.2"
+  resolved "https://registry.yarnpkg.com/@sanity/default-layout/-/default-layout-0.142.2.tgz#45d58203b3f17fc02dc8d83023ec6339d3ddfb20"
+  integrity sha512-IYibCRe+6HjJPSdqi0a5TPhQVZPMu69V94DaEdTvZBNU0LWzB2bzfXKl6b+imy5Eqb1V04uhynQyZ85ajofPhQ==
   dependencies:
     "@sanity/generate-help-url" "0.142.0"
     is-hotkey "^0.1.4"
@@ -2267,12 +2274,13 @@
     prop-types "^15.6.0"
     rxjs "^6.5.2"
 
-"@sanity/desk-tool@^0.142.1":
-  version "0.142.1"
-  resolved "https://registry.yarnpkg.com/@sanity/desk-tool/-/desk-tool-0.142.1.tgz#c62d9e9d2afee7391ca9470106407441cc4b529d"
+"@sanity/desk-tool@^0.142.2":
+  version "0.142.2"
+  resolved "https://registry.yarnpkg.com/@sanity/desk-tool/-/desk-tool-0.142.2.tgz#28450673208dcf5e7876a880df39b9aa7cb0ec51"
+  integrity sha512-p70phf2gCvFzckR0pUvJgZk94+5MGtY8z0nVYnP5S8Ci3dVEX2qYEl77XfKycZASbE+PF1Q7KIuivg+593Noyw==
   dependencies:
     "@sanity/data-aspects" "0.142.0"
-    "@sanity/form-builder" "0.142.1"
+    "@sanity/form-builder" "0.142.2"
     "@sanity/generate-help-url" "0.142.0"
     "@sanity/mutator" "0.142.0"
     "@sanity/structure" "0.142.0"
@@ -2331,9 +2339,10 @@
     simple-get "^3.0.2"
     split2 "^2.1.1"
 
-"@sanity/form-builder@0.142.1":
-  version "0.142.1"
-  resolved "https://registry.yarnpkg.com/@sanity/form-builder/-/form-builder-0.142.1.tgz#a0ffe18c4ea9ab63cf8fa5064fc4435af9fbbb2a"
+"@sanity/form-builder@0.142.2":
+  version "0.142.2"
+  resolved "https://registry.yarnpkg.com/@sanity/form-builder/-/form-builder-0.142.2.tgz#de90d465f64185bb2248ac34552acb7cf5a254c6"
+  integrity sha512-BHmQmwki3BsFNbzjn+R3dW4+BdYiXf9OutWv5DRXizaoTVxFIzUPqtmffIp/JiZW8mmCREPovboyPtauKyK0ng==
   dependencies:
     "@sanity/block-tools" "0.142.0"
     "@sanity/generate-help-url" "0.142.0"
@@ -2500,9 +2509,10 @@
     lodash "^4.17.4"
     object-inspect "^1.3.0"
 
-"@sanity/server@0.142.0":
-  version "0.142.0"
-  resolved "https://registry.yarnpkg.com/@sanity/server/-/server-0.142.0.tgz#91732f362d2629431e4a86f2bf2f624507ff8184"
+"@sanity/server@0.142.2":
+  version "0.142.2"
+  resolved "https://registry.yarnpkg.com/@sanity/server/-/server-0.142.2.tgz#1577d98d15b43b935312832ec3d3b9f1f3ef5433"
+  integrity sha512-Pq3W9WDnoxuD+1FlJLzurx5dAutQ7+ccNTVwE+A+rTEoY5bg33iR2U0u1PPdXSjwOj2THd62VPH0MdZY5xeYjQ==
   dependencies:
     "@babel/core" "^7.4.5"
     "@babel/plugin-proposal-class-properties" "^7.4.4"
@@ -3539,9 +3549,10 @@ address@1.1.0, address@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/address/-/address-1.1.0.tgz#ef8e047847fcd2c5b6f50c16965f924fd99fe709"
 
-address@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/address/-/address-1.1.1.tgz#9483d6464788dee73e9a0f9f5d57bedf429b2a70"
+address@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/address/-/address-1.1.2.tgz#bf1116c9c758c51b7a933d296b72c221ed9428b6"
+  integrity sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==
 
 after@0.8.2:
   version "0.8.2"
@@ -4061,16 +4072,17 @@ babel-core@7.0.0-bridge.0:
   version "7.0.0-bridge.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
 
-babel-eslint@^10.0.2:
-  version "10.0.2"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.0.2.tgz#182d5ac204579ff0881684b040560fdcc1558456"
+babel-eslint@^10.0.3:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.0.3.tgz#81a2c669be0f205e19462fed2482d33e4687a88a"
+  integrity sha512-z3U7eMY6r/3f3/JB9mTsLjyxrv0Yb1zb8PCWCLpguxfCzBIZUwy23R1t/XKewP+8mEN2Ck8Dtr4q20z6ce6SoA==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/parser" "^7.0.0"
     "@babel/traverse" "^7.0.0"
     "@babel/types" "^7.0.0"
-    eslint-scope "3.7.1"
     eslint-visitor-keys "^1.0.0"
+    resolve "^1.12.0"
 
 babel-extract-comments@^1.0.0:
   version "1.0.0"
@@ -5247,6 +5259,11 @@ chownr@^1.0.1, chownr@^1.1.1:
 chroma-js@^1.2.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-1.4.1.tgz#eb2d9c4d1ff24616be84b35119f4d26f8205f134"
+
+chroma-js@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-2.0.4.tgz#51ada59274856411630d45ea533d717018554cea"
+  integrity sha512-gk71qOrSdBTLbsd0DIUO3QjZL8tTvMwpG1EoXYScy7rI4rcO4EyYH6zGuvCgUDumKumqg0pt6Ua+vWnMJsTYhw==
 
 chrome-trace-event@^1.0.2:
   version "1.0.2"
@@ -7307,13 +7324,6 @@ eslint-plugin-react@^7.14.3:
     prop-types "^15.7.2"
     resolve "^1.10.1"
 
-eslint-scope@3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
-  dependencies:
-    esrecurse "^4.1.0"
-    estraverse "^4.1.1"
-
 eslint-scope@^4.0.0, eslint-scope@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-4.0.3.tgz#ca03833310f6889a3264781aa82e63eb9cfe7848"
@@ -8442,9 +8452,10 @@ gatsby-react-router-scroll@^2.1.6:
     scroll-behavior "^0.9.10"
     warning "^3.0.0"
 
-gatsby-source-filesystem@^2.1.17:
-  version "2.1.17"
-  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.1.17.tgz#160a4ad106a24466cf9db8232eac2cfc4efe4569"
+gatsby-source-filesystem@^2.1.18:
+  version "2.1.18"
+  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.1.18.tgz#fcf80c62f243f4bfdb5ff4b17e8b0a79ace3730d"
+  integrity sha512-+LHqeDsK61F1BKiH1QGUNhZBH33tQVqB/iRw4AfKf/IlhfsJo5TzpzouAQv3aZXVj+5L05MSLmP9negHPGerag==
   dependencies:
     "@babel/runtime" "^7.5.5"
     better-queue "^3.8.10"
@@ -8481,14 +8492,15 @@ gatsby-source-sanity@^5.0.2:
     through2 "^3.0.1"
     url-parse "^1.4.4"
 
-gatsby-source-shopify@^3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/gatsby-source-shopify/-/gatsby-source-shopify-3.0.8.tgz#b75286d94428f759089d8dbb2464ba8778f23b70"
+gatsby-source-shopify@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/gatsby-source-shopify/-/gatsby-source-shopify-3.0.9.tgz#363a3d9defe66f9fb8b07f57ad48b27426007c94"
+  integrity sha512-9DflhpToaeIyi0+JIjS2lQO24JC8f97joe+GHtuA/ijiqxQWWofw+faUns1yY0L9D3EZePg1ghRK6FOP4u4Lrw==
   dependencies:
     babel-preset-gatsby-package "^0.2.3"
     chalk "^2.4.2"
     gatsby-node-helpers "^0.3.0"
-    gatsby-source-filesystem "^2.1.17"
+    gatsby-source-filesystem "^2.1.18"
     graphql-request "^1.8.2"
     lodash "^4.17.15"
     p-iteration "^1.1.8"
@@ -8528,9 +8540,10 @@ gatsby-transformer-sharp@^2.2.12:
     semver "^5.7.1"
     sharp "^0.23.0"
 
-gatsby@^2.13.82:
-  version "2.13.82"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.13.82.tgz#6fa896da8e1fb3533f3497780c71584299cc21cd"
+gatsby@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.14.0.tgz#ff5e19e6d8dfedbd1c3e41fc10e2f55bd8372ede"
+  integrity sha512-nZTXaC8HvfQTs9vOh1iVtY07c4AD6zrwtqIxttsyDfGVIRas47rvPCyPisUEVX6Hzk0W+cabEJ1T5cnZvi4ANA==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.5.5"
@@ -8545,11 +8558,11 @@ gatsby@^2.13.82:
     "@reach/router" "^1.2.1"
     "@typescript-eslint/eslint-plugin" "^1.13.0"
     "@typescript-eslint/parser" "^1.13.0"
-    address "1.1.1"
+    address "1.1.2"
     autoprefixer "^9.6.1"
     axios "^0.19.0"
     babel-core "7.0.0-bridge.0"
-    babel-eslint "^10.0.2"
+    babel-eslint "^10.0.3"
     babel-loader "^8.0.6"
     babel-plugin-add-module-exports "^0.3.3"
     babel-plugin-dynamic-import-node "^1.2.0"
@@ -10934,9 +10947,10 @@ lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
 
-lint-staged@^9.2.3:
-  version "9.2.3"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-9.2.3.tgz#a4ef2b7033f83e8dbc718556610e20e0098356c0"
+lint-staged@^9.2.5:
+  version "9.2.5"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-9.2.5.tgz#5a3e1e0a539a403bd7f88542bc3d34ce52efdbb3"
+  integrity sha512-d99gTBFMJ29159+9iRvaMEQstmNcPAbQbhHSYw6D/1FncvFdIj8lWHztaq3Uq+tbZPABHXQ/fyN7Rp1QwF8HIw==
   dependencies:
     chalk "^2.4.2"
     commander "^2.20.0"
@@ -15269,7 +15283,7 @@ resolve-url@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
 
-resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.5.0, resolve@^1.8.1:
+resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.12.0, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.5.0, resolve@^1.8.1:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.12.0.tgz#3fc644a35c84a48554609ff26ec52b66fa577df6"
   dependencies:
@@ -15719,9 +15733,10 @@ shelljs@^0.8.3:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shopify-buy@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-2.7.0.tgz#2a37e01bb3639fce1a882671349275039dfab830"
+shopify-buy@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-2.7.1.tgz#38134dbb06f69c4e3cf57dbbc3a7d23c35406c34"
+  integrity sha512-MZQrKAcHpZhH4YAgYwna4qI5KrveBcafEvpINF36mx6TcPh/hVZCaI8ahHRr/wn3O0NX5Pp9NaWgqiGDz282Rg==
 
 sift@^5.1.0:
   version "5.1.0"

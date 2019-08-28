@@ -12,11 +12,11 @@ interface Props {
 
 const Hero: React.FC<Props> = ({ hero, children }) => {
   // Image Data
-  const image: FluidObject | undefined = getNestedObject(
+  const image = getNestedObject<FluidObject | undefined>(
     hero,
     'image.asset.fluid'
   );
-  const backgroundColor: string | undefined = getNestedObject(
+  const backgroundColor = getNestedObject<string | undefined>(
     hero,
     'image.asset.metadata.palette.dominant.background'
   );
@@ -24,7 +24,7 @@ const Hero: React.FC<Props> = ({ hero, children }) => {
   // Button
   const { button } = hero;
   const buttonText = button && button.text;
-  const buttonLink = getNestedObject(button, 'link.slug.current');
+  const buttonLink = getNestedObject<string>(button, 'link.slug.current');
 
   return (
     <Header

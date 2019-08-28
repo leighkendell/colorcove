@@ -14,6 +14,7 @@ import {
   SanityBlock,
   SanityForm,
   SanityGridList,
+  SanityImageComparisonGroup,
 } from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import { FluidObject } from 'gatsby-image';
@@ -26,7 +27,7 @@ import PortableText from './portable-text';
 import ContactForm from './contact-form';
 import GridList from './grid-list';
 import GridListItem from './grid-list-item';
-import Text from './text';
+import ImageComparisonGroup from './image-comparison-group';
 
 interface Props {
   modules: any[];
@@ -169,6 +170,21 @@ const Module: React.FC<Props> = ({ modules, rawModules }) => {
         }
         break;
 
+      // Image comparison group module
+      case 'imageComparisonGroup':
+        const {
+          items: imageComparisonItems,
+        } = data as SanityImageComparisonGroup;
+
+        if (imageComparisonItems) {
+          module = (
+            <ImageComparisonGroup
+              items={imageComparisonItems as SanityImageComparison[]}
+            />
+          );
+        }
+        break;
+
       // Product group module
       case 'productGroup':
         const { title, products } = data as SanityProductGroup;
@@ -198,7 +214,7 @@ const Module: React.FC<Props> = ({ modules, rawModules }) => {
           'asset.fluid'
         );
 
-        const inlineImageWidth = getNestedObject(
+        const inlineImageWidth = getNestedObject<string | undefined>(
           image,
           'asset.metadata.dimensions.width'
         );

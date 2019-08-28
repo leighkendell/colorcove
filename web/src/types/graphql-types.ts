@@ -1891,7 +1891,7 @@ export type SanityFeatureTextGroupText = {
   text?: Maybe<Scalars['String']>,
 };
 
-export type SanityFeatureTextOrFeatureTextGroupOrFormOrGridListOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo = SanityFeatureText | SanityFeatureTextGroup | SanityForm | SanityGridList | SanityImageComparison | SanityInlineImage | SanityProductGroup | SanityRichText | SanityVimeo;
+export type SanityFeatureTextOrFeatureTextGroupOrFormOrGridListOrImageComparisonOrImageComparisonGroupOrInlineImageOrProductGroupOrRichTextOrVimeo = SanityFeatureText | SanityFeatureTextGroup | SanityForm | SanityGridList | SanityImageComparison | SanityImageComparisonGroup | SanityInlineImage | SanityProductGroup | SanityRichText | SanityVimeo;
 
 export type SanityFile = {
   __typename?: 'SanityFile',
@@ -2594,8 +2594,16 @@ export type SanityImageComparison = {
   _key?: Maybe<Scalars['String']>,
   _type?: Maybe<Scalars['String']>,
   name?: Maybe<Scalars['String']>,
+  description?: Maybe<Scalars['String']>,
   beforeImage?: Maybe<SanityMainImage>,
   afterImage?: Maybe<SanityMainImage>,
+};
+
+export type SanityImageComparisonGroup = {
+  __typename?: 'SanityImageComparisonGroup',
+  _key?: Maybe<Scalars['String']>,
+  _type?: Maybe<Scalars['String']>,
+  items?: Maybe<Array<Maybe<SanityImageComparison>>>,
 };
 
 export type SanityImageCrop = {
@@ -2822,7 +2830,7 @@ export type SanityPage = SanityDocument & Node & {
   description?: Maybe<Scalars['String']>,
   image?: Maybe<SanityMainImage>,
   hero?: Maybe<SanityHero>,
-  modules?: Maybe<Array<Maybe<SanityFeatureTextOrFeatureTextGroupOrFormOrGridListOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo>>>,
+  modules?: Maybe<Array<Maybe<SanityFeatureTextOrFeatureTextGroupOrFormOrGridListOrImageComparisonOrImageComparisonGroupOrInlineImageOrProductGroupOrRichTextOrVimeo>>>,
   _rawSlug?: Maybe<Scalars['JSON']>,
   _rawImage?: Maybe<Scalars['JSON']>,
   _rawHero?: Maybe<Scalars['JSON']>,
@@ -3188,7 +3196,7 @@ export type SanityProduct = SanityDocument & Node & {
   description?: Maybe<Scalars['String']>,
   image?: Maybe<SanityMainImage>,
   hero?: Maybe<SanityHero>,
-  modules?: Maybe<Array<Maybe<SanityFeatureTextOrFeatureTextGroupOrFormOrGridListOrImageComparisonOrInlineImageOrProductGroupOrRichTextOrVimeo>>>,
+  modules?: Maybe<Array<Maybe<SanityFeatureTextOrFeatureTextGroupOrFormOrGridListOrImageComparisonOrImageComparisonGroupOrInlineImageOrProductGroupOrRichTextOrVimeo>>>,
   shopifyId?: Maybe<Scalars['Float']>,
   shopifyHandle?: Maybe<Scalars['String']>,
   shopifyDefaultVariant?: Maybe<SanityShopifyVariant>,

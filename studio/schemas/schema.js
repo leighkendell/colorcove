@@ -29,6 +29,7 @@ import richText from './objects/rich-text';
 import form from './objects/form';
 import heroButton from './objects/hero-button';
 import gridList from './objects/grid-list';
+import imageComparisonGroup from './objects/image-comparison-group';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -47,6 +48,7 @@ export default createSchema({
     vimeo,
     videoData,
     imageComparison,
+    imageComparisonGroup,
     shopifyVariant,
     productReference,
     productGroup,

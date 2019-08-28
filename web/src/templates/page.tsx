@@ -20,7 +20,10 @@ const PageTemplate: React.FC<Props> = ({ data: { sanityPage } }) => {
       modules,
       _rawModules,
     } = sanityPage;
-    const ogImage = getNestedObject(image, 'asset.fixed.src');
+    const ogImage = getNestedObject<string | undefined>(
+      image,
+      'asset.fixed.src'
+    );
 
     return (
       <>
@@ -63,6 +66,9 @@ export const pageQuery = graphql`
         }
         ... on SanityImageComparison {
           ...ImageComparison
+        }
+        ... on SanityImageComparisonGroup {
+          ...ImageComparisonGroup
         }
         ... on SanityProductGroup {
           ...ProductGroup

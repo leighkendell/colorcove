@@ -70,11 +70,23 @@ export const imageComparison = graphql`
     _key
     _type
     name
+    description
     beforeImage {
       ...ComparisonImage
     }
     afterImage {
       ...ComparisonImage
+    }
+  }
+`;
+
+// Image comparison group module
+export const imageComparisonGroup = graphql`
+  fragment ImageComparisonGroup on SanityImageComparisonGroup {
+    _key
+    _type
+    items {
+      ...ImageComparison
     }
   }
 `;

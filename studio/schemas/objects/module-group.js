@@ -20,6 +20,9 @@ export default {
       type: 'imageComparison',
     },
     {
+      type: 'imageComparisonGroup',
+    },
+    {
       type: 'productGroup',
     },
     {

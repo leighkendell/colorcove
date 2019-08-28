@@ -11,6 +11,12 @@ export default {
       description: 'The name of the image being compared',
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      description: 'A short description of the image being compared',
+    },
+    {
       name: 'beforeImage',
       title: 'Before Image',
       type: 'mainImage',

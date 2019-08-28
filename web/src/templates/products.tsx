@@ -17,7 +17,10 @@ const ProductsTemplate: React.FC<Props> = ({
 }) => {
   if (sanityPage && allSanityProduct) {
     const { hero, title, description, image } = sanityPage;
-    const ogImage = getNestedObject(image, 'asset.fixed.src');
+    const ogImage = getNestedObject<string | undefined>(
+      image,
+      'asset.fixed.src'
+    );
 
     return (
       <>

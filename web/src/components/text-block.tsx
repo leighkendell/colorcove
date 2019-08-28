@@ -62,7 +62,7 @@ const TextBlock: React.FC<Props> = ({
   return (
     <StyledTextBlock horizontal={horizontal}>
       <Heading type={headingType || 'h2'}>{title}</Heading>
-      <Text>{description}</Text>
+      {description && <Text>{description}</Text>}
       {buttonText && <Button onClick={onButtonClick}>{buttonText}</Button>}
     </StyledTextBlock>
   );

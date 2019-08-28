@@ -10,13 +10,17 @@ import Image from '../components/image';
 import { Query } from '../types/graphql-types';
 import { getNestedObject } from '../utils/helpers';
 import Header from '../components/header';
+import { FluidObject } from 'gatsby-image';
 
 interface Props {
   data: Query;
 }
 
 const NotFoundPage: React.FC<Props> = ({ data }) => {
-  const image = getNestedObject(data, 'file.childImageSharp.fluid');
+  const image = getNestedObject<FluidObject>(
+    data,
+    'file.childImageSharp.fluid'
+  );
 
   return (
     <>

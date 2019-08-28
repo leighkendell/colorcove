@@ -72,7 +72,10 @@ const ProductTemplate: React.FC<Props> = ({
       (defaultVariant && defaultVariant.price) ||
       (shopifyDefaultVariant && shopifyDefaultVariant.price) ||
       0;
-    const ogImage = getNestedObject(image, 'asset.fixed.src');
+    const ogImage = getNestedObject<string | undefined>(
+      image,
+      'asset.fixed.src'
+    );
 
     const buttonText = alreadyInCart
       ? 'Already in cart'
@@ -134,6 +137,9 @@ export const productQuery = graphql`
         }
         ... on SanityImageComparison {
           ...ImageComparison
+        }
+        ... on SanityImageComparisonGroup {
+          ...ImageComparisonGroup
         }
         ... on SanityProductGroup {
           ...ProductGroup
