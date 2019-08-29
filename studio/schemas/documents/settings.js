@@ -19,5 +19,10 @@ export default {
       title: 'Social links',
       type: 'social',
     },
+    {
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
+    },
   ],
 };

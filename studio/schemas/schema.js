@@ -30,6 +30,7 @@ import form from './objects/form';
 import heroButton from './objects/hero-button';
 import gridList from './objects/grid-list';
 import imageComparisonGroup from './objects/image-comparison-group';
+import seo from './objects/seo';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -59,6 +60,7 @@ export default createSchema({
     form,
     heroButton,
     gridList,
+    seo,
     // Documents
     page,
     product,
