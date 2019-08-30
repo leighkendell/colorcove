@@ -21,8 +21,9 @@ const ImageComparisonGroup: React.FC<Props> = ({ items }) => {
   const handleChange = (index: number) => {
     if (tabsListEl.current) {
       const tabEl = tabsListEl.current.children[index] as HTMLButtonElement;
-      const { width } = tabEl.getBoundingClientRect();
-      const left = tabEl.offsetLeft - width / 2;
+      const tabWidth = tabEl.getBoundingClientRect().width;
+      const tabsListWidth = tabsListEl.current.getBoundingClientRect().width;
+      const left = tabEl.offsetLeft - (tabsListWidth / 2 - tabWidth / 2);
 
       tabsListEl.current.scrollTo({
         left,

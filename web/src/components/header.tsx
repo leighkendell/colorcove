@@ -21,7 +21,7 @@ const headerGrid = css`
   display: grid;
   grid-template-rows: repeat(2, auto);
 
-  ${breakpoint('medium')} {
+  ${breakpoint('large')} {
     --maxwidth: ${spacing(80)};
     grid-template-rows: 1fr;
     grid-template-columns: minmax(min-content, var(--maxwidth)) minmax(50%, 1fr);
@@ -43,11 +43,11 @@ const StyledHeader = styled.header<{ hasImage: boolean }>`
 
   ${breakpoint('medium')} {
     --padding: ${spacing(9)};
-    ${({ hasImage }) => hasImage && `min-height: calc(80vh - ${spacing(10)})`};
   }
 
   ${breakpoint('large')} {
     --padding: ${spacing(12)};
+    ${({ hasImage }) => hasImage && `min-height: calc(80vh - ${spacing(10)})`};
   }
 
   ${breakpoint('xLarge')} {
@@ -71,7 +71,7 @@ const StyledImage = styled(animated(Image))`
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
 
-  ${breakpoint('medium')} {
+  ${breakpoint('large')} {
     position: absolute !important;
     grid-column: 2 / span 1;
     width: 100%;
@@ -87,7 +87,7 @@ const Content = styled.div`
   padding: var(--padding);
   background: ${props => props.theme.colorBlack};
 
-  ${breakpoint('medium')} {
+  ${breakpoint('large')} {
     grid-row: 1 / span 1;
     align-self: center;
   }
