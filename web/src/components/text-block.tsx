@@ -58,12 +58,14 @@ const TextBlock: React.FC<Props> = ({
   buttonText,
   headingType,
   onButtonClick,
+  children,
 }) => {
   return (
     <StyledTextBlock horizontal={horizontal}>
       <Heading type={headingType || 'h2'}>{title}</Heading>
       {description && <Text>{description}</Text>}
       {buttonText && <Button onClick={onButtonClick}>{buttonText}</Button>}
+      {children}
     </StyledTextBlock>
   );
 };

@@ -10,6 +10,9 @@ import useStore from '../hooks/use-store';
 import Message from '../components/message';
 import { formatCurrency, getNestedObject } from '../utils/helpers';
 import SEO from '../components/seo';
+import TextBlock from '../components/text-block';
+import Section from '../components/section';
+import Wrapper from '../components/wrapper';
 
 interface Props {
   data: Query;
@@ -81,22 +84,28 @@ const ProductTemplate: React.FC<Props> = ({
       ? 'Already in cart'
       : `Buy for ${formatCurrency(price)}`;
 
+    const buyButton = (
+      <Button icon onClick={handleBuy} disabled={updating || alreadyInCart}>
+        <Icon />
+        {buttonText}
+      </Button>
+    );
+
     return (
       <>
         <SEO title={title} description={description} image={ogImage} />
-        {hero && (
-          <Hero hero={hero}>
-            <Button
-              icon
-              onClick={handleBuy}
-              disabled={updating || alreadyInCart}
-            >
-              <Icon />
-              {buttonText}
-            </Button>
-          </Hero>
-        )}
+        {hero && <Hero hero={hero}>{buyButton}</Hero>}
         {modules && <Module modules={modules} rawModules={_rawModules} />}
+        <Section>
+          <Wrapper>
+            <TextBlock
+              title="Get started"
+              description={`Unlock the potential of your camera, buy ${title} now.`}
+            >
+              {buyButton}
+            </TextBlock>
+          </Wrapper>
+        </Section>
         <Message isVisible={updating}>{message}</Message>
       </>
     );

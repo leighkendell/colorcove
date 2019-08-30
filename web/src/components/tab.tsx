@@ -18,8 +18,11 @@ const Tab = styled(ReachTab)`
   scroll-snap-align: center;
 
   &[data-selected] {
-    color: ${props => props.theme.colorWhite};
-    background-color: ${props => props.theme.colorBlue};
+    background-color: ${props => props.theme.colorLightGrey};
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px ${props => props.theme.colorBlack};
   }
 `;
 

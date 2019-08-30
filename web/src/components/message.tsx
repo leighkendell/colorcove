@@ -20,6 +20,7 @@ export const messageBase = css`
   z-index: 1;
   display: inline-block;
   width: calc(100% - ${spacing(4)});
+  max-width: 440px;
   padding: ${spacing(3)};
   color: ${props => props.theme.colorWhite};
   ${fontSize(14, 3)};

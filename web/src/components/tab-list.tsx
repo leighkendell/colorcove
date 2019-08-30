@@ -6,7 +6,6 @@ const TabList = styled(ReachTabList)`
   position: relative;
   display: flex;
   overflow: auto;
-  background-color: ${props => props.theme.colorMidGrey};
   scroll-snap-type: x mandatory;
 
   ${Tab} {
