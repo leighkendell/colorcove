@@ -3,18 +3,19 @@ import { TabList as ReachTabList } from '@reach/tabs';
 import Tab from './tab';
 
 const TabList = styled(ReachTabList)`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  margin-bottom: -1px;
+  position: relative;
+  display: flex;
+  overflow: auto;
   background-color: ${props => props.theme.colorMidGrey};
+  scroll-snap-type: x mandatory;
 
   ${Tab} {
-    border: 1px solid ${props => props.theme.colorLightGrey};
-    border-top: 0;
-    border-right: 0;
-
     &:first-child {
-      border-left: 0;
+      margin-left: auto;
+    }
+
+    &:last-child {
+      margin-right: auto;
     }
   }
 `;
