@@ -250,8 +250,9 @@ const Nav: React.FC<Props> = ({
   cartQuantity,
 }) => {
   const toggleButtonEl = useRef<HTMLButtonElement>(null);
-  const navListEl = useRef<ReactSpringHook>(null);
-  const navListItemEl = useRef<ReactSpringHook>(null);
+  const navListEl = useRef<HTMLUListElement>(null);
+  const navListSpring = useRef<ReactSpringHook>(null);
+  const navListItemSpring = useRef<ReactSpringHook>(null);
 
   const isLargeScreen = useMatchMedia(breakpoint('medium', 'min', true));
 
@@ -259,14 +260,14 @@ const Nav: React.FC<Props> = ({
     from: { opacity: isLargeScreen ? 1 : 0 },
     opacity: isOpen || isLargeScreen ? 1 : 0,
     immediate: isLargeScreen,
-    ref: navListEl,
+    ref: navListSpring,
   });
 
   const navListItemAnimation = useTrail(items.length, {
     opacity: isOpen || isLargeScreen ? 1 : 0,
     transform: `scale(${isOpen || isLargeScreen ? 1 : 0.75})`,
     immediate: isLargeScreen,
-    ref: navListItemEl,
+    ref: navListItemSpring,
   });
 
   const navListVisibility: CSSProperties = {
@@ -293,16 +294,28 @@ const Nav: React.FC<Props> = ({
     })`,
   });
 
-  useChain(isOpen ? [navListEl, navListItemEl] : [navListItemEl, navListEl], [
-    0,
-    isOpen ? 0.1 : 0.4,
-  ]);
+  useChain(
+    isOpen
+      ? [navListSpring, navListItemSpring]
+      : [navListItemSpring, navListSpring],
+    [0, isOpen ? 0.1 : 0.4]
+  );
 
-  const toggleNavOpen = () => {
+  const toggleNavOpen = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.currentTarget.blur();
     if (isOpen) {
       onClose && onClose();
     } else {
       onOpen && onOpen();
+
+      if (navListEl.current) {
+        setTimeout(() => {
+          // Shift focus to nav list
+          navListEl.current && navListEl.current.focus();
+        }, 250);
+      }
     }
   };
 
@@ -320,6 +333,8 @@ const Nav: React.FC<Props> = ({
               }
             : {}
         }
+        ref={navListEl}
+        tabIndex={(!isLargeScreen && 0) || -1}
       >
         {navListItemAnimation.map((props, index) => (
           <NavListItem style={props} key={items[index].title}>

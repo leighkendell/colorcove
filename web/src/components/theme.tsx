@@ -28,6 +28,15 @@ const GlobalStyle = createGlobalStyle`
     ${messageBase};
   }
 
+  :focus {
+    outline: 4px solid ${props => props.theme.colorDarkGrey};
+    outline-offset: 8px;
+  }
+
+  :active {
+    outline: 0;
+  }
+
   /* Storybook specific */
   .sb-show-main {
     padding: ${spacing(4)};
