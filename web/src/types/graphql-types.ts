@@ -1613,9 +1613,11 @@ export type QuerySanitySiteSettingsArgs = {
   primaryNav?: Maybe<SanityNavGroupFilterInput>,
   secondaryNav?: Maybe<SanityNavGroupFilterInput>,
   social?: Maybe<SanitySocialFilterInput>,
+  seo?: Maybe<SanitySeoFilterInput>,
   _rawPrimaryNav?: Maybe<JsonQueryOperatorInput>,
   _rawSecondaryNav?: Maybe<JsonQueryOperatorInput>,
   _rawSocial?: Maybe<JsonQueryOperatorInput>,
+  _rawSeo?: Maybe<JsonQueryOperatorInput>,
   id?: Maybe<StringQueryOperatorInput>,
   parent?: Maybe<NodeFilterInput>,
   children?: Maybe<NodeFilterListInput>,
@@ -3579,6 +3581,23 @@ export type SanityRichText = {
   blocks?: Maybe<Array<Maybe<SanityBlock>>>,
 };
 
+export type SanitySeo = {
+  __typename?: 'SanitySeo',
+  _key?: Maybe<Scalars['String']>,
+  _type?: Maybe<Scalars['String']>,
+  title?: Maybe<Scalars['String']>,
+  description?: Maybe<Scalars['String']>,
+  image?: Maybe<SanityMainImage>,
+};
+
+export type SanitySeoFilterInput = {
+  _key?: Maybe<StringQueryOperatorInput>,
+  _type?: Maybe<StringQueryOperatorInput>,
+  title?: Maybe<StringQueryOperatorInput>,
+  description?: Maybe<StringQueryOperatorInput>,
+  image?: Maybe<SanityMainImageFilterInput>,
+};
+
 export type SanityShopifyVariant = {
   __typename?: 'SanityShopifyVariant',
   _key?: Maybe<Scalars['String']>,
@@ -3605,9 +3624,11 @@ export type SanitySiteSettings = SanityDocument & Node & {
   primaryNav?: Maybe<SanityNavGroup>,
   secondaryNav?: Maybe<SanityNavGroup>,
   social?: Maybe<SanitySocial>,
+  seo?: Maybe<SanitySeo>,
   _rawPrimaryNav?: Maybe<Scalars['JSON']>,
   _rawSecondaryNav?: Maybe<Scalars['JSON']>,
   _rawSocial?: Maybe<Scalars['JSON']>,
+  _rawSeo?: Maybe<Scalars['JSON']>,
   id: Scalars['ID'],
   parent?: Maybe<Node>,
   children: Array<Node>,
@@ -3642,6 +3663,11 @@ export type SanitySiteSettings_RawSecondaryNavArgs = {
 
 
 export type SanitySiteSettings_RawSocialArgs = {
+  resolveReferences?: Maybe<SanityResolveReferencesConfiguration>
+};
+
+
+export type SanitySiteSettings_RawSeoArgs = {
   resolveReferences?: Maybe<SanityResolveReferencesConfiguration>
 };
 
@@ -3724,9 +3750,46 @@ export enum SanitySiteSettingsFieldsEnum {
   social___vimeo = 'social___vimeo',
   social___instagram = 'social___instagram',
   social___facebook = 'social___facebook',
+  seo____key = 'seo____key',
+  seo____type = 'seo____type',
+  seo___title = 'seo___title',
+  seo___description = 'seo___description',
+  seo___image____key = 'seo___image____key',
+  seo___image____type = 'seo___image____type',
+  seo___image___asset____id = 'seo___image___asset____id',
+  seo___image___asset____type = 'seo___image___asset____type',
+  seo___image___asset____createdAt = 'seo___image___asset____createdAt',
+  seo___image___asset____updatedAt = 'seo___image___asset____updatedAt',
+  seo___image___asset____rev = 'seo___image___asset____rev',
+  seo___image___asset____key = 'seo___image___asset____key',
+  seo___image___asset___originalFilename = 'seo___image___asset___originalFilename',
+  seo___image___asset___label = 'seo___image___asset___label',
+  seo___image___asset___sha1hash = 'seo___image___asset___sha1hash',
+  seo___image___asset___extension = 'seo___image___asset___extension',
+  seo___image___asset___mimeType = 'seo___image___asset___mimeType',
+  seo___image___asset___size = 'seo___image___asset___size',
+  seo___image___asset___assetId = 'seo___image___asset___assetId',
+  seo___image___asset___path = 'seo___image___asset___path',
+  seo___image___asset___url = 'seo___image___asset___url',
+  seo___image___asset____rawMetadata = 'seo___image___asset____rawMetadata',
+  seo___image___asset___id = 'seo___image___asset___id',
+  seo___image___asset___children = 'seo___image___asset___children',
+  seo___image___hotspot____key = 'seo___image___hotspot____key',
+  seo___image___hotspot____type = 'seo___image___hotspot____type',
+  seo___image___hotspot___x = 'seo___image___hotspot___x',
+  seo___image___hotspot___y = 'seo___image___hotspot___y',
+  seo___image___hotspot___height = 'seo___image___hotspot___height',
+  seo___image___hotspot___width = 'seo___image___hotspot___width',
+  seo___image___crop____key = 'seo___image___crop____key',
+  seo___image___crop____type = 'seo___image___crop____type',
+  seo___image___crop___top = 'seo___image___crop___top',
+  seo___image___crop___bottom = 'seo___image___crop___bottom',
+  seo___image___crop___left = 'seo___image___crop___left',
+  seo___image___crop___right = 'seo___image___crop___right',
   _rawPrimaryNav = '_rawPrimaryNav',
   _rawSecondaryNav = '_rawSecondaryNav',
   _rawSocial = '_rawSocial',
+  _rawSeo = '_rawSeo',
   id = 'id',
   parent___id = 'parent___id',
   parent___parent___id = 'parent___parent___id',
@@ -3825,9 +3888,11 @@ export type SanitySiteSettingsFilterInput = {
   primaryNav?: Maybe<SanityNavGroupFilterInput>,
   secondaryNav?: Maybe<SanityNavGroupFilterInput>,
   social?: Maybe<SanitySocialFilterInput>,
+  seo?: Maybe<SanitySeoFilterInput>,
   _rawPrimaryNav?: Maybe<JsonQueryOperatorInput>,
   _rawSecondaryNav?: Maybe<JsonQueryOperatorInput>,
   _rawSocial?: Maybe<JsonQueryOperatorInput>,
+  _rawSeo?: Maybe<JsonQueryOperatorInput>,
   id?: Maybe<StringQueryOperatorInput>,
   parent?: Maybe<NodeFilterInput>,
   children?: Maybe<NodeFilterListInput>,

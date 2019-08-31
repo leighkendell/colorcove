@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Query } from '../types/graphql-types';
+import { getNestedObject } from '../utils/helpers';
 
 interface Props {
   title?: string | null;
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const SEO: React.FC<Props> = ({ title, description, image }) => {
-  const { site } = useStaticQuery<Query>(
+  const { site, sanitySiteSettings } = useStaticQuery<Query>(
     graphql`
       query {
         site {
@@ -19,26 +20,53 @@ const SEO: React.FC<Props> = ({ title, description, image }) => {
             description
           }
         }
+        sanitySiteSettings {
+          seo {
+            title
+            description
+            image {
+              ...OgImage
+            }
+          }
+        }
       }
     `
   );
 
-  const metaDescription =
-    description ||
-    (site && site.siteMetadata && site.siteMetadata.description) ||
-    '';
+  const gatsbyTitle = getNestedObject<string>(site, 'siteMetadata.title');
 
-  const ogImage = image || '';
+  const fallbackTitle = getNestedObject<string>(
+    sanitySiteSettings,
+    'seo.title'
+  );
+
+  const gatsbyDescription = getNestedObject<string>(
+    site,
+    'siteMetadata.description'
+  );
+
+  const fallbackDescription = getNestedObject<string>(
+    sanitySiteSettings,
+    'seo.description'
+  );
+
+  const fallbackImage = getNestedObject<string>(
+    sanitySiteSettings,
+    'seo.image.asset.fixed.src'
+  );
+
+  const metaDescription =
+    description || fallbackDescription || gatsbyDescription;
+
+  const ogImage = image || fallbackImage;
 
   return (
     <Helmet
       htmlAttributes={{
         lang: 'en-au',
       }}
-      title={title || ''}
-      titleTemplate={`%s | ${site &&
-        site.siteMetadata &&
-        site.siteMetadata.title}`}
+      title={title || fallbackTitle || gatsbyTitle}
+      titleTemplate={`%s | ${gatsbyTitle}`}
       meta={[
         {
           name: `description`,
