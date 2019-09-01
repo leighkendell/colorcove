@@ -8,6 +8,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 import page from './documents/page';
 import product from './documents/product';
 import settings from './documents/settings';
+import pdf from './documents/pdf';
 
 // Object types
 import mainImage from './objects/main-image';
@@ -65,5 +66,6 @@ export default createSchema({
     page,
     product,
     settings,
+    pdf,
   ]),
 });
