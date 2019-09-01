@@ -20,7 +20,7 @@ class VimeoInput extends React.Component {
   };
 
   handleFieldChange = async (field, fieldPatchEvent) => {
-    const { type } = this.props;
+    const { type, onChange } = this.props;
 
     // Set initial value
     onChange(
@@ -34,7 +34,7 @@ class VimeoInput extends React.Component {
       const patch = fieldPatchEvent.patches.find(item => item.type === 'set');
 
       if (patch && patch.value && patch.value.includes('vimeo.com')) {
-        const data = await getData(patch.value);
+        const data = await this.getData(patch.value);
 
         if (data) {
           const { width, height, title, thumbnail_url } = data;
@@ -79,7 +79,9 @@ class VimeoInput extends React.Component {
                 level={level + 1}
                 type={field.type}
                 value={value && value[field.name]}
-                onChange={patchEvent => handleFieldChange(field, patchEvent)}
+                onChange={patchEvent =>
+                  this.handleFieldChange(field, patchEvent)
+                }
                 path={[field.name]}
                 focusPath={focusPath}
                 onFocus={onFocus}

@@ -80,29 +80,29 @@ const ProductTemplate: React.FC<Props> = ({
       'asset.fixed.src'
     );
 
-    const buttonText = alreadyInCart
-      ? 'Already in cart'
-      : `Buy for ${formatCurrency(price)}`;
-
-    const buyButton = (
+    const buyButton = (text: string) => (
       <Button icon onClick={handleBuy} disabled={updating || alreadyInCart}>
         <Icon />
-        {buttonText}
+        {alreadyInCart ? 'Already in cart' : text}
       </Button>
     );
 
     return (
       <>
         <SEO title={title} description={description} image={ogImage} />
-        {hero && <Hero hero={hero}>{buyButton}</Hero>}
+        {hero && (
+          <Hero hero={hero}>
+            {buyButton(`Buy for ${formatCurrency(price)}`)}
+          </Hero>
+        )}
         {modules && <Module modules={modules} rawModules={_rawModules} />}
         <Section>
           <Wrapper>
             <TextBlock
-              title="Get started"
-              description={`Unlock the potential of your camera, buy ${title} now.`}
+              title="Experience true film color"
+              description={`Transform your footage, buy the ${title} now.`}
             >
-              {buyButton}
+              {buyButton(`Add to cart`)}
             </TextBlock>
           </Wrapper>
         </Section>

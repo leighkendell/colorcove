@@ -12,11 +12,11 @@ export function getNestedObject<T>(nestedObj: any, path: string): T {
 /** Check for browser/node environment */
 export const isBrowser = typeof window !== 'undefined';
 
-/** Format a number to AUD currency format */
+/** Format a number to USD currency format */
 export const formatCurrency = (amount: string | number) =>
-  new Intl.NumberFormat('en-AU', {
+  new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'AUD',
+    currency: 'USD',
   }).format(typeof amount === 'string' ? parseFloat(amount) : amount);
 
 export const springSlowConfig = {

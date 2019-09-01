@@ -177,6 +177,7 @@ const NavList = styled(animated.ul)`
     grid-gap: ${spacing(4)};
     justify-content: end;
     background-color: transparent;
+    outline: 0;
     visibility: visible;
   }
 `;

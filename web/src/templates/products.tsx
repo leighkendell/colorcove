@@ -54,7 +54,7 @@ export const productsQuery = graphql`
     }
     allSanityProduct(
       filter: { slug: { current: { ne: "null" } }, shopifyId: { gt: 0 } }
-      sort: { fields: _createdAt, order: DESC }
+      sort: { fields: title, order: ASC }
     ) {
       edges {
         node {

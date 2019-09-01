@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 export const comparisonImage = graphql`
   fragment ComparisonImage on SanityMainImage {
     asset {
-      fluid(maxWidth: 2000, maxHeight: 837) {
+      fluid(maxWidth: 2000, maxHeight: 1125) {
         ...GatsbySanityImageFluid
       }
     }
