@@ -109,7 +109,7 @@ const Cart: React.FC<Props> = ({
     transform: `translateX(${isOpen ? 0 : 100}%)`,
   });
 
-  const overlayVisibility: CSSProperties = {
+  const cartVisibility: CSSProperties = {
     visibility: opacity.interpolate(opacity =>
       opacity === 0 ? 'hidden' : 'visible'
     ),
@@ -119,10 +119,10 @@ const Cart: React.FC<Props> = ({
 
   return (
     <>
-      <Overlay onClick={onClose} style={{ opacity, ...overlayVisibility }} />
-      <StyledCart style={{ transform }}>
+      <Overlay onClick={onClose} style={{ opacity, ...cartVisibility }} />
+      <StyledCart style={{ transform, ...cartVisibility }}>
         <Header>
-          <CloseButton onClick={onClose}>
+          <CloseButton onClick={onClose} aria-label="Close cart">
             <Close role="img" />
           </CloseButton>
           <Heading type="h3">Your cart</Heading>

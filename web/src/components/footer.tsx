@@ -160,21 +160,21 @@ const Footer: React.FC<Props> = ({
         <LinkList>
           {vimeoLink && (
             <LinkListItem>
-              <LogoLink href={vimeoLink}>
+              <LogoLink href={vimeoLink} aria-label="Vimeo">
                 <VimeoLogo />
               </LogoLink>
             </LinkListItem>
           )}
           {instagramLink && (
             <LinkListItem>
-              <LogoLink href={instagramLink}>
+              <LogoLink href={instagramLink} aria-label="Instagram">
                 <InstagramLogo />
               </LogoLink>
             </LinkListItem>
           )}
           {facebookLink && (
             <LinkListItem>
-              <LogoLink href={facebookLink}>
+              <LogoLink href={facebookLink} aria-label="Facebook">
                 <FacebookLogo />
               </LogoLink>
             </LinkListItem>

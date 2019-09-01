@@ -80,7 +80,10 @@ const CartItem: React.FC<Props> = ({ id, name, price, image, onRemove }) => {
         <strong>{name}</strong>
         {price}
       </Text>
-      <RemoveButton onClick={handleRemove}>
+      <RemoveButton
+        onClick={handleRemove}
+        aria-label={`Remove ${name} from your cart`}
+      >
         <Remove />
       </RemoveButton>
     </StyledCartItem>

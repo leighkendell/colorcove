@@ -164,7 +164,7 @@ const Header: React.FC<Props> = ({
   useChain([headingEl, textEl], [0, 0.3]);
 
   return (
-    <StyledHeader role="banner" hasImage={image ? true : false}>
+    <StyledHeader hasImage={image ? true : false}>
       {image ? (
         <>
           <Content>
