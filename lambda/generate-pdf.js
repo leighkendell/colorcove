@@ -1,5 +1,6 @@
 const sanityClient = require('@sanity/client');
-const puppeteer = require('puppeteer');
+const chrome = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer-core');
 
 // Set up sanity client
 const client = sanityClient({
@@ -14,7 +15,11 @@ exports.handler = async function(event) {
   const { id } = event.queryStringParameters;
   const url = `https://colorcove-web.netlify.com/render-pdf?id=${id}`;
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: chrome.args,
+    executablePath: await chrome.executablePath,
+    headless: chrome.headless,
+  });
   const page = await browser.newPage();
   await page.goto(url);
   const pdf = await page.pdf();
