@@ -6,6 +6,11 @@ import Text from './text';
 import List from './list';
 import ListItem from './list-item';
 import TextLink from './text-link';
+import InlineImage from './inline-image';
+const {
+  getFluidGatsbyImage,
+  getFixedGatsbyImage,
+} = require('gatsby-source-sanity');
 const BlockContent = require('@sanity/block-content-to-react');
 
 const BlockRenderer = ({ children, node }: any) => {
@@ -45,9 +50,21 @@ const InternalLinkRenderer = ({ children, mark }: any) => {
   return children;
 };
 
+const InlineImageRenderer = ({ node }: any) => {
+  const sanityConfig = {
+    projectId: process.env.SANITY_PROJECT,
+    dataset: process.env.SANITY_DATASET,
+  };
+  const { _ref } = node.image.asset;
+  const image = getFluidGatsbyImage(_ref, { maxWidth: 2000 }, sanityConfig);
+
+  return <InlineImage alt={node.alt} image={image} width="2000" />;
+};
+
 const serializers = {
   types: {
     block: BlockRenderer,
+    inlineImage: InlineImageRenderer,
   },
   list: ListRenderer,
   listItem: ListItemRenderer,

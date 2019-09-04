@@ -19,12 +19,14 @@ export default {
   preview: {
     select: {
       subtitle: 'alt',
+      media: 'image',
     },
     prepare(selection) {
-      const { subtitle } = selection;
+      const { subtitle, media } = selection;
       return {
         title: 'Image',
         subtitle,
+        media,
       };
     },
   },
