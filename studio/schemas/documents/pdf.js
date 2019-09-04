@@ -19,5 +19,11 @@ export default {
       title: 'Content',
       type: 'richText',
     },
+    {
+      name: 'file',
+      title: 'File',
+      type: 'file',
+      readOnly: true,
+    },
   ],
 };

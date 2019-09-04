@@ -49,8 +49,8 @@ const GenerateDocumentPage: React.FC = () => {
       const id = params.get('id');
 
       const client = sanityClient({
-        projectId: process.env.SANITY_PROJECT,
-        dataset: process.env.SANITY_DATASET,
+        projectId: 'vv0x27yc',
+        dataset: 'production',
         useCdn: false,
       });
 
