@@ -20,7 +20,7 @@ exports.handler = async function(event) {
     headless: chrome.headless,
   });
   const page = await browser.newPage();
-  await page.goto(url);
+  await page.goto(url, { waitUntil: 'networkidle2' });
   const pdf = await page.pdf();
   await browser.close();
 
