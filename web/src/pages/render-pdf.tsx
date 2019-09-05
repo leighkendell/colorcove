@@ -28,8 +28,7 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   max-width: 1000px;
-  margin: 0 auto;
-  margin-bottom: ${spacing(4)};
+  margin: ${spacing(4)} auto;
   padding-bottom: ${spacing(4)};
   font-weight: bold;
   border-bottom: 1px solid ${props => props.theme.colorMidGrey};

@@ -1,5 +1,5 @@
 import { FiFile } from 'react-icons/fi';
-import moduleGroup from '../objects/module-group';
+import PdfInput from '../../components/pdf-input';
 
 export default {
   name: 'pdf',
@@ -24,6 +24,13 @@ export default {
       title: 'File',
       type: 'file',
       readOnly: true,
+    },
+    // TODO: Is there a proper way to just insert a component not related to an input?
+    {
+      name: 'pdfButton',
+      title: 'PDF Button',
+      type: 'string',
+      inputComponent: PdfInput,
     },
   ],
 };
