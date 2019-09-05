@@ -21,7 +21,7 @@ exports.handler = async function(event) {
   });
   const page = await browser.newPage();
   await page.goto(url, { waitUntil: 'networkidle2' });
-  const pdf = await page.pdf();
+  const pdf = await page.pdf({ format: 'A4' });
   await browser.close();
 
   try {
