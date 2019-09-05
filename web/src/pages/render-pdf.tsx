@@ -16,10 +16,9 @@ const GlobalStyle = createGlobalStyle`
     opacity: 0;
   }
 
-  html {
-    @media print {
-      font-size: 14pt;
-    }
+  @page {
+    size: A4 portait;
+    margin: 1.5cm 0;
   }
 `;
 
@@ -28,7 +27,8 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   max-width: 1000px;
-  margin: ${spacing(4)} auto;
+  margin: 0 auto;
+  margin-bottom: ${spacing(4)};
   padding-bottom: ${spacing(4)};
   font-weight: bold;
   border-bottom: 1px solid ${props => props.theme.colorMidGrey};
