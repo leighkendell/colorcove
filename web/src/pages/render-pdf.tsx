@@ -12,13 +12,18 @@ const GlobalStyle = createGlobalStyle`
   aside,
   footer {
     position: absolute !important;
+    display: none;
     visibility: hidden;
     opacity: 0;
   }
 
+  html {
+    font-size: 12px;
+  }
+
   @page {
     size: A4 portait;
-    margin: 1.5cm 0;
+    margin: 1.25cm 0;
   }
 `;
 
@@ -34,7 +39,7 @@ const Header = styled.header`
   border-bottom: 1px solid ${props => props.theme.colorMidGrey};
 
   svg {
-    width: ${spacing(20)};
+    width: ${spacing(15)};
   }
 `;
 
