@@ -11,19 +11,7 @@ const client = sanityClient({
 });
 
 exports.handler = async function(event) {
-  const { ids } = JSON.parse(event.body);
-  const id =
-    (ids.created.length > 0 && ids.created[0]) ||
-    (ids.updated.length > 0 && ids.updated[0]) ||
-    null;
-
-  if (!id) {
-    return {
-      statusCode: 200,
-      body: 'No documents matched',
-    };
-  }
-
+  const { id } = event.queryStringParameters;
   const url = `https://colorcove-web.netlify.com/render-pdf?id=${id}`;
 
   const browser = await puppeteer.launch({
