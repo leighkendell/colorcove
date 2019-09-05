@@ -52,8 +52,8 @@ const InternalLinkRenderer = ({ children, mark }: any) => {
 
 const InlineImageRenderer = ({ node }: any) => {
   const sanityConfig = {
-    projectId: process.env.SANITY_PROJECT,
-    dataset: process.env.SANITY_DATASET,
+    projectId: 'vv0x27yc',
+    dataset: 'production',
   };
   const { _ref } = node.image.asset;
   const image = getFluidGatsbyImage(_ref, { maxWidth: 2000 }, sanityConfig);

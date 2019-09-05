@@ -11,7 +11,8 @@ interface Props {
 
 const Wrapper = styled.figure<{ maxWidth: string }>`
   max-width: ${props => props.maxWidth}px;
-  margin: 0 auto;
+  margin-right: 0;
+  margin-left: 0;
 `;
 
 const InlineImage: React.FC<Props> = ({ image, alt, width }) => {

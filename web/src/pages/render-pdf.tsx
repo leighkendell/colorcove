@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { isBrowser } from '../utils/helpers';
 import PortableText from '../components/portable-text';
 import { ReactComponent as Logo } from '../images/colorcove-logo.svg';
 import Wrapper from '../components/wrapper';
@@ -47,21 +46,19 @@ const GenerateDocumentPage: React.FC = () => {
   const [data, setData] = useState<any | null>(null);
 
   useEffect(() => {
-    if (isBrowser) {
-      const { search } = window.location;
-      const params = new URLSearchParams(search);
-      const id = params.get('id');
+    const { search } = window.location;
+    const params = new URLSearchParams(search);
+    const id = params.get('id');
 
-      const client = sanityClient({
-        projectId: 'vv0x27yc',
-        dataset: 'production',
-        useCdn: false,
-      });
+    const client = sanityClient({
+      projectId: 'vv0x27yc',
+      dataset: 'production',
+      useCdn: false,
+    });
 
-      client.getDocument(id).then((data: any) => {
-        setData(data);
-      });
-    }
+    client.getDocument(id).then((data: any) => {
+      setData(data);
+    });
   }, []);
 
   return (
