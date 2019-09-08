@@ -29,7 +29,10 @@ const ShopifyCart: React.FC = () => {
   // TODO: Clean up types once @types/shopify-buy are updated
   const handleCheckout = () => {
     if (checkout) {
-      window.location.href = (checkout as any).webUrl;
+      window.location.href = (checkout as any).webUrl.replace(
+        'https://colorcove.myshopify.com',
+        'https://checkout.colorcove.co'
+      );
     }
   };
 
