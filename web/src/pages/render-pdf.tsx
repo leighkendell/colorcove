@@ -20,6 +20,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 12px;
   }
 
+  figure {
+    page-break-inside: avoid;
+  }
+
   @page {
     size: A4 portait;
     margin: 1.25cm 0;
