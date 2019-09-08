@@ -7,10 +7,8 @@ import List from './list';
 import ListItem from './list-item';
 import TextLink from './text-link';
 import InlineImage from './inline-image';
-const {
-  getFluidGatsbyImage,
-  getFixedGatsbyImage,
-} = require('gatsby-source-sanity');
+import { isBrowser } from '../utils/helpers';
+const { getFluidGatsbyImage } = require('gatsby-source-sanity');
 const BlockContent = require('@sanity/block-content-to-react');
 
 const BlockRenderer = ({ children, node }: any) => {
@@ -57,8 +55,11 @@ const InlineImageRenderer = ({ node }: any) => {
   };
   const { _ref } = node.image.asset;
   const image = getFluidGatsbyImage(_ref, { maxWidth: 2000 }, sanityConfig);
+  const loading = isBrowser && window.location.search ? 'eager' : 'lazy';
 
-  return <InlineImage alt={node.alt} image={image} width="2000" />;
+  return (
+    <InlineImage alt={node.alt} image={image} width="2000" loading={loading} />
+  );
 };
 
 const serializers = {

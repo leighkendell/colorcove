@@ -1,5 +1,5 @@
 import React from 'react';
-import { FluidObject } from 'gatsby-image';
+import { FluidObject, GatsbyImageProps } from 'gatsby-image';
 import styled from 'styled-components';
 import Image from './image';
 
@@ -7,6 +7,7 @@ interface Props {
   image: FluidObject;
   alt: string;
   width: string;
+  loading?: GatsbyImageProps['loading'];
 }
 
 const Wrapper = styled.figure<{ maxWidth: string }>`
@@ -15,10 +16,10 @@ const Wrapper = styled.figure<{ maxWidth: string }>`
   margin-left: 0;
 `;
 
-const InlineImage: React.FC<Props> = ({ image, alt, width }) => {
+const InlineImage: React.FC<Props> = ({ image, alt, width, loading }) => {
   return (
     <Wrapper maxWidth={width}>
-      <Image image={image} alt={alt} />
+      <Image image={image} alt={alt} loading={loading} />
     </Wrapper>
   );
 };

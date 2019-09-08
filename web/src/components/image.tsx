@@ -1,5 +1,5 @@
 import React, { useRef, useMemo } from 'react';
-import Img, { FluidObject } from 'gatsby-image';
+import Img, { FluidObject, GatsbyImageProps } from 'gatsby-image';
 import { colorcoveTheme } from '../utils/theme';
 
 interface Props {
@@ -9,13 +9,17 @@ interface Props {
   backgroundColor?: string;
   className?: string;
   style?: object;
+  loading?: GatsbyImageProps['loading'];
 }
 
 const replaceSrc = (imageString: string | undefined) =>
   (imageString && imageString.replace(/&fm=webp/g, '$&&q=95')) || undefined;
 
 const Image: React.FC<Props> = React.forwardRef<Img, Props>(
-  ({ image, alt, onLoad, backgroundColor, className, style }, ref) => {
+  (
+    { image, alt, onLoad, backgroundColor, className, style, loading = 'lazy' },
+    ref
+  ) => {
     // TODO: Replace this when sanity has a proper way of specifying image quality params
     const fluidObject = useRef<FluidObject>(image);
     const srcWebp = useMemo(() => replaceSrc(image.srcWebp), [image.srcWebp]);
@@ -38,6 +42,7 @@ const Image: React.FC<Props> = React.forwardRef<Img, Props>(
         alt={alt}
         className={className}
         style={style}
+        loading={loading}
         ref={ref}
       />
     );
