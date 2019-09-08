@@ -33,8 +33,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `colorcove`,
-        short_name: `starter`,
+        name: `Colorcove`,
+        short_name: `Colorcove`,
         start_url: `/`,
         background_color: `#000`,
         theme_color: `#000`,
