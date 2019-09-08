@@ -1,8 +1,4 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+const Sentry = require('@sentry/browser');
 
 async function loadPolyfills() {
   if (typeof window.IntersectionObserver === 'undefined') {
@@ -10,6 +6,11 @@ async function loadPolyfills() {
   }
 }
 
+function loadTracking() {
+  Sentry.init({ dsn: process.env.GATSBY_SENTRY_DSN });
+}
+
 exports.onClientEntry = () => {
   loadPolyfills();
+  loadTracking();
 };
