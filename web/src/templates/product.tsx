@@ -100,7 +100,7 @@ const ProductTemplate: React.FC<Props> = ({
           <Wrapper>
             <TextBlock
               title="Experience true film color"
-              description={`Bring life to your footage, buy ${title} now.`}
+              description={`Bring life to your footage, buy the ${title} now.`}
             >
               {buyButton(`Add to cart`)}
             </TextBlock>
