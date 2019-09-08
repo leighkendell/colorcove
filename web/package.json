@@ -8,6 +8,7 @@
     "@reach/tabs": "^0.1.6",
     "@sanity/block-content-to-react": "^2.0.6",
     "@sanity/client": "^0.142.0",
+    "@sentry/browser": "^5.6.3",
     "@types/react-dom": "^16.9.0",
     "@vimeo/player": "^2.10.0",
     "babel-plugin-styled-components": "^1.10.6",

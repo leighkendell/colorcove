@@ -14,6 +14,7 @@ import {
   SanityPageReference,
 } from '../types/graphql-types';
 import ShopifyCart from './shopify-cart';
+import ErrorBoundary from './error-boundary';
 
 interface Props {
   location: WindowLocation;
@@ -114,8 +115,10 @@ const Layout: React.FC<Props> = ({ children, location }) => {
           onCartOpen={openCart}
           cartQuantity={cartQuantity}
         />
-        <main>{children}</main>
-        <ShopifyCart />
+        <ErrorBoundary>
+          <main>{children}</main>
+          <ShopifyCart />
+        </ErrorBoundary>
         <Footer
           items={secondaryNav}
           facebookLink={facebook || ''}
