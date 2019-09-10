@@ -3,6 +3,7 @@ require('dotenv').config({
 });
 
 const isProd = process.env.NODE_ENV === 'production';
+const siteUrl = `https://colorcove.co`;
 
 module.exports = {
   siteMetadata: {
@@ -10,6 +11,7 @@ module.exports = {
     // TODO: Default description
     description: ``,
     author: `@colorcove`,
+    siteUrl,
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -63,5 +65,18 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`/render-pdf`],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl,
+      },
+    },
   ],
 };
