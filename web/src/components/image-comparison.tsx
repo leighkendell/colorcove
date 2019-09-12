@@ -164,7 +164,7 @@ const ImageComparison: React.FC<Props> = ({
 
   // Animations
   const [{ progress }, setSpring] = useSpring(() => ({ progress: 50 }));
-  const [wrapperAnimation, setWrapperAnimation] = useSpring(() => ({
+  const [fadeAnimation, setFadeAnimation] = useSpring(() => ({
     opacity: 0,
   }));
 
@@ -260,7 +260,7 @@ const ImageComparison: React.FC<Props> = ({
     imageCount.current += 1;
 
     if (imageCount.current === 2) {
-      setWrapperAnimation({
+      setFadeAnimation({
         opacity: 1,
       });
     }
@@ -268,16 +268,12 @@ const ImageComparison: React.FC<Props> = ({
 
   return (
     <StyledImageComparison>
-      <Wrapper
-        onClick={handleWrapperClick}
-        ref={wrapperEl}
-        style={wrapperAnimation}
-      >
+      <Wrapper onClick={handleWrapperClick} ref={wrapperEl}>
         <ImageWrapper style={wrapperStyle}>
           <AnimatedImage
             image={beforeImage}
             alt="Before"
-            style={imageStyle}
+            style={{ ...imageStyle, ...fadeAnimation }}
             onLoad={handleImageLoaded}
           />
         </ImageWrapper>
