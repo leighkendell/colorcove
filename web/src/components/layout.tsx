@@ -117,10 +117,8 @@ const Layout: React.FC<Props> = ({ children, location }) => {
           cartQuantity={cartQuantity}
         />
         <ErrorBoundary>
-          <main>
-            {children}
-            <Newsletter />
-          </main>
+          <main>{children}</main>
+          <Newsletter />
           <ShopifyCart />
         </ErrorBoundary>
         <Footer
