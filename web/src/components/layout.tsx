@@ -15,6 +15,7 @@ import {
 } from '../types/graphql-types';
 import ShopifyCart from './shopify-cart';
 import ErrorBoundary from './error-boundary';
+import Newsletter from './newsletter';
 
 interface Props {
   location: WindowLocation;
@@ -117,6 +118,7 @@ const Layout: React.FC<Props> = ({ children, location }) => {
         />
         <ErrorBoundary>
           <main>{children}</main>
+          <Newsletter />
           <ShopifyCart />
         </ErrorBoundary>
         <Footer

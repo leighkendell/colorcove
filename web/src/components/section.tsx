@@ -8,59 +8,68 @@ import useStore from '../hooks/use-store';
 
 interface Props {
   disableFadeIn?: boolean;
+  className?: string;
 }
 
 const StyledSection = styled(animated.section)`
-  margin: ${spacing(6)} 0;
+  --spacing: ${spacing(6)};
+  margin: var(--spacing) 0;
 
   ${breakpoint('small')} {
-    margin: ${spacing(9)} 0;
+    --spacing: ${spacing(9)};
   }
 
   ${breakpoint('medium')} {
-    margin: ${spacing(12)} 0;
+    --spacing: ${spacing(12)};
   }
 
   ${breakpoint('large')} {
-    margin: ${spacing(15)} 0;
+    --spacing: ${spacing(15)};
   }
 
   ${breakpoint('xLarge')} {
+    --spacing: ${spacing(18)};
     max-width: 2000px;
-    margin: ${spacing(18)} auto;
+    margin: var(--spacing) auto;
   }
 `;
 
-const Section: React.FC<Props> = React.memo(({ children, disableFadeIn }) => {
-  const headerAnimationComplete = useStore(
-    state => state.headerAnimationComplete
-  );
+const Section: React.FC<Props> = React.memo(
+  ({ children, disableFadeIn, className }) => {
+    const headerAnimationComplete = useStore(
+      state => state.headerAnimationComplete
+    );
 
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-  });
+    const [ref, inView] = useInView({
+      triggerOnce: true,
+    });
 
-  const [fadeAnimation, set] = useSpring(() => ({
-    opacity: isBrowser ? 0 : 1,
-    transform: `translateY(${isBrowser ? '24px' : '0px'})`,
-    config: springSlowConfig,
-  }));
+    const [fadeAnimation, set] = useSpring(() => ({
+      opacity: isBrowser ? 0 : 1,
+      transform: `translateY(${isBrowser ? '24px' : '0px'})`,
+      config: springSlowConfig,
+    }));
 
-  // Set the visibility based on inView state
-  useEffect(() => {
-    if (inView && headerAnimationComplete) {
-      set({
-        opacity: 1,
-        transform: 'translateY(0px)',
-      });
-    }
-  }, [headerAnimationComplete, inView, set]);
+    // Set the visibility based on inView state
+    useEffect(() => {
+      if (inView && headerAnimationComplete) {
+        set({
+          opacity: 1,
+          transform: 'translateY(0px)',
+        });
+      }
+    }, [headerAnimationComplete, inView, set]);
 
-  return (
-    <StyledSection ref={ref} style={disableFadeIn ? {} : fadeAnimation}>
-      {children}
-    </StyledSection>
-  );
-});
+    return (
+      <StyledSection
+        ref={ref}
+        style={disableFadeIn ? {} : fadeAnimation}
+        className={className}
+      >
+        {children}
+      </StyledSection>
+    );
+  }
+);
 
 export default Section;

@@ -19,6 +19,9 @@ export const useShopifyCheckout = () => {
   useEffect(() => {
     let didCancel = false;
 
+    const hasInvalidLineItems: (checkout: any) => boolean = checkout =>
+      checkout.lineItems.some((lineItem: any) => lineItem.variant === null);
+
     // Create a new checkout
     const createCheckout = async () => {
       try {
@@ -43,8 +46,8 @@ export const useShopifyCheckout = () => {
         }
 
         // TODO: Clean up types once @types/shopify-buy are updated
-        if ((checkout as any).completedAt) {
-          // Create a new checkout if this one has already been completed
+        if ((checkout as any).completedAt || hasInvalidLineItems(checkout)) {
+          // Create a new checkout if this one has already been completed or it contains invalid line items
           createCheckout();
         } else {
           // Set the checkout
