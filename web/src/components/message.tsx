@@ -30,6 +30,10 @@ export const messageBase = css`
   border-radius: ${spacing(0.5)};
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 
+  * {
+    color: ${props => props.theme.colorWhite};
+  }
+
   ${breakpoint('medium')} {
     padding: ${spacing(4)};
   }

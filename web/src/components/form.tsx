@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { spacing, breakpoint } from '../utils/style-helpers';
-import Button from './button';
 import { cardContent } from './card';
 import { encode } from '../utils/helpers';
+import Fieldset from './fieldset';
 
 interface Props {
   formName: string;
@@ -16,24 +15,6 @@ const StyledForm = styled.form`
   margin: 0 auto;
   background-color: ${props => props.theme.colorLightGrey};
   ${cardContent};
-`;
-
-const Fieldset = styled.fieldset`
-  margin: 0;
-  padding: 0;
-  border: 0;
-
-  > * + * {
-    margin-top: ${spacing(3)};
-
-    ${breakpoint('medium')} {
-      margin-top: ${spacing(6)};
-    }
-  }
-
-  ${Button} {
-    margin-top: ${spacing(6)};
-  }
 `;
 
 const Form: React.FC<Props> = ({ children, formName, onSuccess, onError }) => {
