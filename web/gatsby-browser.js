@@ -1,9 +1,9 @@
 const Sentry = require('@sentry/browser');
 
 async function loadPolyfills() {
-  if (typeof window.IntersectionObserver === 'undefined') {
-    await import('intersection-observer');
-  }
+  await import('intersection-observer');
+  const smoothscroll = await import('smoothscroll-polyfill');
+  smoothscroll.polyfill();
 }
 
 function loadTracking() {
