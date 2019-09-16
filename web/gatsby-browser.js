@@ -1,4 +1,5 @@
 const Sentry = require('@sentry/browser');
+const LogRocket = require('logrocket');
 
 async function loadPolyfills() {
   await import('intersection-observer');
@@ -8,6 +9,12 @@ async function loadPolyfills() {
 
 function loadTracking() {
   Sentry.init({ dsn: process.env.GATSBY_SENTRY_DSN });
+  LogRocket.init(process.env.GATSBY_LOGROCKET_KEY);
+  LogRocket.getSessionURL(sessionURL => {
+    Sentry.configureScope(scope => {
+      scope.setExtra('sessionURL', sessionURL);
+    });
+  });
 }
 
 exports.onClientEntry = () => {
