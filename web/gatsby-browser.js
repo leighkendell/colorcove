@@ -1,9 +1,9 @@
+require('intersection-observer');
+const smoothscroll = require('smoothscroll-polyfill');
 const Sentry = require('@sentry/browser');
 const LogRocket = require('logrocket');
 
-async function loadPolyfills() {
-  await import('intersection-observer');
-  const smoothscroll = await import('smoothscroll-polyfill');
+function loadPolyfills() {
   smoothscroll.polyfill();
 }
 
