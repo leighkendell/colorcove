@@ -46,6 +46,7 @@ module.exports = {
     },
     `gatsby-plugin-svgr`,
     `gatsby-plugin-netlify`,
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-sanity`,
       options: {
@@ -64,7 +65,6 @@ module.exports = {
         includeCollections: [`shop`],
       },
     },
-    `gatsby-plugin-offline`,
     `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-sitemap`,
