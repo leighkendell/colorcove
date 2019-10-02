@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { spacing, breakpoint, fontSize } from '../utils/style-helpers';
-import { useGesture } from 'react-use-gesture';
+import { useGesture, useDrag } from 'react-use-gesture';
 import { FluidObject } from 'gatsby-image';
 import Image from './image';
 
@@ -186,35 +186,31 @@ const ImageComparison: React.FC<Props> = ({
 
   // Drag behaviour
   // Sets the spring "progress" state based on the drag value
-  const gestureEvents = useGesture(
-    {
-      onDrag: ({ event, active, delta, temp = progress.getValue(), last }) => {
-        if (event) {
-          event.preventDefault();
+  const gestureEvents = useDrag(
+    ({ event, active, delta, last }) => {
+      if (event) {
+        event.preventDefault();
+      }
+
+      if (wrapperEl.current) {
+        const width = wrapperEl.current.offsetWidth;
+
+        const [x] = delta;
+        let newProgress = (x / width) * 100 + progress.getValue();
+
+        if (newProgress > 100 || newProgress < 0) {
+          return;
         }
 
-        if (wrapperEl.current) {
-          const width = wrapperEl.current.offsetWidth;
-
-          const [x] = delta;
-          let newProgress = (x / width) * 100 + temp;
-
-          if (newProgress > 100 || newProgress < 0) {
-            return;
-          }
-
-          if (last) {
-            newProgress = Math.round(newProgress);
-          }
-
-          setSpring({
-            progress: newProgress,
-            immediate: active,
-          });
+        if (last) {
+          newProgress = Math.round(newProgress);
         }
 
-        return temp;
-      },
+        setSpring({
+          progress: newProgress,
+          immediate: active,
+        });
+      }
     },
     { event: { capture: false, passive: false } }
   );
