@@ -19,7 +19,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window,document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', ${process.env.FB_PIXEL_ID});
+          fbq('init', ${process.env.GATSBY_FB_PIXEL_ID});
           fbq('track', 'PageView');
         `,
       }}
@@ -29,7 +29,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
       dangerouslySetInnerHTML={{
         __html: `
           <img height="1" width="1"
-          src="https://www.facebook.com/tr?id=${process.env.FB_PIXEL_ID}&ev=PageView
+          src="https://www.facebook.com/tr?id=${process.env.GATSBY_FB_PIXEL_ID}&ev=PageView
           &noscript=1"/>
         `,
       }}
