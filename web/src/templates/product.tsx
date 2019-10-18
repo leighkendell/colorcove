@@ -97,7 +97,7 @@ const ProductTemplate: React.FC<Props> = ({
       offers: {
         '@type': 'Offer',
         priceCurrency: 'USD',
-        price: formatCurrency(price),
+        price: price,
       },
     };
 
