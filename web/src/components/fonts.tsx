@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import Helmet from 'react-helmet';
 
 // Fonts
 import ManropeStage1LightWoff2 from '../fonts/manrope-light-kern-latin.woff2';

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Product } from 'schema-dts';
 import { graphql } from 'gatsby';
 import { Query } from '../types/graphql-types';
 import Hero from '../components/hero';
@@ -13,6 +14,7 @@ import SEO from '../components/seo';
 import TextBlock from '../components/text-block';
 import Section from '../components/section';
 import Wrapper from '../components/wrapper';
+import Helmet from 'react-helmet';
 
 interface Props {
   data: Query;
@@ -87,9 +89,29 @@ const ProductTemplate: React.FC<Props> = ({
       </Button>
     );
 
+    // Structured data
+    const productMeta: Product = {
+      '@type': 'Product',
+      name: title as string,
+      description: description as string,
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'USD',
+        price: price,
+      },
+    };
+
     return (
       <>
         <SEO title={title} description={description} image={ogImage} />
+        <Helmet>
+          <script type="application/ld+json">{`
+            ${JSON.stringify({
+              '@context': 'http://schema.org',
+              ...productMeta,
+            })}
+          `}</script>
+        </Helmet>
         {hero && (
           <Hero hero={hero}>
             {buyButton(`Buy for ${formatCurrency(price)}`)}
