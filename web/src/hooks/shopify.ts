@@ -37,6 +37,12 @@ export const useShopifyCheckout = () => {
       try {
         const checkout = await client.checkout.fetch(checkoutId);
 
+        // If something errored on shopify's end
+        if (!checkout) {
+          createCheckout();
+          return;
+        }
+
         // Prevent any state updates if the component was unmounted
         if (didCancel) {
           return;

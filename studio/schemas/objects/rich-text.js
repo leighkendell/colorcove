@@ -7,6 +7,7 @@ export default {
   fields: [
     {
       name: 'blocks',
+      title: 'Content',
       type: 'array',
       of: [
         {
