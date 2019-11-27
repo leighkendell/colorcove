@@ -12,9 +12,13 @@ import {
   Query,
   SanitySocial,
   SanityPageReference,
+  SanityRichText,
+  SanityBlock,
 } from '../types/graphql-types';
 import ShopifyCart from './shopify-cart';
 import ErrorBoundary from './error-boundary';
+import PromoBanner from './promo-banner';
+import PortableText from './portable-text';
 
 interface Props {
   location: WindowLocation;
@@ -81,6 +85,7 @@ const Layout: React.FC<Props> = ({ children, location }) => {
             instagram
             vimeo
           }
+          _rawPromo
         }
       }
     `
@@ -94,6 +99,10 @@ const Layout: React.FC<Props> = ({ children, location }) => {
   );
   const social: SanitySocial = getNestedObject(sanitySiteSettings, 'social');
   const { facebook, instagram, vimeo } = social;
+  const promo: SanityRichText = getNestedObject(
+    sanitySiteSettings,
+    '_rawPromo'
+  );
 
   // Count the items in the cart
   const cartQuantity =
@@ -116,7 +125,14 @@ const Layout: React.FC<Props> = ({ children, location }) => {
           cartQuantity={cartQuantity}
         />
         <ErrorBoundary>
-          <main>{children}</main>
+          <main>
+            {promo && promo.blocks && pathname === '/' && (
+              <PromoBanner>
+                <PortableText blocks={promo.blocks as SanityBlock[]} />
+              </PromoBanner>
+            )}
+            {children}
+          </main>
           <ShopifyCart />
         </ErrorBoundary>
         <Footer

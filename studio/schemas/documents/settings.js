@@ -24,5 +24,10 @@ export default {
       title: 'SEO',
       type: 'seo',
     },
+    {
+      name: 'promo',
+      title: 'Promo',
+      type: 'richText',
+    },
   ],
 };
