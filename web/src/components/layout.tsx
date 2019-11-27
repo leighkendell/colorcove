@@ -125,12 +125,14 @@ const Layout: React.FC<Props> = ({ children, location }) => {
           cartQuantity={cartQuantity}
         />
         <ErrorBoundary>
-          {promo && promo.blocks && pathname === '/' && (
-            <PromoBanner>
-              <PortableText blocks={promo.blocks as SanityBlock[]} />
-            </PromoBanner>
-          )}
-          <main>{children}</main>
+          <main>
+            {promo && promo.blocks && pathname === '/' && (
+              <PromoBanner>
+                <PortableText blocks={promo.blocks as SanityBlock[]} />
+              </PromoBanner>
+            )}
+            {children}
+          </main>
           <ShopifyCart />
         </ErrorBoundary>
         <Footer
