@@ -14,7 +14,7 @@ import SEO from '../components/seo';
 import TextBlock from '../components/text-block';
 import Section from '../components/section';
 import Wrapper from '../components/wrapper';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
 interface Props {
   data: Query;
