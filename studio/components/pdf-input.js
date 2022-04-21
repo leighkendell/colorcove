@@ -3,7 +3,7 @@ import { withDocument } from 'part:@sanity/form-builder';
 import Button from 'part:@sanity/components/buttons/default';
 
 const PdfInput = React.forwardRef(({ document }, ref) => {
-  const documentId = document._id.replace('drafts.', '');
+  const documentId = document?._id?.replace('drafts.', '');
   const [loading, setLoading] = useState(false);
 
   const handleDownload = async () => {
@@ -18,7 +18,11 @@ const PdfInput = React.forwardRef(({ document }, ref) => {
   };
 
   return (
-    <Button ref={ref} onClick={handleDownload} disabled={loading}>
+    <Button
+      ref={ref}
+      onClick={handleDownload}
+      disabled={loading || !documentId}
+    >
       Generate PDF
     </Button>
   );
